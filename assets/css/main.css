@@ -18,8 +18,8 @@
 		vertical-align: baseline;
 	}
 
-	a.cc-btn.cc-dismiss:hover {
-		color: white;
+	a.cc-dismiss:hover {
+		color: #4e9730 ! important;
 	}
 
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
