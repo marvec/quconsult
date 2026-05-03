@@ -1,0 +1,81 @@
+---
+// Footer.astro — 4-column footer + WellBe IČ legal row.
+// Per plan §2 site arch.
+const year = new Date().getFullYear();
+---
+<footer class="mt-xxl border-t border-border bg-bg-warm">
+  <div class="container-quc py-xl">
+    <div class="grid gap-xl md:grid-cols-4">
+      <div>
+        <a href="/" class="flex items-center gap-sm" aria-label="QuConsult — domů">
+          <svg viewBox="0 0 200 200" width="28" height="28" aria-hidden="true">
+            <defs>
+              <mask id="footer-notch">
+                <rect width="200" height="200" fill="#fff" />
+                <rect x="118" y="118" width="60" height="60" fill="#000" />
+              </mask>
+            </defs>
+            <circle cx="100" cy="100" r="72" fill="#1A1A1A" mask="url(#footer-notch)" />
+            <rect x="128" y="128" width="40" height="10" fill="#D97706" />
+          </svg>
+          <span class="font-serif text-lg font-semibold">QuConsult</span>
+        </a>
+        <p class="mt-md text-label text-ink-muted">
+          Praktické AI poradenství pro české firmy. Bez hype, bez buzzwordů.
+        </p>
+        <a
+          href="/kontakt"
+          class="mt-md inline-flex items-center rounded bg-amber px-md py-sm text-label font-medium text-bg transition-colors hover:bg-amber-deep"
+        >
+          Domluvit konzultaci
+        </a>
+      </div>
+
+      <div>
+        <h3 class="text-label font-semibold uppercase tracking-wide text-ink-soft" style="font-family: var(--font-sans);">
+          Služby
+        </h3>
+        <ul class="mt-md space-y-sm text-label">
+          <li><a href="/sluzby/analyza-a-strategie" class="text-ink-muted hover:text-ink">AI Analýza a strategie</a></li>
+          <li><a href="/sluzby/automatizace-procesu" class="text-ink-muted hover:text-ink">Automatizace procesů</a></li>
+          <li><a href="/sluzby/skoleni" class="text-ink-muted hover:text-ink">(Nejen) AI školení</a></li>
+          <li><a href="/sluzby/implementace-a-vyvoj" class="text-ink-muted hover:text-ink">AI Implementace a vývoj</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-label font-semibold uppercase tracking-wide text-ink-soft" style="font-family: var(--font-sans);">
+          Firma
+        </h3>
+        <ul class="mt-md space-y-sm text-label">
+          <li><a href="/o-nas" class="text-ink-muted hover:text-ink">O nás</a></li>
+          <li><a href="/jak-pracujeme" class="text-ink-muted hover:text-ink">Jak pracujeme</a></li>
+          <li><a href="/blog" class="text-ink-muted hover:text-ink">Blog</a></li>
+          <li><a href="/kontakt" class="text-ink-muted hover:text-ink">Kontakt</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-label font-semibold uppercase tracking-wide text-ink-soft" style="font-family: var(--font-sans);">
+          Právní
+        </h3>
+        <ul class="mt-md space-y-sm text-label">
+          <li><a href="/soukromi" class="text-ink-muted hover:text-ink">Ochrana soukromí</a></li>
+          <li><a href="/zpracovatele" class="text-ink-muted hover:text-ink">Zpracovatelé osobních údajů</a></li>
+          <li><a href="/cookies" class="text-ink-muted hover:text-ink">Cookies</a></li>
+        </ul>
+
+        <div class="mt-lg flex gap-md">
+          <a href="https://linkedin.com/company/quconsult" rel="me noopener" aria-label="LinkedIn" class="text-ink-muted hover:text-ink">LinkedIn</a>
+          <a href="https://youtube.com/@quconsult" rel="me noopener" aria-label="YouTube" class="text-ink-muted hover:text-ink">YouTube</a>
+          <a href="https://github.com/marvec" rel="me noopener" aria-label="GitHub" class="text-ink-muted hover:text-ink">GitHub</a>
+          <a href="https://substack.com/@marvec" rel="me noopener" aria-label="Substack" class="text-ink-muted hover:text-ink">Substack</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-xl border-t border-border pt-lg text-label text-ink-soft">
+      WellBe s.r.o. &middot; IČ 05830931 &middot; Nové sady 988/2, 602 00 Brno &middot; &copy; {year} QuConsult
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,14 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <mask id="notch">
+      <rect width="200" height="200" fill="#fff"></rect>
+      
+      <rect x="118" y="118" width="60" height="60" fill="#000"></rect>
+    </mask>
+  </defs>
+  
+  <circle cx="100" cy="100" r="72" fill="#1A1A1A" mask="url(#notch)"></circle>
+  
+  <rect x="128" y="128" width="40" height="10" fill="#D97706"></rect>
+</svg>

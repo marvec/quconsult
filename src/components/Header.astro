@@ -1,0 +1,51 @@
+---
+// Header.astro — sticky navigation with logo, 6-item nav, amber CTA.
+// Per plan §11.1: Domů | Služby ▾ | Jak pracujeme | Blog | O nás | Kontakt
+const navItems = [
+  { label: 'Domů', href: '/' },
+  { label: 'Služby', href: '/sluzby', hasDropdown: true },
+  { label: 'Jak pracujeme', href: '/jak-pracujeme' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'O nás', href: '/o-nas' },
+  { label: 'Kontakt', href: '/kontakt' },
+];
+---
+<header class="sticky top-0 z-40 border-b border-border bg-bg/90 backdrop-blur">
+  <div class="container-quc flex h-16 items-center justify-between gap-md">
+    <a href="/" class="flex items-center gap-sm" aria-label="QuConsult — domů">
+      <svg viewBox="0 0 200 200" width="32" height="32" aria-hidden="true">
+        <defs>
+          <mask id="header-notch">
+            <rect width="200" height="200" fill="#fff" />
+            <rect x="118" y="118" width="60" height="60" fill="#000" />
+          </mask>
+        </defs>
+        <circle cx="100" cy="100" r="72" fill="#1A1A1A" mask="url(#header-notch)" />
+        <rect x="128" y="128" width="40" height="10" fill="#D97706" />
+      </svg>
+      <span class="font-serif text-lg font-semibold tracking-tight">QuConsult</span>
+    </a>
+
+    <nav aria-label="Hlavní navigace" class="hidden md:block">
+      <ul class="flex items-center gap-lg text-label">
+        {navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="text-ink-muted transition-colors hover:text-ink"
+            >
+              {item.label}{item.hasDropdown ? ' ▾' : ''}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <a
+      href="/kontakt"
+      class="hidden md:inline-flex items-center rounded bg-amber px-md py-sm text-label font-medium text-bg transition-colors hover:bg-amber-deep"
+    >
+      Domluvit konzultaci
+    </a>
+  </div>
+</header>
