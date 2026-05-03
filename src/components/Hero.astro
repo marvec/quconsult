@@ -1,0 +1,74 @@
+---
+// Hero.astro — page hero block. Used on homepage, service detail pages,
+// /o-nas, /jak-pracujeme. Title is a slot so callers can inline italic
+// emphasis or <span> styling per Stitch references (e.g., "Naše Služby"
+// with italic "Služby" amber accent).
+//
+// Props:
+// - eyebrow: small uppercase label above title (optional)
+// - subtitle: lead paragraph under title (optional)
+// - primaryCta / secondaryCta: { label, href }
+// - align: 'left' (default) or 'center'
+// - tight: shrink vertical padding (for service detail pages)
+
+interface Cta { label: string; href: string; }
+
+interface Props {
+  eyebrow?: string;
+  subtitle?: string;
+  primaryCta?: Cta;
+  secondaryCta?: Cta;
+  align?: 'left' | 'center';
+  tight?: boolean;
+}
+
+const {
+  eyebrow,
+  subtitle,
+  primaryCta,
+  secondaryCta,
+  align = 'left',
+  tight = false,
+} = Astro.props;
+
+const alignClass = align === 'center' ? 'text-center mx-auto' : '';
+const padClass = tight ? 'py-xl' : 'py-xxl';
+---
+<section class={`container-quc ${padClass}`}>
+  <div class={`max-w-3xl ${alignClass}`}>
+    {eyebrow && (
+      <p class="text-label uppercase tracking-wider text-amber">{eyebrow}</p>
+    )}
+
+    <h1 class="mt-md font-serif text-h1-mobile leading-[1.1] tracking-tight md:text-h1-desktop">
+      <slot />
+    </h1>
+
+    {subtitle && (
+      <p class="mt-lg text-body-lg text-ink-muted">
+        {subtitle}
+      </p>
+    )}
+
+    {(primaryCta || secondaryCta) && (
+      <div class={`mt-xl flex flex-wrap gap-md ${align === 'center' ? 'justify-center' : ''}`}>
+        {primaryCta && (
+          <a
+            href={primaryCta.href}
+            class="inline-flex items-center rounded bg-amber px-lg py-md text-label font-medium text-bg transition-colors hover:bg-amber-deep"
+          >
+            {primaryCta.label}
+          </a>
+        )}
+        {secondaryCta && (
+          <a
+            href={secondaryCta.href}
+            class="inline-flex items-center rounded border border-ink px-lg py-md text-label font-medium text-ink transition-colors hover:border-amber hover:text-amber"
+          >
+            {secondaryCta.label}
+          </a>
+        )}
+      </div>
+    )}
+  </div>
+</section>

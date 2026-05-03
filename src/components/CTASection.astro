@@ -1,0 +1,105 @@
+---
+// CTASection.astro — final-section CTA banner.
+//
+// Variants:
+// - plain: bg-bg-warm, ink text, amber CTA. Default for most pages.
+// - amber: bg-amber/10 with amber accent. Used on home (per Stitch landing winner).
+// - ink:   bg-ink, bg-text on amber CTA. Used on /blog/[slug] black banner
+//          (per Stitch article winner fc2470e6).
+//
+// withEmailField: adds <input type="email"> + button which navigates to
+// /kontakt?email=<encoded> on submit (per decisions.md §1 home fix #3).
+// Pure GET — no JS required, degrades gracefully.
+
+interface Cta { label: string; href: string; }
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  primaryCta: Cta;
+  secondaryCta?: Cta;
+  variant?: 'plain' | 'amber' | 'ink';
+  withEmailField?: boolean;
+}
+
+const {
+  title,
+  subtitle,
+  primaryCta,
+  secondaryCta,
+  variant = 'plain',
+  withEmailField = false,
+} = Astro.props;
+
+const variantClass = {
+  plain: 'bg-bg-warm text-ink',
+  amber: 'bg-amber/10 text-ink',
+  ink:   'bg-ink text-bg',
+}[variant];
+
+const subtitleClass = variant === 'ink' ? 'text-bg/80' : 'text-ink-muted';
+const primaryBtnClass = variant === 'ink'
+  ? 'bg-amber text-bg hover:bg-amber-deep'
+  : 'bg-amber text-bg hover:bg-amber-deep';
+const secondaryBtnClass = variant === 'ink'
+  ? 'border border-bg/40 text-bg hover:border-amber hover:text-amber'
+  : 'border border-ink text-ink hover:border-amber hover:text-amber';
+---
+<section class={`${variantClass}`}>
+  <div class="container-quc py-xxl">
+    <div class="max-w-3xl">
+      <h2 class="font-serif text-3xl leading-tight tracking-tight md:text-h2-desktop">
+        {title}
+      </h2>
+      {subtitle && (
+        <p class={`mt-md text-body-lg ${subtitleClass}`}>{subtitle}</p>
+      )}
+
+      {withEmailField ? (
+        <form
+          action={primaryCta.href}
+          method="get"
+          class="mt-xl flex flex-col gap-sm sm:flex-row sm:gap-md"
+        >
+          <label class="sr-only" for="cta-email">E-mail</label>
+          <input
+            id="cta-email"
+            name="email"
+            type="email"
+            required
+            autocomplete="email"
+            placeholder="vas@firma.cz"
+            class={`flex-1 rounded border px-md py-md text-body focus:outline-none focus:ring-2 focus:ring-amber ${
+              variant === 'ink'
+                ? 'border-bg/30 bg-ink text-bg placeholder:text-bg/50'
+                : 'border-border bg-bg text-ink placeholder:text-ink-soft'
+            }`}
+          />
+          <button
+            type="submit"
+            class={`inline-flex items-center justify-center rounded px-lg py-md text-label font-medium transition-colors ${primaryBtnClass}`}
+          >
+            {primaryCta.label}
+          </button>
+        </form>
+      ) : (
+        <div class="mt-xl flex flex-wrap gap-md">
+          <a
+            href={primaryCta.href}
+            class={`inline-flex items-center rounded px-lg py-md text-label font-medium transition-colors ${primaryBtnClass}`}
+          >
+            {primaryCta.label}
+          </a>
+          {secondaryCta && (
+            <a
+              href={secondaryCta.href}
+              class={`inline-flex items-center rounded px-lg py-md text-label font-medium transition-colors ${secondaryBtnClass}`}
+            >
+              {secondaryCta.label}
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,50 @@
+---
+// TeamMember.astro — single team profile card.
+// Used on /o-nas (per Stitch winner 05-o-nas mix A+B) and homepage tease (later).
+//
+// DESIGN_BRIEF: autentické fotky v přirozeném světle, žádné stock photos.
+// Until real team photos exist, callers can pass a placeholder path —
+// the component does not enforce image presence so build doesn't break.
+
+interface Props {
+  photo?: string;
+  photoAlt?: string;
+  name: string;
+  role: string;
+  bio?: string;
+  linkedin?: string;
+}
+
+const { photo, photoAlt, name, role, bio, linkedin } = Astro.props;
+---
+<article class="flex flex-col">
+  <div class="relative aspect-square w-full max-w-[280px] overflow-hidden rounded-full bg-bg-warm">
+    {photo ? (
+      <img
+        src={photo}
+        alt={photoAlt ?? `${name} — ${role}`}
+        loading="lazy"
+        decoding="async"
+        class="h-full w-full object-cover"
+      />
+    ) : (
+      <div class="flex h-full w-full items-center justify-center font-serif text-5xl text-ink-soft" aria-hidden="true">
+        {name.charAt(0)}
+      </div>
+    )}
+  </div>
+
+  <h3 class="mt-md font-serif text-xl text-ink md:text-2xl">{name}</h3>
+  <p class="mt-xs text-label uppercase tracking-wider text-amber">{role}</p>
+  {bio && <p class="mt-md text-body text-ink-muted">{bio}</p>}
+
+  {linkedin && (
+    <a
+      href={linkedin}
+      rel="noopener"
+      class="mt-md inline-flex items-center gap-xs text-label font-medium text-ink-muted transition-colors hover:text-amber"
+    >
+      LinkedIn <span aria-hidden="true">→</span>
+    </a>
+  )}
+</article>

@@ -1,0 +1,27 @@
+---
+// ValueProp.astro — single value-proposition block. Caller wraps 3+ in a grid.
+//
+// Used on homepage (3 nejsilnější pillars from plan §4.1) and /jak-pracujeme
+// (full 5 pillars). Pure typography — no icons (DESIGN_BRIEF: žádné generické
+// ikony typu "handshake" / "rocket"). Optional eyebrow number gives cards
+// rhythm without needing imagery.
+
+interface Props {
+  number?: string;
+  title: string;
+  body?: string;
+}
+
+const { number, title, body } = Astro.props;
+---
+<article class="flex flex-col">
+  {number && (
+    <span class="text-label font-medium text-amber tabular-nums">{number}</span>
+  )}
+  <h3 class="mt-sm font-serif text-2xl text-ink md:text-3xl">{title}</h3>
+  {body ? (
+    <p class="mt-md text-body text-ink-muted">{body}</p>
+  ) : (
+    <div class="mt-md text-body text-ink-muted"><slot /></div>
+  )}
+</article>

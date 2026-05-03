@@ -1,0 +1,90 @@
+---
+// ServiceCard.astro — service teaser card.
+//
+// Variants:
+// - compact: name + 1-line blurb + tags. For home teaser grid.
+// - full: adds "Pro koho", "Typický výsledek", "Od X €", CTA per
+//   plan §1.2 (rozcestník card structure).
+//
+// Stitch reference: 02-sluzby and 12-menu winners (see decisions.md).
+
+interface Props {
+  number?: number;
+  title: string;
+  blurb: string;
+  href: string;
+  tags?: string[];
+  forWho?: string;
+  outcome?: string;
+  priceFrom?: string;
+  variant?: 'compact' | 'full';
+}
+
+const {
+  number,
+  title,
+  blurb,
+  href,
+  tags = [],
+  forWho,
+  outcome,
+  priceFrom,
+  variant = 'compact',
+} = Astro.props;
+---
+<article class="group relative flex h-full flex-col rounded border border-border bg-bg p-lg transition-colors duration-base hover:border-amber">
+  <header class="flex items-start justify-between">
+    <h3 class="font-serif text-xl text-ink transition-colors group-hover:text-amber md:text-2xl">
+      <a href={href} class="after:absolute after:inset-0">
+        {title}
+      </a>
+    </h3>
+    {number !== undefined && (
+      <span class="text-label text-ink-soft tabular-nums">
+        {String(number).padStart(2, '0')}
+      </span>
+    )}
+  </header>
+
+  <p class="mt-sm text-body text-ink-muted">{blurb}</p>
+
+  {variant === 'full' && (
+    <dl class="mt-md space-y-sm border-t border-border pt-md text-label">
+      {forWho && (
+        <div>
+          <dt class="text-ink-soft uppercase tracking-wider">Pro koho</dt>
+          <dd class="mt-xs text-ink">{forWho}</dd>
+        </div>
+      )}
+      {outcome && (
+        <div>
+          <dt class="text-ink-soft uppercase tracking-wider">Typický výsledek</dt>
+          <dd class="mt-xs text-ink">{outcome}</dd>
+        </div>
+      )}
+      {priceFrom && (
+        <div>
+          <dt class="text-ink-soft uppercase tracking-wider">Cena</dt>
+          <dd class="mt-xs text-ink">Od {priceFrom}</dd>
+        </div>
+      )}
+    </dl>
+  )}
+
+  {tags.length > 0 && (
+    <div class="mt-md flex flex-wrap gap-xs">
+      {tags.map((t) => (
+        <span class="rounded border border-border bg-bg-warm/60 px-sm py-xs text-xs text-ink-muted">
+          {t}
+        </span>
+      ))}
+    </div>
+  )}
+
+  {variant === 'full' && (
+    <p class="mt-md inline-flex items-center gap-xs text-label font-medium text-amber transition-all group-hover:gap-sm">
+      Více o této službě
+      <span aria-hidden="true">→</span>
+    </p>
+  )}
+</article>
