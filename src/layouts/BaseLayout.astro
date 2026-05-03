@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CookieBanner from '../components/CookieBanner.astro';
@@ -17,6 +18,34 @@ const {
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const ogImageUrl = new URL(ogImage, Astro.site).toString();
+
+// Schema.org Organization — WellBe s.r.o. is the legal entity behind QuConsult brand
+// (CLAUDE.md §1, plan.md §0). IČ + sídlo per plan; sameAs links populated as channels go live.
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'QuConsult',
+  legalName: 'WellBe s.r.o.',
+  url: 'https://quconsult.cz',
+  logo: 'https://quconsult.cz/favicon.svg',
+  image: ogImageUrl,
+  description: 'Praktické AI poradenství pro české firmy.',
+  taxID: 'CZ05830931',
+  vatID: 'CZ05830931',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Nové sady 988/2',
+    postalCode: '602 00',
+    addressLocality: 'Brno',
+    addressCountry: 'CZ',
+  },
+  sameAs: [
+    'https://linkedin.com/company/quconsult',
+    'https://youtube.com/@quconsult',
+    'https://github.com/marvec',
+  ],
+};
 ---
 <!doctype html>
 <html lang="cs">
@@ -40,16 +69,31 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="cs_CZ" />
+    <meta property="og:site_name" content="QuConsult" />
 
-    <!-- Fonts (Google Fonts CDN — Phase 0; self-host later per plan §4.5) -->
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Fonts (Google Fonts CDN — runtime; build-time PNG generation uses TTFs in scripts/fonts/) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Schema.org Organization (CLAUDE.md §4 always rule) -->
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+
+    <!-- View transitions (Astro built-in, no JS lib — plan §4.7) -->
+    <ClientRouter />
 
     <!-- Plausible analytics placeholder (no cookies, GDPR-friendly) -->
     <!--
