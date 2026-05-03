@@ -4,6 +4,7 @@ import { ClientRouter } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CookieBanner from '../components/CookieBanner.astro';
+import MobileNavDrawer from '../components/MobileNavDrawer.astro';
 
 interface Props {
   title: string;
@@ -106,6 +107,7 @@ const orgSchema = {
       <slot />
     </main>
     <Footer />
+    <MobileNavDrawer />
     <CookieBanner />
   </body>
 </html>

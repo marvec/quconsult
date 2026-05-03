@@ -5,7 +5,7 @@
 // inside <header> uses :has() to react to trigger hover/focus).
 
 import ServicesMenuOverlay from './ServicesMenuOverlay.astro';
-import MobileNavDrawer from './MobileNavDrawer.astro';
+import MobileNavTrigger from './MobileNavTrigger.astro';
 
 const navItems = [
   { label: 'Domů', href: '/' },
@@ -64,7 +64,7 @@ const navItems = [
       Domluvit konzultaci
     </a>
 
-    <MobileNavDrawer />
+    <MobileNavTrigger />
   </div>
 
   <ServicesMenuOverlay />

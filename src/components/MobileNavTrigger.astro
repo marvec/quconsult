@@ -1,0 +1,20 @@
+---
+// MobileNavTrigger.astro — hamburger button. Lives inside <Header>.
+// Pairs with MobileNavDrawer (rendered at <body> root in BaseLayout) via
+// shared id="mobile-nav-drawer". Splitting them avoids the backdrop-filter
+// containing-block trap: position:fixed inside an element with backdrop-blur
+// is positioned relative to that element, not the viewport (MDN spec).
+---
+<button
+  type="button"
+  class="mobile-nav-trigger inline-flex h-10 w-10 items-center justify-center rounded text-ink-muted transition-colors hover:text-ink md:hidden"
+  aria-label="Otevřít menu"
+  aria-expanded="false"
+  aria-controls="mobile-nav-drawer"
+>
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+    <line x1="3" y1="6" x2="21" y2="6" />
+    <line x1="3" y1="12" x2="21" y2="12" />
+    <line x1="3" y1="18" x2="21" y2="18" />
+  </svg>
+</button>

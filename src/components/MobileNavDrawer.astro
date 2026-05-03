@@ -1,9 +1,9 @@
 ---
-// MobileNavDrawer.astro — full-page slide-in nav drawer for < md viewport.
-// No Stitch reference (Stitch is desktop-only); built from DESIGN_BRIEF rules:
-// plain bg-bg, amber for accent (not background), no gradient, no shadow under lg.
+// MobileNavDrawer.astro — full-page slide-in nav panel for < md viewport.
+// MUST render at body root (not inside <Header>) — see MobileNavTrigger.astro
+// header comment for the backdrop-filter containing-block reason.
 //
-// Behavior: hamburger button toggles drawer; ESC closes; click on backdrop closes;
+// Behavior: paired trigger toggles drawer; ESC closes; click on backdrop closes;
 // scroll lock on <html>; focus trap inside drawer while open.
 
 const navItems = [
@@ -21,20 +21,6 @@ const services = [
   { label: 'AI Implementace a vývoj', href: '/sluzby/implementace-a-vyvoj' },
 ];
 ---
-<button
-  type="button"
-  class="mobile-nav-trigger inline-flex h-10 w-10 items-center justify-center rounded text-ink-muted transition-colors hover:text-ink md:hidden"
-  aria-label="Otevřít menu"
-  aria-expanded="false"
-  aria-controls="mobile-nav-drawer"
->
-  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-    <line x1="3" y1="6" x2="21" y2="6" />
-    <line x1="3" y1="12" x2="21" y2="12" />
-    <line x1="3" y1="18" x2="21" y2="18" />
-  </svg>
-</button>
-
 <div
   id="mobile-nav-drawer"
   class="mobile-drawer invisible fixed inset-0 z-50 opacity-0 transition-[opacity,visibility] duration-base md:hidden"
@@ -45,7 +31,7 @@ const services = [
 >
   <div class="mobile-drawer-backdrop absolute inset-0 bg-ink/40" data-close></div>
 
-  <div class="mobile-drawer-panel absolute inset-y-0 right-0 flex w-full max-w-sm translate-x-full flex-col bg-bg transition-transform duration-base">
+  <div class="mobile-drawer-panel absolute inset-y-0 right-0 flex w-full max-w-[24rem] flex-col bg-bg transition-transform duration-base">
     <div class="flex h-16 items-center justify-between border-b border-border px-lg">
       <span class="font-serif text-lg font-semibold tracking-tight">QuConsult</span>
       <button
@@ -108,6 +94,9 @@ const services = [
 </div>
 
 <style>
+  .mobile-drawer-panel {
+    transform: translateX(100%);
+  }
   .mobile-drawer.is-open {
     opacity: 1;
     visibility: visible;
@@ -134,7 +123,7 @@ const services = [
   const drawer = document.getElementById('mobile-nav-drawer');
   const trigger = document.querySelector<HTMLButtonElement>('.mobile-nav-trigger');
   if (!drawer || !trigger) {
-    /* unmounted */
+    /* component unmounted */
   } else {
     const focusableSelector =
       'a[href], button:not([disabled]), summary, [tabindex]:not([tabindex="-1"])';
@@ -144,7 +133,6 @@ const services = [
       drawer.setAttribute('aria-hidden', 'false');
       trigger.setAttribute('aria-expanded', 'true');
       document.documentElement.style.overflow = 'hidden';
-      // Move focus to first focusable inside the panel
       const first = drawer.querySelector<HTMLElement>(focusableSelector);
       first?.focus();
     };
@@ -171,7 +159,6 @@ const services = [
       }
       if (e.key !== 'Tab') return;
 
-      // Focus trap
       const focusables = Array.from(
         drawer.querySelectorAll<HTMLElement>(focusableSelector),
       ).filter((el) => !el.hasAttribute('disabled') && el.offsetParent !== null);
@@ -190,10 +177,8 @@ const services = [
       }
     });
 
-    // Close on internal nav-link click (so View Transitions don't leave drawer open)
     drawer.querySelectorAll<HTMLAnchorElement>('a[href]').forEach((a) => {
       a.addEventListener('click', () => {
-        // close *after* navigation starts; use rAF so click default is preserved
         requestAnimationFrame(close);
       });
     });
