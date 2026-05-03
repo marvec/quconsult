@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand colors (DESIGN_BRIEF.md §"Barvy") */
+  --color-bg: #FAFAF8;
+  --color-bg-warm: #F7F5F1;
+  --color-ink: #1A1A1A;
+  --color-ink-muted: #555555;
+  --color-ink-soft: #888888;
+  --color-amber: #D97706;
+  --color-amber-deep: #B45309;
+  --color-amber-light: #E8A838;
+  --color-border: #E5E5E1;
+
+  /* Typography (DESIGN_BRIEF.md §"Typografie") */
+  --font-serif: "Noto Serif", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Heading scale */
+  --text-h1-mobile: 40px;
+  --text-h1-desktop: 64px;
+  --text-h2-desktop: 48px;
+  --text-h3-desktop: 32px;
+  --text-body-lg: 18px;
+  --text-body: 16px;
+  --text-label: 14px;
+
+  /* Spacing scale (8px base, plan §8.4) */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 48px;
+  --spacing-xxl: 96px;
+  --spacing-section-desktop: 120px;
+
+  /* Layout (plan §8.4) */
+  --container-max: 1200px;
+
+  /* Radius (mírné zakulacení 4–6 px, plan §8.4) */
+  --radius-sm: 2px;
+  --radius: 4px;
+  --radius-md: 6px;
+
+  /* Motion tokens (plan §4.7) */
+  --ease-quc: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration-fast: 200ms;
+  --duration-base: 250ms;
+  --duration-slow: 800ms;
+  --stagger: 60ms;
+}
+
+/* Base styles */
+html {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-size: var(--text-body);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+  letter-spacing: -0.01em;
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--color-ink);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-amber);
+}
+
+/* Container helper */
+.container-quc {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--spacing-lg);
+}
+
+/* Reduced motion (plan §4.7) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

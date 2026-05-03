@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Tady to není — QuConsult"
+  description="Stránka, kterou hledáte, neexistuje. Pomůžeme vám najít cestu zpět."
+>
+  <section class="container-quc py-xxl text-center">
+    <p class="text-label uppercase tracking-wider text-amber">404</p>
+
+    <h1 class="mt-md font-serif text-h1-mobile leading-[1.1] tracking-tight md:text-h1-desktop">
+      Tady to není
+    </h1>
+
+    <p class="mx-auto mt-lg max-w-xl text-body-lg text-ink-muted">
+      Stránka, kterou hledáte, neexistuje nebo byla přesunuta. Možná jste se
+      překlepli, nebo jsme něco přejmenovali.
+    </p>
+
+    <div class="mt-xl flex justify-center">
+      <a
+        href="/"
+        class="inline-flex items-center rounded bg-amber px-lg py-md text-label font-medium text-bg transition-colors hover:bg-amber-deep"
+      >
+        Zpátky na úvod
+      </a>
+    </div>
+  </section>
+</BaseLayout>

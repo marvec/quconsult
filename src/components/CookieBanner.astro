@@ -1,0 +1,52 @@
+---
+// CookieBanner.astro — first-visit informational banner.
+// reCAPTCHA v3 = essential cookie (per plan §4.5). Single "Rozumím" button.
+// localStorage flag: quc-cookie-ack = "true"
+---
+<div
+  id="quc-cookie-banner"
+  class="fixed inset-x-0 bottom-0 z-50 hidden border-t border-border bg-bg/95 shadow-lg backdrop-blur"
+  role="dialog"
+  aria-live="polite"
+  aria-label="Informace o cookies"
+>
+  <div class="container-quc flex flex-col gap-md py-md md:flex-row md:items-center md:justify-between">
+    <p class="text-label text-ink-muted">
+      Tento web používá <strong class="text-ink">nezbytné cookies</strong> pro ochranu formulářů
+      (Google reCAPTCHA) a anonymní analytiku bez cookies (Plausible). Bez nezbytných cookies
+      nelze formuláře submitovat.
+    </p>
+    <button
+      id="quc-cookie-ack"
+      type="button"
+      class="shrink-0 rounded bg-amber px-md py-sm text-label font-medium text-bg transition-colors hover:bg-amber-deep"
+    >
+      Rozumím
+    </button>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = 'quc-cookie-ack';
+  const banner = document.getElementById('quc-cookie-banner');
+  const button = document.getElementById('quc-cookie-ack');
+
+  if (banner && button) {
+    try {
+      if (localStorage.getItem(STORAGE_KEY) !== 'true') {
+        banner.classList.remove('hidden');
+      }
+    } catch {
+      banner.classList.remove('hidden');
+    }
+
+    button.addEventListener('click', () => {
+      try {
+        localStorage.setItem(STORAGE_KEY, 'true');
+      } catch {
+        /* ignore — banner will reappear next visit, acceptable */
+      }
+      banner.classList.add('hidden');
+    });
+  }
+</script>
