@@ -91,7 +91,7 @@ const orgSchema = {
     />
 
     <!-- Schema.org Organization (CLAUDE.md §4 always rule) -->
-    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
 
     <!-- View transitions (Astro built-in, no JS lib — plan §4.7) -->
     <ClientRouter />
