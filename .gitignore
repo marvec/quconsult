@@ -27,3 +27,6 @@ pnpm-debug.log*
 
 # vercel
 .vercel/
+
+# Build-time only fonts for OG/icon generator (re-downloaded by `pnpm icons`)
+scripts/fonts/
