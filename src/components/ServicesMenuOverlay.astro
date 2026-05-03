@@ -1,0 +1,151 @@
+---
+// ServicesMenuOverlay.astro — overlay dropdown for "Služby ▾" nav item.
+// Reference: Stitch winner 56921d01 (docs/stitch-candidates/12-menu-A-czech-56921d01.html).
+// Adaptations: brand tokens (off-white #FAFAF8 not Stitch peachy), 6-item nav handled in Header,
+// real Q-mark logo, plan §11 service descriptions, ESC + click-outside behavior.
+
+const services = [
+  {
+    name: 'AI Analýza a strategie',
+    href: '/sluzby/analyza-a-strategie',
+    blurb: 'Zjistíme, kde AI dává smysl u vás konkrétně.',
+    tags: ['Roadmapy', 'Studie proveditelnosti'],
+  },
+  {
+    name: 'Automatizace procesů',
+    href: '/sluzby/automatizace-procesu',
+    blurb: 'Odstraňujeme manuální práci v administrativě.',
+    tags: ['AI agenti', 'Návrh procesů'],
+  },
+  {
+    name: '(Nejen) AI školení',
+    href: '/sluzby/skoleni',
+    blurb: 'Workshopy, kurzy, mentoring — váš tým si poradí sám.',
+    tags: ['Workshopy', 'Mentoring'],
+  },
+  {
+    name: 'AI Implementace a vývoj',
+    href: '/sluzby/implementace-a-vyvoj',
+    blurb: 'Custom AI řešení a Agentic OS na míru.',
+    tags: ['Agentic OS', 'Vývoj na míru'],
+  },
+];
+---
+<div
+  id="services-overlay"
+  class="services-overlay invisible absolute inset-x-0 top-full z-30 border-b border-border bg-bg opacity-0 shadow-sm transition-[opacity,visibility] duration-base"
+  role="region"
+  aria-label="Přehled služeb"
+  aria-hidden="true"
+>
+  <div class="container-quc py-xl">
+    <p class="text-label uppercase tracking-wider text-amber">Expertíza &amp; AI</p>
+    <h2 class="mt-sm font-serif text-3xl text-ink md:text-4xl">Naše služby</h2>
+    <p class="mt-md max-w-xl text-body text-ink-muted">
+      Pomáháme středním českým firmám zavádět AI prakticky — bez velkých transformací,
+      bez vendor lock-inu, bez disrupce.
+    </p>
+
+    <ul class="mt-xl grid grid-cols-1 gap-md md:grid-cols-2">
+      {services.map((s, i) => (
+        <li>
+          <a
+            href={s.href}
+            class="group flex h-full flex-col justify-between rounded border border-border bg-bg-warm/40 p-lg transition-colors duration-base hover:border-amber"
+          >
+            <div class="flex items-start justify-between">
+              <span class="font-serif text-xl text-ink transition-colors group-hover:text-amber">
+                {s.name}
+              </span>
+              <span class="text-label text-ink-soft tabular-nums">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+            </div>
+            <p class="mt-sm text-body text-ink-muted">{s.blurb}</p>
+            <div class="mt-md flex flex-wrap gap-xs">
+              {s.tags.map((t) => (
+                <span class="rounded border border-border bg-bg px-sm py-xs text-xs text-ink-muted">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="mt-xl flex flex-col items-start justify-between gap-md border-t border-border pt-lg md:flex-row md:items-center">
+      <div>
+        <p class="text-body font-medium text-ink">Chcete probrat váš projekt?</p>
+        <p class="text-label text-ink-muted">První konzultace je vždy o hledání hodnoty.</p>
+      </div>
+      <a
+        href="/kontakt"
+        class="inline-flex items-center gap-sm rounded bg-amber px-md py-sm text-label font-medium text-bg transition-colors hover:bg-amber-deep"
+      >
+        Domluvit konzultaci
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* CSS-only open state on hover/focus of trigger anywhere in <header>,
+     using :has() (CSS Selectors L4, supported in all modern browsers).
+     JS toggles .is-open for click + ESC + click-outside (pointer parity). */
+  :global(header:has(.services-trigger:hover)) #services-overlay,
+  :global(header:has(.services-trigger:focus-visible)) #services-overlay,
+  #services-overlay:hover,
+  #services-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .services-overlay {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  // Click + keyboard support layered on top of CSS hover.
+  // - Trigger button toggles .is-open
+  // - ESC closes
+  // - Click outside closes
+  const overlay = document.getElementById('services-overlay');
+  const trigger = document.querySelector<HTMLButtonElement>('.services-trigger');
+
+  if (overlay && trigger) {
+    const close = () => {
+      overlay.classList.remove('is-open');
+      overlay.setAttribute('aria-hidden', 'true');
+      trigger.setAttribute('aria-expanded', 'false');
+    };
+    const open = () => {
+      overlay.classList.add('is-open');
+      overlay.setAttribute('aria-hidden', 'false');
+      trigger.setAttribute('aria-expanded', 'true');
+    };
+
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      overlay.classList.contains('is-open') ? close() : open();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('is-open')) {
+        close();
+        trigger.focus();
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!overlay.classList.contains('is-open')) return;
+      const target = e.target as Node;
+      if (overlay.contains(target) || trigger.contains(target)) return;
+      close();
+    });
+  }
+</script>

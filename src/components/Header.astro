@@ -1,6 +1,11 @@
 ---
-// Header.astro — sticky navigation with logo, 6-item nav, amber CTA.
+// Header.astro — sticky navigation: logo, 6-item nav, amber CTA.
 // Per plan §11.1: Domů | Služby ▾ | Jak pracujeme | Blog | O nás | Kontakt
+// "Služby ▾" is a <button> that toggles ServicesMenuOverlay (sibling overlay
+// inside <header> uses :has() to react to trigger hover/focus).
+
+import ServicesMenuOverlay from './ServicesMenuOverlay.astro';
+
 const navItems = [
   { label: 'Domů', href: '/' },
   { label: 'Služby', href: '/sluzby', hasDropdown: true },
@@ -30,12 +35,22 @@ const navItems = [
       <ul class="flex items-center gap-lg text-label">
         {navItems.map((item) => (
           <li>
-            <a
-              href={item.href}
-              class="text-ink-muted transition-colors hover:text-ink"
-            >
-              {item.label}{item.hasDropdown ? ' ▾' : ''}
-            </a>
+            {item.hasDropdown ? (
+              <button
+                type="button"
+                class="services-trigger inline-flex items-center gap-xs text-ink-muted transition-colors hover:text-ink"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="services-overlay"
+              >
+                {item.label}
+                <span aria-hidden="true">▾</span>
+              </button>
+            ) : (
+              <a href={item.href} class="text-ink-muted transition-colors hover:text-ink">
+                {item.label}
+              </a>
+            )}
           </li>
         ))}
       </ul>
@@ -48,4 +63,6 @@ const navItems = [
       Domluvit konzultaci
     </a>
   </div>
+
+  <ServicesMenuOverlay />
 </header>
