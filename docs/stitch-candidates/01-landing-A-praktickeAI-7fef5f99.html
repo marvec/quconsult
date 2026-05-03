@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="light" lang="cs"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;400;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "background": "#FAFAF8",
+                      "primary": "#D97706",
+                      "on-background": "#1C1917",
+                      "surface": "#FFFFFF",
+                      "outline": "#E7E5E4",
+                      "secondary": "#57534E",
+              },
+              "borderRadius": {
+                      "DEFAULT": "0px",
+                      "lg": "0px",
+                      "xl": "0px",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "xxl": "120px",
+                      "xl": "64px",
+                      "md": "24px",
+                      "lg": "32px",
+                      "sm": "12px",
+                      "max_width": "1140px",
+                      "xs": "4px"
+              },
+              "fontFamily": {
+                      "h1": ["Noto Serif", "serif"],
+                      "h2": ["Noto Serif", "serif"],
+                      "h3": ["Noto Serif", "serif"],
+                      "body-lg": ["Inter", "sans-serif"],
+                      "body-md": ["Inter", "sans-serif"],
+                      "label": ["Inter", "sans-serif"]
+              },
+              "fontSize": {
+                      "h1": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                      "h2": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                      "h3": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                      "label": ["13px", {"lineHeight": "1", "letterSpacing": "0.08em", "fontWeight": "600"}],
+                      "body-lg": ["20px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .scandi-border {
+            border: 1px solid #E7E5E4;
+        }
+        .hand-drawn {
+            filter: contrast(0.8) sepia(0.2);
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 48px !important; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary/20">
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-outline h-20">
+<div class="max-w-[1140px] mx-auto px-6 h-full flex justify-between items-center">
+<div class="flex items-center gap-2">
+<img alt="QuConsult Logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida/ADBb0ujFE0jWAvBmCoRyN6jnx-LB-q6O-8dsKGDeef1K-pH6wDP3gx0EKaVSBDs5ZVOjtnJ-CtKVGVo31mmyC7IvdD1hp-s99cGlYffGp81gELtYCLo8vJ0lSKgxT4gjsM0BecodFPAasyvJVa2d5efbOz-Ox0clPfcI_sdlO6R8vwIkWzpVgPpxzidDak4sBbGBclUVDJSHDLSfEVePo0niVMPrWRd3LlUYgqU1T2FBA8iu6ktXj-TKQprxrzZd-tGGgLQSMK97ieuvlg"/>
+<span class="text-xl font-h1 tracking-tight">QuConsult</span>
+</div>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-secondary hover:text-primary transition-colors text-sm font-medium" href="#">Služby</a>
+<a class="text-secondary hover:text-primary transition-colors text-sm font-medium" href="#">O nás</a>
+<a class="text-secondary hover:text-primary transition-colors text-sm font-medium" href="#">Kontakt</a>
+<button class="bg-primary text-white px-6 py-3 text-label uppercase transition-all hover:brightness-110 active:translate-y-px">
+                Domluvit konzultaci
+            </button>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="pt-xxl pb-xl">
+<div class="max-w-[1140px] mx-auto px-6">
+<div class="max-w-4xl">
+<h1 class="font-h1 text-h1 mb-lg">Proměňte AI z buzzwordu ve váš největší konkurenční nástroj.</h1>
+<p class="font-body-lg text-body-lg text-secondary mb-xl max-w-2xl">
+                    Pomáháme českým firmám automatizovat procesy, integrovat AI do aplikací a budovat chytřejší byznys — s měřitelnými výsledky v korunách.
+                </p>
+<div class="flex flex-col sm:flex-row gap-md">
+<button class="bg-primary text-white px-10 py-5 text-label uppercase transition-all hover:brightness-110">
+                        Domluvit bezplatnou konzultaci
+                    </button>
+<button class="border border-on-background px-10 py-5 text-label uppercase transition-all hover:bg-on-background hover:text-white">
+                        Podívat se, jak řídíme vlastní firmu
+                    </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Values Section -->
+<section class="py-xxl bg-white border-y border-outline">
+<div class="max-w-[1140px] mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-xl">
+<!-- Value 1 -->
+<div class="flex flex-col items-start gap-md">
+<span class="material-symbols-outlined text-primary text-4xl mb-2 hand-drawn" data-icon="forum">forum</span>
+<h3 class="font-h3 text-h3">Inside-out, ne outside-in</h3>
+<p class="text-secondary">Začínáme nasloucháním vašim potřebám, ne prezentací krabicového řešení. Pochopení kontextu je pro nás základ.</p>
+</div>
+<!-- Value 2 -->
+<div class="flex flex-col items-start gap-md">
+<span class="material-symbols-outlined text-primary text-4xl mb-2 hand-drawn" data-icon="key">key</span>
+<h3 class="font-h3 text-h3">Žádný vendor lock-in</h3>
+<p class="text-secondary">Zdrojové kódy, dokumentace a smluvní garance předáváme plně do vašich rukou. Zůstáváte pány své technologie.</p>
+</div>
+<!-- Value 3 -->
+<div class="flex flex-col items-start gap-md">
+<span class="material-symbols-outlined text-primary text-4xl mb-2 hand-drawn" data-icon="settings_suggest">settings_suggest</span>
+<h3 class="font-h3 text-h3">Používáme to, co prodáváme</h3>
+<p class="text-secondary">Vlastní firmu řídíme pomocí Agentic OS. Naše metodiky jsou prověřeny každodenní praxí v ostrém provozu.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Grid -->
+<section class="py-xxl">
+<div class="max-w-[1140px] mx-auto px-6">
+<div class="mb-xl">
+<span class="text-label text-primary uppercase">Co pro vás děláme</span>
+<h2 class="font-h2 text-h2 mt-4">Služby postavené na realitě</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Service 1 -->
+<div class="p-lg bg-surface scandi-border hover:border-primary/30 transition-colors">
+<h3 class="font-h3 text-h3 mb-md">AI Analýza a strategie</h3>
+<p class="text-secondary mb-lg">Posloucháme, mapujeme, navrhujeme. Zjistíme, kde AI dává smysl u vás konkrétně a kde by byla jen zbytečnou investicí.</p>
+<span class="material-symbols-outlined text-stone-300 text-3xl">insights</span>
+</div>
+<!-- Service 2 -->
+<div class="p-lg bg-surface scandi-border hover:border-primary/30 transition-colors">
+<h3 class="font-h3 text-h3 mb-md">Automatizace procesů</h3>
+<p class="text-secondary mb-lg">Odstraňujeme manuální práci v administrativě. Specializujeme se na n8n a integrace s lokálními systémy jako Pohoda nebo Helios.</p>
+<span class="material-symbols-outlined text-stone-300 text-3xl">sync_alt</span>
+</div>
+<!-- Service 3 -->
+<div class="p-lg bg-surface scandi-border hover:border-primary/30 transition-colors">
+<h3 class="font-h3 text-h3 mb-md">(Nejen) AI školení</h3>
+<p class="text-secondary mb-lg">Workshopy pro management, hands-on kurzy pro týmy a mentoring vašich IT specialistů. Předáváme praktické dovednosti.</p>
+<span class="material-symbols-outlined text-stone-300 text-3xl">school</span>
+</div>
+<!-- Service 4 -->
+<div class="p-lg bg-surface scandi-border hover:border-primary/30 transition-colors">
+<h3 class="font-h3 text-h3 mb-md">AI Implementace a vývoj</h3>
+<p class="text-secondary mb-lg">Custom AI řešení, vlastní asistenti na míru a náš vlajkový produkt Agentic OS pro komplexní řízení firmy.</p>
+<span class="material-symbols-outlined text-stone-300 text-3xl">code</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Team Section -->
+<section class="py-xxl bg-white border-t border-outline">
+<div class="max-w-[1140px] mx-auto px-6">
+<div class="mb-xl text-center">
+<span class="text-label text-primary uppercase">Kdo za tím stojí</span>
+<h2 class="font-h2 text-h2 mt-4">Náš tým</h2>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-md">
+<div class="text-center">
+<div class="aspect-square bg-stone-100 mb-md grayscale hover:grayscale-0 transition-all duration-500 overflow-hidden">
+<img alt="Martin Večeřa" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&amp;fit=crop&amp;q=80&amp;w=400'" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn-6VfGq-FqWvJ-vVfNqHlE-qJkPz-vVfNqHlE-qJkPz-vVfNqHlE-qJkPz-vVfNqHlE-qJkPz"/>
+</div>
+<p class="font-medium text-sm">Martin Večeřa</p>
+<p class="text-xs text-secondary mt-1">Founder &amp; Strategy</p>
+</div>
+<div class="text-center">
+<div class="aspect-square bg-stone-100 mb-md grayscale hover:grayscale-0 transition-all duration-500 overflow-hidden">
+<img alt="Marek Baluch" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvf88xU9TilTNT3xbJdSxaU29vPEOPa8TA9jUsPwcfZEzsOFCV5dPeXtWvUmvLzT_AdN8hmYm1t36RI3-wQAMCaeK4BXIpW6RvCJr7RhZaFY3U0pSkqTh7DvJRCSRuL7R3XPt0OT_nTXmO22rlJhF_gvG8RB16HtVqvwuMkN2YOjKi6tUsWZHhMOsryeBUO5T4p-t1IX7wMkvzrzjRoCaS4x5O6MQWzb7saYInZzsl8bmJMtDFAzvE2Jw5M4Pc993Ckv1kw3KkSu0"/>
+</div>
+<p class="font-medium text-sm">Marek Baluch</p>
+<p class="text-xs text-secondary mt-1">AI Implementation</p>
+</div>
+<div class="text-center">
+<div class="aspect-square bg-stone-100 mb-md grayscale hover:grayscale-0 transition-all duration-500 overflow-hidden">
+<img alt="Lukáš Petrovický" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYmzSQfsVEJiAsxcPsKzyS7eV4aib0yAk3wF3b8k_ggQa8HipDHX0CzslggzRaJInpVNqxFuc0PLW1I0ef2acqkkrQ8Hr-sZO2KgbQC5HTCsf2XdJeyIGCnIEGQvIR3jvfU7_koKgz0HAUmJC4CpVxZLMRRDdGnDhTk2DiRjlh7bVlJ_cIvrDKQxYf3ykJsgoGyvYUabhFOmxHXo4bLKjenKcpiJXvLCNxcXKONfCQR1mVBQnX6CRfsKbDO5CTqdLcQ3S_fyEOmeY"/>
+</div>
+<p class="font-medium text-sm">Lukáš Petrovický</p>
+<p class="text-xs text-secondary mt-1">Technical Lead</p>
+</div>
+<div class="text-center">
+<div class="aspect-square bg-stone-100 mb-md grayscale hover:grayscale-0 transition-all duration-500 overflow-hidden">
+<img alt="Jiří Pechanec" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkTF05RJDSCh5L8i6ouK6u5Cd5eJU3U1xMpkkC0Dm7mamK7u2FzaQ3lFW2N2sJi4lagN7AMPazPdVYBoYObtIUytBkP6EAMd6HyTS4Gj3iQMtfD93lB05RSLVkq8EFD8uO6pC6fKwBEtpi_NG9FbLCPZ3st0GSYmZ3QSSd_gIl3L3XDJdYVDfLrRTxQANXvTobOk75Z66AXqk5Ny3Pvz1dKs4DB5wEMfrG3_LCgs_5vRzG-dJNF_DtolPPU2juDS3_jJs1DxT_c-w"/>
+</div>
+<p class="font-medium text-sm">Jiří Pechanec</p>
+<p class="text-xs text-secondary mt-1">Solution Architect</p>
+</div>
+<div class="text-center">
+<div class="aspect-square bg-stone-100 mb-md grayscale hover:grayscale-0 transition-all duration-500 overflow-hidden">
+<img alt="Miroslav Bereš" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhHKTg1GA1FoYbC0o1pUIor6q0ZLprZ0o3YBLuEumuIQH9uBVn7aIsAwu46cOPjpNIKJhW3fvQMShfKtt0ADJ31eKAzqMxFgWnoK3C_r_s8ht6Kbpjy8beCQCNOAs1zB7J7TdsG9dLEAX_hKrWXUxiB5aEbEHQGqcO9rpDkIhUY25yFPVj7ByDZ8XsgIttD0Ui8l2j5zKBk-ZM-jhwrBcHG_vmyYS26StH4_lSBKj3UwgAud5qS6fhkZ6sWxj0LWQBh6imHqYnzmI"/>
+</div>
+<p class="font-medium text-sm">Miroslav Bereš</p>
+<p class="text-xs text-secondary mt-1">AI Research</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-xxl bg-background">
+<div class="max-w-[1140px] mx-auto px-6">
+<div class="bg-primary p-xl md:p-xxl flex flex-col md:flex-row items-center justify-between gap-xl">
+<div class="text-white max-w-xl">
+<h2 class="font-h2 text-h2 text-white mb-md">Připraveni začít?</h2>
+<p class="text-lg opacity-90">Domluvte si úvodní konzultaci zdarma. Probereme váš byznys a najdeme konkrétní místa pro smysluplnou automatizaci.</p>
+</div>
+<button class="bg-on-background text-white px-12 py-6 text-label uppercase hover:brightness-125 transition-all whitespace-nowrap">
+                    Domluvit termín
+                </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-white border-t border-outline py-xl">
+<div class="max-w-[1140px] mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between gap-xl mb-xl">
+<div class="max-w-sm">
+<div class="flex items-center gap-2 mb-md">
+<img alt="QuConsult Logo" class="h-6 w-auto" src="https://lh3.googleusercontent.com/aida/ADBb0ujFE0jWAvBmCoRyN6jnx-LB-q6O-8dsKGDeef1K-pH6wDP3gx0EKaVSBDs5ZVOjtnJ-CtKVGVo31mmyC7IvdD1hp-s99cGlYffGp81gELtYCLo8vJ0lSKgxT4gjsM0BecodFPAasyvJVa2d5efbOz-Ox0clPfcI_sdlO6R8vwIkWzpVgPpxzidDak4sBbGBclUVDJSHDLSfEVePo0niVMPrWRd3LlUYgqU1T2FBA8iu6ktXj-TKQprxrzZd-tGGgLQSMK97ieuvlg"/>
+<span class="text-lg font-h1 tracking-tight">QuConsult</span>
+</div>
+<p class="text-secondary text-sm leading-relaxed">
+                    Boutique strategic AI consulting based in Prague &amp; Brno. <br/>
+                    Věříme v transparentnost, samostatnost klientů a technologie, které skutečně pomáhají.
+                </p>
+</div>
+<div class="grid grid-cols-2 gap-xl">
+<div class="flex flex-col gap-sm">
+<span class="text-label text-xs text-stone-400 uppercase">Kontakt</span>
+<p class="text-sm">WellBe s.r.o.</p>
+<p class="text-sm">Nové sady 988/2</p>
+<p class="text-sm">602 00 Brno</p>
+</div>
+<div class="flex flex-col gap-sm">
+<span class="text-label text-xs text-stone-400 uppercase">Sledujte nás</span>
+<a class="text-sm text-secondary hover:text-primary transition-colors" href="#">LinkedIn</a>
+<a class="text-sm text-secondary hover:text-primary transition-colors" href="#">Blog</a>
+</div>
+</div>
+</div>
+<div class="pt-lg border-t border-outline flex flex-col md:flex-row justify-between items-center gap-md">
+<p class="text-xs text-stone-400 uppercase tracking-widest">© 2024 WellBe s.r.o. | QuConsult</p>
+<div class="flex gap-lg">
+<a class="text-xs text-stone-400 hover:text-secondary uppercase tracking-widest" href="#">Ochrana údajů</a>
+<a class="text-xs text-stone-400 hover:text-secondary uppercase tracking-widest" href="#">Podmínky</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

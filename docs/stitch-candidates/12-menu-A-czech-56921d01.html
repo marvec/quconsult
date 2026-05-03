@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="light" lang="cs"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;400;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#fff1e9",
+                    "outline": "#887364",
+                    "surface-container-high": "#f7e5d9",
+                    "on-primary-container": "#fffbff",
+                    "primary-fixed": "#ffdcc3",
+                    "surface-container": "#fdeade",
+                    "inverse-on-surface": "#ffede3",
+                    "on-surface": "#231a13",
+                    "surface-variant": "#f2dfd3",
+                    "error": "#ba1a1a",
+                    "on-background": "#231a13",
+                    "on-tertiary-fixed-variant": "#004a75",
+                    "surface-bright": "#fff8f5",
+                    "on-primary": "#ffffff",
+                    "background": "#fff8f5",
+                    "on-surface-variant": "#554336",
+                    "on-primary-fixed": "#2f1500",
+                    "secondary-fixed": "#e5e2e1",
+                    "secondary": "#5f5e5e",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "primary": "#8d4b00",
+                    "inverse-surface": "#392e26",
+                    "surface-container-highest": "#f2dfd3",
+                    "primary-fixed-dim": "#ffb77d",
+                    "surface": "#fff8f5",
+                    "secondary-container": "#e2dfde",
+                    "tertiary-fixed-dim": "#96ccff",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#b15f00",
+                    "tertiary": "#006096",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed-variant": "#474746",
+                    "surface-dim": "#e9d7cb",
+                    "surface-tint": "#904d00",
+                    "on-primary-fixed-variant": "#6e3900",
+                    "on-tertiary-fixed": "#001d32",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "tertiary-container": "#007abd",
+                    "inverse-primary": "#ffb77d",
+                    "on-secondary-container": "#636262",
+                    "tertiary-fixed": "#cee5ff",
+                    "on-tertiary-container": "#fdfcff",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#dbc2b0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xl": "48px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "max_width": "1200px",
+                    "base": "8px",
+                    "xxl": "96px",
+                    "md": "16px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "label": ["Inter"],
+                    "h2": ["Noto Serif"],
+                    "h1": ["Noto Serif"],
+                    "h3": ["Noto Serif"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "label": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "h2": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "h1": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "h3": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { background-color: #fff8f5; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 border-b bg-white/95 backdrop-blur-sm border-stone-200">
+<div class="flex justify-between items-center max-w-[1200px] mx-auto px-6 lg:px-8 h-20">
+<div class="flex items-center gap-4">
+<span class="text-2xl font-serif font-light text-stone-900">QuConsult</span>
+</div>
+<!-- Desktop Links -->
+<div class="hidden md:flex items-center gap-10 h-full">
+<div class="group h-full flex items-center">
+<a class="font-serif tracking-tight text-amber-600 border-b-2 border-amber-600 h-full flex items-center cursor-default" href="#">Služby</a>
+<!-- Services Menu Overlay -->
+<div class="absolute top-20 left-0 w-full bg-[#FAFAF8] border-b border-stone-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 shadow-sm">
+<div class="max-w-[1200px] mx-auto px-6 lg:px-8 py-12">
+<div class="grid grid-cols-2 gap-x-24 gap-y-10">
+<!-- Item 1 -->
+<a class="group/item flex flex-col gap-1" href="#">
+<span class="font-h3 text-xl text-stone-900 group-hover/item:text-[#D97706] transition-colors">AI Analýza a strategie</span>
+<span class="font-body-md text-stone-500 font-light">Zjistíme, kde AI dává smysl u vás konkrétně.</span>
+</a>
+<!-- Item 2 -->
+<a class="group/item flex flex-col gap-1" href="#">
+<span class="font-h3 text-xl text-stone-900 group-hover/item:text-[#D97706] transition-colors">Automatizace procesů</span>
+<span class="font-body-md text-stone-500 font-light">Odstraňujeme manuální práci v administrativě.</span>
+</a>
+<!-- Item 3 -->
+<a class="group/item flex flex-col gap-1" href="#">
+<span class="font-h3 text-xl text-stone-900 group-hover/item:text-[#D97706] transition-colors">(Nejen) AI školení</span>
+<span class="font-body-md text-stone-500 font-light">Workshopy, kurzy, mentoring — váš tým si poradí sám.</span>
+</a>
+<!-- Item 4 -->
+<a class="group/item flex flex-col gap-1" href="#">
+<span class="font-h3 text-xl text-stone-900 group-hover/item:text-[#D97706] transition-colors">AI Implementace a vývoj</span>
+<span class="font-body-md text-stone-500 font-light">Custom AI řešení a Agentic OS na míru.</span>
+</a>
+</div>
+<!-- Bottom Bar -->
+<div class="mt-12 pt-8 border-t border-stone-200 flex justify-end">
+<a class="font-label text-[#D97706] flex items-center gap-2 hover:translate-x-1 transition-transform" href="#">
+                                Všechny služby <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<a class="font-serif tracking-tight text-stone-600 hover:text-amber-600 transition-colors duration-300" href="#">Blog</a>
+<a class="font-serif tracking-tight text-stone-600 hover:text-amber-600 transition-colors duration-300" href="#">O nás</a>
+<a class="font-serif tracking-tight text-stone-600 hover:text-amber-600 transition-colors duration-300" href="#">Kontakt</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="scale-95 active:scale-90 transition-transform bg-primary text-on-primary px-6 py-3 font-label rounded-lg">
+                Konzultovat
+            </button>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-xxl px-6">
+<div class="max-w-[1200px] mx-auto">
+<header class="mb-xxl grid grid-cols-12 gap-lg">
+<div class="col-span-12 lg:col-span-8 lg:col-start-2">
+<div class="mb-sm">
+<span class="font-label text-primary uppercase">Expertíza &amp; Strategická AI</span>
+</div>
+<h1 class="font-h1 text-h1 text-on-surface mb-md">
+                    Naše <span class="italic text-primary">Služby</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                    Kombinujeme hluboké strategické poradenství s nejmodernějšími technologiemi. Pomáháme firmám navigovat v éře AI skrze lidský přístup a precizní inženýrství.
+                </p>
+</div>
+</header>
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-lg items-stretch">
+<div class="lg:col-span-7 bg-surface-container-lowest border border-outline-variant p-lg flex flex-col justify-between group hover:border-primary transition-colors duration-300">
+<div class="flex justify-between items-start mb-xxl">
+<div class="p-3 bg-surface-container border border-outline-variant rounded">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="query_stats">query_stats</span>
+</div>
+<span class="text-on-surface-variant font-label opacity-40">01</span>
+</div>
+<div>
+<h3 class="font-h3 text-h3 text-on-surface mb-sm">AI Analýza a strategie</h3>
+<p class="font-body-md text-on-surface-variant mb-md">
+                        Identifikujeme příležitosti tam, kde jiní vidí jen chaos. Vytvoříme roadmapu a posoudíme proveditelnost vašich vizí.
+                    </p>
+<div class="flex flex-wrap gap-xs">
+<span class="px-3 py-1 bg-surface border border-outline-variant text-[12px] font-label">Roadmapy</span>
+<span class="px-3 py-1 bg-surface border border-outline-variant text-[12px] font-label">Studie proveditelnosti</span>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 bg-surface-container-highest border border-outline-variant p-lg flex flex-col justify-between group hover:border-primary transition-colors duration-300">
+<div class="flex justify-between items-start mb-xxl">
+<div class="p-3 bg-surface border border-outline-variant rounded">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="hub">hub</span>
+</div>
+<span class="text-on-surface-variant font-label opacity-40">02</span>
+</div>
+<div>
+<h3 class="font-h3 text-h3 text-on-surface mb-sm">Automatizace procesů</h3>
+<p class="font-body-md text-on-surface-variant mb-md">
+                        Zefektivňujeme workflow pomocí AI agentů, kteří pracují po boku vašich zaměstnanců.
+                    </p>
+<div class="flex flex-wrap gap-xs">
+<span class="px-3 py-1 bg-surface-container-lowest border border-outline-variant text-[12px] font-label">AI Agenti</span>
+<span class="px-3 py-1 bg-surface-container-lowest border border-outline-variant text-[12px] font-label">Návrh procesů</span>
+</div>
+</div>
+</div>
+<div class="hidden lg:flex lg:col-span-4 items-center justify-center p-lg">
+<div class="relative w-full h-full flex items-center justify-center group">
+<img alt="QuConsult Logo Q" class="w-32 h-32 object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ujuP4FY8SHQjrBmMzUphP0A4sdhrmCSxGT6JsaF9-GIq0walA21kAGJyMXV1kBOCay44p4qDtEeLREMAwfWEdVWMRyeBV8GSTaCRuT0doFseANcZ-Ssu5tY4PIunJSrvZPGMOZAOSiYkLWoccT3BitUZ5je7wLoouAzEczUu2CdLwox4JicfqRbzdOrBHR-5ztZgMkBu-NCOoHIcugO2a3xQtepj4p3EJU-tMGZrNSxXdsK_SF_QM_Q5XCAuVxPhKviNNiCTXTloA"/>
+</div>
+</div>
+<div class="lg:col-span-4 bg-surface-container border border-outline-variant p-lg flex flex-col justify-between group hover:border-primary transition-colors duration-300">
+<div class="flex justify-between items-start mb-xxl">
+<div class="p-3 bg-surface-container-lowest border border-outline-variant rounded">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="school">school</span>
+</div>
+<span class="text-on-surface-variant font-label opacity-40">03</span>
+</div>
+<div>
+<h3 class="font-h3 text-h3 text-on-surface mb-sm">(Nejen) AI školení</h3>
+<p class="font-body-md text-on-surface-variant mb-md">
+                        Předáváme know-how tak, abyste byli v AI světě zcela nezávislí. Lidsky, srozumitelně, prakticky.
+                    </p>
+<div class="flex flex-wrap gap-xs">
+<span class="px-3 py-1 bg-surface-container-lowest border border-outline-variant text-[12px] font-label">Workshopy</span>
+<span class="px-3 py-1 bg-surface-container-lowest border border-outline-variant text-[12px] font-label">Mentoring</span>
+</div>
+</div>
+</div>
+<div class="lg:col-span-4 bg-surface-container-low border border-outline-variant p-lg flex flex-col justify-between group hover:border-primary transition-colors duration-300">
+<div class="flex justify-between items-start mb-xxl">
+<div class="p-3 bg-surface-container-lowest border border-outline-variant rounded">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="terminal">terminal</span>
+</div>
+<span class="text-on-surface-variant font-label opacity-40">04</span>
+</div>
+<div>
+<h3 class="font-h3 text-h3 text-on-surface mb-sm">AI Implementace</h3>
+<p class="font-body-md text-on-surface-variant mb-md">
+                        Stavíme Agentic OS na míru. Vyvíjíme zakázkové nástroje, které skutečně řeší vaše problémy.
+                    </p>
+<div class="flex flex-wrap gap-xs">
+<span class="px-3 py-1 bg-surface-container-lowest border border-outline-variant text-[12px] font-label">Agentic OS</span>
+<span class="px-3 py-1 bg-surface-container-lowest border border-outline-variant text-[12px] font-label">Vývoj na míru</span>
+</div>
+</div>
+</div>
+</section>
+<div class="mt-xxl pt-xl border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-lg">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" data-icon="chat_bubble_outline">chat_bubble_outline</span>
+</div>
+<div>
+<p class="font-body-md text-on-surface font-semibold">Chcete probrat váš projekt?</p>
+<p class="text-sm text-on-surface-variant">První konzultace je vždy o hledání hodnoty.</p>
+</div>
+</div>
+<button class="group flex items-center gap-sm font-label text-primary hover:gap-md transition-all">
+                DOMLUVIT SCHŮZKU
+                <span class="material-symbols-outlined" data-icon="arrow_right_alt">arrow_right_alt</span>
+</button>
+</div>
+</div>
+</main>
+<footer class="w-full border-t border-stone-200 bg-stone-50">
+<div class="max-w-[1200px] mx-auto px-6 lg:px-8 py-24 flex flex-col md:flex-row justify-between items-start gap-12">
+<div>
+<span class="text-4xl font-serif font-bold text-stone-200">QuConsult</span>
+<p class="font-serif text-sm tracking-wide text-stone-500 mt-6 max-w-xs">
+                Human-Centric Strategic AI pro organizace orientované na budoucnost. Postaveno na preciznosti a důvěře.
+            </p>
+</div>
+<div class="flex flex-wrap gap-x-12 gap-y-8">
+<div class="flex flex-col gap-4">
+<h4 class="font-label text-stone-900 mb-2">Právní informace</h4>
+<a class="font-serif text-sm tracking-wide text-stone-500 hover:text-amber-600 underline decoration-1 underline-offset-4 transition-opacity opacity-80 hover:opacity-100" href="#">Ochrana soukromí</a>
+<a class="font-serif text-sm tracking-wide text-stone-500 hover:text-amber-600 underline decoration-1 underline-offset-4 transition-opacity opacity-80 hover:opacity-100" href="#">Podmínky služby</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label text-stone-900 mb-2">Sociální sítě</h4>
+<a class="font-serif text-sm tracking-wide text-stone-500 hover:text-amber-600 underline decoration-1 underline-offset-4 transition-opacity opacity-80 hover:opacity-100" href="#">LinkedIn</a>
+<a class="font-serif text-sm tracking-wide text-stone-500 hover:text-amber-600 underline decoration-1 underline-offset-4 transition-opacity opacity-80 hover:opacity-100" href="#">Kontakt</a>
+</div>
+</div>
+<div class="md:text-right">
+<p class="font-serif text-sm tracking-wide text-stone-500">
+                © 2024 WellBe s.r.o. QuConsult — Human-Centric Strategic AI.
+            </p>
+</div>
+</div>
+</footer>
+</body></html>

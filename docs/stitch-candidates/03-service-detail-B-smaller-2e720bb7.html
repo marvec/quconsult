@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html class="light" lang="cs"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;400;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#b15f00",
+                    "secondary-fixed": "#e5e2e1",
+                    "on-tertiary-container": "#fdfcff",
+                    "surface-tint": "#904d00",
+                    "on-tertiary-fixed": "#001d32",
+                    "on-secondary-fixed-variant": "#474746",
+                    "tertiary-fixed-dim": "#96ccff",
+                    "tertiary-container": "#007abd",
+                    "secondary-container": "#e2dfde",
+                    "on-surface-variant": "#554336",
+                    "surface-container": "#fdeade",
+                    "surface-bright": "#fff8f5",
+                    "inverse-surface": "#392e26",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "on-surface": "#231a13",
+                    "primary": "#8d4b00",
+                    "secondary": "#5f5e5e",
+                    "on-tertiary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#6e3900",
+                    "primary-fixed-dim": "#ffb77d",
+                    "error-container": "#ffdad6",
+                    "surface": "#fff8f5",
+                    "on-error-container": "#93000a",
+                    "background": "#fff8f5",
+                    "surface-variant": "#f2dfd3",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "inverse-on-surface": "#ffede3",
+                    "surface-container-low": "#fff1e9",
+                    "outline": "#887364",
+                    "tertiary": "#006096",
+                    "on-primary-fixed": "#2f1500",
+                    "inverse-primary": "#ffb77d",
+                    "on-tertiary-fixed-variant": "#004a75",
+                    "primary-fixed": "#ffdcc3",
+                    "outline-variant": "#dbc2b0",
+                    "on-background": "#231a13",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed": "#cee5ff",
+                    "surface-dim": "#e9d7cb",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "surface-container-high": "#f7e5d9",
+                    "on-primary-container": "#fffbff",
+                    "on-secondary-container": "#636262",
+                    "surface-container-highest": "#f2dfd3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "sm": "8px",
+                    "xl": "48px",
+                    "md": "16px",
+                    "xxl": "96px",
+                    "xs": "4px",
+                    "max_width": "1200px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "h2": ["Noto Serif"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label": ["Inter"],
+                    "h3": ["Noto Serif"],
+                    "h1": ["Noto Serif"]
+            },
+            "fontSize": {
+                    "h2": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "h3": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "h1": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #FAFAF8;
+            color: #1A1A1A;
+        }
+        .hand-drawn-arrow {
+            position: relative;
+        }
+        .hand-drawn-arrow::after {
+            content: '→';
+            position: absolute;
+            right: -24px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Noto Serif';
+            font-size: 24px;
+            color: #D97706;
+            opacity: 0.5;
+        }
+        @media (max-width: 768px) {
+            .hand-drawn-arrow::after { display: none; }
+        }
+    </style>
+</head>
+<body class="antialiased">
+<!-- Top Navigation -->
+<nav class="bg-stone-50/90 dark:bg-stone-950/90 backdrop-blur-sm fixed top-0 w-full z-50 border-b border-stone-200 dark:border-stone-800">
+<div class="flex justify-between items-center max-w-[1200px] mx-auto px-6 lg:px-8 h-20">
+<div class="text-2xl font-serif font-light text-stone-900 dark:text-stone-50">QuConsult</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-serif tracking-tight text-amber-600 dark:text-amber-500 border-b border-amber-600 transition-colors duration-300" href="#">Services</a>
+<a class="font-serif tracking-tight text-stone-600 dark:text-stone-400 hover:text-amber-600 dark:hover:text-amber-500 transition-colors duration-300" href="#">Blog</a>
+<a class="font-serif tracking-tight text-stone-600 dark:text-stone-400 hover:text-amber-600 dark:hover:text-amber-500 transition-colors duration-300" href="#">About</a>
+<a class="font-serif tracking-tight text-stone-600 dark:text-stone-400 hover:text-amber-600 dark:hover:text-amber-500 transition-colors duration-300" href="#">Contact</a>
+<button class="bg-[#D97706] text-white px-6 py-2 rounded-lg font-label text-sm uppercase tracking-wider scale-95 active:scale-90 transition-transform">Consult Now</button>
+</div>
+<div class="md:hidden">
+<span class="material-symbols-outlined text-stone-900">menu</span>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="max-w-[1200px] mx-auto px-6 lg:px-8 py-xxl grid md:grid-cols-12 gap-lg items-center">
+<div class="md:col-span-7">
+<h1 class="font-h1 text-h1 text-on-surface mb-md">AI Analýza a strategie</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-xl">
+                    Posloucháme, mapujeme, navrhujeme. Zjistíme, kde AI přinese skutečnou hodnotu u vás konkrétně — a kde je to jen módní vlna.
+                </p>
+<div class="flex flex-wrap gap-md">
+<button class="bg-[#D97706] text-white px-8 py-4 rounded-lg font-label uppercase tracking-widest hover:brightness-110 transition-all">
+                        Domluvit bezplatnou konzultaci
+                    </button>
+<button class="border border-on-surface text-on-surface px-8 py-4 rounded-lg font-label uppercase tracking-widest hover:bg-stone-100 transition-all">
+                        Stáhnout AI Readiness Assessment
+                    </button>
+</div>
+</div>
+<div class="md:col-span-5 relative">
+<div class="aspect-[1.16] bg-stone-100 rounded-xl overflow-hidden border border-stone-200">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist workspace featuring a high-end architectural model and tactical strategic charts on a wooden table. The lighting is bright and natural, coming from large windows of a modern office space, creating an atmosphere of clarity and high-level consulting. The color palette is composed of soft beige, warm woods, and deep charcoal accents, reflecting Scandinavian design principles. The overall feel is professional, serene, and focused on strategic depth." src="https://lh3.googleusercontent.com/aida/ADBb0ujYVqrXXmdcGzVrX27n6OHTHztxEdNzVc02OdNxf4VuO6FhMc_UnaLsZXDwvYAkKskYwd1ENv9gndrCkaHtVUAIYnwh3NI96Ig9gJ9V6XF26AmsVCSWc_TkzrPKoXyD6Rbm2RbdURbVZ6XBtk7QdLQXdhffxoaZuyBueMu7IBKEHOI7rJbuxFQFMJrlLWgcA4HeLRMzyVoU6GSnD87NAQMGXu0ceVti6Sr6rfHInQpxs3Z8XcPvJ1g7R7ihq2tSNBLCCzxc4qF8zw"/>
+</div>
+</div>
+</section>
+<!-- Pro koho Section -->
+<section class="bg-[#E5E5E1]/30 py-xxl">
+<div class="max-w-[1200px] mx-auto px-6 lg:px-8">
+<div class="mb-xl">
+<span class="font-label text-label text-primary uppercase mb-xs block">Cílové skupiny</span>
+<h2 class="font-h2 text-h2">Pro koho je tato služba určena?</h2>
+</div>
+<div class="grid md:grid-cols-3 gap-lg">
+<!-- Card 1 -->
+<div class="bg-white border border-stone-200 p-xl flex flex-col gap-md">
+<span class="material-symbols-outlined text-amber-600 text-4xl">factory</span>
+<h3 class="font-h3 text-h3">Výrobní firmy</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            Pro provozy o 50–300 zaměstnancích pracujících se systémy Helios, Pohoda nebo SAP B1. Pomůžeme optimalizovat logistiku a plánování.
+                        </p>
+</div>
+<!-- Card 2 -->
+<div class="bg-white border border-stone-200 p-xl flex flex-col gap-md">
+<span class="material-symbols-outlined text-amber-600 text-4xl">balance</span>
+<h3 class="font-h3 text-h3">Profesionální služby</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            Právní kanceláře, účetní firmy a kreativní studia (5–30 lidí). Automatizujeme rešerše, reporting a administrativní zátěž.
+                        </p>
+</div>
+<!-- Card 3 -->
+<div class="bg-white border border-stone-200 p-xl flex flex-col gap-md">
+<span class="material-symbols-outlined text-amber-600 text-4xl">partner_exchange</span>
+<h3 class="font-h3 text-h3">Chybějící CTO</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            Firmy bez vlastního data teamu, které potřebují externí CTO/Strategy partnera pro bezpečné a smysluplné nasazení technologií.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Metodika Section -->
+<section class="max-w-[1200px] mx-auto px-6 lg:px-8 py-xxl">
+<div class="grid md:grid-cols-12 gap-xl">
+<div class="md:col-span-5">
+<h2 class="font-h2 text-h2 mb-md">Metodický přístup k AI</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Náš proces je postaven na datech a pragmatismu. Nehoníme se za trendy, ale za ušetřeným časem a zvýšenou efektivitou.
+                    </p>
+</div>
+<div class="md:col-span-7 grid grid-cols-1 gap-md">
+<div class="flex items-start gap-md p-lg border-b border-stone-100">
+<span class="font-label text-amber-600 mt-1">01</span>
+<div>
+<h4 class="font-body-lg font-semibold mb-xs">Audit procesů a mapování</h4>
+<p class="font-body-md text-on-surface-variant">Detailní vhled do toho, jak u vás protékají informace a kde vznikají úzká hrdla.</p>
+</div>
+</div>
+<div class="flex items-start gap-md p-lg border-b border-stone-100">
+<span class="font-label text-amber-600 mt-1">02</span>
+<div>
+<h4 class="font-body-lg font-semibold mb-xs">Identifikace "high-impact" oblastí</h4>
+<p class="font-body-md text-on-surface-variant">Hledáme místa s největším potenciálem návratnosti v krátkém čase.</p>
+</div>
+</div>
+<div class="flex items-start gap-md p-lg border-b border-stone-100">
+<span class="font-label text-amber-600 mt-1">03</span>
+<div>
+<h4 class="font-body-lg font-semibold mb-xs">Data Readiness Assessment</h4>
+<p class="font-body-md text-on-surface-variant">Technické posouzení stavu a dostupnosti vašich firemních dat.</p>
+</div>
+</div>
+<div class="flex items-start gap-md p-lg border-b border-stone-100">
+<span class="font-label text-amber-600 mt-1">04</span>
+<div>
+<h4 class="font-body-lg font-semibold mb-xs">Business Case v Kč (ROI projekce)</h4>
+<p class="font-body-md text-on-surface-variant">Předložíme vám konkrétní čísla, kolik projekt ušetří nebo vydělá.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Spolupráce Section -->
+<section class="bg-stone-900 text-stone-100 py-xxl">
+<div class="max-w-[1200px] mx-auto px-6 lg:px-8">
+<h2 class="font-h2 text-h2 text-white mb-xl text-center">Fáze naší spolupráce</h2>
+<div class="grid md:grid-cols-4 gap-lg">
+<div class="hand-drawn-arrow group">
+<div class="text-amber-500 font-label mb-sm">01. KROK</div>
+<h4 class="font-h3 text-xl mb-md">Konzultace</h4>
+<p class="font-body-md text-stone-400">45 min úvodní hovor zdarma k vyjasnění vašich potřeb a očekávání.</p>
+</div>
+<div class="hand-drawn-arrow group">
+<div class="text-amber-500 font-label mb-sm">02. KROK</div>
+<h4 class="font-h3 text-xl mb-md">Discovery</h4>
+<p class="font-body-md text-stone-400">2 týdny intenzivního auditu u vás ve firmě, sběr dat a rozhovory s týmem.</p>
+</div>
+<div class="hand-drawn-arrow group">
+<div class="text-amber-500 font-label mb-sm">03. KROK</div>
+<h4 class="font-h3 text-xl mb-md">Návrh plánu</h4>
+<p class="font-body-md text-stone-400">Předání prioritizovaného backlogu a konkrétní implementační roadmapy.</p>
+</div>
+<div class="group">
+<div class="text-amber-500 font-label mb-sm">04. KROK</div>
+<h4 class="font-h3 text-xl mb-md">Realizace</h4>
+<p class="font-body-md text-stone-400">Předání vašemu týmu k realizaci nebo spuštění pilotního projektu s námi.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Investice Section -->
+<section class="max-w-[1200px] mx-auto px-6 lg:px-8 py-xxl">
+<div class="grid md:grid-cols-2 gap-xl">
+<div class="p-xl border border-stone-200">
+<h3 class="font-h3 text-h3 mb-md">Discovery &amp; Strategie</h3>
+<div class="text-4xl font-serif text-amber-600 mb-md">Od 75 000 Kč</div>
+<ul class="font-body-md space-y-sm text-on-surface-variant">
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-sm">check</span> Fixní cena bez skrytých nákladů</li>
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-sm">check</span> Doba trvání: 2 pracovní týdny</li>
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-sm">check</span> Kompletní výstup pro vedení i IT</li>
+</ul>
+</div>
+<div class="p-xl border border-stone-200">
+<h3 class="font-h3 text-h3 mb-md">Konzultační Retainer</h3>
+<div class="text-4xl font-serif text-amber-600 mb-md">15k – 30k Kč <span class="text-sm font-sans text-stone-400">/ měsíčně</span></div>
+<ul class="font-body-md space-y-sm text-on-surface-variant">
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-sm">check</span> Dlouhodobá strategická podpora</li>
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-sm">check</span> Supervize nad externími dodavateli</li>
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-sm">check</span> Průběžná aktualizace AI roadmapy</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Highlight Section -->
+<section class="max-w-[1200px] mx-auto px-6 lg:px-8 mb-xxl">
+<div class="bg-surface-container p-xl md:p-xxl relative overflow-hidden">
+<div class="relative z-10 grid md:grid-cols-12 gap-xl items-center">
+<div class="md:col-span-8">
+<p class="font-body-lg text-body-lg mb-lg leading-relaxed">
+<span class="font-bold text-primary">56 % českých firem naráží při implementaci AI na kvalitu dat.</span> Většina projektů selže nikoliv kvůli špatné technologii, ale kvůli roztříštěným nebo neexistujícím datům. Součástí naší Discovery fáze je kompletní posouzení vaší datové připravenosti.
+                        </p>
+<div class="flex items-center gap-lg">
+<button class="bg-[#D97706] text-white px-8 py-4 rounded-lg font-label uppercase tracking-widest">
+                                AI READINESS ASSESSMENT
+                            </button>
+<span class="font-label text-xs text-on-surface-variant hidden md:block">ZABERE TO CCA 10 MINUT</span>
+</div>
+</div>
+<div class="md:col-span-4 hidden md:block">
+<span class="material-symbols-outlined text-[120px] text-primary/10">database</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Upřímně Section -->
+<section class="max-w-[1200px] mx-auto px-6 lg:px-8 py-xxl border-t border-stone-200">
+<div class="text-center max-w-2xl mx-auto mb-xl">
+<h2 class="font-h2 text-h2 mb-md">Upřímně: Co neděláme</h2>
+</div>
+<div class="grid md:grid-cols-3 gap-lg text-center">
+<div>
+<span class="material-symbols-outlined text-error mb-sm">block</span>
+<p class="font-body-md font-medium italic text-on-surface-variant">"Neprodáváme AI jako 'budoucnost' — prodáváme konkrétní výsledky."</p>
+</div>
+<div>
+<span class="material-symbols-outlined text-error mb-sm">block</span>
+<p class="font-body-md font-medium italic text-on-surface-variant">"Neděláme 18měsíční transformační projekty."</p>
+</div>
+<div>
+<span class="material-symbols-outlined text-error mb-sm">block</span>
+<p class="font-body-md font-medium italic text-on-surface-variant">"Nenahrazujeme váš IT tým — spolupracujeme s ním."</p>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="max-w-[800px] mx-auto px-6 lg:px-8 py-xxl">
+<h2 class="font-h2 text-h3 text-center mb-xl">Často kladené dotazy</h2>
+<div class="space-y-md">
+<div class="border border-stone-200 p-lg">
+<h4 class="font-body-lg font-semibold mb-sm flex justify-between items-center">
+                        Jak dlouho Discovery fáze trvá?
+                        <span class="material-symbols-outlined text-stone-400">expand_more</span>
+</h4>
+<p class="font-body-md text-on-surface-variant">Zpravidla 2 pracovní týdny intenzivní spolupráce, na jejímž konci je hotová strategie.</p>
+</div>
+<div class="border border-stone-200 p-lg">
+<h4 class="font-body-lg font-semibold mb-sm flex justify-between items-center">
+                        Co když během auditu zjistíte, že AI pro nás nemá smysl?
+                        <span class="material-symbols-outlined text-stone-400">expand_more</span>
+</h4>
+<p class="font-body-md text-on-surface-variant">Řekneme vám to hned v úvodu. Naším cílem je ušetřit vám investice do projektů, které nemají reálnou návratnost.</p>
+</div>
+<div class="border border-stone-200 p-lg">
+<h4 class="font-body-lg font-semibold mb-sm flex justify-between items-center">
+                        Budete spolupracovat s mými IT dodavateli?
+                        <span class="material-symbols-outlined text-stone-400">expand_more</span>
+</h4>
+<p class="font-body-md text-on-surface-variant">Ano, bez nich to nejde. Přebíráme roli tlumočníka mezi byznysovými požadavky a technickou realizací.</p>
+</div>
+</div>
+</section>
+<!-- Closing CTA -->
+<section class="max-w-[1200px] mx-auto px-6 lg:px-8 py-xxl text-center">
+<h2 class="font-h2 text-h1 mb-xl">Nezačínejte s AI náhodně. <br class="hidden md:block"/>Začněte se strategií.</h2>
+<div class="flex flex-wrap justify-center gap-md">
+<button class="bg-[#D97706] text-white px-8 py-4 rounded-lg font-label uppercase tracking-widest">
+                    Domluvit bezplatnou konzultaci
+                </button>
+<button class="border border-on-surface text-on-surface px-8 py-4 rounded-lg font-label uppercase tracking-widest">
+                    Podívat se na další služby
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-stone-50 dark:bg-stone-950 border-t border-stone-200 dark:border-stone-800">
+<div class="max-w-[1200px] mx-auto px-6 lg:px-8 py-24 flex flex-col md:flex-row justify-between items-start gap-12">
+<div>
+<div class="text-4xl font-serif font-bold text-stone-200 dark:text-stone-800 mb-md">QuConsult</div>
+<p class="font-serif text-sm tracking-wide text-stone-500 dark:text-stone-400">© 2024 WellBe s.r.o. QuConsult — Human-Centric Strategic AI.</p>
+</div>
+<div class="grid grid-cols-2 gap-xl">
+<div class="flex flex-col gap-sm">
+<a class="font-serif text-sm tracking-wide text-stone-500 dark:text-stone-400 hover:text-amber-600 dark:hover:text-amber-500 underline decoration-1 underline-offset-4 transition-opacity opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="font-serif text-sm tracking-wide text-stone-500 dark:text-stone-400 hover:text-amber-600 dark:hover:text-amber-500 underline decoration-1 underline-offset-4 transition-opacity opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-sm">
+<a class="font-serif text-sm tracking-wide text-stone-500 dark:text-stone-400 hover:text-amber-600 dark:hover:text-amber-500 underline decoration-1 underline-offset-4 transition-opacity opacity-80 hover:opacity-100" href="#">LinkedIn</a>
+<a class="font-serif text-sm tracking-wide text-stone-500 dark:text-stone-400 hover:text-amber-600 dark:hover:text-amber-500 underline decoration-1 underline-offset-4 transition-opacity opacity-80 hover:opacity-100" href="#">Contact</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

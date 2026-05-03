@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html class="light" lang="cs"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container": "#fdeade",
+                      "on-primary": "#ffffff",
+                      "inverse-primary": "#ffb77d",
+                      "on-secondary-fixed": "#1c1b1b",
+                      "error": "#ba1a1a",
+                      "on-secondary": "#ffffff",
+                      "secondary-fixed": "#e5e2e1",
+                      "secondary": "#5f5e5e",
+                      "tertiary-fixed": "#cee5ff",
+                      "surface-container-low": "#fff1e9",
+                      "surface-container-highest": "#f2dfd3",
+                      "tertiary": "#006096",
+                      "on-tertiary-fixed": "#001d32",
+                      "surface-bright": "#fff8f5",
+                      "on-surface-variant": "#554336",
+                      "on-primary-fixed-variant": "#6e3900",
+                      "secondary-container": "#e2dfde",
+                      "surface-tint": "#904d00",
+                      "on-secondary-container": "#636262",
+                      "surface": "#fff8f5",
+                      "on-primary-fixed": "#2f1500",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-container": "#fdfcff",
+                      "tertiary-container": "#007abd",
+                      "primary-fixed-dim": "#ffb77d",
+                      "tertiary-fixed-dim": "#96ccff",
+                      "inverse-surface": "#392e26",
+                      "primary-container": "#b15f00",
+                      "on-primary-container": "#fffbff",
+                      "surface-dim": "#e9d7cb",
+                      "background": "#fff8f5",
+                      "primary": "#8d4b00",
+                      "on-surface": "#231a13",
+                      "surface-variant": "#f2dfd3",
+                      "on-secondary-fixed-variant": "#474746",
+                      "on-error": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "on-tertiary": "#ffffff",
+                      "on-background": "#231a13",
+                      "surface-container-high": "#f7e5d9",
+                      "outline-variant": "#dbc2b0",
+                      "outline": "#887364",
+                      "primary-fixed": "#ffdcc3",
+                      "inverse-on-surface": "#ffede3",
+                      "secondary-fixed-dim": "#c8c6c5",
+                      "on-tertiary-fixed-variant": "#004a75",
+                      "error-container": "#ffdad6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "xs": "4px",
+                      "xl": "48px",
+                      "md": "16px",
+                      "xxl": "96px",
+                      "max_width": "1200px",
+                      "sm": "8px",
+                      "lg": "24px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "h3": ["Noto Serif"],
+                      "h2": ["Noto Serif"],
+                      "label": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "h1": ["Noto Serif"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "h3": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                      "h2": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                      "label": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "h1": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #FAFAF8;
+            color: #1A1A1A;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom UI tokens for Scandinavian Minimalism */
+        .scandi-border { border: 1px solid #E5E5E1; }
+        .scandi-focus { border-bottom: 1px solid #D97706; }
+        .accent-amber { color: #D97706; }
+        .bg-amber { background-color: #D97706; }
+    </style>
+</head>
+<body class="font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar Section -->
+<header class="bg-[#FAFAF8] dark:bg-stone-950 border-b border-stone-200 dark:border-stone-800 sticky top-0 z-50">
+<nav class="max-w-[1200px] mx-auto flex justify-between items-center h-24 px-6 lg:px-12">
+<div class="font-serif text-2xl tracking-tight text-[#1A1A1A] dark:text-stone-100">
+                QuConsult
+            </div>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-stone-600 dark:text-stone-400 font-medium hover:text-[#D97706] transition-colors duration-300" href="#">Methodology</a>
+<a class="text-stone-600 dark:text-stone-400 font-medium hover:text-[#D97706] transition-colors duration-300" href="#">Insights</a>
+<a class="text-stone-600 dark:text-stone-400 font-medium hover:text-[#D97706] transition-colors duration-300" href="#">About</a>
+<button class="bg-[#D97706] text-white px-6 py-2.5 rounded-[4px] font-medium active:scale-[0.98] transition-all duration-300">Contact Us</button>
+</div>
+<button class="md:hidden material-symbols-outlined text-stone-900">menu</button>
+</nav>
+</header>
+<main class="min-h-screen">
+<!-- Hero Section -->
+<section class="max-w-[720px] mx-auto pt-xxl pb-xl px-6">
+<div class="text-center">
+<h1 class="font-h1 text-h1 mb-6 text-[#1A1A1A]">Zjistěte AI zralost vaší firmy za 10 minut</h1>
+<p class="font-body-lg text-body-lg text-stone-600 max-w-[600px] mx-auto">
+                    Krátký dotazník o vašich procesech, datech a cílech. Do 24 hodin pošleme PDF zprávu s konkrétními doporučeními.
+                </p>
+</div>
+</section>
+<!-- Assessment Form Section -->
+<section class="max-w-[720px] mx-auto pb-xxl px-6">
+<div class="scandi-border bg-[#FAFAF8] p-8 lg:p-12">
+<!-- Progress Header -->
+<div class="mb-12">
+<div class="flex justify-between items-end mb-4">
+<span class="font-label text-label uppercase text-stone-400">Krok 1 z 5</span>
+<span class="font-label text-label uppercase text-[#1A1A1A]">O firmě</span>
+</div>
+<div class="flex gap-2 h-1 w-full">
+<div class="flex-1 bg-[#D97706]"></div>
+<div class="flex-1 bg-stone-200"></div>
+<div class="flex-1 bg-stone-200"></div>
+<div class="flex-1 bg-stone-200"></div>
+<div class="flex-1 bg-stone-200"></div>
+</div>
+</div>
+<!-- Form Step 1 -->
+<form class="space-y-10">
+<!-- Firm Size -->
+<div class="space-y-4">
+<label class="font-label text-label uppercase text-stone-500 block">Velikost firmy</label>
+<div class="flex flex-wrap gap-2">
+<button class="px-6 py-3 scandi-border text-stone-600 font-medium hover:border-[#D97706] transition-colors" type="button">pod 30</button>
+<button class="px-6 py-3 border-[#D97706] bg-[#FAFAF8] text-[#D97706] font-medium border ring-1 ring-[#D97706]" type="button">30–50</button>
+<button class="px-6 py-3 scandi-border text-stone-600 font-medium hover:border-[#D97706] transition-colors" type="button">50–150</button>
+<button class="px-6 py-3 scandi-border text-stone-600 font-medium hover:border-[#D97706] transition-colors" type="button">150–300</button>
+<button class="px-6 py-3 scandi-border text-stone-600 font-medium hover:border-[#D97706] transition-colors" type="button">300+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Sector Select -->
+<div class="space-y-2">
+<label class="font-label text-label uppercase text-stone-500" for="obor">Obor</label>
+<select class="w-full bg-transparent border-0 border-b border-stone-300 py-3 focus:ring-0 focus:border-[#D97706] transition-colors font-body-md" id="obor">
+<option disabled="" selected="" value="">Vyberte...</option>
+<option>Výroba</option>
+<option>Profesionální služby</option>
+<option>Obchod</option>
+<option>Jiné</option>
+</select>
+</div>
+<!-- ERP Select -->
+<div class="space-y-2">
+<label class="font-label text-label uppercase text-stone-500" for="erp">Hlavní ERP</label>
+<select class="w-full bg-transparent border-0 border-b border-stone-300 py-3 focus:ring-0 focus:border-[#D97706] transition-colors font-body-md" id="erp">
+<option disabled="" selected="" value="">Vyberte...</option>
+<option>Pohoda</option>
+<option>Helios</option>
+<option>SAP B1</option>
+<option>MS Dynamics</option>
+<option>Žádný</option>
+<option>Jiné</option>
+</select>
+</div>
+</div>
+<!-- Description Input -->
+<div class="space-y-2">
+<label class="font-label text-label uppercase text-stone-500" for="desc">Co děláte v jedné větě?</label>
+<input class="w-full bg-transparent border-0 border-b border-stone-300 py-3 focus:ring-0 focus:border-[#D97706] transition-colors font-body-md placeholder:text-stone-300" id="desc" placeholder="Např. Vyrábíme přesné strojírenské komponenty pro automotive." type="text"/>
+</div>
+<!-- Navigation -->
+<div class="flex justify-between items-center pt-8 border-t border-stone-100">
+<button class="font-label text-label uppercase border border-stone-300 px-8 py-4 hover:border-stone-900 transition-colors" type="button">
+                            Zpět
+                        </button>
+<button class="font-label text-label uppercase bg-[#D97706] text-white px-10 py-4 hover:bg-stone-900 transition-colors" type="button">
+                            Pokračovat
+                        </button>
+</div>
+</form>
+</div>
+<p class="text-center mt-12 text-stone-400 font-label text-sm uppercase tracking-widest">
+                Otázky odhalují bolesti, ne mezery. Žádná otázka není povinná.
+            </p>
+</section>
+<!-- Divider -->
+<div class="max-w-[1200px] mx-auto px-6 py-xxl">
+<hr class="border-stone-200"/>
+</div>
+<!-- Success State Section -->
+<section class="max-w-[720px] mx-auto px-6 mb-xxl">
+<div class="scandi-border bg-[#FAFAF8] p-12 text-center space-y-8">
+<div class="flex justify-center">
+<div class="w-16 h-16 rounded-full border border-[#D97706] flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-[#D97706]">check</span>
+</div>
+</div>
+<div class="space-y-4">
+<h2 class="font-h2 text-h2 text-[#1A1A1A]">Děkujeme. Zprávu pošleme do 24 hodin na váš e-mail.</h2>
+<p class="font-body-md text-stone-500">Vaše údaje neukládáme do CRM dál než pro vyhodnocení. Žádný spam, žádné prodejní telefonáty.</p>
+</div>
+<div class="pt-4 flex flex-col items-center gap-6">
+<button class="bg-[#D97706] text-white px-8 py-4 font-label text-label uppercase w-full sm:w-auto hover:bg-stone-900 transition-colors">
+                        Mezitím si můžete domluvit 45min konzultaci
+                    </button>
+<a class="font-label text-label uppercase text-stone-500 underline decoration-[#D97706] underline-offset-8 hover:text-stone-900 transition-colors" href="#">
+                        Vrátit se na úvod
+                    </a>
+</div>
+</div>
+</section>
+<!-- Illustration Section for Visual Polish -->
+<section class="max-w-[1200px] mx-auto px-6 mb-xxl">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div class="order-2 md:order-1">
+<img alt="Czech Architectural Detail" class="w-full grayscale hover:grayscale-0 transition-all duration-700 opacity-80 border border-stone-200 p-2" data-alt="A refined architectural detail of a modern, minimalist building in Prague, featuring clean lines and warm stone textures. The lighting is soft morning sun, casting gentle geometric shadows across the surface. The aesthetic is sophisticated and professional, perfectly balancing technical precision with human warmth in a light-mode color palette." src="https://lh3.googleusercontent.com/aida/ADBb0ujYVqrXXmdcGzVrX27n6OHTHztxEdNzVc02OdNxf4VuO6FhMc_UnaLsZXDwvYAkKskYwd1ENv9gndrCkaHtVUAIYnwh3NI96Ig9gJ9V6XF26AmsVCSWc_TkzrPKoXyD6Rbm2RbdURbVZ6XBtk7QdLQXdhffxoaZuyBueMu7IBKEHOI7rJbuxFQFMJrlLWgcA4HeLRMzyVoU6GSnD87NAQMGXu0ceVti6Sr6rfHInQpxs3Z8XcPvJ1g7R7ihq2tSNBLCCzxc4qF8zw"/>
+</div>
+<div class="space-y-6 order-1 md:order-2">
+<h3 class="font-h3 text-h3 text-[#1A1A1A]">Preciznost a lidský přístup</h3>
+<p class="text-stone-600 font-body-md max-w-md">
+                        Naše analýzy nejsou generovány automatickým robotem. Každý dotazník prochází náš strategický tým, aby výsledná doporučení skutečně odrážela realitu vašeho trhu.
+                    </p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Section -->
+<footer class="bg-[#FAFAF8] dark:bg-stone-950 border-t border-stone-200 dark:border-stone-800 mt-24">
+<div class="max-w-[1200px] mx-auto py-16 px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="font-serif text-lg text-stone-900 dark:text-stone-100">
+                QuConsult Strategy Group
+            </div>
+<div class="flex flex-wrap justify-center gap-8 font-sans text-sm uppercase tracking-widest text-stone-500">
+<a class="hover:text-stone-900 dark:hover:text-stone-100 underline decoration-[#D97706] underline-offset-4 transition-all duration-300" href="#">Privacy Policy</a>
+<a class="hover:text-stone-900 dark:hover:text-stone-100 underline decoration-[#D97706] underline-offset-4 transition-all duration-300" href="#">Terms of Service</a>
+<a class="hover:text-stone-900 dark:hover:text-stone-100 underline decoration-[#D97706] underline-offset-4 transition-all duration-300" href="#">AI Ethics Statement</a>
+</div>
+<div class="font-sans text-xs uppercase tracking-widest text-stone-400">
+                © 2024 QuConsult Strategy Group. Czech Engineering meets Human Strategy.
+            </div>
+</div>
+</footer>
+</body></html>

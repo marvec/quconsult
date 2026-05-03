@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html class="light" lang="cs"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Noto+Serif:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#96ccff",
+                        "primary-container": "#b15f00",
+                        "tertiary-fixed": "#cee5ff",
+                        "surface-bright": "#fff8f5",
+                        "on-primary-fixed-variant": "#6e3900",
+                        "surface-dim": "#e9d7cb",
+                        "secondary-fixed": "#e5e2e1",
+                        "primary-fixed-dim": "#ffb77d",
+                        "primary": "#8d4b00",
+                        "on-surface-variant": "#554336",
+                        "outline-variant": "#dbc2b0",
+                        "on-secondary": "#ffffff",
+                        "surface": "#fff8f5",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "surface-container-highest": "#f2dfd3",
+                        "surface-container": "#fdeade",
+                        "on-tertiary-container": "#fdfcff",
+                        "surface-container-low": "#fff1e9",
+                        "surface-container-high": "#f7e5d9",
+                        "surface-tint": "#904d00",
+                        "primary-fixed": "#ffdcc3",
+                        "on-primary-fixed": "#2f1500",
+                        "background": "#fff8f5",
+                        "outline": "#887364",
+                        "inverse-surface": "#392e26",
+                        "on-background": "#231a13",
+                        "tertiary-container": "#007abd",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#231a13",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#004a75",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#ffb77d",
+                        "secondary-container": "#e2dfde",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#006096",
+                        "inverse-on-surface": "#ffede3",
+                        "on-secondary-container": "#636262",
+                        "on-tertiary-fixed": "#001d32",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#f2dfd3",
+                        "secondary": "#5f5e5e",
+                        "on-secondary-fixed-variant": "#474746",
+                        "on-primary-container": "#fffbff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "48px",
+                        "md": "16px",
+                        "max_width": "1200px",
+                        "lg": "24px",
+                        "base": "8px",
+                        "sm": "8px",
+                        "xxl": "96px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "h3": ["Noto Serif"],
+                        "body-lg": ["Inter"],
+                        "label": ["Inter"],
+                        "h2": ["Noto Serif"],
+                        "body-md": ["Inter"],
+                        "h1": ["Noto Serif"]
+                    },
+                    "fontSize": {
+                        "h3": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "h2": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h1": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: #FAFAF8; color: #1A1A1A; }
+        .amber-accent { color: #D97706; }
+        .bg-amber-accent { background-color: #D97706; }
+        .border-amber-accent { border-color: #D97706; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-md">
+<!-- TopNavBar Shell -->
+<header class="bg-[#FAFAF8] border-b border-stone-200 sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+<div class="text-2xl font-bold tracking-tight text-stone-900 font-serif">QuConsult</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-stone-600 hover:text-amber-700 transition-colors duration-200 font-serif" href="#">Services</a>
+<a class="text-stone-600 hover:text-amber-700 transition-colors duration-200 font-serif" href="#">Blog</a>
+<a class="text-stone-600 hover:text-amber-700 transition-colors duration-200 font-serif" href="#">About</a>
+<a class="text-stone-600 hover:text-amber-700 transition-colors duration-200 font-serif" href="#">Contact</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="bg-amber-accent text-white px-6 py-2 rounded-lg font-label active:scale-95 transition-transform">
+                    Consultation
+                </button>
+</div>
+</div>
+</header>
+<!-- Main Content: 404 Canvas -->
+<main class="flex-grow flex items-center justify-center py-xxl px-6">
+<div class="max-w-3xl w-full text-center">
+<!-- Large 'Q' Brand Mark -->
+<div class="mb-lg flex justify-center">
+<div class="relative inline-block font-serif text-[300px] leading-none text-stone-900 select-none">
+                    Q
+                    <div class="absolute bottom-12 right-0 w-24 h-4 bg-amber-accent rounded-full opacity-90 transform rotate-[-12deg]"></div>
+</div>
+</div>
+<!-- Error Messaging -->
+<h1 class="font-h1 text-h1 text-stone-900 mb-md">Tady to není</h1>
+<p class="font-body-lg text-body-lg text-stone-600 mb-base max-w-xl mx-auto">
+                Stránku, kterou hledáte, jsme buď přejmenovali, nebo se ztratila někde mezi servery. Jsme za ni v každém případě zodpovědní my.
+            </p>
+<p class="font-body-md text-body-md italic text-stone-500 mb-xl">
+                Pokud jste sem přišli z odkazu, dejte nám prosím vědět — opravíme to.
+            </p>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row items-center justify-center gap-lg">
+<a class="min-w-[180px] bg-amber-accent text-white py-4 px-8 rounded font-label text-center hover:opacity-90 transition-all active:scale-95" href="/">
+                    Zpět na úvod
+                </a>
+<a class="min-w-[180px] border border-stone-900 text-stone-900 py-4 px-8 rounded font-label text-center hover:bg-stone-50 transition-all active:scale-95" href="/kontakt">
+                    Napsat nám
+                </a>
+</div>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-[#FAFAF8] border-t border-stone-200 mt-24">
+<div class="max-w-7xl mx-auto px-8 py-16 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col gap-2">
+<div class="text-lg font-bold text-stone-900 font-serif">QuConsult</div>
+<p class="font-serif text-stone-600 text-sm">© 2024 QuConsult s.r.o. | Boutique AI Strategic Consulting</p>
+</div>
+<div class="flex gap-8">
+<a class="text-stone-500 hover:text-amber-700 transition-all text-sm font-serif" href="#">Privacy Policy</a>
+<a class="text-stone-500 hover:text-amber-700 transition-all text-sm font-serif" href="#">Legal Notice</a>
+<a class="text-stone-500 hover:text-amber-700 transition-all text-sm font-serif" href="#">LinkedIn</a>
+<a class="text-stone-500 hover:text-amber-700 transition-all text-sm font-serif" href="#">Contact</a>
+</div>
+</div>
+</footer>
+</body></html>

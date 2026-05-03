@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html class="light" lang="cs"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#fdeade",
+                        "surface-container-high": "#f7e5d9",
+                        "secondary": "#5f5e5e",
+                        "on-tertiary-container": "#fdfcff",
+                        "surface-variant": "#f2dfd3",
+                        "on-tertiary-fixed-variant": "#004a75",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#6e3900",
+                        "outline": "#887364",
+                        "inverse-on-surface": "#ffede3",
+                        "primary-container": "#b15f00",
+                        "surface": "#fff8f5",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#fffbff",
+                        "inverse-surface": "#392e26",
+                        "error": "#ba1a1a",
+                        "primary": "#8d4b00",
+                        "on-background": "#231a13",
+                        "secondary-container": "#e2dfde",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#474746",
+                        "tertiary": "#006096",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "inverse-primary": "#ffb77d",
+                        "surface-container-highest": "#f2dfd3",
+                        "background": "#fff8f5",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "tertiary-container": "#007abd",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#636262",
+                        "on-tertiary-fixed": "#001d32",
+                        "surface-bright": "#fff8f5",
+                        "surface-dim": "#e9d7cb",
+                        "secondary-fixed": "#e5e2e1",
+                        "surface-container-low": "#fff1e9",
+                        "primary-fixed-dim": "#ffb77d",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#cee5ff",
+                        "primary-fixed": "#ffdcc3",
+                        "tertiary-fixed-dim": "#96ccff",
+                        "outline-variant": "#dbc2b0",
+                        "on-primary-fixed": "#2f1500",
+                        "surface-tint": "#904d00",
+                        "on-surface-variant": "#554336",
+                        "on-surface": "#231a13"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xxl": "96px",
+                        "max_width": "1200px",
+                        "lg": "24px",
+                        "xl": "48px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "label": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "h3": ["Noto Serif"],
+                        "h1": ["Noto Serif"],
+                        "h2": ["Noto Serif"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "h3": ["32px", { "lineHeight": "1.3", "fontWeight": "400" }],
+                        "h1": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "h2": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #FAFAF8;
+            color: #1A1A1A;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .legal-content h2 {
+            margin-top: 48px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #E5E5E1;
+            padding-bottom: 8px;
+        }
+        .legal-content p, .legal-content ul {
+            margin-bottom: 24px;
+        }
+        .legal-content ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .legal-content li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 12px;
+        }
+        .legal-content li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: #D97706;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface bg-[#FAFAF8]">
+<!-- TopNavBar -->
+<header class="bg-stone-50 dark:bg-stone-950 border-b border-stone-200 dark:border-stone-800 sticky top-0 z-50">
+<nav class="flex justify-between items-center w-full px-6 py-4 max-w-[1200px] mx-auto">
+<div class="text-xl font-bold tracking-tight text-stone-900 dark:text-stone-50 font-h1">
+                Aethelgard Consulting
+            </div>
+<div class="hidden md:flex items-center gap-8 font-serif text-stone-900 dark:text-stone-50">
+<a class="text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition-colors" href="#">Strategy</a>
+<a class="text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition-colors" href="#">Insights</a>
+<a class="text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition-colors" href="#">Case Studies</a>
+<a class="text-stone-900 dark:text-stone-50 border-b-2 border-amber-600 pb-1" href="#">Legal</a>
+</div>
+<button class="bg-amber-600 text-white px-5 py-2 rounded-lg font-label text-sm hover:bg-amber-700 transition-all scale-100 active:scale-95">
+                Get in Touch
+            </button>
+</nav>
+</header>
+<main class="max-w-[1200px] mx-auto px-6 py-xxl flex gap-xl">
+<!-- SideNavBar (Sticky Table of Contents) -->
+<aside class="sticky top-24 w-64 h-fit hidden lg:block border-r border-stone-200 dark:border-stone-800 pr-8">
+<div class="mb-8">
+<p class="font-serif text-xs uppercase tracking-widest text-amber-600 mb-1">Legal Framework</p>
+<h3 class="font-serif text-xl font-bold text-stone-900">Table of Contents</h3>
+</div>
+<nav class="flex flex-col gap-4 font-serif text-sm">
+<a class="flex items-center gap-3 text-amber-600 dark:text-amber-500 font-bold border-l-2 border-amber-600 pl-4 transition-all duration-300" href="#spravce">
+<span class="material-symbols-outlined text-lg" data-icon="info">info</span>
+                    O správci
+                </a>
+<a class="flex items-center gap-3 text-stone-500 dark:text-stone-400 pl-4 hover:border-l-2 hover:border-stone-300 hover:bg-stone-100 dark:hover:bg-stone-900 transition-all duration-300" href="#udaje">
+<span class="material-symbols-outlined text-lg" data-icon="gavel">gavel</span>
+                    Osobní údaje
+                </a>
+<a class="flex items-center gap-3 text-stone-500 dark:text-stone-400 pl-4 hover:border-l-2 hover:border-stone-300 hover:bg-stone-100 dark:hover:bg-stone-900 transition-all duration-300" href="#ucel">
+<span class="material-symbols-outlined text-lg" data-icon="psychology">psychology</span>
+                    Účel zpracování
+                </a>
+<a class="flex items-center gap-3 text-stone-500 dark:text-stone-400 pl-4 hover:border-l-2 hover:border-stone-300 hover:bg-stone-100 dark:hover:bg-stone-900 transition-all duration-300" href="#doba">
+<span class="material-symbols-outlined text-lg" data-icon="policy">policy</span>
+                    Doba uchovávání
+                </a>
+<a class="flex items-center gap-3 text-stone-500 dark:text-stone-400 pl-4 hover:border-l-2 hover:border-stone-300 hover:bg-stone-100 dark:hover:bg-stone-900 transition-all duration-300" href="#prava">
+<span class="material-symbols-outlined text-lg" data-icon="mail">mail</span>
+                    Vaše práva
+                </a>
+<a class="flex items-center gap-3 text-stone-500 dark:text-stone-400 pl-4 hover:border-l-2 hover:border-stone-300 hover:bg-stone-100 dark:hover:bg-stone-900 transition-all duration-300" href="#kontakt">
+<span class="material-symbols-outlined text-lg" data-icon="mail">mail</span>
+                    Kontakt
+                </a>
+</nav>
+</aside>
+<!-- Main Legal Content -->
+<article class="flex-1 max-w-[720px] mx-auto legal-content">
+<header class="mb-xxl">
+<h1 class="font-h1 text-h1 text-stone-900 mb-4">Zásady ochrany osobních údajů</h1>
+<p class="font-label text-xs uppercase tracking-widest text-stone-500 border-l-2 border-amber-600 pl-4">
+                    Naposledy aktualizováno 21. dubna 2026
+                </p>
+</header>
+<section id="spravce">
+<h2 class="font-h2 text-h3 text-stone-900">O správci</h2>
+<p class="font-body-lg text-stone-700">
+                    Správcem vašich osobních údajů je společnost <strong>WellBe s.r.o.</strong>, se sídlem v Praze, Česká republika, zapsaná v obchodním rejstříku vedeném Městským soudem v Praze. Jsme odhodláni chránit vaše soukromí a zajistit, aby vaše osobní údaje byly zpracovávány v souladu s nejpřísnějšími standardy bezpečnosti a transparentnosti.
+                </p>
+<div class="bg-stone-100 p-8 rounded-lg border border-stone-200 my-8 italic font-serif">
+                    "Naše filozofie ochrany údajů vychází ze skandinávského přístupu k transparentnosti a české preciznosti v implementaci technických řešení."
+                </div>
+</section>
+<section id="udaje">
+<h2 class="font-h2 text-h3 text-stone-900">Osobní údaje shromažďované správcem</h2>
+<p class="font-body-md text-stone-700">Shromažďujeme a zpracováváme následující kategorie osobních údajů v závislosti na povaze naší vzájemné interakce:</p>
+<ul class="font-body-md text-stone-700">
+<li><strong>Poskytování služeb:</strong> Jméno, příjmení, pracovní pozice, název společnosti a profesní kontaktní údaje nezbytné pro plnění poradenských smluv.</li>
+<li><strong>Komunikace:</strong> Údaje poskytnuté v rámci e-mailové korespondence, dotazů přes kontaktní formuláře nebo během osobních setkání.</li>
+<li><strong>Newsletter a odborné postřehy:</strong> E-mailová adresa a preference obsahu pro zasílání našich strategických analýz a novinek.</li>
+<li><strong>Nábor talentů:</strong> Životopisy, profesní historie a reference kandidátů ucházejících se o pozice v Aethelgard Consulting.</li>
+</ul>
+</section>
+<section id="ucel">
+<h2 class="font-h2 text-h3 text-stone-900">Účel zpracování</h2>
+<p class="font-body-md text-stone-700">
+                    Vaše údaje využíváme výhradně k tomu, abychom vám mohli poskytovat špičkové strategické poradenství, zlepšovat naše digitální rozhraní a plnit naše zákonné povinnosti. Každé zpracování je podloženo legitimním zájmem, plněním smlouvy nebo vaším explicitním souhlasem.
+                </p>
+</section>
+<section id="doba">
+<h2 class="font-h2 text-h3 text-stone-900">Doba uchovávání</h2>
+<p class="font-body-md text-stone-700">
+                    Osobní údaje uchováváme pouze po dobu nezbytně nutnou k dosažení účelů popsaných výše:
+                </p>
+<ul class="font-body-md text-stone-700">
+<li>Účetní a daňové doklady: 10 let v souladu s příslušnými právními předpisy.</li>
+<li>Smluvní dokumentace: Po dobu trvání smlouvy a následně 5 let pro účely právní ochrany.</li>
+<li>Marketingové účely: Do odvolání souhlasu nebo po dobu 3 let od poslední aktivity.</li>
+</ul>
+</section>
+<section id="prava">
+<h2 class="font-h2 text-h3 text-stone-900">Vaše práva</h2>
+<p class="font-body-md text-stone-700">
+                    V souladu s nařízením GDPR máte právo na přístup ke svým údajům, jejich opravu, výmaz ("právo být zapomenut"), omezení zpracování a právo na přenositelnost údajů. Můžete rovněž vznést námitku proti zpracování založenému na našem legitimním zájmu.
+                </p>
+<p class="font-body-md text-stone-700">
+                    Pro uplatnění svých práv nebo v případě dotazů nás prosím kontaktujte na dedikované e-mailové adrese: 
+                    <a class="text-amber-600 font-bold hover:underline" href="mailto:privacy@quconsult.cz">privacy@quconsult.cz</a>.
+                </p>
+</section>
+<section id="kontakt">
+<h2 class="font-h2 text-h3 text-stone-900">Kontakt</h2>
+<p class="font-body-md text-stone-700">
+                    Dotazy týkající se ochrany soukromí můžete zasílat také poštou na naši pražskou centrálu nebo nás kontaktovat prostřednictvím oficiálních komunikačních kanálů uvedených na našem webu.
+                </p>
+</section>
+<div class="mt-xl">
+<img class="w-full h-64 object-cover grayscale opacity-80 rounded-lg border border-stone-200" data-alt="A serene and minimalist architectural photograph showing the play of light and shadow on a clean stone wall. The composition is balanced and peaceful, reflecting a sense of stability, professional ethics, and transparency. The lighting is soft morning sun, creating long, geometric shadows in a high-end European office setting. The aesthetic is purely Scandinavian with warm, natural tones and an atmosphere of intellectual clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh2gmbAAYn6INgBMbvh2CMGpmjn89CmGIo0wuWYjb2k2GQKXABTgHOdAXUOcyRPWXErsk06TsaWSrafGtS5qPa37mjUwU3cjuxnnSIa_ZrxSWGmMaNle9iavyHgwy3JinqB2boU5GJVdmpkliibev0tWfgrKV1e3lx3F6xzW37wUMv8Ha0HaNvugVPEsEHMOFMRJGoP2Jsd6zoa9dIQ_sC20Tr0XKNSBUdgcmRQjv1_6WQs_7X6KJj8qRw4r9xqAdC7OeHWPhVwDY"/>
+</div>
+</article>
+</main>
+<!-- Footer -->
+<footer class="bg-stone-50 dark:bg-stone-950 border-t border-stone-200 dark:border-stone-800">
+<div class="w-full py-12 px-6 mt-24 max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="font-serif text-xs uppercase tracking-widest text-stone-400">
+                © 2026 WellBe s.r.o. Crafted with Czech precision and Scandinavian soul.
+            </div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-serif text-xs uppercase tracking-widest text-amber-600 underline" href="#">Zásady ochrany soukromí</a>
+<a class="font-serif text-xs uppercase tracking-widest text-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition-all hover:underline decoration-amber-600 underline-offset-4" href="#">Zpracovatelé osobních údajů</a>
+<a class="font-serif text-xs uppercase tracking-widest text-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition-all hover:underline decoration-amber-600 underline-offset-4" href="#">Cookies</a>
+</div>
+</div>
+</footer>
+</body></html>

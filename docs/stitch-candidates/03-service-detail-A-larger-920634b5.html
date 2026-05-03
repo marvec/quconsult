@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="light" lang="cs"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Noto+Serif:wght@400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .hand-drawn-arrow {
+            filter: opacity(0.4);
+            stroke-dasharray: 5;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#5f5e5e",
+                        "surface-container-highest": "#f2dfd3",
+                        "on-tertiary-fixed": "#001d32",
+                        "on-surface-variant": "#554336",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#904d00",
+                        "surface-dim": "#e9d7cb",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#f7e5d9",
+                        "inverse-on-surface": "#ffede3",
+                        "tertiary": "#006096",
+                        "primary-fixed": "#ffdcc3",
+                        "tertiary-container": "#007abd",
+                        "on-tertiary-container": "#fdfcff",
+                        "on-secondary-container": "#636262",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-error": "#ffffff",
+                        "primary-container": "#b15f00",
+                        "on-secondary-fixed-variant": "#474746",
+                        "secondary-container": "#e2dfde",
+                        "surface-variant": "#f2dfd3",
+                        "inverse-surface": "#392e26",
+                        "outline": "#887364",
+                        "background": "#fff8f5",
+                        "surface": "#fff8f5",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#dbc2b0",
+                        "on-tertiary-fixed-variant": "#004a75",
+                        "on-primary-fixed-variant": "#6e3900",
+                        "on-background": "#231a13",
+                        "tertiary-fixed": "#cee5ff",
+                        "surface-container": "#fdeade",
+                        "primary": "#8d4b00",
+                        "surface-container-low": "#fff1e9",
+                        "on-surface": "#231a13",
+                        "on-primary-container": "#fffbff",
+                        "tertiary-fixed-dim": "#96ccff",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#2f1500",
+                        "secondary-fixed": "#e5e2e1",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "surface-bright": "#fff8f5",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#ffb77d",
+                        "inverse-primary": "#ffb77d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "48px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "xxl": "96px",
+                        "max_width": "1200px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "h3": ["Noto Serif"],
+                        "h1": ["Noto Serif"],
+                        "body-md": ["Inter"],
+                        "h2": ["Noto Serif"],
+                        "label": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h3": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "h1": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h2": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "label": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-[#FAFAF8] text-[#1A1A1A] font-body-md overflow-x-hidden selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar Shell -->
+<header class="bg-[#FAFAF8] border-b border-stone-200 sticky top-0 z-50">
+<div class="max-w-[1200px] mx-auto px-8 h-20 flex items-center justify-between">
+<div class="font-h3 text-2xl font-semibold tracking-tight text-stone-900">QuConsult</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-label text-sm tracking-wide uppercase text-amber-600 border-b border-amber-600 font-medium transition-all duration-300" href="#">Services</a>
+<a class="font-label text-sm tracking-wide uppercase text-stone-500 hover:text-amber-600 transition-all duration-300" href="#">Methodology</a>
+<a class="font-label text-sm tracking-wide uppercase text-stone-500 hover:text-amber-600 transition-all duration-300" href="#">Case Studies</a>
+<a class="font-label text-sm tracking-wide uppercase text-stone-500 hover:text-amber-600 transition-all duration-300" href="#">About</a>
+<a class="font-label text-sm tracking-wide uppercase text-stone-500 hover:text-amber-600 transition-all duration-300" href="#">Contact</a>
+</nav>
+<button class="bg-[#D97706] text-white px-6 py-2.5 rounded-lg font-label text-sm tracking-wide uppercase hover:bg-amber-700 transition-transform active:scale-95">Request Strategy</button>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="py-xxl px-8">
+<div class="max-w-[1200px] mx-auto grid md:grid-cols-12 gap-lg items-center">
+<div class="md:col-span-8">
+<h1 class="font-h1 text-h1 mb-md text-stone-900">AI Analýza a strategie</h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl mb-xl">
+                        Nehledáme sci-fi scénáře, ale hmatatelnou hodnotu pro váš byznys. Pomůžeme vám oddělit marketingový šum od nástrojů, které skutečně zefektivní vaše procesy a zvýší marži.
+                    </p>
+<div class="flex flex-wrap gap-md">
+<button class="bg-[#D97706] text-white px-8 py-4 rounded font-label text-sm uppercase tracking-widest hover:bg-amber-700 transition-all">
+                            Domluvit bezplatnou konzultaci
+                        </button>
+<button class="border border-stone-900 text-stone-900 px-8 py-4 rounded font-label text-sm uppercase tracking-widest hover:bg-stone-900 hover:text-white transition-all">
+                            Stáhnout Readiness Assessment
+                        </button>
+</div>
+</div>
+<div class="md:col-span-4 relative">
+<div class="aspect-square bg-stone-100 rounded-lg overflow-hidden border border-stone-200">
+<img alt="" class="w-full h-full object-cover" data-alt="A serene, minimalist workspace capturing the essence of Scandinavian design. A wooden desk holds a clean laptop and a notebook with precise sketches, illuminated by soft morning light filtering through a tall window. The color palette is composed of warm whites, soft ambers, and neutral stone tones, creating a mood of focused intellectual clarity and strategic calm." src="https://lh3.googleusercontent.com/aida/ADBb0ujFE0jWAvBmCoRyN6jnx-LB-q6O-8dsKGDeef1K-pH6wDP3gx0EKaVSBDs5ZVOjtnJ-CtKVGVo31mmyC7IvdD1hp-s99cGlYffGp81gELtYCLo8vJ0lSKgxT4gjsM0BecodFPAasyvJVa2d5efbOz-Ox0clPfcI_sdlO6R8vwIkWzpVgPpxzidDak4sBbGBclUVDJSHDLSfEVePo0niVMPrWRd3LlUYgqU1T2FBA8iu6ktXj-TKQprxrzZd-tGGgLQSMK97ieuvlg"/>
+</div>
+<div class="absolute -bottom-8 -left-8 bg-surface-container-low p-6 border border-stone-200 hidden md:block">
+<span class="font-h3 text-xl text-amber-600 block mb-1">Precizní inženýrství</span>
+<span class="font-label text-xs uppercase tracking-widest text-stone-500">Made in Prague</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Pro koho Section -->
+<section class="py-xxl bg-stone-50 border-y border-stone-200">
+<div class="max-w-[1200px] mx-auto px-8">
+<div class="grid md:grid-cols-12 gap-xl">
+<div class="md:col-span-4">
+<h2 class="font-h2 text-h2 text-stone-900 mb-md">Pro koho je tato služba určena?</h2>
+</div>
+<div class="md:col-span-8 grid md:grid-cols-2 gap-lg">
+<div class="p-8 border border-stone-200 bg-white">
+<h3 class="font-h3 text-xl mb-4">Výrobní firmy (50–300 os.)</h3>
+<p class="text-secondary font-body-md">Integrujeme AI do systémů, které již používáte (Helios, SAP, Pohoda). Řešíme plánování výroby a predikci poptávky.</p>
+</div>
+<div class="p-8 border border-stone-200 bg-white">
+<h3 class="font-h3 text-xl mb-4">Profesionální služby</h3>
+<p class="text-secondary font-body-md">Právní kanceláře, konzultační týmy a agentury hledající způsob, jak automatizovat práci s dokumenty a znalostní bázi.</p>
+</div>
+<div class="p-8 border border-stone-200 bg-white md:col-span-2">
+<h3 class="font-h3 text-xl mb-4">Firmy bez vlastního data teamu</h3>
+<p class="text-secondary font-body-md">Fungujeme jako váš externí CTO/Strategy partner. Nejsme prodejci software, jsme vaši architekti a analytici.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Co konkrétně děláme - Bento Grid -->
+<section class="py-xxl">
+<div class="max-w-[1200px] mx-auto px-8">
+<div class="mb-xl">
+<span class="font-label text-xs uppercase tracking-widest text-amber-600">Rozsah spolupráce</span>
+<h2 class="font-h2 text-h2 text-stone-900 mt-4">Metodický přístup k AI</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="md:col-span-2 p-xl border border-stone-200 bg-stone-50 flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-amber-600 text-4xl mb-md">analytics</span>
+<h3 class="font-h3 text-2xl mb-md">Audit procesů a mapování</h3>
+<p class="text-secondary max-w-lg">Identifikujeme "high-impact" oblasti ve vaší firmě, kde AI přinese nejrychlejší návratnost. Neřešíme teorii, ale konkrétní místa, kde ztrácíte čas.</p>
+</div>
+<div class="mt-xl flex gap-md">
+<span class="font-label text-xs py-1 px-3 border border-stone-300 rounded-full">Quick Wins</span>
+<span class="font-label text-xs py-1 px-3 border border-stone-300 rounded-full">Procesní mapa</span>
+</div>
+</div>
+<div class="p-xl border border-stone-200 flex flex-col">
+<span class="material-symbols-outlined text-amber-600 text-4xl mb-md">database</span>
+<h3 class="font-h3 text-2xl mb-md">Data Readiness</h3>
+<p class="text-secondary">Posouzení kvality, dostupnosti a bezpečnosti vašich dat. Bez čistých dat neexistuje funkční AI.</p>
+</div>
+<div class="p-xl border border-stone-200 flex flex-col">
+<span class="material-symbols-outlined text-amber-600 text-4xl mb-md">payments</span>
+<h3 class="font-h3 text-2xl mb-md">Business Case v Kč</h3>
+<p class="text-secondary">Přesný propočet ROI. Kolik implementace stojí a kolik (a kdy) začne reálně šetřit nebo vydělávat.</p>
+</div>
+<div class="md:col-span-2 p-xl border border-stone-200 bg-[#1A1A1A] text-white flex items-center justify-between">
+<div class="max-w-md">
+<h3 class="font-h3 text-2xl mb-md">Technická architektura</h3>
+<p class="text-stone-400">Navrhneme stack (LLMs, RAG, custom modely), který je bezpečný a škálovatelný. Žádný vendor lock-in.</p>
+</div>
+<span class="material-symbols-outlined text-amber-600 text-6xl opacity-30">architecture</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Jak spolupracujeme -->
+<section class="py-xxl bg-stone-50 overflow-hidden">
+<div class="max-w-[1200px] mx-auto px-8 relative">
+<h2 class="font-h2 text-h2 text-stone-900 mb-xl text-center">Fáze naší spolupráce</h2>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-xl relative z-10">
+<div class="text-center group">
+<div class="w-16 h-16 bg-white border border-stone-200 rounded-full flex items-center justify-center mx-auto mb-6 text-amber-600 font-h3 text-xl group-hover:bg-amber-600 group-hover:text-white transition-all">1</div>
+<h4 class="font-h3 text-xl mb-3">Konzultace</h4>
+<p class="text-secondary text-sm">60min rozbor vašich ambicí a aktuálního stavu. Zdarma.</p>
+</div>
+<div class="text-center group relative">
+<div class="w-16 h-16 bg-white border border-stone-200 rounded-full flex items-center justify-center mx-auto mb-6 text-amber-600 font-h3 text-xl group-hover:bg-amber-600 group-hover:text-white transition-all">2</div>
+<h4 class="font-h3 text-xl mb-3">Discovery</h4>
+<p class="text-secondary text-sm">Intenzivní 2 týdny u vás ve firmě. Audit dat a procesů.</p>
+</div>
+<div class="text-center group relative">
+<div class="w-16 h-16 bg-white border border-stone-200 rounded-full flex items-center justify-center mx-auto mb-6 text-amber-600 font-h3 text-xl group-hover:bg-amber-600 group-hover:text-white transition-all">3</div>
+<h4 class="font-h3 text-xl mb-3">Návrh plánu</h4>
+<p class="text-secondary text-sm">Finální strategie, tech stack a prioritizovaný backlog.</p>
+</div>
+<div class="text-center group">
+<div class="w-16 h-16 bg-white border border-stone-200 rounded-full flex items-center justify-center mx-auto mb-6 text-amber-600 font-h3 text-xl group-hover:bg-amber-600 group-hover:text-white transition-all">4</div>
+<h4 class="font-h3 text-xl mb-3">Pilot</h4>
+<p class="text-secondary text-sm">Spuštění prvního řešení (MVP) a předání vašemu týmu.</p>
+</div>
+</div>
+<!-- Hand-drawn style decorative arrows (Visual only) -->
+<div class="hidden md:block absolute top-[110px] left-0 w-full px-xxl pointer-events-none opacity-20">
+<div class="flex justify-between items-center px-lg">
+<svg class="hand-drawn-arrow" height="20" viewbox="0 0 200 20" width="200"><path d="M0,10 C50,0 150,20 200,10" fill="none" stroke="black" stroke-width="2"></path></svg>
+<svg class="hand-drawn-arrow" height="20" viewbox="0 0 200 20" width="200"><path d="M0,10 C50,20 150,0 200,10" fill="none" stroke="black" stroke-width="2"></path></svg>
+<svg class="hand-drawn-arrow" height="20" viewbox="0 0 200 20" width="200"><path d="M0,10 C50,0 150,20 200,10" fill="none" stroke="black" stroke-width="2"></path></svg>
+</div>
+</div>
+</div>
+</section>
+<!-- Datová připravenost CTA -->
+<section class="py-xxl">
+<div class="max-w-[1200px] mx-auto px-8">
+<div class="bg-surface-container-high border border-stone-200 flex flex-col md:flex-row items-center overflow-hidden">
+<div class="p-xl flex-1">
+<h2 class="font-h2 text-3xl mb-md">56 % firem naráží při implementaci AI na kvalitu dat.</h2>
+<p class="text-secondary mb-xl font-body-lg">Většina projektů selže nikoliv kvůli špatné technologii, ale kvůli roztříštěným nebo neexistujícím datům. Součástí naší Discovery fáze je kompletní posouzení vaší datové připravenosti.</p>
+<button class="bg-[#D97706] text-white px-8 py-4 rounded font-label text-sm uppercase tracking-widest hover:bg-amber-700 transition-all flex items-center gap-2">
+                            AI Readiness Assessment <span class="material-symbols-outlined text-sm">download</span>
+</button>
+</div>
+<div class="w-full md:w-1/3 bg-[#E5E5E1] p-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-[120px] text-stone-400 opacity-50">data_exploration</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Orientační cena -->
+<section class="py-xxl border-t border-stone-200">
+<div class="max-w-[1200px] mx-auto px-8">
+<div class="max-w-2xl mx-auto text-center mb-xl">
+<h2 class="font-h2 text-h2 mb-4">Investice do jasnosti</h2>
+<p class="text-secondary">Věříme v transparentnost. Naše ceny jsou fixní nebo vázané na jasně definované milníky.</p>
+</div>
+<div class="grid md:grid-cols-2 gap-xl max-w-4xl mx-auto">
+<div class="p-xl border border-stone-200 bg-white">
+<span class="font-label text-xs uppercase tracking-widest text-amber-600 block mb-2">Jednorázově</span>
+<h3 class="font-h3 text-2xl mb-md">Discovery &amp; Strategie</h3>
+<div class="text-h3 text-stone-900 mb-xl">Od 75 000 Kč</div>
+<ul class="space-y-4 text-stone-600 font-body-md mb-xl">
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-amber-600 text-xl">check_circle</span> 2 týdny intenzivního auditu</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-amber-600 text-xl">check_circle</span> Roadmapa s prioritami</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-amber-600 text-xl">check_circle</span> Technický návrh architektury</li>
+</ul>
+</div>
+<div class="p-xl border border-stone-200 bg-white">
+<span class="font-label text-xs uppercase tracking-widest text-amber-600 block mb-2">Měsíčně</span>
+<h3 class="font-h3 text-2xl mb-md">Konzultační Retainer</h3>
+<div class="text-h3 text-stone-900 mb-xl">15 – 30 tis. Kč</div>
+<ul class="space-y-4 text-stone-600 font-body-md mb-xl">
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-amber-600 text-xl">check_circle</span> Průběžný dozor nad implementací</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-amber-600 text-xl">check_circle</span> Prioritní podpora a konzultace</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-amber-600 text-xl">check_circle</span> Strategické aktualizace (nové modely)</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Co neděláme -->
+<section class="py-xxl bg-[#1A1A1A] text-white">
+<div class="max-w-[1200px] mx-auto px-8">
+<div class="grid md:grid-cols-2 gap-xl items-center">
+<div>
+<h2 class="font-h2 text-h2 mb-md">Upřímně: <br/>Co neděláme</h2>
+<p class="text-stone-400 mb-xl">Stavíme na důvěře, proto jasně definujeme, kde naše kompetence končí nebo co nepovažujeme za správnou cestu.</p>
+</div>
+<ul class="space-y-8">
+<li class="flex gap-md">
+<span class="material-symbols-outlined text-error mt-1">close</span>
+<div>
+<h4 class="font-h3 text-xl mb-2">Věštění budoucnosti</h4>
+<p class="text-stone-400 text-sm">Neprodáváme nerealistické vize o tom, jak AI za 5 let změní svět. Řešíme problémy, které máte dnes.</p>
+</div>
+</li>
+<li class="flex gap-md">
+<span class="material-symbols-outlined text-error mt-1">close</span>
+<div>
+<h4 class="font-h3 text-xl mb-2">18měsíční transformace</h4>
+<p class="text-stone-400 text-sm">Nenavrhujeme nekonečné projekty bez jasného konce. Věříme v agilní, postupné kroky.</p>
+</div>
+</li>
+<li class="flex gap-md">
+<span class="material-symbols-outlined text-error mt-1">close</span>
+<div>
+<h4 class="font-h3 text-xl mb-2">Nahrazování vašeho IT</h4>
+<p class="text-stone-400 text-sm">Nejsme tu, abychom bojovali s vaším IT týmem. Jsme tu, abychom jim dali nástroje a know-how, které jim chybí.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- FAQ -->
+<section class="py-xxl">
+<div class="max-w-[800px] mx-auto px-8">
+<h2 class="font-h2 text-h2 text-center mb-xl">Časté dotazy</h2>
+<div class="space-y-4">
+<div class="border-b border-stone-200 pb-4">
+<button class="w-full flex justify-between items-center text-left py-4 focus:outline-none group">
+<span class="font-h3 text-xl">Jak dlouho trvá Discovery fáze?</span>
+<span class="material-symbols-outlined group-hover:text-amber-600 transition-colors">expand_more</span>
+</button>
+<div class="text-secondary font-body-md max-w-2xl">Standardně 2 pracovní týdny. Během této doby proběhnou 3–4 workshopy s klíčovými lidmi a technická analýza datových zdrojů.</div>
+</div>
+<div class="border-b border-stone-200 pb-4">
+<button class="w-full flex justify-between items-center text-left py-4 focus:outline-none group">
+<span class="font-h3 text-xl">Co když během auditu zjistíte, že AI pro nás nemá smysl?</span>
+<span class="material-symbols-outlined group-hover:text-amber-600 transition-colors">expand_more</span>
+</button>
+<div class="text-secondary font-body-md max-w-2xl">To je legitimní výsledek. Pokud nevidíme reálnou návratnost nebo technickou proveditelnost, na rovinu vám to řekneme. Ušetříme vám miliony za neúspěšné projekty.</div>
+</div>
+<div class="border-b border-stone-200 pb-4">
+<button class="w-full flex justify-between items-center text-left py-4 focus:outline-none group">
+<span class="font-h3 text-xl">Budete spolupracovat s mými IT dodavateli?</span>
+<span class="material-symbols-outlined group-hover:text-amber-600 transition-colors">expand_more</span>
+</button>
+<div class="text-secondary font-body-md max-w-2xl">Ano, úzce. Naším úkolem je navrhnout strategii, kterou vaši stávající dodavatelé (např. správci ERP) mohou snadno implementovat, nebo pro ně vytvoříme zadávací dokumentaci.</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-xxl mb-xxl">
+<div class="max-w-[1200px] mx-auto px-8">
+<div class="border-2 border-amber-600 p-xl md:p-xxl text-center">
+<h2 class="font-h1 text-h2 mb-md">Nezačínejte s AI náhodně. <br/>Začněte se strategií.</h2>
+<p class="font-body-lg text-secondary mb-xl max-w-2xl mx-auto">Prvním krokem je nezávazná 60minutová konzultace, kde probereme vaše potřeby a zjistíme, zda jsme pro sebe vhodnými partnery.</p>
+<button class="bg-[#D97706] text-white px-12 py-5 rounded font-label text-sm uppercase tracking-widest hover:bg-amber-700 transition-all scale-100 active:scale-95">
+                        Domluvit konzultaci s partnerem
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-[#FAFAF8] border-t border-stone-200">
+<div class="max-w-[1200px] mx-auto px-8 py-24 flex flex-col md:flex-row justify-between items-start gap-12">
+<div class="flex flex-col gap-4">
+<div class="font-h3 font-bold text-stone-900 text-2xl">QuConsult</div>
+<p class="font-body-md text-stone-400 max-w-xs">Precizní AI Engineering a strategie pro moderní české firmy.</p>
+<div class="text-stone-400 font-label text-xs tracking-widest uppercase mt-4">
+                    © 2024 QuConsult s.r.o. Prague, Czech Republic. Precise AI Engineering.
+                </div>
+</div>
+<div class="grid grid-cols-2 gap-xl">
+<div class="flex flex-col gap-4">
+<span class="font-label text-xs tracking-widest uppercase text-stone-900">Legal</span>
+<a class="font-label text-xs tracking-widest uppercase text-stone-400 hover:text-amber-600 transition-all underline-offset-4" href="#">Privacy Policy</a>
+<a class="font-label text-xs tracking-widest uppercase text-stone-400 hover:text-amber-600 transition-all underline-offset-4" href="#">Terms of Service</a>
+<a class="font-label text-xs tracking-widest uppercase text-stone-400 hover:text-amber-600 transition-all underline-offset-4" href="#">Legal Notice</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label text-xs tracking-widest uppercase text-stone-900">Contact</span>
+<a class="font-label text-xs tracking-widest uppercase text-stone-400 hover:text-amber-600 transition-all underline-offset-4" href="#">Contact Us</a>
+<a class="font-label text-xs tracking-widest uppercase text-stone-400 hover:text-amber-600 transition-all underline-offset-4" href="#">LinkedIn</a>
+<a class="font-label text-xs tracking-widest uppercase text-stone-400 hover:text-amber-600 transition-all underline-offset-4" href="#">Newsletter</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

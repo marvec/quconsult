@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="light" lang="cs"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#dbc2b0",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "tertiary": "#006096",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#e9d7cb",
+                        "inverse-on-surface": "#ffede3",
+                        "surface-container-low": "#fff1e9",
+                        "on-background": "#231a13",
+                        "surface": "#fff8f5",
+                        "outline": "#887364",
+                        "inverse-surface": "#392e26",
+                        "tertiary-fixed-dim": "#96ccff",
+                        "on-surface-variant": "#554336",
+                        "tertiary-container": "#007abd",
+                        "primary-container": "#b15f00",
+                        "on-secondary-fixed-variant": "#474746",
+                        "tertiary-fixed": "#cee5ff",
+                        "primary": "#8d4b00",
+                        "on-surface": "#231a13",
+                        "secondary-fixed": "#e5e2e1",
+                        "on-primary-fixed-variant": "#6e3900",
+                        "on-secondary-container": "#636262",
+                        "surface-tint": "#904d00",
+                        "secondary-container": "#e2dfde",
+                        "secondary": "#5f5e5e",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "background": "#fff8f5",
+                        "surface-container-highest": "#f2dfd3",
+                        "on-tertiary-container": "#fdfcff",
+                        "primary-fixed-dim": "#ffb77d",
+                        "on-tertiary-fixed-variant": "#004a75",
+                        "on-primary-container": "#fffbff",
+                        "inverse-primary": "#ffb77d",
+                        "surface-container-high": "#f7e5d9",
+                        "primary-fixed": "#ffdcc3",
+                        "on-primary-fixed": "#2f1500",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#001d32",
+                        "surface-container": "#fdeade",
+                        "surface-variant": "#f2dfd3",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#fff8f5",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "max_width": "1200px",
+                        "base": "8px",
+                        "xxl": "96px",
+                        "lg": "24px",
+                        "xl": "48px"
+                    },
+                    "fontFamily": {
+                        "h3": ["Noto Serif"],
+                        "body-lg": ["Inter"],
+                        "label": ["Inter"],
+                        "body-md": ["Inter"],
+                        "h2": ["Noto Serif"],
+                        "h1": ["Noto Serif"]
+                    },
+                    "fontSize": {
+                        "h3": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h2": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "h1": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #FAFAF8;
+            color: #231a13;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-body-md bg-[#FAFAF8]">
+<!-- TopNavBar -->
+<header class="bg-[#FAFAF8] border-b border-stone-200 sticky top-0 z-50">
+<div class="max-w-[1200px] mx-auto px-6 lg:px-12 flex justify-between items-center h-20">
+<a class="text-2xl font-serif font-bold tracking-tight text-stone-900" href="/">StrategicCraft</a>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-stone-600 hover:text-stone-900 transition-colors font-body-md" href="#">Insights</a>
+<a class="text-stone-600 hover:text-stone-900 transition-colors font-body-md" href="#">Services</a>
+<a class="text-stone-600 hover:text-stone-900 transition-colors font-body-md" href="#">Portfolio</a>
+<a class="text-stone-600 hover:text-stone-900 transition-colors font-body-md" href="#">Approach</a>
+</nav>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-stone-600 hover:text-amber-600 transition-colors">search</button>
+<button class="bg-[#D97706] text-white px-6 py-2 rounded font-label text-sm uppercase tracking-wider hover:bg-amber-700 transition-all">Connect</button>
+</div>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto px-6 lg:px-12 py-xxl">
+<!-- Hero Section -->
+<section class="mb-xl">
+<div class="max-w-3xl">
+<h1 class="font-h1 text-h1 text-stone-900 mb-6">Praktické AI insights pro české firmy</h1>
+<p class="font-body-lg text-body-lg text-stone-600 leading-relaxed">
+                    Konkrétní how-to, case studies, edukativní obsah. Žádný hype, žádné buzzwordy.
+                </p>
+</div>
+</section>
+<!-- Category Filters -->
+<section class="mb-xl overflow-x-auto pb-4">
+<div class="flex items-center gap-3">
+<button class="px-5 py-2 rounded-full border border-[#D97706] bg-[#D97706] text-white font-label transition-all">Vše</button>
+<button class="px-5 py-2 rounded-full border border-stone-200 text-stone-600 hover:border-[#D97706] hover:text-[#D97706] font-label transition-all bg-white">Strategie</button>
+<button class="px-5 py-2 rounded-full border border-stone-200 text-stone-600 hover:border-[#D97706] hover:text-[#D97706] font-label transition-all bg-white">Implementace</button>
+<button class="px-5 py-2 rounded-full border border-stone-200 text-stone-600 hover:border-[#D97706] hover:text-[#D97706] font-label transition-all bg-white">How-to</button>
+<button class="px-5 py-2 rounded-full border border-stone-200 text-stone-600 hover:border-[#D97706] hover:text-[#D97706] font-label transition-all bg-white">Case studies</button>
+</div>
+</section>
+<!-- Article Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-xxl">
+<!-- Card 1 -->
+<article class="group bg-[#FAFAF8] border border-stone-200 flex flex-col p-6 transition-all hover:bg-white hover:border-amber-200">
+<div class="flex justify-between items-start mb-6">
+<span class="text-[12px] font-label uppercase tracking-widest text-amber-600">How-to</span>
+<span class="text-[12px] font-label text-stone-400">8 MIN</span>
+</div>
+<h3 class="font-h3 text-h3 text-stone-900 mb-6 group-hover:text-amber-700 transition-colors leading-snug">5 procesů, které může každá česká firma automatizovat hned</h3>
+<div class="mt-auto flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-stone-200 flex items-center justify-center text-stone-500 overflow-hidden">
+<img alt="Portrét autora" class="w-full h-full object-cover" data-alt="A professional headshot of a business consultant in a high-end minimalist office setting. The lighting is soft and natural, emphasizing a trustworthy and expert demeanor. The overall aesthetic is clean and Scandinavian, featuring a neutral color palette with subtle wood textures in the background. The mood is intellectual and approachable." src="https://lh3.googleusercontent.com/aida/ADBb0ujFE0jWAvBmCoRyN6jnx-LB-q6O-8dsKGDeef1K-pH6wDP3gx0EKaVSBDs5ZVOjtnJ-CtKVGVo31mmyC7IvdD1hp-s99cGlYffGp81gELtYCLo8vJ0lSKgxT4gjsM0BecodFPAasyvJVa2d5efbOz-Ox0clPfcI_sdlO6R8vwIkWzpVgPpxzidDak4sBbGBclUVDJSHDLSfEVePo0niVMPrWRd3LlUYgqU1T2FBA8iu6ktXj-TKQprxrzZd-tGGgLQSMK97ieuvlg"/>
+</div>
+<span class="font-label text-xs text-stone-500">MARTIN VEČEŘA</span>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="group bg-[#FAFAF8] border border-stone-200 flex flex-col p-6 transition-all hover:bg-white hover:border-amber-200">
+<div class="flex justify-between items-start mb-6">
+<span class="text-[12px] font-label uppercase tracking-widest text-amber-600">Strategie</span>
+<span class="text-[12px] font-label text-stone-400">6 MIN</span>
+</div>
+<h3 class="font-h3 text-h3 text-stone-900 mb-6 group-hover:text-amber-700 transition-colors leading-snug">AI vs. RPA: co si vybrat a proč nezáleží na technologii</h3>
+<div class="mt-auto flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-stone-200 flex items-center justify-center text-stone-500 overflow-hidden">
+<img alt="Portrét autora" class="w-full h-full object-cover" data-alt="Close-up of a business strategist's hands sketching a complex flowchart on a high-quality paper notebook. The scene is captured in a bright, airy studio with a minimalist Scandinavian desk setup. Soft morning light creates gentle shadows. The color theme is monochromatic with warm paper tones, reflecting a boutique craft consultancy feel." src="https://lh3.googleusercontent.com/aida/ADBb0ujFE0jWAvBmCoRyN6jnx-LB-q6O-8dsKGDeef1K-pH6wDP3gx0EKaVSBDs5ZVOjtnJ-CtKVGVo31mmyC7IvdD1hp-s99cGlYffGp81gELtYCLo8vJ0lSKgxT4gjsM0BecodFPAasyvJVa2d5efbOz-Ox0clPfcI_sdlO6R8vwIkWzpVgPpxzidDak4sBbGBclUVDJSHDLSfEVePo0niVMPrWRd3LlUYgqU1T2FBA8iu6ktXj-TKQprxrzZd-tGGgLQSMK97ieuvlg"/>
+</div>
+<span class="font-label text-xs text-stone-500">MARTIN VEČEŘA</span>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="group bg-[#FAFAF8] border border-stone-200 flex flex-col p-6 transition-all hover:bg-white hover:border-amber-200">
+<div class="flex justify-between items-start mb-6">
+<span class="text-[12px] font-label uppercase tracking-widest text-amber-600">Strategie</span>
+<span class="text-[12px] font-label text-stone-400">10 MIN</span>
+</div>
+<h3 class="font-h3 text-h3 text-stone-900 mb-6 group-hover:text-amber-700 transition-colors leading-snug">GDPR a AI: jak být v souladu při práci s firemními daty</h3>
+<div class="mt-auto flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-stone-200 overflow-hidden">
+<img alt="Portrét autora" class="w-full h-full object-cover" data-alt="An abstract architectural detail of a modern Czech building, focusing on clean lines and geometric shadows. The facade is made of light-colored stone and glass, reflecting a bright blue sky. The visual style is minimal and high-contrast, representing precision and structured thought. The mood is calm, professional, and sophisticated." src="https://lh3.googleusercontent.com/aida/ADBb0ujFE0jWAvBmCoRyN6jnx-LB-q6O-8dsKGDeef1K-pH6wDP3gx0EKaVSBDs5ZVOjtnJ-CtKVGVo31mmyC7IvdD1hp-s99cGlYffGp81gELtYCLo8vJ0lSKgxT4gjsM0BecodFPAasyvJVa2d5efbOz-Ox0clPfcI_sdlO6R8vwIkWzpVgPpxzidDak4sBbGBclUVDJSHDLSfEVePo0niVMPrWRd3LlUYgqU1T2FBA8iu6ktXj-TKQprxrzZd-tGGgLQSMK97ieuvlg"/>
+</div>
+<span class="font-label text-xs text-stone-500">LUKÁŠ PETROVICKÝ</span>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="group bg-[#FAFAF8] border border-stone-200 flex flex-col p-6 transition-all hover:bg-white hover:border-amber-200">
+<div class="flex justify-between items-start mb-6">
+<span class="text-[12px] font-label uppercase tracking-widest text-amber-600">How-to</span>
+<span class="text-[12px] font-label text-stone-400">7 MIN</span>
+</div>
+<h3 class="font-h3 text-h3 text-stone-900 mb-6 group-hover:text-amber-700 transition-colors leading-snug">Jak spočítat ROI AI projektu</h3>
+<div class="mt-auto flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-stone-200 overflow-hidden">
+<img alt="Portrét autora" class="w-full h-full object-cover" data-alt="A minimalist workspace featuring a sleek laptop, a cup of coffee, and a single green leaf in a small glass vase. The setting is a bright, modern interior with white walls and light wood floors. The aesthetic is clean and focused, emphasizing productivity and clarity. High-key lighting creates a professional light-mode feel." src="https://lh3.googleusercontent.com/aida/ADBb0ujFE0jWAvBmCoRyN6jnx-LB-q6O-8dsKGDeef1K-pH6wDP3gx0EKaVSBDs5ZVOjtnJ-CtKVGVo31mmyC7IvdD1hp-s99cGlYffGp81gELtYCLo8vJ0lSKgxT4gjsM0BecodFPAasyvJVa2d5efbOz-Ox0clPfcI_sdlO6R8vwIkWzpVgPpxzidDak4sBbGBclUVDJSHDLSfEVePo0niVMPrWRd3LlUYgqU1T2FBA8iu6ktXj-TKQprxrzZd-tGGgLQSMK97ieuvlg"/>
+</div>
+<span class="font-label text-xs text-stone-500">MARTIN VEČEŘA</span>
+</div>
+</article>
+<!-- Card 5 -->
+<article class="group bg-[#FAFAF8] border border-stone-200 flex flex-col p-6 transition-all hover:bg-white hover:border-amber-200">
+<div class="flex justify-between items-start mb-6">
+<span class="text-[12px] font-label uppercase tracking-widest text-amber-600">Strategie</span>
+<span class="text-[12px] font-label text-stone-400">9 MIN</span>
+</div>
+<h3 class="font-h3 text-h3 text-stone-900 mb-6 group-hover:text-amber-700 transition-colors leading-snug">ChatGPT vs. firemní AI asistent: kde jsou hranice bezpečnosti</h3>
+<div class="mt-auto flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-stone-200 overflow-hidden">
+<img alt="Portrét autora" class="w-full h-full object-cover" data-alt="An artistic representation of digital data flow, using fine, hand-drawn lines on a textured off-white background. The lines form organic, swirling patterns that suggest movement and connectivity. The color palette is restricted to soft greys and a single amber accent line. The style is intellectual and sophisticated, rejecting generic tech imagery." src="https://lh3.googleusercontent.com/aida/ADBb0ujFE0jWAvBmCoRyN6jnx-LB-q6O-8dsKGDeef1K-pH6wDP3gx0EKaVSBDs5ZVOjtnJ-CtKVGVo31mmyC7IvdD1hp-s99cGlYffGp81gELtYCLo8vJ0lSKgxT4gjsM0BecodFPAasyvJVa2d5efbOz-Ox0clPfcI_sdlO6R8vwIkWzpVgPpxzidDak4sBbGBclUVDJSHDLSfEVePo0niVMPrWRd3LlUYgqU1T2FBA8iu6ktXj-TKQprxrzZd-tGGgLQSMK97ieuvlg"/>
+</div>
+<span class="font-label text-xs text-stone-500">MAREK BALUCH</span>
+</div>
+</article>
+<!-- Card 6 -->
+<article class="group bg-[#FAFAF8] border border-stone-200 flex flex-col p-6 transition-all hover:bg-white hover:border-amber-200">
+<div class="flex justify-between items-start mb-6">
+<span class="text-[12px] font-label uppercase tracking-widest text-amber-600">Implementace</span>
+<span class="text-[12px] font-label text-stone-400">8 MIN</span>
+</div>
+<h3 class="font-h3 text-h3 text-stone-900 mb-6 group-hover:text-amber-700 transition-colors leading-snug">5 kroků k datové připravenosti pro AI</h3>
+<div class="mt-auto flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-stone-200 overflow-hidden">
+<img alt="Portrét autora" class="w-full h-full object-cover" data-alt="A high-angle view of a clean meeting room table with three professionals engaged in a collaborative discussion. The table is white marble, and the chairs are minimalist wood designs. Large floor-to-ceiling windows show a soft-focus cityscape. The overall mood is serious yet collaborative, emphasizing human-centric consulting expertise." src="https://lh3.googleusercontent.com/aida/ADBb0ujFE0jWAvBmCoRyN6jnx-LB-q6O-8dsKGDeef1K-pH6wDP3gx0EKaVSBDs5ZVOjtnJ-CtKVGVo31mmyC7IvdD1hp-s99cGlYffGp81gELtYCLo8vJ0lSKgxT4gjsM0BecodFPAasyvJVa2d5efbOz-Ox0clPfcI_sdlO6R8vwIkWzpVgPpxzidDak4sBbGBclUVDJSHDLSfEVePo0niVMPrWRd3LlUYgqU1T2FBA8iu6ktXj-TKQprxrzZd-tGGgLQSMK97ieuvlg"/>
+</div>
+<span class="font-label text-xs text-stone-500">MIROSLAV BEREŠ</span>
+</div>
+</article>
+</section>
+<!-- Newsletter Section -->
+<section class="bg-[#FAFAF8] border border-[#D97706] p-12 mb-xxl flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="max-w-md text-center md:text-left">
+<h2 class="font-h3 text-h3 text-stone-900 mb-2">Zůstaňte v obraze</h2>
+<p class="font-body-md text-stone-600">Jednou měsíčně přehled trendů a tipů. Žádný spam, jen hodnotný obsah pro vaše podnikání.</p>
+</div>
+<form class="flex flex-col sm:flex-row w-full md:w-auto gap-4">
+<input class="bg-white border-b-2 border-stone-200 border-t-0 border-l-0 border-r-0 focus:ring-0 focus:border-[#D97706] px-4 py-3 min-w-[300px] font-body-md" placeholder="Váš firemní e-mail" type="email"/>
+<button class="bg-[#D97706] text-white px-8 py-3 rounded font-label uppercase tracking-wider hover:bg-amber-700 transition-all" type="submit">Přihlásit se</button>
+</form>
+</section>
+<!-- Pagination -->
+<nav class="flex justify-center items-center gap-4 mb-xxl">
+<button class="w-10 h-10 flex items-center justify-center font-label text-amber-600 bg-white border border-amber-200">1</button>
+<button class="w-10 h-10 flex items-center justify-center font-label text-stone-500 hover:text-amber-600 transition-colors">2</button>
+<button class="w-10 h-10 flex items-center justify-center font-label text-stone-500 hover:text-amber-600 transition-colors">3</button>
+<button class="material-symbols-outlined text-stone-400 hover:text-stone-900 ml-4 transition-colors">east</button>
+</nav>
+</main>
+<!-- Footer -->
+<footer class="bg-[#FAFAF8] border-t border-stone-200">
+<div class="max-w-[1200px] mx-auto px-6 py-16 flex flex-col md:flex-row justify-between items-start gap-8">
+<div>
+<h4 class="text-xl font-serif font-bold text-stone-900 mb-4">StrategicCraft</h4>
+<p class="font-body-md text-stone-500 max-w-xs">Butiková konzultační firma pro strategickou implementaci umělé inteligence.</p>
+</div>
+<div class="flex flex-wrap gap-x-12 gap-y-6">
+<div class="flex flex-col gap-3">
+<span class="font-label text-xs text-stone-400 uppercase tracking-widest">Odkazy</span>
+<a class="text-stone-500 hover:text-amber-600 transition-colors underline-offset-4 hover:underline" href="#">Privacy</a>
+<a class="text-stone-500 hover:text-amber-600 transition-colors underline-offset-4 hover:underline" href="#">Terms</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label text-xs text-stone-400 uppercase tracking-widest">Spojení</span>
+<a class="text-stone-500 hover:text-amber-600 transition-colors underline-offset-4 hover:underline" href="#">LinkedIn</a>
+<a class="text-stone-500 hover:text-amber-600 transition-colors underline-offset-4 hover:underline" href="#">Journal</a>
+</div>
+</div>
+<div class="text-stone-500 font-body-md mt-4 md:mt-0 text-sm">
+                © 2024 StrategicCraft Consulting. Built for clarity.
+            </div>
+</div>
+</footer>
+</body></html>

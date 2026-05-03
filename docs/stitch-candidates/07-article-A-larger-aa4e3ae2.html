@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html class="light" lang="cs"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #FAFAF8;
+            color: #1A1A1A;
+        }
+        code {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#e5e2e1",
+                        "secondary": "#5f5e5e",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#ffb77d",
+                        "surface-container": "#fdeade",
+                        "on-primary-fixed": "#2f1500",
+                        "on-secondary-container": "#636262",
+                        "surface": "#fff8f5",
+                        "secondary-container": "#e2dfde",
+                        "surface-tint": "#904d00",
+                        "surface-bright": "#fff8f5",
+                        "on-surface-variant": "#554336",
+                        "on-primary-fixed-variant": "#6e3900",
+                        "tertiary-fixed": "#cee5ff",
+                        "surface-container-low": "#fff1e9",
+                        "surface-container-highest": "#f2dfd3",
+                        "tertiary": "#006096",
+                        "on-tertiary-fixed": "#001d32",
+                        "surface-dim": "#e9d7cb",
+                        "background": "#fff8f5",
+                        "primary": "#8d4b00",
+                        "on-surface": "#231a13",
+                        "on-primary-container": "#fffbff",
+                        "primary-container": "#b15f00",
+                        "primary-fixed-dim": "#ffb77d",
+                        "tertiary-fixed-dim": "#96ccff",
+                        "inverse-surface": "#392e26",
+                        "tertiary-container": "#007abd",
+                        "on-tertiary-container": "#fdfcff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-tertiary-fixed-variant": "#004a75",
+                        "error-container": "#ffdad6",
+                        "outline": "#887364",
+                        "primary-fixed": "#ffdcc3",
+                        "inverse-on-surface": "#ffede3",
+                        "outline-variant": "#dbc2b0",
+                        "surface-container-high": "#f7e5d9",
+                        "on-background": "#231a13",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#f2dfd3",
+                        "on-secondary-fixed-variant": "#474746",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "xl": "48px",
+                        "md": "16px",
+                        "base": "8px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "xxl": "96px",
+                        "max_width": "1200px"
+                    },
+                    "fontFamily": {
+                        "h3": ["Noto Serif"],
+                        "h2": ["Noto Serif"],
+                        "label": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "h1": ["Noto Serif"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h3": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "h2": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "label": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h1": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<header class="bg-[#FAFAF8] dark:bg-stone-950 border-b border-stone-200 dark:border-stone-800 sticky top-0 z-50">
+<nav class="flex justify-between items-center w-full px-6 py-4 max-w-[1200px] mx-auto">
+<div class="text-xl font-semibold text-stone-900 dark:text-stone-100 font-serif tracking-tight">
+                Aethelgard Consulting
+            </div>
+<div class="hidden md:flex space-x-8 items-center font-serif text-sm">
+<a class="text-stone-900 dark:text-stone-50 border-b border-amber-600 pb-1 hover:text-amber-600 transition-colors duration-200" href="#">Insights</a>
+<a class="text-stone-500 dark:text-stone-400 hover:text-amber-600 transition-colors duration-200" href="#">Strategy</a>
+<a class="text-stone-500 dark:text-stone-400 hover:text-amber-600 transition-colors duration-200" href="#">Portfolio</a>
+<a class="text-stone-500 dark:text-stone-400 hover:text-amber-600 transition-colors duration-200" href="#">About</a>
+<button class="bg-primary text-white px-lg py-2 rounded shadow-none hover:bg-primary-container transition-all">Consultation</button>
+</div>
+<button class="md:hidden text-stone-900">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</nav>
+</header>
+<main class="max-w-[1200px] mx-auto px-6 pt-xxl">
+<!-- Frontmatter -->
+<header class="max-w-[720px] mx-auto text-center mb-xxl">
+<span class="inline-block bg-primary/10 text-primary px-3 py-1 text-label rounded-full mb-lg uppercase tracking-widest">How-to</span>
+<h1 class="font-h1 text-h1 text-on-surface mb-lg">5 procesů, které může každá česká firma automatizovat hned</h1>
+<div class="flex items-center justify-center space-x-4 text-secondary mb-lg">
+<div class="flex items-center space-x-2">
+<img alt="Martin Večeřa" class="w-10 h-10 rounded-full object-cover border border-stone-200" data-alt="A professional close-up portrait of a middle-aged Czech business consultant with a friendly, intelligent expression. He is photographed in a bright, modern office space with soft, natural lighting that emphasizes a clean, Scandinavian minimalist aesthetic. The background is softly blurred, showing hints of light wood and neutral stone textures. The overall mood is sophisticated and approachable, reflecting high-end consulting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6VHM-v5AE7VfJSmsGlC03o6b0TH8xFOXxBhWk2RZLFyjN6KnY85YJe8cAl5kpp_Gir-QQ5WNdgqneoFmJ1kLWQJ7d0gPfoBg3aQLbdokPJKCkQuZFF6vMIWPSBAP5b3fbHgrGWgSjKsWt3UJnxr0v9n1WtcmJ3rPNCqtjyAgNPP6ziIDECrmt6eyKM2ar2_P_c3oCt7nmwrYB_wmCHtHObc-YHbKG0foQKNmbW3sYfAwaOUPho_PFu2g9a8dc1PDT0dfTg7lelgE"/>
+<span class="font-semibold text-on-surface">Martin Večeřa</span>
+</div>
+<span class="text-stone-300">•</span>
+<span class="text-label uppercase">29. dubna 2026</span>
+<span class="text-stone-300">•</span>
+<span class="text-label uppercase">8 min čtení</span>
+</div>
+<p class="font-body-lg text-body-lg leading-relaxed text-on-surface-variant italic border-l-4 border-amber-600 pl-lg text-left">
+                Většina českých výrobních firem ztrácí desítky hodin týdně manuálním přepisováním dat z e-mailů do tabulek a následným ověřováním stavu skladů. Tento článek ukazuje, jak tyto neefektivity odstranit bez nutnosti drahých softwarových balíků.
+            </p>
+</header>
+<!-- 3-Column Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg relative">
+<!-- Left: Table of Contents -->
+<aside class="hidden lg:block lg:col-span-3">
+<nav class="sticky top-24 h-fit border-l border-stone-200 dark:border-stone-800 flex flex-col space-y-6">
+<div class="pl-4 mb-2">
+<span class="font-serif text-sm font-semibold text-stone-900 uppercase tracking-widest">Obsah článku</span>
+<p class="text-xs text-stone-400 mt-1">Article Navigation</p>
+</div>
+<ul class="space-y-4">
+<li class="text-stone-900 dark:text-stone-50 font-medium border-l-2 border-amber-600 -ml-[1px] pl-4 flex items-center">
+<span class="material-symbols-outlined mr-2 text-primary" style="font-variation-settings: 'FILL' 1;">short_text</span>
+                            Zpracování objednávek
+                        </li>
+<li class="text-stone-400 dark:text-stone-500 pl-4 hover:text-stone-600 transition-all duration-300 flex items-center">
+<span class="material-symbols-outlined mr-2">architecture</span>
+                            Měsíční reporty
+                        </li>
+<li class="text-stone-400 dark:text-stone-500 pl-4 hover:text-stone-600 transition-all duration-300 flex items-center">
+<span class="material-symbols-outlined mr-2">psychology</span>
+                            Reklamace
+                        </li>
+<li class="text-stone-400 dark:text-stone-500 pl-4 hover:text-stone-600 transition-all duration-300 flex items-center">
+<span class="material-symbols-outlined mr-2">psychology</span>
+                            Nabídky
+                        </li>
+<li class="text-stone-400 dark:text-stone-500 pl-4 hover:text-stone-600 transition-all duration-300 flex items-center">
+<span class="material-symbols-outlined mr-2">done_all</span>
+                            Dokumentace
+                        </li>
+<li class="text-stone-400 dark:text-stone-500 pl-4 hover:text-stone-600 transition-all duration-300 flex items-center">
+<span class="material-symbols-outlined mr-2">done_all</span>
+                            Závěr
+                        </li>
+</ul>
+</nav>
+</aside>
+<!-- Center: Article Body -->
+<article class="lg:col-span-6 max-w-[720px] mx-auto">
+<div class="prose prose-stone prose-lg max-w-none space-y-8 text-on-surface-variant">
+<h2 class="font-h2 text-h2 text-on-surface">1. Automatizované zpracování objednávek</h2>
+<p>
+                        Tradiční přístup, kdy administrativní pracovník ručně přepisuje údaje z PDF objednávek do ERP systému, je nejen pomalý, ale i náchylný k chybám. Moderní nástroje založené na optickém rozpoznávání znaků (OCR) dnes dokáží extrahovat data s přesností nad 98 %.
+                    </p>
+<pre class="bg-stone-900 text-stone-100 p-lg rounded border border-stone-800 overflow-x-auto text-sm"><code>// Příklad jednoduché integrace API
+const orderData = await extractFromPDF(orderFile);
+if (orderData.total &gt; threshold) {
+  notifySalesTeam(orderData);
+}
+ERP.createRecord(orderData);</code></pre>
+<blockquote class="border-l-4 border-primary pl-lg py-4 bg-primary/5 italic font-serif text-lg">
+                        "Automatizace není o nahrazení lidí, ale o uvolnění jejich kapacity pro činnosti, které skutečně tvoří přidanou hodnotu pro Vaše zákazníky."
+                    </blockquote>
+<h2 class="font-h2 text-h2 text-on-surface">2. Měsíční finanční reporty</h2>
+<p>
+                        Příprava podkladů pro účetnictví často trvá několik dní. Propojením bankovních výpisů s interním systémem pohledávek lze dosáhnout stavu, kdy je report hotový jediným kliknutím.
+                    </p>
+<!-- Mid-article CTA -->
+<div class="my-xxl p-xxl border border-primary bg-transparent text-center rounded">
+<h3 class="font-h3 text-h3 mb-md">Chcete vidět, co je konkrétně možné u vás?</h3>
+<p class="mb-lg">Analýza Vašich procesů odhalí skrytý potenciál pro úspory.</p>
+<button class="bg-primary text-white px-lg py-3 rounded font-label uppercase tracking-widest hover:bg-primary-container transition-all">
+                            Domluvte si bezplatnou konzultaci
+                        </button>
+</div>
+<h3 class="font-h3 text-h3 text-on-surface">3. Řešení reklamací a zpětná vazba</h3>
+<p>
+                        Stížnost zákazníka nemusí být noční můrou. Automatizovaný systém může automaticky přiřadit ticket správnému oddělení na základě klíčových slov a informovat zákazníka o každém kroku procesu.
+                    </p>
+<h3 class="font-h3 text-h3 text-on-surface">4. Personalizované obchodní nabídky</h3>
+<p>
+                        Místo generických e-mailů můžete posílat nabídky postavené na reálné historii nákupů a chování klienta na webu, aniž byste museli každý e-mail psát ručně.
+                    </p>
+</div>
+<!-- Post-article: Author Bio -->
+<section class="mt-xxl pt-xl border-t border-stone-200">
+<div class="flex items-start space-x-6">
+<img alt="Martin Večeřa" class="w-24 h-24 rounded-full border border-stone-200 object-cover" data-alt="A portrait of Martin Večeřa, a senior strategist with a focus on business efficiency. The lighting is soft and golden, highlighting his professional demeanor. The setting is a minimalist library or office with clean lines and a warm, academic atmosphere. The visual style follows a boutique craft aesthetic with a light-mode color palette of off-whites and warm neutrals." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGvOBkVezN0ib_ND4O5x8csrlUxHmGJm8hmK7UQpO2rjl7BDTq9-LMIpQU8-JBBrNijDrswrwnwfdBKQrQ-MuTyzOhgwc-UGmuD3qkjYaJhZcmC4ISmRhyB7PDUXKZSepCBTc5GxUFOK2valYZAvfvpio3WX2sT8-7039R8m-hSoqsV5F1xIXvQ2QEbYjtyy0quDost0rc99-SSRl7rOx0nulEy5fkeIaoMwyVFB9q5NDljFbrbS3w9iSe2KgK8CqPL1xPG6b1ang"/>
+<div>
+<h4 class="font-serif text-xl font-bold mb-2">Martin Večeřa</h4>
+<p class="text-on-surface-variant mb-4">Strategický konzultant se zaměřením na efektivitu českých středních a velkých firem. V Aethelgardu pomáhám propojovat technologický pokrok s lidským přístupem k řízení.</p>
+<div class="flex space-x-4">
+<a class="text-primary hover:underline font-label text-xs uppercase tracking-widest" href="#">LinkedIn</a>
+<a class="text-primary hover:underline font-label text-xs uppercase tracking-widest" href="#">Twitter</a>
+</div>
+</div>
+</div>
+</section>
+</article>
+<!-- Right: Sidebar -->
+<aside class="hidden lg:block lg:col-span-3">
+<div class="sticky top-24 space-y-xxl">
+<!-- Mini Author Card -->
+<div class="p-lg bg-[#E5E5E1] border border-stone-200 rounded">
+<span class="text-xs uppercase tracking-widest text-stone-500 font-bold mb-4 block">Autor</span>
+<div class="flex items-center space-x-3">
+<img alt="Martin Večeřa" class="w-12 h-12 rounded-full border border-stone-300" data-alt="A small profile image of a male consultant in a white linen shirt, suggesting a clean, minimalist, and approachable vibe. The lighting is diffused and bright, creating a high-key look consistent with Scandinavian design principles. The background is a soft beige tone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTj7L0WtlAWFLLEezH4C3rm7-DVp0kFnHSRqFaeluLiG6T7c3kiLp3lgiqUEj7OIesS5oqtTeH17Jb2KRscKsaEW-P8E1t1S1-AKarEgS87JwIMEo6124uWUPErqotL-dKpDeguTxYMHT4QzgRrJvPa16-9TFEMb_8glnnq86-U1QBtqqkFJitkOu56WOi1rvrobVfbkwL4jjNTITZq0LAmuvdcIQNHhA5CB94ml3fI_BQwko-3TuC3yFPJvd1HT4_PpPIX5890qw"/>
+<div>
+<p class="font-bold text-sm">Martin Večeřa</p>
+<p class="text-xs text-stone-500">Strategie &amp; AI</p>
+</div>
+</div>
+</div>
+<!-- Share Links -->
+<div>
+<span class="text-xs uppercase tracking-widest text-stone-500 font-bold mb-4 block">Sdílet článek</span>
+<div class="flex flex-col space-y-3">
+<a class="flex items-center text-sm text-on-surface hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined mr-2 text-stone-400">share</span> LinkedIn
+                            </a>
+<a class="flex items-center text-sm text-on-surface hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined mr-2 text-stone-400">link</span> Kopírovat odkaz
+                            </a>
+<a class="flex items-center text-sm text-on-surface hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined mr-2 text-stone-400">mail</span> E-mail
+                            </a>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Related Articles -->
+<section class="mt-xxl pt-xxl border-t border-stone-200">
+<h2 class="font-h2 text-h2 mb-xl text-center">Související články</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<!-- Card 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-video bg-stone-200 mb-lg overflow-hidden rounded border border-stone-200 relative">
+<img alt="ROI" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A conceptual photograph illustrating financial return on investment. The composition is minimalist, featuring clean architectural lines, warm natural light, and a single, elegant stone sculpture on a wooden pedestal. The color palette is composed of off-white, soft amber, and natural wood tones, evoking a sense of calm, precision, and high-level strategy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4RroC4j7dtcVhbJJj8i-JrFrQ6vDKW_geqvZyVuH_fvrNXBA8bZr7mqnfvqw9MSXWjPmbx-k6Mu4l71HGncYKMVIZkyqQS2Da9gF_tOxke-VBsCXsIQTIk_UdrWKUMVrWyZmn2Yj-89EazZ3BtK4q_O5JxoTHnDJdI-niHM6_iYb3FWyFxivW6_82Ckq_mYRyfYlZay04p-LnGSzdK28KnZoUgbA0BiTzX2_j7UpLOPOgucecPooxFc8PddELuGpmxq_cVQ9B-MY"/>
+</div>
+<span class="text-label text-primary uppercase block mb-2">Finance</span>
+<h4 class="font-serif text-xl font-bold group-hover:text-primary transition-colors">Jak spočítat reálnou ROI automatizace ve výrobě</h4>
+</div>
+<!-- Card 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-video bg-stone-200 mb-lg overflow-hidden rounded border border-stone-200 relative">
+<img alt="GDPR" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A minimalist composition representing data privacy and protection. The image shows a serene, sunlit interior of a modern Czech library with high ceilings and orderly rows of wooden shelves. The lighting is soft and airy, creating a sense of security and clarity. The color scheme is predominantly light neutrals with subtle amber accents from the wooden textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6ygKz7ZgvB6J7cR4YCWn3_mEXUMCt-Ddah5qr9FQkUXZKo3KOlrncfpVnypVeKlQEGQ_UPeZiJIv0rYO8rih0kHozKQe_qDveAkrr3Eg-QRK5smS0f-NqFez2FyCFr-UosJFb9hH7cBoNd6Ec7Mf5sC6GeGEA2BEk5OSjo1_ZBW5Xp5k3hndTCAJEAGYLWuEZ4ClFRxG_MJ43ZOs6PNVT4_gWUH0tSKGkvVuEDOnZj0rpuoHjVFcIxpQjHKawGwUkRKyDdmdaMXA"/>
+</div>
+<span class="text-label text-primary uppercase block mb-2">Legislativa</span>
+<h4 class="font-serif text-xl font-bold group-hover:text-primary transition-colors">GDPR a práce s daty v éře chytrých asistentů</h4>
+</div>
+<!-- Card 3 -->
+<div class="group cursor-pointer">
+<div class="aspect-video bg-stone-200 mb-lg overflow-hidden rounded border border-stone-200 relative">
+<img alt="AI vs RPA" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A high-end conceptual image showing the intersection of human craftsmanship and robotic precision. A hand-sketched blueprint of a complex machine is laid out on a clean white desk next to a modern, minimalist tablet. The atmosphere is bright, focused, and professional, utilizing a warm minimalist aesthetic with a palette of whites, light grays, and deep amber." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxkBedgSZLKFNrLVEwBz7WJSIWQMgHxiONwRe0kxCwpTZ9t8ZhF3QMSs3eeCP87z9JjwTUgixflkrY2eF_iGlE-wxPzOfT4vEUGrDLmbfd7EQ6uEICAWgLjLr3CCBcdpLhlmuUytRGP94NTbqgsN_5qn02zwHs8TAYBbGmagbgj5nNDGTwDqOMryTBkZwZAAVSiWjyDcHegkWEaOaNhwaCN04Ld7X5qxHHqJhAVcvsFESBsaEfieq6qwfr9b3ePUS_3ISTTG-K1LI"/>
+</div>
+<span class="text-label text-primary uppercase block mb-2">Technologie</span>
+<h4 class="font-serif text-xl font-bold group-hover:text-primary transition-colors">AI vs RPA: Kdy stačí algoritmus a kdy potřebujete mozek?</h4>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer / Newsletter -->
+<footer class="bg-[#FAFAF8] dark:bg-stone-950 mt-xxl border-t border-stone-200 dark:border-stone-800">
+<!-- Newsletter Block -->
+<div class="max-w-[1200px] mx-auto px-6 py-xxl text-center">
+<div class="max-w-[600px] mx-auto">
+<h2 class="font-h2 text-h2 mb-md">Odebírejte naše Strategické Listy</h2>
+<p class="text-on-surface-variant mb-lg">Jednou měsíčně posíláme shrnutí nejlepších postupů pro efektivní řízení české firmy. Žádný spam, jen čistá hodnota.</p>
+<form class="flex flex-col md:flex-row gap-4">
+<input class="flex-1 bg-transparent border-b border-stone-300 focus:border-primary outline-none py-3 px-2 font-serif placeholder:text-stone-400" placeholder="Váš pracovní e-mail" type="email"/>
+<button class="bg-primary text-white px-lg py-3 rounded font-label uppercase tracking-widest hover:bg-primary-container transition-all">
+                        Odebírat
+                    </button>
+</form>
+</div>
+</div>
+<div class="w-full py-12 px-6 flex flex-col md:flex-row justify-between items-center max-w-[1200px] mx-auto border-t border-stone-100">
+<div class="font-serif text-stone-900 dark:text-stone-100 font-bold mb-4 md:mb-0">
+                Aethelgard
+            </div>
+<div class="text-xs uppercase tracking-widest text-stone-500 dark:text-stone-400 text-center mb-4 md:mb-0">
+                © 2024 Aethelgard. Boutique Strategic AI.
+            </div>
+<div class="flex space-x-6">
+<a class="font-serif text-xs uppercase tracking-widest text-stone-500 dark:text-stone-400 hover:text-amber-600 underline-offset-4 hover:underline transition-all duration-200" href="#">Newsletter</a>
+<a class="font-serif text-xs uppercase tracking-widest text-stone-500 dark:text-stone-400 hover:text-amber-600 underline-offset-4 hover:underline transition-all duration-200" href="#">LinkedIn</a>
+<a class="font-serif text-xs uppercase tracking-widest text-stone-500 dark:text-stone-400 hover:text-amber-600 underline-offset-4 hover:underline transition-all duration-200" href="#">Privacy</a>
+<a class="font-serif text-xs uppercase tracking-widest text-stone-500 dark:text-stone-400 hover:text-amber-600 underline-offset-4 hover:underline transition-all duration-200" href="#">Contact</a>
+</div>
+</div>
+</footer>
+</body></html>

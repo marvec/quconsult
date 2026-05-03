@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="light" lang="cs"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#f7e5d9",
+                    "primary-fixed": "#ffdcc3",
+                    "on-primary-fixed": "#2f1500",
+                    "on-tertiary-fixed": "#001d32",
+                    "on-error": "#ffffff",
+                    "surface-container": "#fdeade",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#f2dfd3",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#fff8f5",
+                    "on-error-container": "#93000a",
+                    "primary": "#8d4b00",
+                    "on-surface": "#231a13",
+                    "secondary-fixed": "#e5e2e1",
+                    "on-primary-fixed-variant": "#6e3900",
+                    "on-secondary-container": "#636262",
+                    "secondary-container": "#e2dfde",
+                    "surface-tint": "#904d00",
+                    "background": "#fff8f5",
+                    "secondary": "#5f5e5e",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "primary-fixed-dim": "#ffb77d",
+                    "on-tertiary-fixed-variant": "#004a75",
+                    "on-primary-container": "#fffbff",
+                    "inverse-primary": "#ffb77d",
+                    "surface-container-highest": "#f2dfd3",
+                    "on-tertiary-container": "#fdfcff",
+                    "inverse-on-surface": "#ffede3",
+                    "surface": "#fff8f5",
+                    "surface-container-low": "#fff1e9",
+                    "on-background": "#231a13",
+                    "tertiary-fixed-dim": "#96ccff",
+                    "on-surface-variant": "#554336",
+                    "outline": "#887364",
+                    "inverse-surface": "#392e26",
+                    "tertiary-fixed": "#cee5ff",
+                    "tertiary-container": "#007abd",
+                    "primary-container": "#b15f00",
+                    "on-secondary-fixed-variant": "#474746",
+                    "on-tertiary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "outline-variant": "#dbc2b0",
+                    "tertiary": "#006096",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#e9d7cb",
+                    "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "xxl": "96px",
+                    "lg": "24px",
+                    "xl": "48px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "max_width": "1200px"
+            },
+            "fontFamily": {
+                    "h2": ["Noto Serif"],
+                    "h1": ["Noto Serif"],
+                    "h3": ["Noto Serif"],
+                    "body-lg": ["Inter"],
+                    "label": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "h2": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "h1": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "h3": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #FAFAF8; color: #1A1A1A; }
+        .amber-accent { color: #D97706; }
+        .amber-bg { background-color: #D97706; }
+        .border-subtle { border-color: #E5E5E1; }
+        .bg-subtle { background-color: #FAFAF8; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="font-body-md antialiased">
+<!-- Top Navigation Bar -->
+<header class="bg-[#FAFAF8] border-b border-stone-200">
+<nav class="flex justify-between items-center max-w-[1200px] mx-auto px-6 h-20 w-full transition-all ease-out">
+<div class="text-2xl font-serif tracking-tight text-stone-900">QuConsult</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-serif text-stone-600 hover:text-[#D97706] transition-colors duration-200" href="#">Services</a>
+<a class="font-serif text-stone-600 hover:text-[#D97706] transition-colors duration-200" href="#">Methodology</a>
+<a class="font-serif text-stone-600 hover:text-[#D97706] transition-colors duration-200" href="#">Insights</a>
+<a class="font-serif text-[#D97706] border-b-2 border-[#D97706] pb-1" href="#">About</a>
+<a class="font-serif text-stone-600 hover:text-[#D97706] transition-colors duration-200" href="#">Legal</a>
+</div>
+<button class="bg-[#D97706] text-white px-6 py-2 rounded-lg font-label uppercase text-xs tracking-widest hover:brightness-110 transition-all">Contact Us</button>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="py-xxl px-6">
+<div class="max-w-[1200px] mx-auto">
+<div class="max-w-4xl">
+<h1 class="font-h1 text-h1 text-on-surface mb-8">Pomáháme českým firmám dělat praktické změny s AI</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+                        Bez velkých projektů, bez vendor lock-inu, bez disrupce provozu. Jsme váš partner pro evoluci, ne revoluci.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Image Break -->
+<section class="px-6 mb-xxl">
+<div class="max-w-[1200px] mx-auto overflow-hidden rounded-lg">
+<img class="w-full h-[500px] object-cover filter grayscale" data-alt="A spacious, high-ceilinged modern office in Brno with natural sunlight streaming through large industrial windows. The interior features warm wooden textures, minimalist Scandinavian furniture, and lush green plants. The mood is calm, professional, and intellectually focused, reflecting a boutique strategy consulting environment with a light-mode aesthetic and soft amber highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnIFZB7rycwRnzoBXuLksa0tPilHqBtLv0kuYJW_6LbZv0bkDSvNCnj5--Z0IN0ODqh9xfy6IWxbdJs4VhDWE2KYHpNWlWwa1aDgMlyt-itNzyYImAcIivH8KvOeO0UVeIBO8g-LP6qCV2wNpKhm3VMUdfgWvcDisN2pnFmxYyqBuy3-RPQZEKPT0JsA086hMzCZgo8D8__nIyEfK3-Gfge_20RBSpdV-Uh-mcHAotMfK9sA2g9M8Ajqt2zFdSVw9O09gbsNWT4Ns"/>
+</div>
+</section>
+<!-- Naše hodnoty Section -->
+<section class="py-xxl px-6 bg-surface-container-low">
+<div class="max-w-[1200px] mx-auto">
+<h2 class="font-h2 text-h2 mb-16">Naše hodnoty</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-lg">
+<!-- Value 1 -->
+<div class="p-lg border border-subtle bg-[#FAFAF8] flex flex-col gap-4">
+<span class="material-symbols-outlined amber-accent text-3xl" data-icon="precision_manufacturing">precision_manufacturing</span>
+<h3 class="font-h3 text-h3 text-2xl">Praktičnost</h3>
+<p class="font-body-md text-on-surface-variant">Bez hype, bez buzzwordů. Reálná řešení pro reálné byznysové problémy, která fungují hned druhý den.</p>
+</div>
+<!-- Value 2 -->
+<div class="p-lg border border-subtle bg-[#FAFAF8] flex flex-col gap-4">
+<span class="material-symbols-outlined amber-accent text-3xl" data-icon="handshake">handshake</span>
+<h3 class="font-h3 text-h3 text-2xl">Partnerství</h3>
+<p class="font-body-md text-on-surface-variant">Uspějeme, když uspějí naši klienti. Zakládáme si na dlouhodobém myšlení a společném růstu.</p>
+</div>
+<!-- Value 3 -->
+<div class="p-lg border border-subtle bg-[#FAFAF8] flex flex-col gap-4">
+<span class="material-symbols-outlined amber-accent text-3xl" data-icon="visibility">visibility</span>
+<h3 class="font-h3 text-h3 text-2xl">Transparentnost</h3>
+<p class="font-body-md text-on-surface-variant">Jasné ceny, poctivé hodnocení AI zralosti a žádné sliby, které nelze splnit. Nesnášíme overselling.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg max-w-[800px]">
+<!-- Value 4 -->
+<div class="p-lg border border-subtle bg-[#FAFAF8] flex flex-col gap-4">
+<span class="material-symbols-outlined amber-accent text-3xl" data-icon="school">school</span>
+<h3 class="font-h3 text-h3 text-2xl">Odbornost</h3>
+<p class="font-body-md text-on-surface-variant">Hluboká znalost problematiky doložená mezinárodním researchem a praktickými zkušenostmi z oboru.</p>
+</div>
+<!-- Value 5 -->
+<div class="p-lg border border-subtle bg-[#FAFAF8] flex flex-col gap-4">
+<span class="material-symbols-outlined amber-accent text-3xl" data-icon="flag">flag</span>
+<h3 class="font-h3 text-h3 text-2xl">Česká identita</h3>
+<p class="font-body-md text-on-surface-variant">Rozumíme lokální byznys kultuře, specifickým regulacím a zažitým zvyklostem českého trhu.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Náš tým Section -->
+<section class="py-xxl px-6">
+<div class="max-w-[1200px] mx-auto">
+<h2 class="font-h2 text-h2 mb-16">Náš tým</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-md">
+<!-- Team member 1 -->
+<div class="group">
+<div class="aspect-[3/4] mb-4 bg-stone-100 overflow-hidden">
+<img class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A natural light portrait of a professional man in his 40s, Martin Večeřa, wearing a crisp white shirt and a charcoal blazer. He is standing in a bright modern studio with a soft, warm minimalist background. The lighting is flattering and authentic, capturing a professional yet approachable leadership persona within a clean light-mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFz7QhLb3lJHKC_wmPrwM_3QDzCHhwE2Kd5Y-7giRZ7HHMvpXQiqYztpW1Foi2f0b0F9PAAbUxM4_g76cDl87EDE2LJh9z0I0a5XuoJX1A93yW7ysghxyMFdePGTBrFQ7E7nwnXR0uz-4g8jsFgkDTZRrmjArC8wv6y9fzecRC3VlDRmoODKQ6oGDmyy18Pxbd1p8cyoV1QJ3Ijp-AmVtyuiOQaFrwYlAGrk5wAhiKT9BN5Nh2SCo4sTCN72JAEiJXgR_XVw-XBUE"/>
+</div>
+<h4 class="font-h3 text-lg font-bold">Martin Večeřa</h4>
+<p class="font-label text-xs uppercase tracking-wider text-stone-500">Zakladatel a vedoucí konzultant</p>
+</div>
+<!-- Team member 2 -->
+<div class="group">
+<div class="aspect-[3/4] mb-4 bg-stone-100 overflow-hidden">
+<img class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A portrait of Marek Baluch, a senior consultant with a warm smile, wearing a professional beige sweater. The photo is taken in a library-like setting with soft focus on background books. The lighting is warm and natural, reinforcing a 'Boutique Craft' feel that emphasizes human-centric education and AI training." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4kop92EkBWyU70K1eVm40GOEdsROIymBWgyO6mf_-YBZOfC3Ez8OnDJVunm-kbQPwiDBGra9-Xe01oiHmw8W8XL3pT_Of8CtfqtO4Jw8DGoRZt5zssMzzoaLnXLiFDoLZCBiyV8ijpqbK6jT-Yv7SMdTYozLxHXPIquviRro14tphY09ISO3Su2UGcspxpZbbC8a3EfB8Na0H5VJIyrG4pE5cDO1OjhPMtQpj2msp_dGrlxTBYe6jxuuGMK-qC-MlHYM8NzW24I4"/>
+</div>
+<h4 class="font-h3 text-lg font-bold">Marek Baluch</h4>
+<p class="font-label text-xs uppercase tracking-wider text-stone-500">Vedoucí lektor a konzultant</p>
+</div>
+<!-- Team member 3 -->
+<div class="group">
+<div class="aspect-[3/4] mb-4 bg-stone-100 overflow-hidden">
+<img class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Lukáš Petrovický, a change management consultant, photographed in a modern architectural space with clean lines. He is wearing a dark navy polo shirt. The composition is slightly asymmetrical, reflecting the Scandinavian design principles of the brand. High-key lighting creates a bright and transparent mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLPDfsH6gs-ol_281PAPpmWZJ5y1YQ1KV4l7AAvZBTTX-aW9fgL-KaK6oYVcWdl5nu0g-VdEMsoxVIrV8HeN0P5nCXvhvgSNxhUvo-zTcMf8_ZclMVc-GhREa-GXnalRaezlwE4UdLjrk7Li-ERlmD6D7rfQY-BfUQ_HjHknYANfVluJUqoVGgOHQcicR1xFRA4WLRUGrW0Pwkyiv9islOWlVJL6aTH1cWeYZTnNEFEGjINc8g6ZroJepthfU5yaoLr8LM7S9A2QA"/>
+</div>
+<h4 class="font-h3 text-lg font-bold">Lukáš Petrovický</h4>
+<p class="font-label text-xs uppercase tracking-wider text-stone-500">Konzultant change managementu</p>
+</div>
+<!-- Team member 4 -->
+<div class="group">
+<div class="aspect-[3/4] mb-4 bg-stone-100 overflow-hidden">
+<img class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Jiří Pechanec, an employee experience consultant, standing in a sunlit open-plan office. He wears a light grey linen shirt. The aesthetic is clean and minimalist, highlighting a human-centric approach to corporate consulting. The warm light-mode background emphasizes professional clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATcvlpLdE8kMStOtDC2lT6HllI5Vo0N336Bm1DBZHJF4116uRccQHULgXlTIYtWMTcmASErd_V5BfqqTPNnJAMKpBL5QUQF6sUcTESFIUecH5Gtu5h0wbC7wvYOF2KpRXjSYcU_mVI4u-XLQimkB2Ffc9JdaOox71aNA8XOBvP2HsLZNDOqMThSucqJiLxBD0D1TcXKTy2FNUPEyjlhfSXQiWx4MQg0Udr3vEC-I6JMxvpNWqitAKEoh_Xre4Ot3NCW_NfV7DYw_c"/>
+</div>
+<h4 class="font-h3 text-lg font-bold">Jiří Pechanec</h4>
+<p class="font-label text-xs uppercase tracking-wider text-stone-500">Konzultant zaměstnanecké zkušenosti</p>
+</div>
+<!-- Team member 5 -->
+<div class="group">
+<div class="aspect-[3/4] mb-4 bg-stone-100 overflow-hidden">
+<img class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Miroslav Bereš, a customer experience analyst, wearing a dark blazer over a simple black t-shirt. He has a thoughtful expression, positioned against a minimalist concrete wall with soft shadow details. The photography style is authentic and editorial, avoiding stock photo tropes and embracing Czech engineering precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBO7SNhAp_LxQ6Ef4y2l-sYYJzZRSrTGhX66_09EU6U8rKA4lC-6Y1MWWpqtdWOp_eOuYRMNVlLAQPj2PdcSBMT1meZCgKIt4Pi1jLCubPTD8xtQy_XSUszDrws763c-P20T12_SErJ2_S6uJV2Lk6YQmQFoVLoluONfcxYhA4nAGDdkJ3Bn371eToEyqngwAaE37WturA9CxEKPKOEsJ2u3Jm7Wcfkqv7TTMR6rFBfL9shnriI1-UDeAY8l8v6RY-hMuPl3HbdFpk"/>
+</div>
+<h4 class="font-h3 text-lg font-bold">Miroslav Bereš</h4>
+<p class="font-label text-xs uppercase tracking-wider text-stone-500">Analytik zákaznické zkušenosti</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Quote Section -->
+<section class="py-xxl px-6 bg-[#1A1A1A] text-white">
+<div class="max-w-[1200px] mx-auto text-center">
+<blockquote class="font-h2 italic text-3xl md:text-h3 leading-relaxed max-w-4xl mx-auto mb-8">
+                    "Mým cílem je pomáhat lidem a firmám ve vytváření světa, kde se nám bude všem žít co nejlépe... Pojďme si proto navzájem poskytovat jen ty nejlepší služby tím nejefektivnějším způsobem."
+                </blockquote>
+<cite class="font-label not-italic uppercase tracking-widest text-stone-400">— Martin Večeřa, Zakladatel</cite>
+</div>
+</section>
+<!-- Regional Focus Section -->
+<section class="py-xxl px-6">
+<div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-xl items-center">
+<div>
+<h2 class="font-h2 text-h2 mb-lg">Brno + ČR mimo Prahu</h2>
+<p class="font-body-lg text-body-lg mb-8 leading-relaxed">
+                        Naším domovem je Brno, ale naše působiště sahá daleko za hranice metropole. Věříme v potenciál regionů a záměrně se vyhýbáme pražskému centrizmu. Jezdíme za vámi do Ostravy, Plzně, Zlína i Hradce Králové.
+                    </p>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined amber-accent">location_on</span>
+<span class="font-body-md">Brno</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined amber-accent">location_on</span>
+<span class="font-body-md">Ostrava</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined amber-accent">location_on</span>
+<span class="font-body-md">Plzeň</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined amber-accent">location_on</span>
+<span class="font-body-md">Zlín</span>
+</div>
+</div>
+</div>
+<div class="relative h-[400px] border border-subtle bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover opacity-80" data-alt="A stylized minimalist map of the Czech Republic highlighting regional cities like Brno and Ostrava. The map is designed with clean, thin amber lines on a light beige background. The aesthetic is professional and technical, avoiding clutter and focusing on the geographic spread of QuConsult's services outside of the capital city." data-location="Czech Republic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZXiznvG0PMHAUqUX-yczW4m7JUEYzSO1NTUssWY173CQLcYSptXxsaLG3J_6nQ0TizqvPnN2pCSV38IsOBAYhbRpJkDMBfJI6Wsp-rHPuo5ZDhcwEiWmrKTHp1YofDbwh2XNAjW8XqlszCpYeJp4kymCgvhAUxnxUfuxQ528gWqEbrfx6vEzvt-cIPbDS35Z4aMtJemp5i-j56s6Mf40U-3AT1PaHgxooyOI096cmi4q_Jq_sSUYOU-G9q3q3hlZB2vhUwt0ztIw"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="bg-white/80 backdrop-blur-sm p-lg border border-subtle text-center">
+<p class="font-label uppercase text-xs tracking-widest amber-accent">Centrála Brno</p>
+<p class="font-h3 text-xl">Nové sady 988/2</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Proč Česko Section -->
+<section class="py-xxl px-6 bg-surface-container-high/50">
+<div class="max-w-[1200px] mx-auto">
+<h2 class="font-h2 text-h2 mb-16">Proč Česko</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl">
+<div class="space-y-lg">
+<div class="flex gap-lg">
+<div class="font-h1 text-4xl text-stone-300 opacity-50">01</div>
+<div>
+<h4 class="font-h3 text-xl font-bold mb-2">Legislativa a GDPR</h4>
+<p class="font-body-md text-on-surface-variant">Implementace AI u nás neprobíhá ve vakuu. Rozumíme českým zákonům, regulacím ÚOOÚ a specifikům evropského AI Actu v lokálním kontextu.</p>
+</div>
+</div>
+<div class="flex gap-lg">
+<div class="font-h1 text-4xl text-stone-300 opacity-50">02</div>
+<div>
+<h4 class="font-h3 text-xl font-bold mb-2">Místní ERP systémy</h4>
+<p class="font-body-md text-on-surface-variant">Máme hlubokou zkušenost s integrací do systémů jako Pohoda, Helios nebo Money S3. Víme, jak z vašich dat vytěžit maximum bez nutnosti migrace.</p>
+</div>
+</div>
+</div>
+<div class="space-y-lg">
+<div class="flex gap-lg">
+<div class="font-h1 text-4xl text-stone-300 opacity-50">03</div>
+<div>
+<h4 class="font-h3 text-xl font-bold mb-2">Pracovní právo</h4>
+<p class="font-body-md text-on-surface-variant">AI mění náplň práce. Pomáháme s úpravou pracovních smluv a interních směrnic tak, aby byly v souladu s českým zákoníkem práce.</p>
+</div>
+</div>
+<div class="flex gap-lg">
+<div class="font-h1 text-4xl text-stone-300 opacity-50">04</div>
+<div>
+<h4 class="font-h3 text-xl font-bold mb-2">Standardy a ISO</h4>
+<p class="font-body-md text-on-surface-variant">Specializujeme se na digitalizaci ISO/IATF/BRC dokumentace pomocí AI, což je kritické pro české výrobní a exportní firmy.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA Section -->
+<section class="py-xxl px-6">
+<div class="max-w-[1200px] mx-auto text-center border-t border-subtle pt-xxl">
+<h2 class="font-h2 text-h2 mb-8">Začněte s AI správným směrem</h2>
+<button class="bg-[#D97706] text-white px-12 py-5 rounded-lg font-label uppercase text-sm tracking-widest hover:brightness-110 transition-all shadow-lg hover:shadow-xl">
+                    Domluvit bezplatnou konzultaci
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer Section -->
+<footer class="bg-[#FAFAF8] border-t border-stone-200">
+<div class="max-w-[1200px] mx-auto px-6 py-16 flex flex-col md:flex-row justify-between items-start md:items-center gap-8 w-full">
+<div class="flex flex-col gap-4">
+<div class="text-lg font-serif font-bold text-stone-800">QuConsult</div>
+<div class="font-serif text-xs uppercase tracking-widest text-stone-500">
+                    © 2024 QuConsult. Boutique Strategy Consulting.
+                </div>
+<!-- Legal Info Block -->
+<div class="mt-4 text-[10px] text-stone-400 font-body-md leading-loose">
+                    WellBe s.r.o., IČ: 05830931, Sídlo: Nové sady 988/2, 602 00 Brno,<br/>
+                    zapsaná v OR vedeném u Krajského soudu v Brně, oddíl C, vložka 98394.
+                </div>
+</div>
+<div class="flex flex-wrap gap-x-8 gap-y-4">
+<a class="font-serif text-xs uppercase tracking-widest text-stone-500 hover:text-[#D97706] underline decoration-2 transition-all" href="#">Privacy Policy</a>
+<a class="font-serif text-xs uppercase tracking-widest text-stone-500 hover:text-[#D97706] underline decoration-2 transition-all" href="#">Terms of Service</a>
+<a class="font-serif text-xs uppercase tracking-widest text-stone-500 hover:text-[#D97706] underline decoration-2 transition-all" href="#">Cookie Policy</a>
+<a class="font-serif text-xs uppercase tracking-widest text-stone-500 hover:text-[#D97706] underline decoration-2 transition-all" href="#">Regulatory Disclosure</a>
+</div>
+</div>
+</footer>
+</body></html>

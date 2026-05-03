@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="light" lang="cs"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #FAFAF8;
+            color: #1A1A1A;
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#cee5ff",
+                      "on-surface-variant": "#554336",
+                      "inverse-surface": "#392e26",
+                      "secondary": "#5f5e5e",
+                      "on-surface": "#231a13",
+                      "error-container": "#ffdad6",
+                      "outline": "#887364",
+                      "on-tertiary-fixed": "#001d32",
+                      "on-primary-container": "#fffbff",
+                      "surface-tint": "#904d00",
+                      "surface-container-low": "#fff1e9",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed-variant": "#6e3900",
+                      "inverse-on-surface": "#ffede3",
+                      "tertiary": "#006096",
+                      "background": "#fff8f5",
+                      "surface-container-high": "#f7e5d9",
+                      "primary-fixed": "#ffdcc3",
+                      "on-primary-fixed": "#2f1500",
+                      "on-error-container": "#93000a",
+                      "on-primary": "#ffffff",
+                      "on-secondary-container": "#636262",
+                      "secondary-fixed-dim": "#c8c6c5",
+                      "on-tertiary": "#ffffff",
+                      "secondary-container": "#e2dfde",
+                      "surface-container-highest": "#f2dfd3",
+                      "inverse-primary": "#ffb77d",
+                      "tertiary-container": "#007abd",
+                      "surface-variant": "#f2dfd3",
+                      "primary-fixed-dim": "#ffb77d",
+                      "on-error": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "outline-variant": "#dbc2b0",
+                      "primary-container": "#b15f00",
+                      "surface-container": "#fdeade",
+                      "primary": "#8d4b00",
+                      "on-secondary-fixed": "#1c1b1b",
+                      "tertiary-fixed-dim": "#96ccff",
+                      "surface-bright": "#fff8f5",
+                      "on-tertiary-container": "#fdfcff",
+                      "surface": "#fff8f5",
+                      "secondary-fixed": "#e5e2e1",
+                      "on-tertiary-fixed-variant": "#004a75",
+                      "surface-dim": "#e9d7cb",
+                      "on-secondary": "#ffffff",
+                      "on-background": "#231a13",
+                      "on-secondary-fixed-variant": "#474746"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "xxl": "96px",
+                      "md": "16px",
+                      "lg": "24px",
+                      "xl": "48px",
+                      "sm": "8px",
+                      "xs": "4px",
+                      "max_width": "1200px"
+              },
+              "fontFamily": {
+                      "h2": ["Noto Serif"],
+                      "h1": ["Noto Serif"],
+                      "label": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "h3": ["Noto Serif"],
+                      "body-md": ["Inter"],
+                      "mono": ["JetBrains Mono"]
+              },
+              "fontSize": {
+                      "h2": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                      "h1": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                      "label": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "h3": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopNavBar -->
+<header class="bg-[#FAFAF8] border-b border-stone-200 sticky top-0 z-50">
+<nav class="flex justify-between items-center w-full px-6 py-4 max-w-[1200px] mx-auto font-serif tracking-tight">
+<div class="text-xl font-semibold text-stone-900">Aethelgard Consulting</div>
+<div class="hidden md:flex space-x-8">
+<a class="text-stone-900 border-b border-amber-600 pb-1 hover:text-amber-600 transition-colors duration-200" href="#">Insights</a>
+<a class="text-stone-500 hover:text-amber-600 transition-colors duration-200" href="#">Strategy</a>
+<a class="text-stone-500 hover:text-amber-600 transition-colors duration-200" href="#">Portfolio</a>
+<a class="text-stone-500 hover:text-amber-600 transition-colors duration-200" href="#">About</a>
+</div>
+<button class="bg-[#D97706] text-white px-6 py-2 rounded-sm font-label text-sm uppercase tracking-widest hover:opacity-90 transition-all">
+                Consultation
+            </button>
+</nav>
+</header>
+<main class="max-w-[1200px] mx-auto px-6 lg:px-0 py-xxl grid grid-cols-1 md:grid-cols-12 gap-lg items-start">
+<!-- Left Column: TOC (Sticky) -->
+<aside class="hidden lg:block lg:col-span-3 sticky top-24 h-fit border-l border-stone-200">
+<nav class="flex flex-col space-y-6">
+<div class="pl-4">
+<h4 class="font-serif text-sm text-stone-400 uppercase tracking-widest mb-1">Article Navigation</h4>
+<span class="font-serif text-lg font-semibold text-stone-900">Obsah článku</span>
+</div>
+<div class="flex flex-col text-sm font-serif">
+<a class="text-stone-900 font-medium border-l-2 border-amber-600 -ml-[1px] pl-4 py-2 hover:text-stone-600 transition-all duration-300 flex items-center" href="#proces-1">
+<span class="material-symbols-outlined mr-2 text-amber-600">short_text</span>
+                        Zpracování objednávek
+                    </a>
+<a class="text-stone-400 pl-4 py-2 hover:text-stone-600 transition-all duration-300 flex items-center" href="#proces-2">
+<span class="material-symbols-outlined mr-2">architecture</span>
+                        Měsíční reporty
+                    </a>
+<a class="text-stone-400 pl-4 py-2 hover:text-stone-600 transition-all duration-300 flex items-center" href="#proces-3">
+<span class="material-symbols-outlined mr-2">psychology</span>
+                        Reklamace a neshody
+                    </a>
+<a class="text-stone-400 pl-4 py-2 hover:text-stone-600 transition-all duration-300 flex items-center" href="#proces-4">
+<span class="material-symbols-outlined mr-2">done_all</span>
+                        Nabídky a kalkulace
+                    </a>
+<a class="text-stone-400 pl-4 py-2 hover:text-stone-600 transition-all duration-300 flex items-center" href="#proces-5">
+<span class="material-symbols-outlined mr-2">verified</span>
+                        Dokumentace kvality
+                    </a>
+<a class="text-stone-400 pl-4 py-2 hover:text-stone-600 transition-all duration-300 flex items-center" href="#zaver">
+<span class="material-symbols-outlined mr-2">flag</span>
+                        Závěr
+                    </a>
+</div>
+</nav>
+</aside>
+<!-- Center Column: Article Content -->
+<article class="col-span-1 md:col-span-12 lg:col-span-7 max-w-[720px] mx-auto">
+<!-- Frontmatter -->
+<div class="mb-12">
+<span class="inline-block bg-[#D97706]/10 text-[#D97706] px-3 py-1 rounded-sm font-label text-[12px] uppercase mb-6">How-to</span>
+<h1 class="font-h1 text-h1 text-stone-900 mb-8 leading-tight">5 procesů, které může každá česká firma automatizovat hned</h1>
+<div class="flex items-center space-x-4 border-b border-stone-100 pb-8">
+<img class="w-12 h-12 rounded-full object-cover grayscale" data-alt="A professional portrait of Martin Večeřa, the founder of Aethelgard Consulting, looking directly at the camera with a friendly and expert expression. The photography is captured in a minimalist, high-key studio setting with soft side lighting that highlights his facial features against a clean, off-white background. The aesthetic is modern and sophisticated, reflecting a boutique, high-end consulting brand in the Czech Republic." src="https://lh3.googleusercontent.com/aida/ADBb0ujFE0jWAvBmCoRyN6jnx-LB-q6O-8dsKGDeef1K-pH6wDP3gx0EKaVSBDs5ZVOjtnJ-CtKVGVo31mmyC7IvdD1hp-s99cGlYffGp81gELtYCLo8vJ0lSKgxT4gjsM0BecodFPAasyvJVa2d5efbOz-Ox0clPfcI_sdlO6R8vwIkWzpVgPpxzidDak4sBbGBclUVDJSHDLSfEVePo0niVMPrWRd3LlUYgqU1T2FBA8iu6ktXj-TKQprxrzZd-tGGgLQSMK97ieuvlg"/>
+<div>
+<p class="font-label text-stone-900">Martin Večeřa — Zakladatel a vedoucí konzultant</p>
+<p class="text-sm text-stone-400 mt-1">29. dubna 2026 · 8 min čtení</p>
+</div>
+</div>
+</div>
+<!-- Lead Paragraph -->
+<p class="font-body-lg text-body-lg text-stone-600 mb-12 font-light leading-relaxed">
+                Většina českých výrobních firem ztrácí desítky hodin týdně na práci, kterou by mohl dělat počítač. Tady je pět konkrétních procesů, které jdou automatizovat během měsíce — bez velkého projektu, bez nového ERP.
+            </p>
+<!-- Article Body -->
+<div class="space-y-12">
+<section id="proces-1">
+<h2 class="font-h2 text-h2 text-stone-900 mb-6">1. Zpracování objednávek z e-mailu</h2>
+<p class="mb-6">
+                        I v roce 2026 stále mnoho firem přepisuje data z PDF příloh e-mailů ručně do informačního systému. Tento proces je náchylný k chybám a zbytečně vytěžuje nákupní oddělení. Nasazením LLM (Large Language Model) parseru lze extrahovat položky, ceny a termíny s přesností přes 99 %.
+                    </p>
+<div class="bg-stone-50 border border-stone-200 p-6 rounded-sm mb-6">
+<p class="font-label text-xs text-stone-400 mb-3 uppercase tracking-widest">Příklad automatizačního skriptu</p>
+<code class="font-mono text-sm text-stone-700 block whitespace-pre">def extract_order_data(pdf_stream):
+    # Inicializace AI extraktoru s českou lokalizací
+    extractor = AethelgardAI.Processor(lang="cs")
+    data = extractor.parse_invoice(pdf_stream)
+    return {
+        "dodavatel": data.vendor_name,
+        "polozky": data.items,
+        "celkova_cena": data.total_amount
+    }</code>
+</div>
+</section>
+<blockquote class="border-l-4 border-amber-600 pl-8 py-2 my-12 italic text-stone-700 text-lg">
+                    "Automatizace není o nahrazení lidí, ale o osvobození jejich talentu od tabulek v Excelu, které nikoho nebaví."
+                </blockquote>
+<section id="proces-2">
+<h2 class="font-h2 text-h2 text-stone-900 mb-6">2. Měsíční reporty</h2>
+<p>
+                        Ruční sestavování reportů pro vedení z pěti různých zdrojů (ERP, CRM, sklad, Excel) obvykle trvá 2–3 pracovní dny. Automatizovaný datový pipeline dokáže tyto informace agregovat v reálném čase a prezentovat je v přehledném dashboardu každé pondělí ráno.
+                    </p>
+</section>
+<div class="bg-amber-50/30 border border-amber-600/20 p-8 my-16">
+<h3 class="font-h3 text-h3 text-stone-900 mb-4">Chcete vidět, co je konkrétně možné u vás?</h3>
+<p class="mb-6 text-stone-600">Naši konzultanti provedou rychlý audit vašich procesů a navrhnou řešení s nejrychlejší návratností.</p>
+<button class="bg-[#D97706] text-white px-8 py-3 rounded-sm font-label text-sm uppercase tracking-widest hover:brightness-110 transition-all">
+                        Domluvte si bezplatnou konzultaci
+                    </button>
+</div>
+<section id="proces-3">
+<h2 class="font-h2 text-h2 text-stone-900 mb-6">3. Reklamace a neshody</h2>
+<p>
+                        Standardizace reklamačního procesu pomocí inteligentních formulářů, které automaticky kategorizují závažnost a přiřazují úkoly odpovědným osobám, zkracuje čas vyřízení o 40 %.
+                    </p>
+</section>
+</div>
+<!-- Author Bio Box -->
+<div class="mt-xxl border-t border-stone-200 pt-12 flex flex-col md:flex-row items-center gap-8 bg-stone-50/50 p-8 rounded-sm">
+<img class="w-32 h-32 rounded-full object-cover grayscale" data-alt="Close-up portrait of Martin Večeřa, a strategic consultant, in an authentic and professional setting. He wears a neutral-toned shirt, and the background is a blurred high-end office with natural light. The photograph has an organic, warm feel with a minimalist Scandinavian aesthetic, avoiding any typical stock photo cliches." src="https://lh3.googleusercontent.com/aida/ADBb0ujFE0jWAvBmCoRyN6jnx-LB-q6O-8dsKGDeef1K-pH6wDP3gx0EKaVSBDs5ZVOjtnJ-CtKVGVo31mmyC7IvdD1hp-s99cGlYffGp81gELtYCLo8vJ0lSKgxT4gjsM0BecodFPAasyvJVa2d5efbOz-Ox0clPfcI_sdlO6R8vwIkWzpVgPpxzidDak4sBbGBclUVDJSHDLSfEVePo0niVMPrWRd3LlUYgqU1T2FBA8iu6ktXj-TKQprxrzZd-tGGgLQSMK97ieuvlg"/>
+<div>
+<h4 class="font-serif text-xl font-bold text-stone-900 mb-2">Martin Večeřa</h4>
+<p class="text-stone-600 mb-4 leading-relaxed">
+                        Expert na strategickou implementaci AI do českého průmyslu. Pomáhá firmám identifikovat procesy, kde technologie přinese skutečný finanční efekt, ne jen marketingovou nálepku.
+                    </p>
+<div class="flex space-x-4">
+<a class="text-amber-600 font-label text-xs uppercase tracking-widest hover:underline flex items-center" href="#">
+                            LinkedIn
+                        </a>
+<a class="text-amber-600 font-label text-xs uppercase tracking-widest hover:underline flex items-center" href="#">
+                            Substack
+                        </a>
+</div>
+</div>
+</div>
+</article>
+<!-- Right Column: Sidebar -->
+<aside class="hidden lg:block lg:col-span-2 space-y-12">
+<div class="border-b border-stone-100 pb-8">
+<h5 class="font-label text-xs text-stone-400 uppercase tracking-widest mb-4">Sdílet článek</h5>
+<div class="flex flex-col space-y-4">
+<button class="flex items-center text-stone-500 hover:text-amber-600 transition-colors text-sm">
+<span class="material-symbols-outlined mr-2">share</span> LinkedIn
+                    </button>
+<button class="flex items-center text-stone-500 hover:text-amber-600 transition-colors text-sm">
+<span class="material-symbols-outlined mr-2">mail</span> E-mailem
+                    </button>
+<button class="flex items-center text-stone-500 hover:text-amber-600 transition-colors text-sm">
+<span class="material-symbols-outlined mr-2">content_copy</span> Kopírovat odkaz
+                    </button>
+</div>
+</div>
+<div class="bg-[#FAFAF8] border border-stone-200 p-6">
+<p class="font-serif text-sm italic text-stone-500 mb-4">"Aethelgard Consulting představuje novou éru butikového poradenství v Čechách."</p>
+<p class="font-label text-[10px] uppercase text-stone-400">— Forbes Czech</p>
+</div>
+</aside>
+</main>
+<!-- Related Articles -->
+<section class="bg-stone-50/50 py-xxl border-y border-stone-200">
+<div class="max-w-[1200px] mx-auto px-6">
+<h2 class="font-h2 text-h2 text-stone-900 mb-12 text-center">Související články</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<!-- Card 1 -->
+<a class="group block border border-stone-200 bg-white p-8 transition-all hover:border-amber-600" href="#">
+<span class="font-label text-xs text-amber-600 uppercase mb-4 block">Strategie</span>
+<h3 class="font-serif text-xl font-semibold text-stone-900 group-hover:text-amber-600 transition-colors mb-4">Jak správně spočítat ROI u AI projektů</h3>
+<p class="text-stone-500 text-sm">Praktický návod pro finanční ředitele českých výrobních podniků.</p>
+</a>
+<!-- Card 2 -->
+<a class="group block border border-stone-200 bg-white p-8 transition-all hover:border-amber-600" href="#">
+<span class="font-label text-xs text-amber-600 uppercase mb-4 block">Legislativa</span>
+<h3 class="font-serif text-xl font-semibold text-stone-900 group-hover:text-amber-600 transition-colors mb-4">GDPR a nasazení AI v prostředí EU</h3>
+<p class="text-stone-500 text-sm">Na co si dát pozor při práci s klientskými daty v rámci automatizace.</p>
+</a>
+<!-- Card 3 -->
+<a class="group block border border-stone-200 bg-white p-8 transition-all hover:border-amber-600" href="#">
+<span class="font-label text-xs text-amber-600 uppercase mb-4 block">Technologie</span>
+<h3 class="font-serif text-xl font-semibold text-stone-900 group-hover:text-amber-600 transition-colors mb-4">AI vs. RPA: Kdy zvolit jaký přístup?</h3>
+<p class="text-stone-500 text-sm">Srovnání dvou klíčových pilířů moderní firemní efektivity.</p>
+</a>
+</div>
+</div>
+</section>
+<!-- Newsletter -->
+<section class="py-xxl max-w-[1200px] mx-auto px-6">
+<div class="bg-stone-900 text-white p-12 md:p-16 flex flex-col md:flex-row items-center justify-between">
+<div class="max-w-md mb-8 md:mb-0">
+<h3 class="font-h3 text-h3 mb-4">Jednou měsíčně přehled trendů a tipů.</h3>
+<p class="text-stone-400">Bez spamu, pouze ověřené postřehy z praxe českých firem přímo do vaší schránky.</p>
+</div>
+<div class="w-full md:w-auto flex flex-col sm:flex-row gap-4">
+<input class="bg-transparent border-0 border-b border-stone-700 text-white focus:ring-0 focus:border-amber-600 w-full sm:w-64 py-3 px-0" placeholder="Váš e-mail" type="email"/>
+<button class="bg-[#D97706] text-white px-8 py-3 rounded-sm font-label text-sm uppercase tracking-widest hover:brightness-110 transition-all">
+                    Odebírat
+                </button>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-[#FAFAF8] border-t border-stone-200 mt-24">
+<div class="w-full py-12 px-6 flex flex-col md:flex-row justify-between items-center max-w-[1200px] mx-auto font-serif text-xs uppercase tracking-widest">
+<div class="text-stone-900 font-bold mb-6 md:mb-0">Aethelgard. Boutique Strategic AI.</div>
+<div class="flex space-x-8 text-stone-500 mb-6 md:mb-0">
+<a class="hover:text-amber-600 underline-offset-4 hover:underline transition-all" href="#">Newsletter</a>
+<a class="hover:text-amber-600 underline-offset-4 hover:underline transition-all" href="#">LinkedIn</a>
+<a class="hover:text-amber-600 underline-offset-4 hover:underline transition-all" href="#">Privacy</a>
+<a class="hover:text-amber-600 underline-offset-4 hover:underline transition-all" href="#">Contact</a>
+</div>
+<div class="text-stone-400 text-[10px]">© 2024 Aethelgard. Boutique Strategic AI.</div>
+</div>
+</footer>
+</body></html>

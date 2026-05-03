@@ -191,7 +191,9 @@ u blog článku, ale do `src/content/sluzby/{slug}.mdx`.
 
 ---
 
-## 9. Origin documents (read-only z pohledu webu)
+## 9. Origin documents a implementační reference
+
+### Strategy (read-only z pohledu webu)
 
 Tyto soubory definují strategii, brand a vizuální identitu.
 **Neměňte je z webu** — jsou kopiemi z parent `rewamp/` adresáře
@@ -202,8 +204,27 @@ a slouží jako reference pro Claude.
 - `DESIGN_BRIEF.md` — vizuální pravidla (barvy, typografie,
   layout, komponenty). **Pravda o "jak to vypadá".**
 
+### Implementation reference (in-repo)
+
+- `docs/plans/2026-04-30-001-feat-quconsult-website-launch-plan.md`
+  — implementační plán: page-by-page blueprints (§3), tech architektura (§4),
+  motion design (§4.7), CLAUDE.md scaffold (§5), fázovaný roadmap (§6),
+  acceptance kritéria (§7). **Pravda o "jak to stavíme".**
+- `docs/stitch-candidates/decisions.md` — vítězný Stitch screen pro každou
+  z 12 page typů + per-page fix list pro implementaci.
+  Začátek každé Phase 1+ úlohy: přečíst odpovídající sekci.
+- `docs/stitch-candidates/{NN}-{name}-{id}.html` — 12 vítězných HTML
+  + 7 referenčních (B-mixin) HTML stažených ze Stitch projektu.
+  Tailwind CDN classes přímo namapovatelné na náš Tailwind 4 design system.
+  **Reference, ne 1:1 implementace** — Astro projekt staví vlastní komponenty
+  s responsivním designem, motion (§4.7), accessibility, content collections.
+- `docs/stitch-candidates/{NN}-{name}-{id}.png` — screenshot thumbnaily
+  pro vizuální orientaci.
+
 Pokud má být strategie změněna, upravte `plan.md` v parent
 adresáři `rewamp/`, projednejte s Martinem, pak resync sem.
+Implementační plán (`docs/plans/`) můžete updatovat in-place — je to
+working document, ne strategie.
 
 ---
 
@@ -211,9 +232,9 @@ adresáři `rewamp/`, projednejte s Martinem, pak resync sem.
 
 - **Tone of voice** — `plan.md` §7. Když ani potom, eskaluj na
   Martina (uživatele).
-- **Vizuální detail** — `DESIGN_BRIEF.md` + Stitch winners
-  v `docs/stitch-candidates/` (mimo tento repo, v parent
-  `rewamp/`). Když ani potom, eskaluj na Martina.
+- **Vizuální detail** — `DESIGN_BRIEF.md` + Stitch winners v
+  `docs/stitch-candidates/` (in-repo). HTML soubory mají přesné
+  Tailwind classes pro spacing/typography. Když ani potom, eskaluj.
 - **Strategie / produktová otázka** (přidat sekci, změnit službu,
   přidat formulář) — **eskaluj vždy.** Strategie se nemění
   v rámci implementační iterace.
@@ -227,4 +248,4 @@ ne strategie.
 
 ---
 
-*Last updated: 2026-05-02 — Phase 0 scaffold.*
+*Last updated: 2026-05-03 — Phase 0 deployed live; docs/ moved in-repo.*

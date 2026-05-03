@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="light" lang="cs"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#004a75",
+                        "surface-bright": "#fff8f5",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#f7e5d9",
+                        "outline": "#887364",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#ffb77d",
+                        "on-tertiary-container": "#fdfcff",
+                        "inverse-on-surface": "#ffede3",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "inverse-surface": "#392e26",
+                        "surface-variant": "#f2dfd3",
+                        "background": "#fff8f5",
+                        "surface-tint": "#904d00",
+                        "tertiary-container": "#007abd",
+                        "outline-variant": "#dbc2b0",
+                        "on-tertiary-fixed": "#001d32",
+                        "surface-container-highest": "#f2dfd3",
+                        "primary": "#8d4b00",
+                        "on-secondary-fixed-variant": "#474746",
+                        "on-surface": "#231a13",
+                        "surface-container-low": "#fff1e9",
+                        "on-secondary-container": "#636262",
+                        "secondary-fixed": "#e5e2e1",
+                        "tertiary-fixed": "#cee5ff",
+                        "on-background": "#231a13",
+                        "primary-fixed-dim": "#ffb77d",
+                        "on-primary-container": "#fffbff",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#ffdcc3",
+                        "on-primary-fixed-variant": "#6e3900",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-error": "#ffffff",
+                        "secondary": "#5f5e5e",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface": "#fff8f5",
+                        "on-surface-variant": "#554336",
+                        "secondary-container": "#e2dfde",
+                        "primary-container": "#b15f00",
+                        "surface-container": "#fdeade",
+                        "on-primary-fixed": "#2f1500",
+                        "tertiary-fixed-dim": "#96ccff",
+                        "tertiary": "#006096",
+                        "surface-dim": "#e9d7cb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "48px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "xxl": "96px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "max_width": "1200px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "label": ["Inter"],
+                        "h3": ["Noto Serif"],
+                        "body-lg": ["Inter"],
+                        "h2": ["Noto Serif"],
+                        "h1": ["Noto Serif"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "h3": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h2": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "h1": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: #FAFAF8; color: #1A1A1A; }
+        .excalidraw-sketch {
+            border: 2px solid #1A1A1A;
+            border-radius: 4px;
+            position: relative;
+        }
+        .excalidraw-sketch::before {
+            content: '';
+            position: absolute;
+            top: 2px; left: 2px; right: -2px; bottom: -2px;
+            border: 1px solid #1A1A1A;
+            opacity: 0.3;
+            z-index: -1;
+        }
+        .flow-line {
+            background-image: radial-gradient(#D97706 1px, transparent 1px);
+            background-size: 8px 8px;
+            height: 2px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopNavBar -->
+<header class="bg-[#FAFAF8] dark:bg-stone-950 border-b border-stone-200 dark:border-stone-800 h-20 fixed w-full top-0 z-50">
+<nav class="flex justify-between items-center max-w-7xl mx-auto px-6 h-full">
+<div class="flex items-center gap-3">
+<img alt="QuConsult Logo" class="h-8 w-auto" data-alt="A minimal and sophisticated brand logo for QuConsult, featuring sharp, geometric typography in dark stone colors on an off-white background. The aesthetic is clean, professional, and reflects high-end strategic consulting and technical precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVMP6zmeVpv5-r15rOHyBIc9Le8r3wMwVT8bzoY9AxQDYxCx1jXfZ6RvfLxpZ7TzaEd1_pIl_j563mvXlQYJoYY-ZLXHM9iHNfUdAGbT7fXhBddVLi6Pa53aT1hI9R3WozSJR5QjxbfD8izNm5Aps7fygEVe99AavyQmCfuHXzjxwiYjarNdbY77nLZobg77IPIGOhnu9QQevdHl2xlvdMoirhnCN-6cGAFK2d_8CbSzBboZFeKVkrxTI_v7NxKsQug6KMc9i8QeQ"/>
+<span class="text-2xl font-semibold tracking-tighter text-stone-900 dark:text-stone-100 font-serif">QuConsult</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-stone-600 dark:text-stone-400 font-medium font-serif tracking-tight hover:text-amber-600 dark:hover:text-amber-500 transition-colors duration-300" href="#">Methodology</a>
+<a class="text-stone-600 dark:text-stone-400 font-medium font-serif tracking-tight hover:text-amber-600 dark:hover:text-amber-500 transition-colors duration-300" href="#">Expertise</a>
+<a class="text-stone-600 dark:text-stone-400 font-medium font-serif tracking-tight hover:text-amber-600 dark:hover:text-amber-500 transition-colors duration-300" href="#">Case Studies</a>
+<a class="text-stone-600 dark:text-stone-400 font-medium font-serif tracking-tight hover:text-amber-600 dark:hover:text-amber-500 transition-colors duration-300" href="#">Insights</a>
+</div>
+<button class="bg-[#D97706] text-white px-6 py-2 rounded-[4px] font-label text-label hover:bg-amber-700 transition-all active:opacity-70">
+                Get in Touch
+            </button>
+</nav>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="max-w-7xl mx-auto px-6 py-xxl grid grid-cols-12 gap-lg items-center">
+<div class="col-span-12 md:col-span-8 lg:col-span-7">
+<h1 class="font-h1 text-[72px] text-on-surface mb-md leading-[1.1] tracking-tight">Jak pracujeme</h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl leading-relaxed">
+                    Žádné PowerPointy, žádné velké projekty. Pracujeme v cyklech po 2 týdnech a měříme výsledky v korunách.
+                </p>
+</div>
+<div class="hidden md:block col-span-12 md:col-span-4 lg:col-start-9">
+<div class="aspect-square bg-surface-container-low border border-outline-variant flex items-center justify-center p-xl relative overflow-hidden">
+<span class="material-symbols-outlined text-primary text-[80px] opacity-20 absolute -top-4 -right-4" style="font-variation-settings: 'FILL' 0;">query_stats</span>
+<p class="font-h3 text-h3 text-center italic text-primary">Výsledky <br/>v reálném čase.</p>
+</div>
+</div>
+</section>
+<!-- Process Flow Section -->
+<section class="bg-surface-container-lowest py-xxl border-y border-outline-variant">
+<div class="max-w-7xl mx-auto px-6">
+<div class="mb-xl">
+<span class="font-label text-label text-primary uppercase">Metodika</span>
+<h2 class="font-h2 text-h2 mt-sm">Proces v 5 krocích</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-6 relative">
+<!-- Step 1 -->
+<div class="excalidraw-sketch p-md bg-white">
+<span class="font-label text-primary mb-xs block">01</span>
+<h3 class="font-h3 text-body-lg font-bold mb-sm">Discovery</h3>
+<p class="font-body-md text-secondary text-sm">Rozhovory s týmem, mapování procesů a identifikace úzkých hrdel.</p>
+</div>
+<!-- Step 2 -->
+<div class="excalidraw-sketch p-md bg-white">
+<span class="font-label text-primary mb-xs block">02</span>
+<h3 class="font-h3 text-body-lg font-bold mb-sm">Návrh</h3>
+<p class="font-body-md text-secondary text-sm">Prioritizovaný plán rozvoje s jasně definovaným ROI každého kroku.</p>
+</div>
+<!-- Step 3 -->
+<div class="excalidraw-sketch p-md bg-white">
+<span class="font-label text-primary mb-xs block">03</span>
+<h3 class="font-h3 text-body-lg font-bold mb-sm">Pilot</h3>
+<p class="font-body-md text-secondary text-sm">Fixní cena, 4–8 týdnů. První hmatatelný výsledek nasazený do praxe.</p>
+</div>
+<!-- Step 4 -->
+<div class="excalidraw-sketch p-md bg-white">
+<span class="font-label text-primary mb-xs block">04</span>
+<h3 class="font-h3 text-body-lg font-bold mb-sm">Škálování</h3>
+<p class="font-body-md text-secondary text-sm">Rozšíření úspěšného pilotu do dalších částí Vaší firmy.</p>
+</div>
+<!-- Step 5 -->
+<div class="excalidraw-sketch p-md bg-white">
+<span class="font-label text-primary mb-xs block">05</span>
+<h3 class="font-h3 text-body-lg font-bold mb-sm">Provoz</h3>
+<p class="font-body-md text-secondary text-sm">Průběžná optimalizace a podpora formou měsíčního retainerů.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Pillars Section -->
+<section class="max-w-7xl mx-auto px-6 py-xxl">
+<div class="grid grid-cols-12 gap-lg">
+<div class="col-span-12 lg:col-span-4 mb-xl lg:mb-0">
+<span class="font-label text-label text-primary uppercase">Proč my</span>
+<h2 class="font-h2 text-h2 mt-sm">5 pilířů, kterými se odlišujeme</h2>
+<p class="mt-md font-body-md text-secondary">Naše filozofie není o prodeji hodin, ale o doručení funkčního systému.</p>
+</div>
+<div class="col-span-12 lg:col-span-7 lg:col-start-6 flex flex-col gap-lg">
+<div class="flex gap-md border-b border-outline-variant pb-lg">
+<span class="text-primary font-h3">1.</span>
+<div>
+<h4 class="font-h3 text-[24px] mb-xs">Inside-out přístup</h4>
+<p class="font-body-md text-secondary">Nenasazujeme řešení shora. Nejprve nasloucháme lidem v první linii, kteří procesy skutečně žijí.</p>
+</div>
+</div>
+<div class="flex gap-md border-b border-outline-variant pb-lg">
+<span class="text-primary font-h3">2.</span>
+<div>
+<h4 class="font-h3 text-[24px] mb-xs">Pracujeme s tím, co máte</h4>
+<p class="font-body-md text-secondary">Nenutíme vás měnit ERP. Integrujeme se na vaše stávající systémy (SAP, Helios, Pohoda) a doplňujeme je o inteligentní vrstvu.</p>
+</div>
+</div>
+<div class="flex gap-md border-b border-outline-variant pb-lg">
+<span class="text-primary font-h3">3.</span>
+<div>
+<h4 class="font-h3 text-[24px] mb-xs">Žádný vendor lock-in</h4>
+<p class="font-body-md text-secondary">Vše, co vytvoříme, patří vám. Předáváme zdrojové kódy i dokumentaci. Můžete s námi skončit kdykoliv.</p>
+</div>
+</div>
+<div class="flex gap-md border-b border-outline-variant pb-lg">
+<span class="text-primary font-h3">4.</span>
+<div>
+<h4 class="font-h3 text-[24px] mb-xs">Iterativní cykly</h4>
+<p class="font-body-md text-secondary">Žádné rok trvající analýzy. Každých 14 dní vidíte reálný pokrok a funkční kód ve svém prostředí.</p>
+</div>
+</div>
+<div class="flex gap-md">
+<span class="text-primary font-h3">5.</span>
+<div>
+<h4 class="font-h3 text-[24px] mb-xs">Používáme to, co prodáváme</h4>
+<p class="font-body-md text-secondary">Všechny konzultační procesy řídíme přes náš Agentic OS. Víme přesně, kde jsou slabiny AI a kde naopak exceluje.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Tech Grid Section -->
+<section class="bg-[#FAFAF8] py-xxl border-t border-outline-variant">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-xxl">
+<h2 class="font-h2 text-h2">Naše technologie</h2>
+<p class="font-body-md text-secondary mt-sm">Moderní stack pro robustní enterprise řešení.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg">
+<div class="p-lg bg-surface-container border border-outline-variant">
+<div class="h-12 flex items-center mb-md">
+<span class="material-symbols-outlined text-primary text-3xl">dns</span>
+<span class="font-label ml-sm">Alpine VPS</span>
+</div>
+<p class="text-sm text-secondary">Ultralehká a bezpečná infrastruktura pro vaše aplikace s minimální režií.</p>
+</div>
+<div class="p-lg bg-surface-container border border-outline-variant">
+<div class="h-12 flex items-center mb-md">
+<span class="material-symbols-outlined text-primary text-3xl">account_tree</span>
+<span class="font-label ml-sm">n8n self-hosted</span>
+</div>
+<p class="text-sm text-secondary">Automatizace workflow pod vaší plnou kontrolou. Žádná data neopouští váš server.</p>
+</div>
+<div class="p-lg bg-surface-container border border-outline-variant">
+<div class="h-12 flex items-center mb-md">
+<span class="material-symbols-outlined text-primary text-3xl">neurology</span>
+<span class="font-label ml-sm">Ollama / Llama</span>
+</div>
+<p class="text-sm text-secondary">Lokální jazykové modely pro zpracování citlivých firemních dat bez cloudu.</p>
+</div>
+<div class="p-lg bg-surface-container border border-outline-variant">
+<div class="h-12 flex items-center mb-md">
+<span class="material-symbols-outlined text-primary text-3xl">hub</span>
+<span class="font-label ml-sm">ERP Integrace</span>
+</div>
+<p class="text-sm text-secondary">Hluboké propojení s Pohoda, Helios nebo SAP Business One pomocí nativních API.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 14-Day Cycle Section -->
+<section class="max-w-7xl mx-auto px-6 py-xxl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center">
+<div class="lg:col-span-5 order-2 lg:order-1">
+<img alt="Detailní plánování dvoutýdenního cyklu" class="w-full border border-outline-variant" data-alt="A clean, minimalist high-angle shot of a designer's desk with a large tablet showing a structured Gantt chart and 14-day sprint cycles. The lighting is soft and natural, coming from a large window, creating a serene and focused atmosphere. The color palette is composed of soft beiges, warm wood tones, and subtle amber highlights, embodying a modern Scandinavian workspace style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJJO9iy27Buh2K40vyQTZ_gY__33k4V46u68asJGhZ4UVpoDPJsLr1DI1QvQcBPVto-cD1FYuH6mJOC-Aie5kQ1tKTUPVUah1IxU-24Y5Oc-MgeB9hfCnJ2BvlIzIe5PAHkXOhezlFetS6DOdsUOVYml0dqa1s0BgqdK7trDJwC3fvnbgqtpg6vFhK_zBcZwzHdan6SciBA6xVLpYDoNST5wUIly7XPOEjI5WdS95bnwkfuEb7zoRTQ_U3OmmOKxjVEZZgR4dO9dA"/>
+</div>
+<div class="lg:col-span-6 lg:col-start-7 order-1 lg:order-2">
+<span class="font-label text-label text-primary uppercase">Rytmus spolupráce</span>
+<h2 class="font-h2 text-h2 mt-sm mb-md">Cyklus 2 týdnů</h2>
+<p class="font-body-lg text-body-lg text-on-surface mb-lg">
+                        Zapomeňte na "černé skříňky", kdy se konzultanti na měsíce odmlčí. Naše spolupráce běží v rychlých, předvídatelných sprintech.
+                    </p>
+<ul class="space-y-sm font-body-md text-secondary">
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary text-sm mt-1">check_circle</span>
+                            Každé pondělí: Definice cílů pro aktuální cyklus.
+                        </li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary text-sm mt-1">check_circle</span>
+                            Každý pátek: Prezentace rozpracovaného řešení.
+                        </li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary text-sm mt-1">check_circle</span>
+                            Každých 14 dní: Nasazení funkčního modulu do testovacího provozu.
+                        </li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Deliverables Section -->
+<section class="bg-surface-container-low py-xxl">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<div class="lg:col-span-4">
+<h2 class="font-h2 text-h2">Co od nás <br/>před koncem dostanete</h2>
+</div>
+<div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="p-lg bg-white border border-outline-variant">
+<span class="material-symbols-outlined text-primary mb-sm">code</span>
+<h5 class="font-label mb-xs">Zdrojové kódy</h5>
+<p class="text-sm text-secondary">Veškerý kód hostovaný na vašem GitLabu nebo GitHubu. Bez omezení licence.</p>
+</div>
+<div class="p-lg bg-white border border-outline-variant">
+<span class="material-symbols-outlined text-primary mb-sm">menu_book</span>
+<h5 class="font-label mb-xs">Provozní příručky</h5>
+<p class="text-sm text-secondary">Detailní dokumentace k procesům a technické údržbě systému.</p>
+</div>
+<div class="p-lg bg-white border border-outline-variant">
+<span class="material-symbols-outlined text-primary mb-sm">school</span>
+<h5 class="font-label mb-xs">Školení IT</h5>
+<p class="text-sm text-secondary">Intenzivní workshop pro váš interní tým, aby se mohl o systém starat sám.</p>
+</div>
+<div class="p-lg bg-white border border-outline-variant">
+<span class="material-symbols-outlined text-primary mb-sm">verified_user</span>
+<h5 class="font-label mb-xs">Smluvní garance</h5>
+<p class="text-sm text-secondary">Garance dostupnosti a kvality kódu podložená jasným SLA.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Footer -->
+<section class="max-w-7xl mx-auto px-6 py-xxl text-center">
+<div class="max-w-2xl mx-auto border border-outline-variant p-xxl bg-white">
+<h2 class="font-h2 text-h2 mb-md">Začněme malým pilotem</h2>
+<p class="font-body-lg text-secondary mb-xl">Ukážeme vám výsledky dříve, než se zavážete k velkému projektu.</p>
+<button class="bg-[#D97706] text-white px-xxl py-md rounded-[4px] font-label text-label hover:bg-amber-700 transition-all active:scale-[0.98]">
+                    Domluvit bezplatnou konzultaci
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#FAFAF8] dark:bg-stone-950 border-t border-stone-200 dark:border-stone-800">
+<div class="max-w-7xl mx-auto px-6 py-24 flex flex-col md:flex-row justify-between items-start md:items-center gap-12">
+<div class="flex flex-col gap-4">
+<span class="text-lg font-bold text-stone-900 dark:text-stone-100 font-serif">QuConsult</span>
+<p class="font-serif text-sm tracking-wide text-stone-600 dark:text-stone-400">© 2024 QuConsult. Boutique Strategy &amp; AI Engineering.</p>
+</div>
+<div class="flex flex-wrap gap-8">
+<a class="font-serif text-sm tracking-wide text-stone-500 dark:text-stone-500 hover:text-amber-600 hover:underline decoration-1 underline-offset-4 transition-all" href="#">Methodology</a>
+<a class="font-serif text-sm tracking-wide text-stone-500 dark:text-stone-500 hover:text-amber-600 hover:underline decoration-1 underline-offset-4 transition-all" href="#">Ethical AI Policy</a>
+<a class="font-serif text-sm tracking-wide text-stone-500 dark:text-stone-500 hover:text-amber-600 hover:underline decoration-1 underline-offset-4 transition-all" href="#">Privacy</a>
+<a class="font-serif text-sm tracking-wide text-stone-500 dark:text-stone-500 hover:text-amber-600 hover:underline decoration-1 underline-offset-4 transition-all" href="#">Contact</a>
+</div>
+</div>
+</footer>
+</body></html>
