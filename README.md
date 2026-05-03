@@ -1,33 +1,47 @@
-Phantom by HTML5 UP
-html5up.net | @ajlkn
-Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+# QuConsult Web
 
+Marketingový web QuConsultu (česká AI konzultantka). Astro 5 + Tailwind 4,
+deploy na GH Pages + Vercel funkce.
 
-This is Phantom, a simple design built around a grid of large, colorful, semi-interactive
-image tiles (of which you can have as many or as few as you like). Makes use of some
-SVG and animation techniques I've been experimenting with on that other project of mine
-you may have heard about (https://carrd.co), and includes a handy generic page for whatever.
+## Quickstart
 
-Demo images* courtesy of Unsplash, a radtastic collection of CC0 (public domain) images
-you can use for pretty much whatever.
+```bash
+pnpm install
+pnpm dev          # http://localhost:4321
+pnpm build        # static dist/
+pnpm preview      # serve build
+```
 
-(* = not included)
+Node 22+, pnpm 9+.
 
-AJ
-aj@lkn.io | @ajlkn
+## Strategy
 
+- `plan.md` — strategy source of truth (mateřský dokument)
+- `DESIGN_BRIEF.md` — visual rules (barvy, typografie, layout)
+- `CLAUDE.md` — pravidla pro Claude Code sessions
 
-Credits:
+Před změnou copy nebo struktury si přečtěte `plan.md` §11 (Web)
+a `DESIGN_BRIEF.md`. Před změnou strategie eskalujte na Martina.
 
-	Demo Images:
-		Unsplash (unsplash.com)
+## Deploy
 
-	Icons:
-		Font Awesome (fortawesome.github.com/Font-Awesome)
+- **Static site:** push do `master` → GH Action build → GH Pages
+  (`quconsult.cz`). Workflow: `.github/workflows/deploy-pages.yml`.
+- **API:** Vercel projekt, **Root Directory = `vercel-api/`**,
+  Framework Preset = Other. Env vars dle `CLAUDE.md` §2 a
+  `vercel-api/api/contact.ts` (RECAPTCHA_SECRET_KEY, SMTP_*,
+  NOTIFICATION_EMAIL, ALLOWED_ORIGIN).
 
-	Other:
-		jQuery (jquery.com)
-		html5shiv.js (@afarkas @jdalton @jon_neal @rem)
-		Misc. Sass functions (@HugoGiraudel)
-		Respond.js (j.mp/respondjs)
-		Skel (skel.io)
+Astro klient volá API přes `import.meta.env.PUBLIC_API_BASE_URL`
+(viz `.env.example`).
+
+## Repo struktura
+
+```
+src/            Astro pages, layouts, components, styles
+public/         Statické assety (favicon, CNAME)
+vercel-api/     Serverless funkce (separate Vercel project)
+.github/        CI/CD workflows
+```
+
+Detail v `CLAUDE.md` §5.
