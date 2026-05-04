@@ -1,0 +1,90 @@
+---
+title: "Automatizace procesů"
+eyebrow: "Provoz"
+heroSubtitle: "Odstraňujeme neviditelnou manuální práci v administrativě — od zpracování objednávek po měsíční reporty."
+metaDescription: "AI automatizace procesů pro české výrobní firmy. n8n, CrewAI, integrace s Pohodou, Heliosem, SAP B1. Pilot za 4–8 týdnů."
+summary: "Workflow automatizace tam, kde se nejvíc ztrácí čas: objednávky z e-mailu do ERP, reklamace, reporty, nabídky, dodavatelská korespondence."
+forWho: "Výrobní firmy a profesionální služby, kde administrativa rostla rychleji než systém. Typicky 50–300 zaměstnanců s ERP nasazeným 5–15 let."
+typicalOutcome: "Úspora 20–50 % času na opakovaných úkonech, méně chyb, rychlejší reakce na zákazníky, uvolnění týmu na práci s přidanou hodnotou."
+priceFrom: "150 000 Kč"
+pricingNote: "Pilotní implementace 4–8 týdnů, fixní cena. Rozšíření v režimu T&M."
+deliveryModel: "Fixní cena za pilotní fázi, T&M za rozšíření. Vždy začínáme jedním procesem."
+tags:
+  - n8n
+  - Pohoda
+  - Helios
+  - SAP B1
+seoKeywords:
+  - automatizace procesů AI
+  - automatizace procesů ve výrobě
+  - AI a Pohoda
+  - integrace Helios s AI
+  - n8n self-hosted
+order: 2
+primaryEntry: false
+faq:
+  - question: "Proč n8n a ne Make.com nebo Zapier?"
+    answer: "n8n běží self-hosted na vaší infrastruktuře. Data nikdy neopustí firmu, ceny se nešroubují s každým dalším workflow, a po předání projektu si systém spravujete sami. Make a Zapier jsou rychlé na start, ale dlouhodobě drahé a vendor-lock-in po měsících narůstá."
+  - question: "Umíte se napojit na Pohodu / Helios / SAP B1?"
+    answer: "Ano, všechny tři jsou v naší standardní výbavě. Pohoda přes XML import, Helios přes REST API a databázové view, SAP Business One přes Service Layer. Pokud máte jiný ERP, projdeme integrační možnosti v rámci discovery."
+  - question: "Co se stane, když n8n upgradne a něco se rozbije?"
+    answer: "Verzujeme self-hosted instanci, upgrady děláme v sandboxu nejdřív. V rámci provozního retaineru sledujeme upstream changelogy a o breaking change vás informujeme dopředu."
+  - question: "Jaký je první projekt, který doporučujete?"
+    answer: "Nejčastější quick win je zpracování příchozích objednávek — PDF nebo Excel z e-mailu se rozparsuje, validuje proti ceníku a vystaví do ERP jako návrh. Vyčlenění hodin je viditelné týdně, ROI většinou do 6 měsíců."
+  - question: "Co když po pilotu chceme pokračovat sami?"
+    answer: "Můžete. Předáváme zdrojové kódy workflow, dokumentaci a hodinové školení vašeho IT. Žádné licence, žádné smluvní zamknutí. Většina klientů zůstává v retainerové spolupráci, ale je to jejich volba."
+---
+
+## Typické příklady
+
+Šest situací, které se opakují u většiny mid-market výrobních firem
+a odborných služeb:
+
+- **Zákaznické objednávky e-mailem.** PDF nebo Excel z e-mailu se ručně
+  přepisuje do ERP. Workflow rozpozná dokument, extrahuje položky, validuje
+  proti ceníku a založí návrh objednávky pro schválení.
+- **Reklamace a neshody.** Místo Excelu chronologický záznam v jednom
+  místě, automatická kategorizace, měsíční report bez ručního agregování.
+- **Měsíční / týdenní reporty.** Ekonom dnes sestavuje 4–8 hodin ručně
+  z několika systémů. Po automatizaci běží reporty v noci, ráno čekají
+  v inboxu.
+- **Nabídky a kalkulace.** Standardizované poptávky se vyřídí do hodiny
+  místo dnů. Komplexní zůstávají manuální, ale s předpřipraveným podkladem.
+- **Komunikace s dodavateli.** Stovky e-mailů týdně někdo čte ručně.
+  Klasifikace, prioritizace, automatické rešerše historie.
+- **Dokumentace kvality (ISO, IATF, BRC).** Souběžné vedení v ERP, Excelu
+  a papírově se sjednotí do jednoho zdroje pravdy s auditní stopou.
+
+## Naše technologie
+
+**n8n self-hosted** je naše preferovaná platforma pro většinu workflow.
+Open source, GDPR-friendly, běží na vaší infrastruktuře. Levné na provoz,
+levné na rozšíření, žádné per-execution poplatky.
+
+**CrewAI** používáme pro multi-agentní toky, kde jeden krok nestačí — typicky
+analýza dokumentů, kde jeden agent extrahuje, druhý validuje, třetí klasifikuje.
+
+**Integrace** stavíme přímo na cílový systém: Pohoda XML import, Helios REST,
+SAP Business One Service Layer, MS Dynamics NAV/BC, e-mail (IMAP/Graph),
+SharePoint, Google Workspace.
+
+**LLM vrstva** je modulární — OpenAI, Anthropic, Mistral pro cloudové use-casy,
+Ollama s Llama nebo Gemma pro on-premise, kde data nesmí opustit firmu.
+
+## Bezpečnost a GDPR
+
+Self-hosted je výchozí volba. Všechna firemní data zůstávají na vaší
+infrastruktuře nebo u zpracovatele, kterého vy zvolíte. Cloudová LLM používáme
+jen tam, kde data nejsou citlivá a kde to dává ekonomický smysl. U citlivých
+dat (zákaznická data, mzdy, zdravotní informace) doporučujeme on-premise
+modely.
+
+GDPR audit je součástí implementace, ne dodatek na konci. Pravidla retence,
+logování přístupů, právo být zapomenut — všechno řešíme v návrhu, ne
+v reakci na první stížnost.
+
+## Jak začínáme
+
+Vždy jedním procesem. Není smysl rozjet pět workflow naráz — naučte se na
+jednom, který bolí nejvíc, a zbytek přijde pak. Pilot za 4–8 týdnů má fixní
+cenu a měřitelný výsledek do měsíce po nasazení.
