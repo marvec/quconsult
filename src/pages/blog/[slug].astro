@@ -1,0 +1,23 @@
+---
+// /blog/[slug] — render každého publikovaného článku přes BlogPostLayout.
+//
+// getStaticPaths vyfiltruje placeholder a draft — ty se na produkci negenerují.
+// Pro lokální preview (Martin píše finál) stačí flagnout placeholder: false.
+
+import { getCollection, render } from 'astro:content';
+import BlogPostLayout from '../../layouts/BlogPostLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('blog', ({ data }) => !data.placeholder && !data.draft);
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+<BlogPostLayout entry={entry}>
+  <Content />
+</BlogPostLayout>
