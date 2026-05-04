@@ -1,0 +1,119 @@
+---
+// /sluzby — rozcestník. Phase 3 §3.2.
+// Stitch winner 02-sluzby-A 54de8329 (decisions.md §2).
+
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const services = (await getCollection('sluzby')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const startSteps = [
+  {
+    n: 1,
+    title: 'Bezplatná konzultace',
+    body: 'Čtyřicet pět minut po telefonu nebo on-line. Posloucháme, kde tlačí bota, a řekneme, jestli to umíme řešit. Pokud ne, doporučíme někoho, kdo umí.',
+  },
+  {
+    n: 2,
+    title: 'Discovery',
+    body: 'Dva týdny soustředěné práce s pevnou cenou. Mapujeme procesy, data, lidi, příležitosti. Výstup je prioritizovaný plán s business case v korunách.',
+  },
+  {
+    n: 3,
+    title: 'Pilot nebo retainer',
+    body: 'Buď konkrétní pilotní implementace s fixní cenou, nebo měsíční advisory retainer pro firmy, které mají vlastní tým a potřebují směr.',
+  },
+];
+
+const dontDo = [
+  'Neprodáváme AI jako "budoucnost" — prodáváme konkrétní výsledky v korunách.',
+  'Neděláme 18měsíční transformační projekty. Pilot do 8 týdnů, jinak to neumíme.',
+  'Nenahrazujeme váš IT tým — naopak ho učíme, aby si systém po roce řídil sám.',
+  'Nevážeme vás na drahé cloudové licence. Self-hosted nebo open-source kdekoli to dává smysl.',
+  'Neprodáváme Agentic OS jako SaaS produkt. Vždy implementace na míru s předáním.',
+];
+---
+<BaseLayout
+  title="Služby — QuConsult"
+  description="Čtyři služby AI poradenství: Analýza a strategie, Automatizace procesů, (Nejen) AI školení, Implementace a vývoj. Pro české firmy 50–300 zaměstnanců."
+>
+  <Hero eyebrow="Služby" subtitle="Čtyři hlavní činnosti. Klient typicky začíná u Analýzy a strategie — odtud se otevírají cesty k dalším třem podle reálné bolesti.">
+    Co pro vás <span class="italic text-amber">děláme</span>
+  </Hero>
+
+  <section class="container-quc pb-xxl">
+    <div class="grid gap-md md:grid-cols-2">
+      {services.map((s, i) => (
+        <ServiceCard
+          number={i + 1}
+          title={s.data.title}
+          blurb={s.data.summary}
+          href={`/sluzby/${s.id}`}
+          forWho={s.data.forWho}
+          outcome={s.data.typicalOutcome}
+          priceFrom={s.data.priceFrom}
+          tags={s.data.tags}
+          variant="full"
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-bg-warm">
+    <div class="container-quc py-xxl">
+      <div class="max-w-3xl">
+        <p class="text-label uppercase tracking-wider text-amber">Postup</p>
+        <h2 class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop">Jak začít</h2>
+        <p class="mt-md text-body-lg text-ink-muted">
+          Tři kroky bez závazků mezi nimi. Po každém se rozhodujete, jestli
+          pokračovat. Žádný balíček, žádný "podpis na dlouhý úvazek".
+        </p>
+      </div>
+
+      <ol class="mt-xl grid gap-xl md:grid-cols-3">
+        {startSteps.map((step) => (
+          <li class="flex flex-col">
+            <span
+              class="flex h-14 w-14 items-center justify-center rounded-full border border-amber bg-bg font-serif text-2xl text-amber"
+              aria-hidden="true"
+            >
+              {step.n}
+            </span>
+            <h3 class="mt-md font-serif text-xl text-ink md:text-2xl">{step.title}</h3>
+            <p class="mt-sm text-body text-ink-muted">{step.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="container-quc py-xxl">
+    <div class="grid gap-xl md:grid-cols-[1fr_2fr]">
+      <div>
+        <p class="text-label uppercase tracking-wider text-amber">Vymezení</p>
+        <h2 class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop">Co neděláme</h2>
+        <p class="mt-md text-body text-ink-muted">
+          Stejně důležité jako co umíme. Bez vymezení by sliby ztratily váhu.
+        </p>
+      </div>
+      <ul class="space-y-lg border-l border-border pl-xl">
+        {dontDo.map((item) => (
+          <li class="text-body-lg text-ink">{item}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <CTASection
+    title="Nejistí, kde začít?"
+    subtitle="Při bezplatné konzultaci poradíme, která ze čtyř služeb dává u vás smysl jako první. A jestli vůbec — někdy je nejlepší rada počkat."
+    primaryCta={{ label: 'Domluvit konzultaci', href: '/kontakt' }}
+    secondaryCta={{ label: 'Jak konkrétně pracujeme', href: '/jak-pracujeme' }}
+    variant="plain"
+  />
+</BaseLayout>
