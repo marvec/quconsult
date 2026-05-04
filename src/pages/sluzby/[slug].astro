@@ -81,30 +81,22 @@ const faqSchema = data.faq.length > 0 ? {
     {data.title}
   </Hero>
 
-  <!-- Pro koho — 3 karty (Stitch fix: převzít 3-card layout z B) -->
+  <!-- Pro koho — 3 karty per Stitch B 2e720bb7. Audiences ve frontmatter -->
   <section class="bg-bg-warm">
     <div class="container-quc py-xxl">
-      <div class="grid gap-xl md:grid-cols-[1fr_2fr]">
-        <div>
-          <p class="text-label uppercase tracking-wider text-amber">Pro koho je tato služba</p>
-          <h2 class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop">
-            Komu pomáhá nejvíc
-          </h2>
-        </div>
-        <div class="grid gap-md md:grid-cols-3">
-          <div class="rounded border border-border bg-bg p-lg">
-            <p class="text-label uppercase tracking-wider text-ink-soft">Pro koho</p>
-            <p class="mt-sm text-body text-ink">{data.forWho}</p>
-          </div>
-          <div class="rounded border border-border bg-bg p-lg">
-            <p class="text-label uppercase tracking-wider text-ink-soft">Typický výsledek</p>
-            <p class="mt-sm text-body text-ink">{data.typicalOutcome}</p>
-          </div>
-          <div class="rounded border border-border bg-bg p-lg">
-            <p class="text-label uppercase tracking-wider text-ink-soft">Forma spolupráce</p>
-            <p class="mt-sm text-body text-ink">{data.deliveryModel}</p>
-          </div>
-        </div>
+      <div class="max-w-3xl">
+        <p class="text-label uppercase tracking-wider text-amber">Cílové skupiny</p>
+        <h2 class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop">
+          Pro koho je tato služba určená
+        </h2>
+      </div>
+      <div class="mt-xl grid gap-md md:grid-cols-3">
+        {data.audiences.map((a) => (
+          <article class="rounded border border-border bg-bg p-lg">
+            <h3 class="font-serif text-xl text-ink md:text-2xl">{a.title}</h3>
+            <p class="mt-md text-body text-ink-muted">{a.body}</p>
+          </article>
+        ))}
       </div>
     </div>
   </section>
