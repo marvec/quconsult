@@ -177,6 +177,94 @@ const deliverables = [
         </p>
       </aside>
     </div>
+
+    <!-- Excalidraw-style diagram cyklu (per plan §8 ručně-kreslené diagramy) -->
+    <figure class="mt-xxl">
+      <svg
+        viewBox="0 0 800 320"
+        class="mx-auto block w-full max-w-3xl"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-labelledby="cycle-diagram-title"
+      >
+        <title id="cycle-diagram-title">
+          Schéma dvoutýdenního cyklu — Pondělí 1, Pátek 1, Pátek 2 a návrat do dalšího cyklu
+        </title>
+        <defs>
+          <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="3" />
+            <feDisplacementMap in="SourceGraphic" scale="2" />
+          </filter>
+          <marker
+            id="arrow"
+            viewBox="0 0 10 10"
+            refX="8"
+            refY="5"
+            markerWidth="8"
+            markerHeight="8"
+            orient="auto"
+          >
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#D97706" />
+          </marker>
+        </defs>
+
+        <g filter="url(#rough)" font-family="Noto Serif, Georgia, serif">
+          <!-- 3 nody na řadě -->
+          <g>
+            <circle cx="120" cy="120" r="58" fill="#FAFAF8" stroke="#1A1A1A" stroke-width="2" />
+            <text x="120" y="115" text-anchor="middle" font-size="20" fill="#1A1A1A">Pondělí</text>
+            <text x="120" y="140" text-anchor="middle" font-size="14" fill="#555555">1. týden</text>
+          </g>
+          <g>
+            <circle cx="400" cy="120" r="58" fill="#FAFAF8" stroke="#1A1A1A" stroke-width="2" />
+            <text x="400" y="115" text-anchor="middle" font-size="20" fill="#1A1A1A">Pátek</text>
+            <text x="400" y="140" text-anchor="middle" font-size="14" fill="#555555">1. týden</text>
+          </g>
+          <g>
+            <circle cx="680" cy="120" r="58" fill="#FAFAF8" stroke="#1A1A1A" stroke-width="2" />
+            <text x="680" y="115" text-anchor="middle" font-size="20" fill="#1A1A1A">Pátek</text>
+            <text x="680" y="140" text-anchor="middle" font-size="14" fill="#555555">2. týden</text>
+          </g>
+
+          <!-- Šipky mezi nody -->
+          <path
+            d="M 180 118 Q 290 90 340 118"
+            fill="none"
+            stroke="#D97706"
+            stroke-width="2"
+            marker-end="url(#arrow)"
+          />
+          <path
+            d="M 460 118 Q 570 90 620 118"
+            fill="none"
+            stroke="#D97706"
+            stroke-width="2"
+            marker-end="url(#arrow)"
+          />
+
+          <!-- Mini popisky nad šipkami -->
+          <text x="260" y="80" text-anchor="middle" font-size="12" fill="#888888" font-style="italic">demo</text>
+          <text x="540" y="80" text-anchor="middle" font-size="12" fill="#888888" font-style="italic">nasazení</text>
+
+          <!-- Return arrow — velký oblouk dole zpátky k Pondělí dalšího cyklu -->
+          <path
+            d="M 680 178 Q 680 280 400 280 Q 120 280 120 200"
+            fill="none"
+            stroke="#D97706"
+            stroke-width="2"
+            stroke-dasharray="6 4"
+            marker-end="url(#arrow)"
+          />
+          <text x="400" y="305" text-anchor="middle" font-size="13" fill="#555555" font-style="italic">
+            další cyklus — Pondělí 3. týdne
+          </text>
+        </g>
+      </svg>
+      <figcaption class="mx-auto mt-md max-w-2xl text-center text-label text-ink-soft">
+        Tři pevné body v cyklu. Zbytek dvou týdnů je tichá soustředěná práce —
+        bez schůzek navíc, bez statusů, bez slidů.
+      </figcaption>
+    </figure>
   </section>
 
   <section class="bg-bg-warm">
