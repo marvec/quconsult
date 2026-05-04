@@ -1,0 +1,92 @@
+---
+title: "AI Implementace a vývoj"
+eyebrow: "Custom development"
+heroSubtitle: "Stavíme custom AI řešení tam, kde hotové platformy nestačí. Vždy s předáním zdrojových kódů a dokumentace."
+metaDescription: "Vývoj AI na míru pro české firmy. RAG nad firemními dokumenty, Agentic OS, on-premise deploy, integrace do existujících aplikací. Žádný vendor lock-in."
+summary: "Custom AI tam, kde hotová platforma nestačí: chatboti nad dokumenty, Agentic OS, RAG pipelines, on-premise modely. Vždy se zdrojovými kódy."
+forWho: "CTO, IT manažery a technicky vyzrálé firmy s konkrétní potřebou, která prošla advisory fází. Žádný vývoj naslepo, žádné PoC bez plánu."
+typicalOutcome: "Funkční AI systém v produkci, plná dokumentace, předaný kód. Váš tým ho po 6–12 měsících rozvíjí sám, my zůstáváme jako sparring partner."
+priceFrom: "150 000 Kč"
+pricingNote: "Pilotní implementace fixní cena od 150 000 Kč. Agentic OS implementace + retainer od 375 000 Kč. Nikdy SaaS licence."
+deliveryModel: "Fixní cena za pilot, T&M za rozšíření. Agentic OS prodáváme vždy jako implementaci + retainer, nikdy jako licenci."
+tags:
+  - Agentic OS
+  - RAG
+  - On-premise
+  - Open source
+seoKeywords:
+  - AI implementace
+  - chatbot pro firmy
+  - AI vývoj na míru
+  - on-premise AI
+  - RAG nad dokumenty
+order: 4
+primaryEntry: false
+faq:
+  - question: "Co je Agentic OS?"
+    answer: "Systém AI agentů, kterým řídíme vlastní firmu. Spravuje úkoly, generuje reporty, dělá research, pomáhá s rozhodováním. Klientům ho stavíme na míru — stejnou architekturu přizpůsobenou jejich procesům. Nikdy jako SaaS produkt, vždy jako implementaci s předáním."
+  - question: "Děláte i čistou integraci AI do našeho stávajícího systému?"
+    answer: "Ano. Typicky AI funkce do existující webové aplikace, vyhledávání nad interními dokumenty, AI klasifikace v ticketovacím systému. REST API, GraphQL, MCP protokol — co váš stack podporuje."
+  - question: "Můžeme provozovat všechno on-premise?"
+    answer: "Ano, on-premise je u nás standardní volba pro citlivá data. Používáme Ollama s Llama, Mistral nebo Gemma modely. Pro většinu kancelářských úkonů dnes lokální modely stačí. U sofistikovanějších úloh (komplexní reasoning) doporučujeme hybridní přístup."
+  - question: "Jak funguje předání kódu po projektu?"
+    answer: "Git repository je vaše vlastnictví od prvního commitu. Dokumentaci píšeme průběžně, ne na konci. Předání zahrnuje hodinové školení vašeho IT, runbooky pro provozní situace a smluvní garanci, že vše potřebné jsme předali."
+  - question: "Proč Agentic OS neprodáváte jako SaaS?"
+    answer: "SaaS by znamenal vendor lock-in — opak toho, co slibujeme. A znamenal by, že jeden produkt řeší všechny firmy stejně, což nefunguje. Každá firma má jiné procesy, jiné systémy, jiná data. Custom implementace + retainer je jediná cesta, jak skutečně přizpůsobit."
+  - question: "Můžeme začít implementací bez advisory fáze?"
+    answer: "Pro malé samostatné integrace ano (např. AI vyhledávání nad SharePointem). Pro Agentic OS a větší projekty trváme na předchozí Analýze a strategii — bez ní stavíme naslepo a klient nedostane, co potřebuje."
+---
+
+## Typické výstupy
+
+- **Chatboti nad firemními dokumenty.** Asistent znalý smluv, manuálů,
+  interních směrnic. Odpovídá s citacemi, ne halucinacemi.
+- **AI integrace do existujících aplikací.** Klasifikace ticketů, predikce
+  termínů, doporučení dalšího kroku — přímo v rozhraní, které tým už používá.
+- **Dokumentové RAG pipelines.** Příchozí faktury, smlouvy a reklamace
+  se rozparsují, validují a kategorizují. Strukturovaný výstup do ERP.
+- **Analytické dashboardy s predikcí.** Klasické BI rozšířené o AI
+  predikci poptávky, anomálií, rizik dodavatelů.
+- **On-premise deploy s lokálními modely.** Tam, kde data nesmí opustit
+  firmu — interní AI asistent, který běží na vašem serveru.
+
+## Agentic OS jako ukázka, ne produkt
+
+Agentic OS je systém AI agentů, kterým řídíme vlastní firmu. Spravuje
+projekty, generuje reporty, dělá research, pomáhá s rozhodováním. Není
+to produkt na prodej — je to **živá demonstrace** toho, co umíme postavit.
+
+Klientům stavíme Agentic OS na míru: stejnou architekturu, ale s vašimi
+procesy, vašimi systémy, vašimi daty. Vždy po Analýze a strategii — bez
+ní by to byl agent, který neví, čím má pomáhat.
+
+Prodáváme jen jako **implementaci + retainer**. Žádné licence, žádné SaaS
+předplatné. Po projektu je systém váš. My zůstáváme jako provozní partner,
+dokud chcete.
+
+## Vendor lock-in? Nikdy
+
+Co dostáváte na konci projektu:
+
+- **Zdrojové kódy** v git repository, který vlastníte od commitu jedna.
+- **Dokumentaci** psanou průběžně — architektura, runbooky, deployment guide.
+- **Hodinové předávání** vašemu IT, video záznam pro nové členy.
+- **Smluvní garanci**, že po předání jste plně samostatní. Můžete pracovat
+  s námi, s konkurencí, sami — váš výběr.
+
+Otevřené standardy (MCP protokol, OpenAI-kompatibilní API) volíme přednostně.
+Vendor-specifické funkce používáme jen tam, kde je to opodstatněné, a vždy
+to vlajkujeme.
+
+## Náš stack
+
+- **Infrastruktura:** Alpine Linux VPS, Authelia, fail2ban, certbot.
+  Vlastní self-hosted stack, který sami provozujeme produkčně.
+- **AI vrstva:** Anthropic Claude, OpenAI, Mistral pro cloud. Ollama
+  s Llama 3, Gemma 3 pro on-premise.
+- **Orchestrace:** n8n self-hosted, CrewAI multi-agent, Paperclip
+  pro řízení agentních úkolů.
+- **Vývojové prostředí:** Claude Code, vlastní CEL VM pro bezpečnou
+  exekuci agentů, Git workflow s AI.
+- **Integrace:** REST, GraphQL, MCP, Pohoda XML, Helios API, SAP B1
+  Service Layer, MS Graph, Google Workspace API.
