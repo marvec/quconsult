@@ -1,0 +1,274 @@
+---
+// /sluzby/[slug] — service detail. Phase 3 §3.3–§3.6.
+// Stitch winner 920634b5 (A) + 3-card "Pro koho" z 2e720bb7 (B). Per decisions.md §3.
+//
+// Šablona je dynamická pro 4 služby. Tělo s konkrétními sekcemi
+// ("Datová připravenost", "Naše technologie", "Pro management"…)
+// žije v MDX souborech v src/content/sluzby/.
+
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import CTASection from '../../components/CTASection.astro';
+
+export async function getStaticPaths() {
+  const services = await getCollection('sluzby');
+  return services.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const data = entry.data;
+
+const isPrimary = data.primaryEntry;
+
+// 4 univerzální fáze spolupráce — stejné napříč službami (per plan §3.3 "Jak spolupracujeme")
+const phases = [
+  { n: 1, title: 'Konzultace', body: '45 min nezávazného hovoru o tom, kde tlačí bota a jestli to umíme řešit.' },
+  { n: 2, title: 'Discovery', body: '2 týdny soustředěné práce s pevnou cenou. Audit dat, procesů, lidí.' },
+  { n: 3, title: 'Návrh plánu', body: 'Prioritizovaný roadmap s business case v korunách, technický návrh, plán pilotu.' },
+  { n: 4, title: 'Pilot', body: 'Konkrétní implementace 4–8 týdnů s fixní cenou nebo měsíční retainer.' },
+];
+
+// JSON-LD Service + FAQPage schema (CLAUDE.md §4 "Schema.org always rule")
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: data.title,
+  description: data.metaDescription,
+  provider: {
+    '@type': 'Organization',
+    name: 'QuConsult',
+    url: 'https://quconsult.cz',
+  },
+  areaServed: { '@type': 'Country', name: 'Czech Republic' },
+  serviceType: data.tags.join(', '),
+  offers: {
+    '@type': 'Offer',
+    priceCurrency: 'CZK',
+    price: data.priceFrom.replace(/\D/g, ''),
+    description: data.deliveryModel,
+  },
+};
+
+const faqSchema = data.faq.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: data.faq.map((q) => ({
+    '@type': 'Question',
+    name: q.question,
+    acceptedAnswer: { '@type': 'Answer', text: q.answer },
+  })),
+} : null;
+---
+<BaseLayout title={`${data.title} — QuConsult`} description={data.metaDescription}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  {faqSchema && (
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  )}
+
+  <Hero
+    eyebrow={data.eyebrow ?? 'Služba'}
+    subtitle={data.heroSubtitle}
+    primaryCta={{ label: 'Domluvit bezplatnou konzultaci', href: '/kontakt' }}
+    secondaryCta={isPrimary
+      ? { label: 'AI Readiness Assessment', href: '/ai-readiness' }
+      : { label: 'Všechny služby', href: '/sluzby' }}
+  >
+    {data.title}
+  </Hero>
+
+  <!-- Pro koho — 3 karty (Stitch fix: převzít 3-card layout z B) -->
+  <section class="bg-bg-warm">
+    <div class="container-quc py-xxl">
+      <div class="grid gap-xl md:grid-cols-[1fr_2fr]">
+        <div>
+          <p class="text-label uppercase tracking-wider text-amber">Pro koho je tato služba</p>
+          <h2 class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop">
+            Komu pomáhá nejvíc
+          </h2>
+        </div>
+        <div class="grid gap-md md:grid-cols-3">
+          <div class="rounded border border-border bg-bg p-lg">
+            <p class="text-label uppercase tracking-wider text-ink-soft">Pro koho</p>
+            <p class="mt-sm text-body text-ink">{data.forWho}</p>
+          </div>
+          <div class="rounded border border-border bg-bg p-lg">
+            <p class="text-label uppercase tracking-wider text-ink-soft">Typický výsledek</p>
+            <p class="mt-sm text-body text-ink">{data.typicalOutcome}</p>
+          </div>
+          <div class="rounded border border-border bg-bg p-lg">
+            <p class="text-label uppercase tracking-wider text-ink-soft">Forma spolupráce</p>
+            <p class="mt-sm text-body text-ink">{data.deliveryModel}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tělo z MDX — sekce "Co konkrétně děláme", "Datová připravenost", atd. -->
+  <section class="container-quc py-xxl">
+    <div class="prose-quc max-w-3xl">
+      <Content />
+    </div>
+  </section>
+
+  <!-- Jak spolupracujeme — 4 fáze (univerzální napříč službami) -->
+  <section class="bg-bg-warm">
+    <div class="container-quc py-xxl">
+      <div class="max-w-3xl">
+        <p class="text-label uppercase tracking-wider text-amber">Postup</p>
+        <h2 class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop">
+          Jak spolupracujeme
+        </h2>
+        <p class="mt-md text-body-lg text-ink-muted">
+          Čtyři fáze. Po každé se rozhodujete, jestli pokračovat — žádný balíček
+          podepisovaný napřed.
+        </p>
+      </div>
+      <ol class="mt-xl grid gap-xl sm:grid-cols-2 md:grid-cols-4">
+        {phases.map((p) => (
+          <li class="flex flex-col">
+            <span
+              class="flex h-12 w-12 items-center justify-center rounded-full border border-amber bg-bg font-serif text-xl text-amber"
+              aria-hidden="true"
+            >
+              {p.n}
+            </span>
+            <h3 class="mt-md font-serif text-xl text-ink">{p.title}</h3>
+            <p class="mt-sm text-body text-ink-muted">{p.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Cena -->
+  <section class="container-quc py-xxl">
+    <div class="max-w-2xl">
+      <p class="text-label uppercase tracking-wider text-amber">Investice</p>
+      <h2 class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop">
+        Orientační cena
+      </h2>
+      <p class="mt-md text-body-lg text-ink-muted">
+        Fixní cena tam, kde je rozsah jasný. Hodinová sazba pro průběžnou
+        spolupráci. Žádné překvapení v posledním e-mailu před fakturou.
+      </p>
+    </div>
+    <div class="mt-xl rounded border border-border bg-bg-warm/40 p-xl">
+      <div class="grid gap-xl md:grid-cols-[2fr_1fr] md:items-center">
+        <div>
+          <p class="text-label uppercase tracking-wider text-ink-soft">Od</p>
+          <p class="mt-sm font-serif text-4xl text-ink md:text-5xl">{data.priceFrom}</p>
+          {data.pricingNote && (
+            <p class="mt-md text-body text-ink-muted">{data.pricingNote}</p>
+          )}
+        </div>
+        <a
+          href="/kontakt"
+          class="inline-flex items-center justify-center rounded bg-amber px-lg py-md text-label font-medium text-bg transition-colors hover:bg-amber-deep"
+        >
+          Vyžádat nabídku
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  {data.faq.length > 0 && (
+    <section class="bg-bg-warm">
+      <div class="container-quc py-xxl">
+        <div class="max-w-3xl">
+          <p class="text-label uppercase tracking-wider text-amber">Otázky</p>
+          <h2 class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop">
+            Časté dotazy
+          </h2>
+        </div>
+        <ul class="mt-xl max-w-3xl space-y-md">
+          {data.faq.map((q) => (
+            <li>
+              <details class="group rounded border border-border bg-bg p-lg">
+                <summary class="cursor-pointer list-none">
+                  <div class="flex items-start justify-between gap-md">
+                    <h3 class="font-serif text-xl text-ink">{q.question}</h3>
+                    <span
+                      class="mt-1 flex-shrink-0 text-2xl text-amber transition-transform group-open:rotate-45"
+                      aria-hidden="true"
+                    >+</span>
+                  </div>
+                </summary>
+                <p class="mt-md text-body text-ink-muted">{q.answer}</p>
+              </details>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <CTASection
+    title="Začněme rozhovorem, ne projektem"
+    subtitle="Bezplatná 45minutová konzultace. Probereme, co řešíte, a řekneme rovnou, jestli to umíme. Pokud ne, doporučíme někoho jiného."
+    primaryCta={{ label: 'Domluvit konzultaci', href: '/kontakt' }}
+    secondaryCta={{ label: 'Všechny služby', href: '/sluzby' }}
+    variant="amber"
+  />
+</BaseLayout>
+
+<style is:global>
+  /* Typography pro MDX tělo služeb. Scoped jen na .prose-quc wrapper. */
+  .prose-quc h2 {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    line-height: 1.2;
+    margin-top: 48px;
+    margin-bottom: 16px;
+    color: var(--color-ink);
+  }
+  .prose-quc h3 {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    line-height: 1.3;
+    margin-top: 32px;
+    margin-bottom: 12px;
+    color: var(--color-ink);
+  }
+  .prose-quc p {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    color: var(--color-ink-muted);
+    font-size: 17px;
+    line-height: 1.7;
+  }
+  .prose-quc ul,
+  .prose-quc ol {
+    margin: 16px 0;
+    padding-left: 24px;
+    color: var(--color-ink-muted);
+    font-size: 17px;
+    line-height: 1.7;
+  }
+  .prose-quc li {
+    margin-top: 8px;
+  }
+  .prose-quc strong {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+  .prose-quc a {
+    color: var(--color-amber);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgb(217 119 6 / 0.4);
+  }
+  .prose-quc a:hover {
+    text-decoration-color: var(--color-amber);
+  }
+  .prose-quc h2:first-child,
+  .prose-quc h3:first-child {
+    margin-top: 0;
+  }
+</style>
