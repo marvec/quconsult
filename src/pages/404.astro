@@ -1,28 +1,49 @@
 ---
+// /404 — Phase 3 §3.14.
+// Stitch winner e9edc6a7 (decisions.md §11). Hero serif Q + amber tečka per Stitch
+// (Q-mark logo z Headeru/Footeru se zde neopakuje — místo toho velký
+// dekorativní "Q." jako brand callback bez korporátnosti).
+
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout
   title="Tady to není — QuConsult"
-  description="Stránka, kterou hledáte, neexistuje. Pomůžeme vám najít cestu zpět."
+  description="Stránka, kterou hledáte, neexistuje nebo byla přesunuta. Pomůžeme vám najít cestu zpět."
 >
-  <section class="container-quc py-xxl text-center">
+  <section class="container-quc flex min-h-[60vh] flex-col items-center justify-center py-xxl text-center">
     <p class="text-label uppercase tracking-wider text-amber">404</p>
 
-    <h1 class="mt-md font-serif text-h1-mobile leading-[1.1] tracking-tight md:text-h1-desktop">
+    <div class="mt-md font-serif text-[200px] leading-none text-ink md:text-[280px]" aria-hidden="true">
+      <span class="relative">
+        Q<span class="text-amber">.</span>
+      </span>
+    </div>
+
+    <h1 class="mt-xl font-serif text-h1-mobile leading-[1.1] tracking-tight md:text-h1-desktop">
       Tady to není
     </h1>
 
     <p class="mx-auto mt-lg max-w-2xl text-body-lg text-ink-muted">
-      Stránka, kterou hledáte, neexistuje nebo byla přesunuta. Možná jste se
-      překlepli, nebo jsme něco přejmenovali.
+      Stránku, kterou hledáte, jsme buď přejmenovali, nebo se ztratila někde
+      mezi servery. Tak či tak za ni můžeme my.
     </p>
 
-    <div class="mt-xl flex justify-center">
+    <p class="mx-auto mt-md max-w-2xl text-body italic text-ink-soft">
+      Pokud jste sem přišli z odkazu, dejte nám vědět — opravíme to.
+    </p>
+
+    <div class="mt-xl flex flex-wrap items-center justify-center gap-md">
       <a
         href="/"
         class="inline-flex items-center rounded bg-amber px-lg py-md text-label font-medium text-bg transition-colors hover:bg-amber-deep"
       >
-        Zpátky na úvod
+        Zpět na úvod
+      </a>
+      <a
+        href="/kontakt"
+        class="inline-flex items-center rounded border border-ink px-lg py-md text-label font-medium text-ink transition-colors hover:border-amber hover:text-amber"
+      >
+        Napsat nám
       </a>
     </div>
   </section>
