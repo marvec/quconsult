@@ -38,6 +38,14 @@
   /* Layout (plan §8.4) */
   --container-max: 1200px;
 
+  /* GOTCHA: Tailwind 4 max-w-{name} compiles to `max-width: var(--spacing-{name})`
+     directly (NOT --container-*). The custom `--spacing-{xs,sm,md,lg,xl}` above
+     therefore breaks `max-w-xs/sm/md/lg/xl` (they become 4–48 px wide).
+     Use these workarounds instead:
+       - `max-w-2xl` / `max-w-3xl` / `max-w-4xl` (no spacing collision)
+       - arbitrary `max-w-[24rem]` for explicit values
+     `--spacing-xxl` does not collide because Tailwind has no `xxl` size name. */
+
   /* Radius (mírné zakulacení 4–6 px, plan §8.4) */
   --radius-sm: 2px;
   --radius: 4px;

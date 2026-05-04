@@ -1,40 +1,172 @@
 ---
+// Homepage smoke-test render (Phase 1 D1).
+// Wires Hero + ValueProp + ServiceCard + TeamMember + CTASection together
+// with placeholder content so we can visually verify components.
+// Final copy + Agentic OS proof block + blog teaser comes in Phase 3 §3.1.
+
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ValueProp from '../components/ValueProp.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import TeamMember from '../components/TeamMember.astro';
+import CTASection from '../components/CTASection.astro';
+
+const valueProps = [
+  {
+    number: '01',
+    title: 'Inside-out, ne outside-in',
+    body: 'Nepřinášíme univerzální šablonu. Začínáme tím, co u vás reálně bolí, a hledáme nejmenší smysluplný krok.',
+  },
+  {
+    number: '02',
+    title: 'Žádný vendor lock-in',
+    body: 'Předáváme zdrojové kódy, dokumentaci a know-how. Cílem je, aby nás váš tým za 6–12 měsíců nepotřeboval.',
+  },
+  {
+    number: '03',
+    title: 'Používáme to, co prodáváme',
+    body: 'Vlastní firmu řídíme s Agentic OS — tím samým přístupem, který doporučujeme klientům. Demo je veřejné.',
+  },
+];
+
+const services = [
+  {
+    number: 1,
+    title: 'AI Analýza a strategie',
+    blurb: 'Discovery 2 týdny s fixní cenou. Mapujeme procesy, data, příležitosti a riziko. Výstup: roadmapa.',
+    href: '/sluzby/analyza-a-strategie',
+    forWho: 'CEO/COO mid-market firem, kteří slyšeli o AI, ale nevědí, kde začít.',
+    outcome: 'Konkrétní plán s ROI odhadem pro 3–5 příležitostí.',
+    priceFrom: '75 000 Kč',
+    tags: ['Roadmapy', 'Studie proveditelnosti', 'Data readiness'],
+  },
+  {
+    number: 2,
+    title: 'Automatizace procesů',
+    blurb: 'Odstraňujeme manuální administrativu — objednávky, reporty, reklamace. n8n, CrewAI, integrace na ERP.',
+    href: '/sluzby/automatizace-procesu',
+    forWho: 'Výrobní firmy 50–300 lidí s manuálními procesy v Pohodě/Heliosu/SAP B1.',
+    outcome: 'Úspora 8–20 hodin týdně na administrativní práci.',
+    priceFrom: '150 000 Kč',
+    tags: ['n8n', 'AI agenti', 'Pohoda / Helios / SAP'],
+  },
+  {
+    number: 3,
+    title: '(Nejen) AI školení',
+    blurb: 'Workshopy pro management, hands-on kurzy pro zaměstnance, mentoring pro IT. GDPR-konformní šablony.',
+    href: '/sluzby/skoleni',
+    forWho: 'Firmy bez interní AI expertízy — od managementu po výrobu.',
+    outcome: 'Tým rozumí AI, používá ji denně, nebojí se o své role.',
+    priceFrom: '15 000 Kč / půldenní workshop',
+    tags: ['Workshopy', 'Mentoring', 'GDPR'],
+  },
+  {
+    number: 4,
+    title: 'AI Implementace a vývoj',
+    blurb: 'Custom AI řešení, chatboty nad firemními dokumenty, on-premise deploy. Agentic OS jako ukázka.',
+    href: '/sluzby/implementace-a-vyvoj',
+    forWho: 'CTO / IT manažeři s konkrétní představou nebo s chutí jít hloubkou.',
+    outcome: 'Pilotní implementace za 4–8 týdnů, fixní cena. Bez SaaS licencí.',
+    priceFrom: '150 000 Kč',
+    tags: ['Agentic OS', 'Ollama', 'On-premise'],
+  },
+];
+
+const team = [
+  { name: 'Martin Večeřa', role: 'Zakladatel & strategie' },
+  { name: 'Jana Nováková', role: 'AI implementace' },
+  { name: 'Tomáš Dvořák', role: 'Automatizace procesů' },
+  { name: 'Petra Horáková', role: 'Školení & change' },
+  { name: 'Marek Beneš', role: 'Vývoj & integrace' },
+];
 ---
 <BaseLayout
   title="QuConsult — Praktické AI pro české firmy"
   description="Pomáháme českým firmám automatizovat procesy, integrovat AI do aplikací a budovat chytřejší byznys — s měřitelnými výsledky v korunách."
 >
+  <Hero
+    eyebrow="QuConsult"
+    subtitle="Pomáháme českým firmám automatizovat procesy, integrovat AI do aplikací a budovat chytřejší byznys — s měřitelnými výsledky v korunách."
+    primaryCta={{ label: 'Domluvit bezplatnou konzultaci', href: '/kontakt' }}
+    secondaryCta={{ label: 'Podívat se, jak řídíme vlastní firmu', href: '#agentic-os' }}
+  >
+    Proměňte AI z buzzwordu ve váš největší <span class="italic text-amber">konkurenční nástroj</span>
+  </Hero>
+
   <section class="container-quc py-xxl">
-    <p class="text-label uppercase tracking-wider text-amber">QuConsult</p>
-
-    <h1 class="mt-md font-serif text-h1-mobile leading-[1.1] tracking-tight md:text-h1-desktop">
-      Proměňte AI z buzzwordu ve váš největší konkurenční nástroj
-    </h1>
-
-    <p class="mt-lg max-w-2xl text-body-lg text-ink-muted">
-      Pomáháme českým firmám automatizovat procesy, integrovat AI do aplikací
-      a budovat chytřejší byznys — s měřitelnými výsledky v korunách.
-    </p>
-
-    <div class="mt-xl flex flex-wrap gap-md">
-      <a
-        href="/kontakt"
-        class="inline-flex items-center rounded bg-amber px-lg py-md text-label font-medium text-bg transition-colors hover:bg-amber-deep"
-      >
-        Domluvit bezplatnou konzultaci
-      </a>
-      <a
-        href="#agentic-os"
-        class="inline-flex items-center rounded border border-ink px-lg py-md text-label font-medium text-ink transition-colors hover:border-amber hover:text-amber"
-      >
-        Podívat se, jak řídíme vlastní firmu
-      </a>
+    <p class="text-label uppercase tracking-wider text-amber">Proč právě my</p>
+    <h2 class="mt-sm max-w-2xl font-serif text-3xl text-ink md:text-h2-desktop">
+      Praktické AI bez velkých transformací a vendor lock-inu
+    </h2>
+    <div class="mt-xl grid gap-xl md:grid-cols-3">
+      {valueProps.map((v) => <ValueProp number={v.number} title={v.title} body={v.body} />)}
     </div>
-
-    <p class="mt-xxl border-t border-border pt-lg text-label text-ink-soft">
-      Web ve výstavbě. Aktuální stará verze:
-      <a href="https://quconsult.cz" class="underline hover:text-amber">quconsult.cz</a>.
-    </p>
   </section>
+
+  <section class="bg-bg-warm">
+    <div class="container-quc py-xxl">
+      <p class="text-label uppercase tracking-wider text-amber">Co pro vás děláme</p>
+      <h2 class="mt-sm max-w-2xl font-serif text-3xl text-ink md:text-h2-desktop">
+        Čtyři způsoby, jak vám pomůžeme
+      </h2>
+      <div class="mt-xl grid gap-md md:grid-cols-2">
+        {services.map((s) => (
+          <ServiceCard
+            number={s.number}
+            title={s.title}
+            blurb={s.blurb}
+            href={s.href}
+            forWho={s.forWho}
+            outcome={s.outcome}
+            priceFrom={s.priceFrom}
+            tags={s.tags}
+            variant="full"
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="agentic-os" class="container-quc py-xxl">
+    <p class="text-label uppercase tracking-wider text-amber">Důkaz, ne marketing</p>
+    <h2 class="mt-sm max-w-2xl font-serif text-3xl text-ink md:text-h2-desktop">
+      Jak řídíme vlastní firmu
+    </h2>
+    <p class="mt-md max-w-2xl text-body-lg text-ink-muted">
+      Agentic OS je interní systém, kterým operujeme QuConsult — task management,
+      content workflow, klientská komunikace. Není to SaaS, který si koupíte;
+      je to ukázka toho, jak přemýšlíme o implementaci. Demo + epizody na YouTube.
+    </p>
+    <div class="mt-xl rounded border border-border bg-bg-warm/40 p-xl">
+      <p class="text-label uppercase tracking-wider text-ink-soft">Placeholder</p>
+      <p class="mt-sm text-body text-ink-muted">
+        Sem přijde teaser screenshot Agentic OS + odkaz na YouTube epizodu B7.
+        Per implementační plán §3.1 a Stitch decisions.md fix #2.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-bg-warm">
+    <div class="container-quc py-xxl">
+      <p class="text-label uppercase tracking-wider text-amber">Tým</p>
+      <h2 class="mt-sm max-w-2xl font-serif text-3xl text-ink md:text-h2-desktop">
+        Pět lidí, kteří vědí, co dělají
+      </h2>
+      <p class="mt-md max-w-2xl text-body-lg text-ink-muted">
+        Senioři s 10+ lety zkušeností v softwaru, datech, change managementu.
+        Žádné juniory na klientském projektu, žádné outsourcing.
+      </p>
+      <div class="mt-xl grid gap-xl sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+        {team.map((m) => <TeamMember name={m.name} role={m.role} />)}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Domluvte si 45minutovou bezplatnou konzultaci"
+    subtitle="Identifikujeme TOP 3 příležitosti pro AI ve vaší firmě — bez závazku, bez prodejního tlaku."
+    primaryCta={{ label: 'Domluvit konzultaci', href: '/kontakt' }}
+    variant="amber"
+    withEmailField={true}
+  />
 </BaseLayout>
