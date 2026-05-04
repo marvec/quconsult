@@ -1,0 +1,197 @@
+---
+// /kontakt — Phase 3 §3.12.
+// Stitch winner ace45cef (decisions.md §9).
+//
+// Form submituje na mailto: per plán Fáze 3 (Vercel function endpoint
+// přijde ve Fázi 4). URL param ?email=... z homepage CTA prefillne pole
+// přes inline JS (Astro.request.url je v static buildu prázdný — query params
+// existují až klientsky).
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+---
+<BaseLayout
+  title="Kontakt — QuConsult"
+  description="Domluvte si bezplatnou 45minutovou konzultaci. Identifikujeme TOP 3 příležitosti pro AI ve vaší firmě — bez závazku, bez prodejního tlaku."
+>
+  <Hero
+    eyebrow="Kontakt"
+    subtitle="Identifikujeme TOP 3 příležitosti pro AI ve vaší firmě — bez závazku, bez prodejního tlaku, bez prezentace s 80 slidy."
+  >
+    Domluvme si <span class="italic text-amber">45minutovou</span> bezplatnou konzultaci
+  </Hero>
+
+  <section class="container-quc pb-xxl">
+    <div class="grid gap-xl lg:grid-cols-[2fr_1fr]">
+      <div>
+        <form
+          method="post"
+          action="mailto:hello@quconsult.cz"
+          enctype="text/plain"
+          class="space-y-xl"
+        >
+          <div class="grid gap-xl md:grid-cols-2">
+            <div>
+              <label for="name" class="block text-label uppercase tracking-wider text-ink-soft">
+                Jméno a příjmení *
+              </label>
+              <input
+                id="name"
+                name="Jméno"
+                type="text"
+                required
+                autocomplete="name"
+                class="mt-sm w-full border-0 border-b border-border bg-transparent px-0 py-md text-body text-ink placeholder:text-ink-soft focus:border-amber focus:outline-none focus:ring-0"
+              />
+            </div>
+            <div>
+              <label for="company" class="block text-label uppercase tracking-wider text-ink-soft">
+                Firma *
+              </label>
+              <input
+                id="company"
+                name="Firma"
+                type="text"
+                required
+                autocomplete="organization"
+                class="mt-sm w-full border-0 border-b border-border bg-transparent px-0 py-md text-body text-ink placeholder:text-ink-soft focus:border-amber focus:outline-none focus:ring-0"
+              />
+            </div>
+            <div>
+              <label for="position" class="block text-label uppercase tracking-wider text-ink-soft">
+                Pozice *
+              </label>
+              <input
+                id="position"
+                name="Pozice"
+                type="text"
+                required
+                autocomplete="organization-title"
+                class="mt-sm w-full border-0 border-b border-border bg-transparent px-0 py-md text-body text-ink placeholder:text-ink-soft focus:border-amber focus:outline-none focus:ring-0"
+              />
+            </div>
+            <div>
+              <label for="email" class="block text-label uppercase tracking-wider text-ink-soft">
+                E-mail *
+              </label>
+              <input
+                id="email"
+                name="E-mail"
+                type="email"
+                required
+                autocomplete="email"
+                class="mt-sm w-full border-0 border-b border-border bg-transparent px-0 py-md text-body text-ink placeholder:text-ink-soft focus:border-amber focus:outline-none focus:ring-0"
+              />
+            </div>
+            <div class="md:col-span-2">
+              <label for="phone" class="block text-label uppercase tracking-wider text-ink-soft">
+                Telefon (volitelný)
+              </label>
+              <input
+                id="phone"
+                name="Telefon"
+                type="tel"
+                autocomplete="tel"
+                class="mt-sm w-full border-0 border-b border-border bg-transparent px-0 py-md text-body text-ink placeholder:text-ink-soft focus:border-amber focus:outline-none focus:ring-0"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="message" class="block text-label uppercase tracking-wider text-ink-soft">
+              Co řešíte?
+            </label>
+            <textarea
+              id="message"
+              name="Zpráva"
+              rows="5"
+              placeholder="Stručně popište, co vás trápí nebo s čím byste rádi pomohli."
+              class="mt-sm w-full resize-none border-0 border-b border-border bg-transparent px-0 py-md text-body text-ink placeholder:text-ink-soft focus:border-amber focus:outline-none focus:ring-0"
+            ></textarea>
+          </div>
+
+          <div class="flex items-start gap-md">
+            <input
+              id="gdpr"
+              name="GDPR"
+              type="checkbox"
+              required
+              value="souhlasím"
+              class="mt-1 h-4 w-4 cursor-pointer accent-amber"
+            />
+            <label for="gdpr" class="cursor-pointer text-label text-ink-muted">
+              Souhlasím se zpracováním osobních údajů dle
+              <a href="/soukromi" class="text-amber underline underline-offset-2">zásad ochrany soukromí</a>.
+            </label>
+          </div>
+
+          <button
+            type="submit"
+            class="inline-flex w-full items-center justify-center rounded bg-amber px-xl py-md text-label font-medium uppercase tracking-wider text-bg transition-colors hover:bg-amber-deep sm:w-auto"
+          >
+            Odeslat a domluvit konzultaci
+          </button>
+
+          <p class="text-label text-ink-soft">
+            Odpovídáme do 24 hodin v pracovních dnech. Konzultace probíhá online
+            (Google Meet) nebo osobně v Brně.
+          </p>
+        </form>
+      </div>
+
+      <aside class="space-y-xl">
+        <div class="rounded border border-border bg-bg-warm/40 p-xl">
+          <p class="text-label uppercase tracking-wider text-amber">Kontakt napřímo</p>
+          <ul class="mt-md space-y-md text-body text-ink-muted">
+            <li>
+              <a href="mailto:hello@quconsult.cz" class="text-ink hover:text-amber">
+                hello@quconsult.cz
+              </a>
+            </li>
+            <li>
+              <a href="tel:+420777000000" class="text-ink hover:text-amber">
+                +420 777 000 000
+              </a>
+            </li>
+            <li>
+              <a href="https://linkedin.com/company/quconsult" rel="noopener" class="text-ink hover:text-amber">
+                LinkedIn
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="rounded border border-border bg-bg-warm/40 p-xl">
+          <p class="text-label uppercase tracking-wider text-amber">Kde nás najdete</p>
+          <address class="mt-md not-italic text-body text-ink-muted leading-relaxed">
+            <span class="text-ink">WellBe s.r.o.</span><br />
+            Nové sady 988/2<br />
+            602 00 Brno
+          </address>
+          <p class="mt-md text-label text-ink-soft">
+            IČ 05830931 · DIČ CZ05830931
+          </p>
+        </div>
+
+        <div class="rounded border border-border bg-bg-warm/40 p-xl">
+          <p class="text-label uppercase tracking-wider text-amber">Co se stane potom</p>
+          <ol class="mt-md space-y-md text-body text-ink-muted">
+            <li><span class="text-ink">1.</span> Do 24 hodin se ozveme s návrhem termínu.</li>
+            <li><span class="text-ink">2.</span> 45 minut online — posloucháme, ptáme se, neprezentujeme.</li>
+            <li><span class="text-ink">3.</span> Krátký souhrn s konkrétními návrhy. Bez závazku.</li>
+          </ol>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <script is:inline>
+    // Prefill email z ?email= query param (homepage CTA → /kontakt?email=...)
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const email = params.get('email');
+      const field = document.getElementById('email');
+      if (email && field) field.value = email;
+    })();
+  </script>
+</BaseLayout>
