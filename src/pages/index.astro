@@ -1,15 +1,20 @@
 ---
-// Homepage smoke-test render (Phase 1 D1).
-// Wires Hero + ValueProp + ServiceCard + TeamMember + CTASection together
-// with placeholder content so we can visually verify components.
-// Final copy + Agentic OS proof block + blog teaser comes in Phase 3 §3.1.
+// Homepage — Phase 3 §3.1.
+// Sources: plan.md §3.1, decisions.md §1 (Stitch winner 7fef5f99 + fix list).
+// Konzumuje content collection 'sluzby' — žádná hardcoded jména/ceny.
+// Tým preview vynechán per Stitch fix #1 (žije jen na /o-nas).
+// Blog teaser vynechán dokud není první reálný článek (CLAUDE.md §3 no placeholder).
 
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import ValueProp from '../components/ValueProp.astro';
 import ServiceCard from '../components/ServiceCard.astro';
-import TeamMember from '../components/TeamMember.astro';
 import CTASection from '../components/CTASection.astro';
+
+const services = (await getCollection('sluzby')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 
 const valueProps = [
   {
@@ -28,60 +33,9 @@ const valueProps = [
     body: 'Vlastní firmu řídíme s Agentic OS — tím samým přístupem, který doporučujeme klientům. Demo je veřejné.',
   },
 ];
-
-const services = [
-  {
-    number: 1,
-    title: 'AI Analýza a strategie',
-    blurb: 'Discovery 2 týdny s fixní cenou. Mapujeme procesy, data, příležitosti a riziko. Výstup: roadmapa.',
-    href: '/sluzby/analyza-a-strategie',
-    forWho: 'CEO/COO mid-market firem, kteří slyšeli o AI, ale nevědí, kde začít.',
-    outcome: 'Konkrétní plán s ROI odhadem pro 3–5 příležitostí.',
-    priceFrom: '75 000 Kč',
-    tags: ['Roadmapy', 'Studie proveditelnosti', 'Data readiness'],
-  },
-  {
-    number: 2,
-    title: 'Automatizace procesů',
-    blurb: 'Odstraňujeme manuální administrativu — objednávky, reporty, reklamace. n8n, CrewAI, integrace na ERP.',
-    href: '/sluzby/automatizace-procesu',
-    forWho: 'Výrobní firmy 50–300 lidí s manuálními procesy v Pohodě/Heliosu/SAP B1.',
-    outcome: 'Úspora 8–20 hodin týdně na administrativní práci.',
-    priceFrom: '150 000 Kč',
-    tags: ['n8n', 'AI agenti', 'Pohoda / Helios / SAP'],
-  },
-  {
-    number: 3,
-    title: '(Nejen) AI školení',
-    blurb: 'Workshopy pro management, hands-on kurzy pro zaměstnance, mentoring pro IT. GDPR-konformní šablony.',
-    href: '/sluzby/skoleni',
-    forWho: 'Firmy bez interní AI expertízy — od managementu po výrobu.',
-    outcome: 'Tým rozumí AI, používá ji denně, nebojí se o své role.',
-    priceFrom: '15 000 Kč / půldenní workshop',
-    tags: ['Workshopy', 'Mentoring', 'GDPR'],
-  },
-  {
-    number: 4,
-    title: 'AI Implementace a vývoj',
-    blurb: 'Custom AI řešení, chatboty nad firemními dokumenty, on-premise deploy. Agentic OS jako ukázka.',
-    href: '/sluzby/implementace-a-vyvoj',
-    forWho: 'CTO / IT manažeři s konkrétní představou nebo s chutí jít hloubkou.',
-    outcome: 'Pilotní implementace za 4–8 týdnů, fixní cena. Bez SaaS licencí.',
-    priceFrom: '150 000 Kč',
-    tags: ['Agentic OS', 'Ollama', 'On-premise'],
-  },
-];
-
-const team = [
-  { name: 'Martin Večeřa', role: 'Zakladatel & strategie' },
-  { name: 'Jana Nováková', role: 'AI implementace' },
-  { name: 'Tomáš Dvořák', role: 'Automatizace procesů' },
-  { name: 'Petra Horáková', role: 'Školení & change' },
-  { name: 'Marek Beneš', role: 'Vývoj & integrace' },
-];
 ---
 <BaseLayout
-  title="QuConsult — Praktické AI pro české firmy"
+  title="QuConsult — AI konzultace pro české firmy"
   description="Pomáháme českým firmám automatizovat procesy, integrovat AI do aplikací a budovat chytřejší byznys — s měřitelnými výsledky v korunách."
 >
   <Hero
@@ -110,16 +64,16 @@ const team = [
         Čtyři způsoby, jak vám pomůžeme
       </h2>
       <div class="mt-xl grid gap-md md:grid-cols-2">
-        {services.map((s) => (
+        {services.map((s, i) => (
           <ServiceCard
-            number={s.number}
-            title={s.title}
-            blurb={s.blurb}
-            href={s.href}
-            forWho={s.forWho}
-            outcome={s.outcome}
-            priceFrom={s.priceFrom}
-            tags={s.tags}
+            number={i + 1}
+            title={s.data.title}
+            blurb={s.data.summary}
+            href={`/sluzby/${s.id}`}
+            forWho={s.data.forWho}
+            outcome={s.data.typicalOutcome}
+            priceFrom={s.data.priceFrom}
+            tags={s.data.tags}
             variant="full"
           />
         ))}
@@ -127,38 +81,124 @@ const team = [
     </div>
   </section>
 
-  <section id="agentic-os" class="container-quc py-xxl">
-    <p class="text-label uppercase tracking-wider text-amber">Důkaz, ne marketing</p>
-    <h2 class="mt-sm max-w-2xl font-serif text-3xl text-ink md:text-h2-desktop">
-      Jak řídíme vlastní firmu
+  <section class="container-quc py-xxl">
+    <p class="text-label uppercase tracking-wider text-amber">Stav v ČR</p>
+    <h2 class="mt-sm max-w-3xl font-serif text-3xl text-ink md:text-h2-desktop">
+      48&nbsp;% českých firem už AI používá. 56&nbsp;% má jako blokátor data.
     </h2>
-    <p class="mt-md max-w-2xl text-body-lg text-ink-muted">
-      Agentic OS je interní systém, kterým operujeme QuConsult — task management,
-      content workflow, klientská komunikace. Není to SaaS, který si koupíte;
-      je to ukázka toho, jak přemýšlíme o implementaci. Demo + epizody na YouTube.
+    <p class="mt-md max-w-3xl text-body-lg text-ink-muted">
+      Pomáháme s obojím. Mapujeme datovou připravenost, doplňujeme co chybí,
+      a teprve potom stavíme. Pilotní projekty mají měřitelný výsledek do měsíce
+      po nasazení — ne do roka po prezentaci.
     </p>
-    <div class="mt-xl rounded border border-border bg-bg-warm/40 p-xl">
-      <p class="text-label uppercase tracking-wider text-ink-soft">Placeholder</p>
-      <p class="mt-sm text-body text-ink-muted">
-        Sem přijde teaser screenshot Agentic OS + odkaz na YouTube epizodu B7.
-        Per implementační plán §3.1 a Stitch decisions.md fix #2.
-      </p>
+    <div class="mt-xl grid gap-xl border-t border-border pt-xl md:grid-cols-3">
+      <div>
+        <p class="font-serif text-4xl text-ink md:text-5xl">48&nbsp;%</p>
+        <p class="mt-sm text-body text-ink-muted">
+          Českých firem už nějakou formu AI používá.
+        </p>
+      </div>
+      <div>
+        <p class="font-serif text-4xl text-ink md:text-5xl">56&nbsp;%</p>
+        <p class="mt-sm text-body text-ink-muted">
+          Hlásí kvalitu dat jako primární blokátor pro nasazení.
+        </p>
+      </div>
+      <div>
+        <p class="font-serif text-4xl text-ink md:text-5xl">2 týdny</p>
+        <p class="mt-sm text-body text-ink-muted">
+          Discovery s pevnou cenou. Žádný balíček neomezené konzultace.
+        </p>
+      </div>
     </div>
   </section>
 
   <section class="bg-bg-warm">
     <div class="container-quc py-xxl">
-      <p class="text-label uppercase tracking-wider text-amber">Tým</p>
-      <h2 class="mt-sm max-w-2xl font-serif text-3xl text-ink md:text-h2-desktop">
-        Pět lidí, kteří vědí, co dělají
+      <p class="text-label uppercase tracking-wider text-amber">Pro koho jsme</p>
+      <h2 class="mt-sm max-w-3xl font-serif text-3xl text-ink md:text-h2-desktop">
+        Dvě skupiny firem, kterým rozumíme
       </h2>
-      <p class="mt-md max-w-2xl text-body-lg text-ink-muted">
-        Senioři s 10+ lety zkušeností v softwaru, datech, change managementu.
-        Žádné juniory na klientském projektu, žádné outsourcing.
-      </p>
-      <div class="mt-xl grid gap-xl sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-        {team.map((m) => <TeamMember name={m.name} role={m.role} />)}
+      <div class="mt-xl grid gap-xl md:grid-cols-2">
+        <article class="rounded border border-border bg-bg p-xl">
+          <p class="text-label uppercase tracking-wider text-ink-soft">Výroba</p>
+          <h3 class="mt-sm font-serif text-2xl text-ink md:text-3xl">
+            Středně velké výrobní firmy
+          </h3>
+          <p class="mt-md text-body text-ink-muted">
+            50 až 300 zaměstnanců, ERP nasazený 5 až 15 let, manuální procesy
+            v Pohodě, Heliosu nebo SAP B1. Typicky CEO nebo COO, který vidí,
+            kolik práce stojí administrativa, a hledá konkrétní úsporu.
+          </p>
+        </article>
+        <article class="rounded border border-border bg-bg p-xl">
+          <p class="text-label uppercase tracking-wider text-ink-soft">Profesionální služby</p>
+          <h3 class="mt-sm font-serif text-2xl text-ink md:text-3xl">
+            Odborné kanceláře 5 až 30 lidí
+          </h3>
+          <p class="mt-md text-body text-ink-muted">
+            Advokátní kanceláře, daňoví poradci, projekční firmy, marketingové
+            agentury. Často partneři, kteří chtějí ušetřit hodiny seniorních
+            specialistů na rutinní práci a uvolnit kapacitu na zákazníky.
+          </p>
+        </article>
       </div>
+      <p class="mt-xl text-label text-ink-muted">
+        Pro koho jsme méně vhodní: korporáty s vlastním AI týmem, firmy pod
+        30 lidí bez vlastního IT, vendoři hledající white-label produkt.
+      </p>
+    </div>
+  </section>
+
+  <section id="agentic-os" class="container-quc py-xxl">
+    <p class="text-label uppercase tracking-wider text-amber">Důkaz, ne marketing</p>
+    <h2 class="mt-sm max-w-3xl font-serif text-3xl text-ink md:text-h2-desktop">
+      Jak řídíme vlastní firmu
+    </h2>
+    <div class="mt-xl grid gap-xl md:grid-cols-[1fr_1fr]">
+      <div>
+        <p class="text-body-lg text-ink-muted">
+          Agentic OS je interní systém AI agentů, kterým operujeme QuConsult —
+          úkoly, content workflow, klientská komunikace, research. Není to
+          SaaS, který si koupíte. Je to ukázka toho, jak přemýšlíme
+          o implementaci, a důkaz, že naše doporučení používáme i sami na sebe.
+        </p>
+        <p class="mt-md text-body text-ink-muted">
+          Na YouTube zveřejňujeme epizody o tom, jak konkrétní část systému
+          řešíme. Co se osvědčilo, co jsme vyhodili, kde nás něco zaskočilo.
+          Pro vás je to nejrychlejší způsob, jak posoudit, jestli s námi
+          chcete mluvit.
+        </p>
+        <div class="mt-xl flex flex-wrap gap-md">
+          <a
+            href="https://youtube.com/@quconsult"
+            rel="noopener"
+            class="inline-flex items-center rounded bg-amber px-lg py-md text-label font-medium text-bg transition-colors hover:bg-amber-deep"
+          >
+            Podívat se na YouTube
+          </a>
+          <a
+            href="/sluzby/implementace-a-vyvoj"
+            class="inline-flex items-center rounded border border-ink px-lg py-md text-label font-medium text-ink transition-colors hover:border-amber hover:text-amber"
+          >
+            Jak ho stavíme klientům
+          </a>
+        </div>
+      </div>
+      <aside class="rounded border border-border bg-bg-warm/40 p-xl">
+        <p class="text-label uppercase tracking-wider text-ink-soft">Co Agentic OS dělá</p>
+        <ul class="mt-md space-y-md text-body text-ink-muted">
+          <li>— Plánuje a sleduje úkoly napříč projekty.</li>
+          <li>— Generuje weekly report z aktivity bez ručního agregování.</li>
+          <li>— Připravuje podklady pro klientské schůzky a research.</li>
+          <li>— Vede content workflow — od nápadu po publikaci.</li>
+          <li>— Sleduje technický health vlastní infrastruktury.</li>
+        </ul>
+        <p class="mt-lg text-label text-ink-soft">
+          Stejnou architekturu stavíme klientům — vždy na míru, vždy
+          s předáním, nikdy jako licenci.
+        </p>
+      </aside>
     </div>
   </section>
 
