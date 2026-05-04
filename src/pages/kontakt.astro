@@ -1,14 +1,17 @@
 ---
-// /kontakt — Phase 3 §3.12.
+// /kontakt — Phase 4 §3.12.
 // Stitch winner ace45cef (decisions.md §9).
 //
-// Form submituje na mailto: per plán Fáze 3 (Vercel function endpoint
-// přijde ve Fázi 4). URL param ?email=... z homepage CTA prefillne pole
-// přes inline JS (Astro.request.url je v static buildu prázdný — query params
-// existují až klientsky).
+// Form posílá JSON na ${PUBLIC_API_BASE_URL}/api/contact (Vercel funkce
+// se schématem v zod-u, reCAPTCHA v3 verifikací a SMTP odesláním přes
+// nodemailer). Bez JS form spadne na mailto: action — graceful degradation
+// per CLAUDE.md §4.
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+
+const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
+const apiBaseUrl = import.meta.env.PUBLIC_API_BASE_URL;
 ---
 <BaseLayout
   title="Kontakt — QuConsult"
@@ -25,10 +28,12 @@ import Hero from '../components/Hero.astro';
     <div class="grid gap-xl lg:grid-cols-[2fr_1fr]">
       <div>
         <form
+          id="contact-form"
           method="post"
           action="mailto:hello@quconsult.cz"
           enctype="text/plain"
           class="space-y-xl"
+          novalidate
         >
           <div class="grid gap-xl md:grid-cols-2">
             <div>
@@ -37,9 +42,10 @@ import Hero from '../components/Hero.astro';
               </label>
               <input
                 id="name"
-                name="Jméno"
+                name="jmeno"
                 type="text"
                 required
+                minlength="2"
                 autocomplete="name"
                 class="mt-sm w-full border-0 border-b border-border bg-transparent px-0 py-md text-body text-ink placeholder:text-ink-soft focus:border-amber focus:outline-none focus:ring-0"
               />
@@ -50,7 +56,7 @@ import Hero from '../components/Hero.astro';
               </label>
               <input
                 id="company"
-                name="Firma"
+                name="firma"
                 type="text"
                 required
                 autocomplete="organization"
@@ -63,7 +69,7 @@ import Hero from '../components/Hero.astro';
               </label>
               <input
                 id="position"
-                name="Pozice"
+                name="pozice"
                 type="text"
                 required
                 autocomplete="organization-title"
@@ -76,7 +82,7 @@ import Hero from '../components/Hero.astro';
               </label>
               <input
                 id="email"
-                name="E-mail"
+                name="email"
                 type="email"
                 required
                 autocomplete="email"
@@ -89,7 +95,7 @@ import Hero from '../components/Hero.astro';
               </label>
               <input
                 id="phone"
-                name="Telefon"
+                name="telefon"
                 type="tel"
                 autocomplete="tel"
                 class="mt-sm w-full border-0 border-b border-border bg-transparent px-0 py-md text-body text-ink placeholder:text-ink-soft focus:border-amber focus:outline-none focus:ring-0"
@@ -99,12 +105,14 @@ import Hero from '../components/Hero.astro';
 
           <div>
             <label for="message" class="block text-label uppercase tracking-wider text-ink-soft">
-              Co řešíte?
+              Co řešíte? *
             </label>
             <textarea
               id="message"
-              name="Zpráva"
+              name="zprava"
               rows="5"
+              required
+              minlength="10"
               placeholder="Stručně popište, co vás trápí nebo s čím byste rádi pomohli."
               class="mt-sm w-full resize-none border-0 border-b border-border bg-transparent px-0 py-md text-body text-ink placeholder:text-ink-soft focus:border-amber focus:outline-none focus:ring-0"
             ></textarea>
@@ -113,7 +121,7 @@ import Hero from '../components/Hero.astro';
           <div class="flex items-start gap-md">
             <input
               id="gdpr"
-              name="GDPR"
+              name="gdpr"
               type="checkbox"
               required
               value="souhlasím"
@@ -125,18 +133,44 @@ import Hero from '../components/Hero.astro';
             </label>
           </div>
 
+          <div
+            id="contact-error"
+            class="hidden rounded border border-red-300 bg-red-50 p-md text-label text-red-700"
+            role="alert"
+          ></div>
+
           <button
+            id="contact-submit"
             type="submit"
-            class="inline-flex w-full items-center justify-center rounded bg-amber px-xl py-md text-label font-medium uppercase tracking-wider text-bg transition-colors hover:bg-amber-deep sm:w-auto"
+            class="inline-flex w-full items-center justify-center rounded bg-amber px-xl py-md text-label font-medium uppercase tracking-wider text-bg transition-colors hover:bg-amber-deep disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
           >
             Odeslat a domluvit konzultaci
           </button>
 
           <p class="text-label text-ink-soft">
             Odpovídáme do 24 hodin v pracovních dnech. Konzultace probíhá online
-            (Google Meet) nebo osobně v Brně.
+            (Google Meet) nebo osobně v Brně. Formulář je chráněn proti spamu
+            přes Google reCAPTCHA — odesláním souhlasíte s
+            <a href="https://policies.google.com/privacy" rel="noopener" class="text-amber underline underline-offset-2">privacy policy</a>
+            a
+            <a href="https://policies.google.com/terms" rel="noopener" class="text-amber underline underline-offset-2">terms of service</a>
+            Googlu.
           </p>
         </form>
+
+        <!-- Success state (skrytý do submitu) -->
+        <div id="contact-success" class="hidden mt-xl rounded border border-amber bg-amber/5 p-xl">
+          <p class="text-label uppercase tracking-wider text-amber">Hotovo</p>
+          <h2 class="mt-sm font-serif text-2xl text-ink md:text-3xl">
+            Děkujeme. Ozveme se do 24 hodin v pracovních dnech.
+          </h2>
+          <p class="mt-md text-body text-ink-muted">
+            Zpráva dorazila. Mezitím se můžete podívat na
+            <a href="/jak-pracujeme" class="text-amber underline underline-offset-2">jak pracujeme</a>
+            nebo si přečíst
+            <a href="/blog" class="text-amber underline underline-offset-2">poslední články</a>.
+          </p>
+        </div>
       </div>
 
       <aside class="space-y-xl">
@@ -185,13 +219,131 @@ import Hero from '../components/Hero.astro';
     </div>
   </section>
 
-  <script is:inline>
-    // Prefill email z ?email= query param (homepage CTA → /kontakt?email=...)
+  <script is:inline define:vars={{ recaptchaSiteKey, apiBaseUrl }}>
     (function () {
+      const form = document.getElementById('contact-form');
+      if (!form) return;
+
+      // Prefill e-mailu z ?email= query (homepage CTA → /kontakt?email=...)
       const params = new URLSearchParams(window.location.search);
-      const email = params.get('email');
-      const field = document.getElementById('email');
-      if (email && field) field.value = email;
+      const emailQuery = params.get('email');
+      const emailField = document.getElementById('email');
+      if (emailQuery && emailField) emailField.value = emailQuery;
+
+      const submitBtn = document.getElementById('contact-submit');
+      const errorBox = document.getElementById('contact-error');
+      const successBox = document.getElementById('contact-success');
+
+      // reCAPTCHA v3 — lazy load na první focus do formuláře (plan §4.1).
+      let recaptchaLoading = false;
+      function loadRecaptcha() {
+        if (recaptchaLoading || window.grecaptcha) return;
+        if (!recaptchaSiteKey) return;
+        recaptchaLoading = true;
+        const s = document.createElement('script');
+        s.src = 'https://www.google.com/recaptcha/api.js?render=' + encodeURIComponent(recaptchaSiteKey);
+        s.async = true;
+        s.defer = true;
+        document.head.appendChild(s);
+      }
+      form.addEventListener('focusin', loadRecaptcha, { once: true });
+
+      function getRecaptchaToken(action) {
+        return new Promise((resolve, reject) => {
+          if (!recaptchaSiteKey) {
+            reject(new Error('Missing reCAPTCHA site key'));
+            return;
+          }
+          loadRecaptcha();
+          const start = Date.now();
+          (function waitForGrecaptcha() {
+            if (window.grecaptcha && window.grecaptcha.execute) {
+              window.grecaptcha.ready(() => {
+                window.grecaptcha
+                  .execute(recaptchaSiteKey, { action })
+                  .then(resolve)
+                  .catch(reject);
+              });
+              return;
+            }
+            if (Date.now() - start > 8000) {
+              reject(new Error('reCAPTCHA load timeout'));
+              return;
+            }
+            setTimeout(waitForGrecaptcha, 100);
+          })();
+        });
+      }
+
+      function showError(msg) {
+        errorBox.textContent = msg;
+        errorBox.classList.remove('hidden');
+      }
+
+      function clearError() {
+        errorBox.textContent = '';
+        errorBox.classList.add('hidden');
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        clearError();
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        submitBtn.disabled = true;
+        const originalLabel = submitBtn.textContent;
+        submitBtn.textContent = 'Odesílám…';
+
+        try {
+          const token = await getRecaptchaToken('contact_form');
+          const formData = new FormData(form);
+          const telefon = (formData.get('telefon') || '').toString().trim();
+          const payload = {
+            jmeno: (formData.get('jmeno') || '').toString().trim(),
+            firma: (formData.get('firma') || '').toString().trim(),
+            pozice: (formData.get('pozice') || '').toString().trim(),
+            email: (formData.get('email') || '').toString().trim(),
+            zprava: (formData.get('zprava') || '').toString().trim(),
+            gdprConsent: formData.get('gdpr') !== null,
+            recaptchaToken: token,
+          };
+          if (telefon) payload.telefon = telefon;
+
+          const r = await fetch(apiBaseUrl + '/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+
+          let json = null;
+          try {
+            json = await r.json();
+          } catch (_) {
+            // tělo nemusí být JSON
+          }
+
+          if (!r.ok || !json || !json.ok) {
+            const msg =
+              (json && typeof json.error === 'string' ? json.error : null) ||
+              ('HTTP ' + r.status);
+            throw new Error(msg);
+          }
+
+          form.classList.add('hidden');
+          successBox.classList.remove('hidden');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } catch (err) {
+          showError(
+            'Odeslání se nepovedlo. Zkuste to prosím znovu nebo nám napište přímo na hello@quconsult.cz.',
+          );
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalLabel;
+        }
+      });
     })();
   </script>
 </BaseLayout>

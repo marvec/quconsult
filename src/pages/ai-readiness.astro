@@ -1,10 +1,12 @@
 ---
-// /ai-readiness — Phase 3 §3.11 lead magnet.
+// /ai-readiness — Phase 4 §3.11 lead magnet.
 // Stitch winner c5274781 (decisions.md §8).
 //
-// Multi-step formulář (5 kroků), vanilla JS navigace, mailto: submit per
-// Phase 3. Vercel funkce + PDF generování přijde Phase 4 (per plan §3.11
-// "pro fázi launch stačí placeholder formulář + e-mail s textovou shrnutím").
+// Multi-step formulář (5 kroků) s vanilla JS navigací. Submit posílá JSON
+// na ${PUBLIC_API_BASE_URL}/api/ai-readiness (Vercel funkce s reCAPTCHA v3
+// verifikací a SMTP odesláním text shrnutí). Bez JS form spadne na mailto:
+// jako graceful degradation. PDF generování + scoring algorithm = Phase 6+
+// (plan §3.11 — "pro fázi launch stačí placeholder + textové shrnutí").
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 
@@ -15,6 +17,9 @@ const stepTitles = [
   'Cíle',
   'Kontakt',
 ];
+
+const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
+const apiBaseUrl = import.meta.env.PUBLIC_API_BASE_URL;
 ---
 <BaseLayout
   title="AI Readiness Assessment — QuConsult"
@@ -262,6 +267,7 @@ const stepTitles = [
                   type="text"
                   name="jmeno"
                   required
+                  minlength="2"
                   autocomplete="name"
                   class="mt-sm w-full border-0 border-b border-border bg-transparent px-0 py-md text-body text-ink focus:border-amber focus:outline-none focus:ring-0"
                 />
@@ -313,6 +319,13 @@ const stepTitles = [
             </div>
           </fieldset>
 
+          <!-- Error box (skrytý do submitu) -->
+          <div
+            id="readiness-error"
+            class="hidden rounded border border-red-300 bg-red-50 p-md text-label text-red-700"
+            role="alert"
+          ></div>
+
           <!-- Navigation -->
           <div class="flex flex-wrap items-center justify-between gap-md border-t border-border pt-xl">
             <button
@@ -333,7 +346,7 @@ const stepTitles = [
             <button
               type="submit"
               id="btn-submit"
-              class="hidden rounded bg-amber px-lg py-md text-label font-medium uppercase tracking-wider text-bg transition-colors hover:bg-amber-deep"
+              class="hidden rounded bg-amber px-lg py-md text-label font-medium uppercase tracking-wider text-bg transition-colors hover:bg-amber-deep disabled:cursor-not-allowed disabled:opacity-60"
             >
               Odeslat dotazník
             </button>
@@ -343,25 +356,34 @@ const stepTitles = [
             Otázky odhalují bolesti, ne mezery. Žádná otázka kromě označených * není
             povinná — odpovězte jen na to, co vám dává smysl.
           </p>
+
+          <p class="text-label text-ink-soft">
+            Formulář je chráněn proti spamu přes Google reCAPTCHA — odesláním
+            souhlasíte s
+            <a href="https://policies.google.com/privacy" rel="noopener" class="text-amber underline underline-offset-2">privacy policy</a>
+            a
+            <a href="https://policies.google.com/terms" rel="noopener" class="text-amber underline underline-offset-2">terms of service</a>
+            Googlu.
+          </p>
         </form>
 
-        <!-- Success state (hidden until submit) -->
+        <!-- Success state (skrytý do submitu) -->
         <div id="success-state" class="hidden mt-xl rounded border border-amber bg-amber/5 p-xl">
           <p class="text-label uppercase tracking-wider text-amber">Hotovo</p>
           <h2 class="mt-sm font-serif text-2xl text-ink md:text-3xl">
-            Děkujeme. Zprávu pošleme do 24 hodin na váš e-mail.
+            Děkujeme. Odpovědi dorazily.
           </h2>
           <p class="mt-md text-body text-ink-muted">
-            Otevřel se váš e-mailový klient s předvyplněnou zprávou — stačí
-            potvrdit odeslání. Mezitím si můžete domluvit konzultaci nebo se
-            vrátit na úvod.
+            Do 24 hodin v pracovních dnech odpoví Martin Večeřa krátkou zprávou
+            s orientačním skóre a doporučením, kde u vás dává AI smysl jako
+            první. Žádné prodejní volání, žádný funnel.
           </p>
           <div class="mt-lg flex flex-wrap gap-md">
             <a
               href="/kontakt"
               class="inline-flex items-center rounded bg-amber px-lg py-md text-label font-medium text-bg transition-colors hover:bg-amber-deep"
             >
-              Domluvit 45min konzultaci
+              Domluvit 45min konzultaci rovnou
             </a>
             <a
               href="/"
@@ -407,7 +429,7 @@ const stepTitles = [
     </div>
   </section>
 
-  <script is:inline>
+  <script is:inline define:vars={{ recaptchaSiteKey, apiBaseUrl }}>
     (function () {
       const form = document.getElementById('readiness-form');
       if (!form) return;
@@ -421,9 +443,61 @@ const stepTitles = [
       const btnNext = document.getElementById('btn-next');
       const btnSubmit = document.getElementById('btn-submit');
       const successState = document.getElementById('success-state');
+      const errorBox = document.getElementById('readiness-error');
       const stepNames = ['O firmě', 'Datová připravenost', 'Lidé a procesy', 'Cíle', 'Kontakt'];
       const total = steps.length;
       let current = 1;
+
+      // reCAPTCHA v3 — lazy load na první focus do formuláře (plan §4.1).
+      let recaptchaLoading = false;
+      function loadRecaptcha() {
+        if (recaptchaLoading || window.grecaptcha) return;
+        if (!recaptchaSiteKey) return;
+        recaptchaLoading = true;
+        const s = document.createElement('script');
+        s.src = 'https://www.google.com/recaptcha/api.js?render=' + encodeURIComponent(recaptchaSiteKey);
+        s.async = true;
+        s.defer = true;
+        document.head.appendChild(s);
+      }
+      form.addEventListener('focusin', loadRecaptcha, { once: true });
+
+      function getRecaptchaToken(action) {
+        return new Promise((resolve, reject) => {
+          if (!recaptchaSiteKey) {
+            reject(new Error('Missing reCAPTCHA site key'));
+            return;
+          }
+          loadRecaptcha();
+          const start = Date.now();
+          (function waitForGrecaptcha() {
+            if (window.grecaptcha && window.grecaptcha.execute) {
+              window.grecaptcha.ready(() => {
+                window.grecaptcha
+                  .execute(recaptchaSiteKey, { action })
+                  .then(resolve)
+                  .catch(reject);
+              });
+              return;
+            }
+            if (Date.now() - start > 8000) {
+              reject(new Error('reCAPTCHA load timeout'));
+              return;
+            }
+            setTimeout(waitForGrecaptcha, 100);
+          })();
+        });
+      }
+
+      function showError(msg) {
+        errorBox.textContent = msg;
+        errorBox.classList.remove('hidden');
+      }
+
+      function clearError() {
+        errorBox.textContent = '';
+        errorBox.classList.add('hidden');
+      }
 
       function render() {
         steps.forEach((s) => {
@@ -480,18 +554,82 @@ const stepTitles = [
         }
       });
 
-      form.addEventListener('submit', (e) => {
-        if (!validateCurrent()) {
-          e.preventDefault();
-          return;
-        }
-        // mailto: submit dovolíme proběhnout, pak ukážeme success state
-        setTimeout(() => {
+      // Sběr odpovědí ze step 1–4 do `odpovedi` objektu.
+      // Personal fields (jmeno, firma, email, telefon, gdpr) jdou do top-level payloadu.
+      const personalFields = new Set(['jmeno', 'firma', 'email', 'telefon', 'gdpr']);
+
+      function collectOdpovedi(formData) {
+        const result = {};
+        const seen = new Set();
+        form.querySelectorAll('[name]').forEach((el) => {
+          const name = el.getAttribute('name');
+          if (!name || personalFields.has(name) || seen.has(name)) return;
+          seen.add(name);
+          const all = formData.getAll(name);
+          const filtered = all
+            .map((v) => (typeof v === 'string' ? v.trim() : v))
+            .filter((v) => v !== '' && v !== undefined && v !== null);
+          if (filtered.length === 0) return;
+          result[name] = filtered.length === 1 ? filtered[0] : filtered;
+        });
+        return result;
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        clearError();
+
+        if (!validateCurrent()) return;
+
+        btnSubmit.disabled = true;
+        const originalLabel = btnSubmit.textContent;
+        btnSubmit.textContent = 'Odesílám…';
+
+        try {
+          const token = await getRecaptchaToken('ai_readiness');
+          const formData = new FormData(form);
+          const telefon = (formData.get('telefon') || '').toString().trim();
+          const payload = {
+            jmeno: (formData.get('jmeno') || '').toString().trim(),
+            firma: (formData.get('firma') || '').toString().trim(),
+            email: (formData.get('email') || '').toString().trim(),
+            odpovedi: collectOdpovedi(formData),
+            gdprConsent: formData.get('gdpr') !== null,
+            recaptchaToken: token,
+          };
+          if (telefon) payload.telefon = telefon;
+
+          const r = await fetch(apiBaseUrl + '/api/ai-readiness', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+
+          let json = null;
+          try {
+            json = await r.json();
+          } catch (_) {
+            // tělo nemusí být JSON
+          }
+
+          if (!r.ok || !json || !json.ok) {
+            const msg =
+              (json && typeof json.error === 'string' ? json.error : null) ||
+              ('HTTP ' + r.status);
+            throw new Error(msg);
+          }
+
           form.classList.add('hidden');
           document.getElementById('progress-wrapper').classList.add('hidden');
           successState.classList.remove('hidden');
           window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 100);
+        } catch (err) {
+          showError(
+            'Odeslání se nepovedlo. Zkuste to prosím znovu nebo nám napište přímo na hello@quconsult.cz.',
+          );
+          btnSubmit.disabled = false;
+          btnSubmit.textContent = originalLabel;
+        }
       });
 
       render();
