@@ -1,0 +1,131 @@
+---
+// BlogPostLayout — wrapper pro src/pages/blog/[slug].astro.
+// Per Stitch winner fc2470e6 + plan §3.10.
+
+import { type CollectionEntry, getEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+
+interface Props {
+  entry: CollectionEntry<'blog'>;
+  readingMinutes?: number;
+}
+
+const { entry, readingMinutes = 5 } = Astro.props;
+const data = entry.data;
+
+const author = await getEntry('tym', data.author);
+
+const formatDate = (date: Date): string =>
+  date.toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' });
+
+// Schema.org Article + BreadcrumbList
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: data.title,
+  description: data.description,
+  datePublished: data.pubDate.toISOString(),
+  ...(data.updatedDate && { dateModified: data.updatedDate.toISOString() }),
+  author: author ? {
+    '@type': 'Person',
+    name: author.data.name,
+    jobTitle: author.data.role,
+  } : { '@type': 'Organization', name: 'QuConsult' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'QuConsult',
+    logo: { '@type': 'ImageObject', url: 'https://quconsult.cz/favicon.svg' },
+  },
+  keywords: data.tags.join(', '),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Domů', item: 'https://quconsult.cz/' },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://quconsult.cz/blog' },
+    { '@type': 'ListItem', position: 3, name: data.title, item: `https://quconsult.cz/blog/${entry.id}` },
+  ],
+};
+---
+<BaseLayout title={`${data.title} — QuConsult Blog`} description={data.description} ogImage={data.ogImage}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <article>
+    <header class="container-quc pt-xxl pb-xl">
+      <nav aria-label="Drobečková navigace" class="text-label text-ink-muted">
+        <a href="/" class="hover:text-amber">Domů</a>
+        <span aria-hidden="true" class="mx-xs text-ink-soft">/</span>
+        <a href="/blog" class="hover:text-amber">Blog</a>
+      </nav>
+
+      <div class="mt-xl max-w-3xl">
+        <div class="flex flex-wrap gap-sm text-label uppercase tracking-wider text-amber">
+          {data.tags.map((tag) => <span>{tag}</span>)}
+        </div>
+
+        <h1 class="mt-md font-serif text-h1-mobile leading-[1.1] tracking-tight md:text-h1-desktop">
+          {data.title}
+        </h1>
+
+        <p class="mt-lg text-body-lg text-ink-muted">{data.description}</p>
+
+        <div class="mt-xl flex flex-wrap items-center gap-md text-label text-ink-muted">
+          {author && (
+            <span>{author.data.name}</span>
+          )}
+          <span aria-hidden="true">·</span>
+          <time datetime={data.pubDate.toISOString()}>{formatDate(data.pubDate)}</time>
+          <span aria-hidden="true">·</span>
+          <span>{readingMinutes} min čtení</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="container-quc pb-xxl">
+      <div class="prose-quc max-w-3xl">
+        <slot />
+      </div>
+    </div>
+
+    {author && (
+      <aside class="bg-bg-warm">
+        <div class="container-quc py-xl">
+          <div class="flex max-w-3xl flex-col gap-lg sm:flex-row sm:items-start">
+            <div class="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-full bg-bg">
+              {author.data.photo ? (
+                <img
+                  src={author.data.photo}
+                  alt={author.data.name}
+                  loading="lazy"
+                  class="h-full w-full object-cover"
+                />
+              ) : (
+                <div class="flex h-full w-full items-center justify-center font-serif text-3xl text-ink-soft" aria-hidden="true">
+                  {author.data.name.charAt(0)}
+                </div>
+              )}
+            </div>
+            <div>
+              <p class="text-label uppercase tracking-wider text-amber">O autorovi</p>
+              <p class="mt-xs font-serif text-xl text-ink">{author.data.name}</p>
+              <p class="text-label text-ink-muted">{author.data.role}</p>
+              <p class="mt-md text-body text-ink-muted">{author.data.bio}</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    )}
+  </article>
+
+  <CTASection
+    title="Líbí se vám náš pohled? Domluvme rozhovor."
+    subtitle="Bezplatná 45minutová konzultace. Probereme, kde u vás konkrétně může AI pomoct — bez prodejního tlaku."
+    primaryCta={{ label: 'Domluvit konzultaci', href: '/kontakt' }}
+    secondaryCta={{ label: 'Zpět na blog', href: '/blog' }}
+    variant="ink"
+  />
+</BaseLayout>

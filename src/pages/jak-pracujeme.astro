@@ -1,0 +1,300 @@
+---
+// /jak-pracujeme — Phase 3 §3.7.
+// Stitch winner ea7e7448 (decisions.md §4).
+// Stitch fix #1: stock laptop screenshot v sekci "Cyklus 2 týdnů" → text-only blok
+// (ručně-kreslený diagram je TODO Phase 5, mezitím raději nic než stock photo
+// per CLAUDE.md §3 "žádné stock photos").
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import CTASection from '../components/CTASection.astro';
+
+const phases = [
+  { n: '01', title: 'Discovery', body: 'Rozhovory s týmem, mapování procesů a identifikace úzkých hrdel. Týden u vás, týden u nás.' },
+  { n: '02', title: 'Návrh', body: 'Prioritizovaný plán s ROI projekcí každého kroku. Co dělat hned, co odložit, co nechat být.' },
+  { n: '03', title: 'Pilot', body: 'Fixní cena, 4–8 týdnů. První hmatatelný výsledek nasazený do skutečného provozu, ne do testovacího.' },
+  { n: '04', title: 'Škálování', body: 'Rozšíření úspěšného pilotu do dalších částí firmy. Stejná logika, jiná data, jiní lidé.' },
+  { n: '05', title: 'Provoz', body: 'Průběžná optimalizace formou měsíčního retainerů. Nebo úplné předání vašemu týmu — vaše volba.' },
+];
+
+const pillars = [
+  {
+    n: '01',
+    title: 'Inside-out přístup',
+    body: 'Nezačínáme katalogem řešení. Začínáme nasloucháním lidem v první linii — výrobě, administrativě, IT — kteří procesy reálně žijí. Až potom navrhujeme.',
+  },
+  {
+    n: '02',
+    title: 'Pracujeme s tím, co máte',
+    body: 'Nenutíme měnit ERP. Integrujeme se na vaše stávající systémy (Pohoda, Helios, SAP B1) a doplňujeme inteligentní vrstvu. Žádný "rip-and-replace" projekt.',
+  },
+  {
+    n: '03',
+    title: 'Žádný vendor lock-in',
+    body: 'Vše, co vytvoříme, patří vám. Předáváme zdrojové kódy v git repository, který vlastníte od commitu jedna, plus dokumentaci. Můžete s námi skončit kdykoli.',
+  },
+  {
+    n: '04',
+    title: 'Iterativní cykly po 14 dnech',
+    body: 'Žádné půlroční analýzy bez výstupu. Každé dva týdny vidíte funkční kód v testovacím prostředí a rozhodujete o dalším kroku. Předvídatelný rytmus.',
+  },
+  {
+    n: '05',
+    title: 'Používáme to, co prodáváme',
+    body: 'Vlastní firmu řídíme přes Agentic OS — stejnou architekturu, kterou stavíme klientům. Víme z denní praxe, kde AI exceluje a kde vás zradí.',
+  },
+];
+
+const tech = [
+  { name: 'Alpine Linux VPS', body: 'Ultralehká bezpečná infrastruktura s minimální údržbou. Vše self-hosted v EU.' },
+  { name: 'n8n self-hosted', body: 'Workflow automatizace pod vaší kontrolou. Žádná data neopouští server, žádné per-execution poplatky.' },
+  { name: 'Ollama + Llama / Gemma', body: 'Lokální jazykové modely pro citlivá firemní data. On-premise alternativa k cloudovým LLM.' },
+  { name: 'Pohoda / Helios / SAP B1', body: 'Hluboké propojení s českými ERP přes nativní API a XML import. Standardní výbava, ne add-on.' },
+  { name: 'Anthropic Claude / OpenAI', body: 'Cloudové LLM tam, kde data nejsou citlivá a ekonomika dává smysl. Vždy přes nás, vždy auditovatelně.' },
+  { name: 'CrewAI / MCP protokol', body: 'Multi-agent orchestrace a otevřený standard pro propojení AI s vašimi systémy.' },
+];
+
+const deliverables = [
+  { title: 'Zdrojové kódy', body: 'Veškerý kód v git repository, který vlastníte od prvního commitu. Bez licenčních omezení.' },
+  { title: 'Provozní dokumentace', body: 'Architektura, runbooky, deployment guide. Psané průběžně, ne pět minut před předáním.' },
+  { title: 'Hodinové předávání IT', body: 'Workshop pro váš interní tým, video záznam pro nové členy, kontaktní podpora po dobu retaineru.' },
+  { title: 'Smluvní garance', body: 'Jasné SLA na dostupnost a kvalitu. Rovnoměrný vztah, ne závislost na nás.' },
+];
+---
+<BaseLayout
+  title="Jak pracujeme — QuConsult"
+  description="Náš proces v 5 krocích, 5 pilířů, technologický stack a cyklus 2 týdnů. Bez PowerPointů, s předáním zdrojových kódů a měřitelnými výsledky v korunách."
+>
+  <Hero
+    eyebrow="Metodika"
+    subtitle="Žádné PowerPointy, žádné půlroční analýzy. Pracujeme v cyklech po 2 týdnech a měříme výsledky v korunách, ne ve slidech."
+  >
+    Jak <span class="italic text-amber">pracujeme</span>
+  </Hero>
+
+  <section class="bg-bg-warm">
+    <div class="container-quc py-xxl">
+      <div class="max-w-3xl">
+        <p class="text-label uppercase tracking-wider text-amber">Postup</p>
+        <h2 class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop">Proces v 5 krocích</h2>
+        <p class="mt-md text-body-lg text-ink-muted">
+          Discovery → Návrh → Pilot → Škálování → Provoz. Po každém se rozhodujete,
+          jestli pokračovat. Nesoutěžíme o velký projekt — soutěžíme o reputaci po prvním kroku.
+        </p>
+      </div>
+      <ol class="mt-xl grid gap-md sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+        {phases.map((p) => (
+          <li class="rounded border border-border bg-bg p-lg">
+            <span class="text-label font-medium text-amber tabular-nums">{p.n}</span>
+            <h3 class="mt-sm font-serif text-xl text-ink">{p.title}</h3>
+            <p class="mt-sm text-body text-ink-muted">{p.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="container-quc py-xxl">
+    <div class="grid gap-xl md:grid-cols-[1fr_2fr]">
+      <div>
+        <p class="text-label uppercase tracking-wider text-amber">Proč my</p>
+        <h2 class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop">
+          5 pilířů, kterými se odlišujeme
+        </h2>
+        <p class="mt-md text-body text-ink-muted">
+          Nepřinášíme katalog řešení. Přinášíme způsob práce, který se osvědčil
+          u nás samotných i u klientů.
+        </p>
+      </div>
+      <ol class="space-y-lg">
+        {pillars.map((p) => (
+          <li class="border-b border-border pb-lg last:border-b-0">
+            <div class="flex gap-md">
+              <span class="font-serif text-2xl text-amber tabular-nums">{p.n}</span>
+              <div>
+                <h3 class="font-serif text-xl text-ink md:text-2xl">{p.title}</h3>
+                <p class="mt-sm text-body text-ink-muted">{p.body}</p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="bg-bg-warm">
+    <div class="container-quc py-xxl">
+      <div class="max-w-3xl">
+        <p class="text-label uppercase tracking-wider text-amber">Stack</p>
+        <h2 class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop">Naše technologie</h2>
+        <p class="mt-md text-body-lg text-ink-muted">
+          Stack, který sami denně provozujeme. Open source a self-hosted kdekoli
+          to dává smysl, cloud tam, kde je ekonomika a citlivost dat v pořádku.
+        </p>
+      </div>
+      <div class="mt-xl grid gap-md sm:grid-cols-2 lg:grid-cols-3">
+        {tech.map((t) => (
+          <article class="rounded border border-border bg-bg p-lg">
+            <h3 class="font-serif text-xl text-ink">{t.name}</h3>
+            <p class="mt-sm text-body text-ink-muted">{t.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="container-quc py-xxl">
+    <div class="grid gap-xl md:grid-cols-[2fr_1fr] md:items-start">
+      <div>
+        <p class="text-label uppercase tracking-wider text-amber">Rytmus spolupráce</p>
+        <h2 class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop">Cyklus 2 týdnů</h2>
+        <p class="mt-md text-body-lg text-ink-muted">
+          Zapomeňte na "černé skříňky", kdy konzultanti na měsíce zmizí a vrátí
+          se s prezentací. Spolupráce běží v rychlých předvídatelných sprintech,
+          kde každý týden vidíte hmatatelný posun.
+        </p>
+        <ul class="mt-xl space-y-md text-body text-ink">
+          <li class="border-l-2 border-amber pl-md">
+            <span class="font-medium">Pondělí 1. týdne — </span>
+            <span class="text-ink-muted">definice cílů cyklu, planning na 2 týdny dopředu.</span>
+          </li>
+          <li class="border-l-2 border-amber pl-md">
+            <span class="font-medium">Pátek 1. týdne — </span>
+            <span class="text-ink-muted">krátký demo rozpracovaného řešení, korektura směru.</span>
+          </li>
+          <li class="border-l-2 border-amber pl-md">
+            <span class="font-medium">Pátek 2. týdne — </span>
+            <span class="text-ink-muted">nasazení funkčního modulu do testovacího provozu, retro, plán dalšího cyklu.</span>
+          </li>
+        </ul>
+      </div>
+      <aside class="rounded border border-border bg-bg-warm/40 p-xl">
+        <p class="text-label uppercase tracking-wider text-ink-soft">Proč zrovna 14 dní</p>
+        <p class="mt-md text-body text-ink-muted">
+          Týden je krátký na cokoli komplexnějšího. Měsíc je dost dlouhý na to,
+          aby se dalo bloudit. Dva týdny jsou kompromis ověřený softwarovým
+          inženýrstvím i u našich klientů.
+        </p>
+      </aside>
+    </div>
+
+    <!-- Excalidraw-style diagram cyklu (per plan §8 ručně-kreslené diagramy) -->
+    <figure class="mt-xxl">
+      <svg
+        viewBox="0 0 800 320"
+        class="mx-auto block w-full max-w-3xl"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-labelledby="cycle-diagram-title"
+      >
+        <title id="cycle-diagram-title">
+          Schéma dvoutýdenního cyklu — Pondělí 1, Pátek 1, Pátek 2 a návrat do dalšího cyklu
+        </title>
+        <defs>
+          <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="3" />
+            <feDisplacementMap in="SourceGraphic" scale="2" />
+          </filter>
+          <marker
+            id="arrow"
+            viewBox="0 0 10 10"
+            refX="8"
+            refY="5"
+            markerWidth="8"
+            markerHeight="8"
+            orient="auto"
+          >
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#D97706" />
+          </marker>
+        </defs>
+
+        <g filter="url(#rough)" font-family="Noto Serif, Georgia, serif">
+          <!-- 3 nody na řadě -->
+          <g>
+            <circle cx="120" cy="120" r="58" fill="#FAFAF8" stroke="#1A1A1A" stroke-width="2" />
+            <text x="120" y="115" text-anchor="middle" font-size="20" fill="#1A1A1A">Pondělí</text>
+            <text x="120" y="140" text-anchor="middle" font-size="14" fill="#555555">1. týden</text>
+          </g>
+          <g>
+            <circle cx="400" cy="120" r="58" fill="#FAFAF8" stroke="#1A1A1A" stroke-width="2" />
+            <text x="400" y="115" text-anchor="middle" font-size="20" fill="#1A1A1A">Pátek</text>
+            <text x="400" y="140" text-anchor="middle" font-size="14" fill="#555555">1. týden</text>
+          </g>
+          <g>
+            <circle cx="680" cy="120" r="58" fill="#FAFAF8" stroke="#1A1A1A" stroke-width="2" />
+            <text x="680" y="115" text-anchor="middle" font-size="20" fill="#1A1A1A">Pátek</text>
+            <text x="680" y="140" text-anchor="middle" font-size="14" fill="#555555">2. týden</text>
+          </g>
+
+          <!-- Šipky mezi nody -->
+          <path
+            d="M 180 118 Q 290 90 340 118"
+            fill="none"
+            stroke="#D97706"
+            stroke-width="2"
+            marker-end="url(#arrow)"
+          />
+          <path
+            d="M 460 118 Q 570 90 620 118"
+            fill="none"
+            stroke="#D97706"
+            stroke-width="2"
+            marker-end="url(#arrow)"
+          />
+
+          <!-- Mini popisky nad šipkami -->
+          <text x="260" y="80" text-anchor="middle" font-size="12" fill="#888888" font-style="italic">demo</text>
+          <text x="540" y="80" text-anchor="middle" font-size="12" fill="#888888" font-style="italic">nasazení</text>
+
+          <!-- Return arrow — velký oblouk dole zpátky k Pondělí dalšího cyklu -->
+          <path
+            d="M 680 178 Q 680 280 400 280 Q 120 280 120 200"
+            fill="none"
+            stroke="#D97706"
+            stroke-width="2"
+            stroke-dasharray="6 4"
+            marker-end="url(#arrow)"
+          />
+          <text x="400" y="305" text-anchor="middle" font-size="13" fill="#555555" font-style="italic">
+            další cyklus — Pondělí 3. týdne
+          </text>
+        </g>
+      </svg>
+      <figcaption class="mx-auto mt-md max-w-2xl text-center text-label text-ink-soft">
+        Tři pevné body v cyklu. Zbytek dvou týdnů je tichá soustředěná práce —
+        bez schůzek navíc, bez statusů, bez slidů.
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="bg-bg-warm">
+    <div class="container-quc py-xxl">
+      <div class="max-w-3xl">
+        <p class="text-label uppercase tracking-wider text-amber">Předání</p>
+        <h2 class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop">
+          Co od nás přesně dostanete
+        </h2>
+        <p class="mt-md text-body-lg text-ink-muted">
+          Cílem každého projektu je, abyste nás po roce nepotřebovali. Tomu
+          odpovídá, co předáváme — všechno, co je potřeba k samostatnému provozu.
+        </p>
+      </div>
+      <div class="mt-xl grid gap-md sm:grid-cols-2 md:grid-cols-4">
+        {deliverables.map((d) => (
+          <article class="rounded border border-border bg-bg p-lg">
+            <h3 class="font-serif text-xl text-ink">{d.title}</h3>
+            <p class="mt-sm text-body text-ink-muted">{d.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Začněme malým pilotem"
+    subtitle="Ukážeme výsledky dříve, než se zavážete k velkému projektu. Bezplatná 45minutová konzultace, žádný prodejní tlak."
+    primaryCta={{ label: 'Domluvit konzultaci', href: '/kontakt' }}
+    secondaryCta={{ label: 'Podívat se na služby', href: '/sluzby' }}
+    variant="plain"
+  />
+</BaseLayout>

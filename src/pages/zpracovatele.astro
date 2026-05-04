@@ -1,0 +1,89 @@
+---
+// /zpracovatele — port HTML obsahu z ../zpracovatele.html. Phase 3 §3.13.
+// Seznam je z původního webu (HubSpot, MailChimp, Smartsupp) — Martin musí
+// validovat, zda jednotlivé služby ještě používáme. TODO Phase 5 polish.
+
+import LegalLayout from '../layouts/LegalLayout.astro';
+---
+<LegalLayout
+  title="Zpracovatelé osobních údajů"
+  description="Seznam externích zpracovatelů osobních údajů, se kterými WellBe s.r.o. spolupracuje při provozu QuConsult."
+  lastUpdated="21. dubna 2026"
+>
+  <p>
+    V souladu se Zásadami ochrany osobních údajů níže uvádíme přehled externích
+    zpracovatelů, kteří se podílejí na zpracování osobních údajů v rámci provozu
+    společnosti <strong>WellBe s.r.o.</strong>, IČ: 05830931 (provozovatel značky
+    QuConsult). Všichni zpracovatelé poskytují vhodné technické a organizační
+    záruky ochrany osobních údajů dle GDPR.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Zpracovatel</th>
+        <th>Účel</th>
+        <th>Země</th>
+        <th>Dokumentace</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>UOL a.s., IČ: 24753157, se sídlem Roztylská 1860/1, Chodov, 148 00 Praha 4, zapsána v obchodním rejstříku vedeném Městským soudem v Praze, oddíl B, vložka 16585</td>
+        <td>Vedení účetnictví</td>
+        <td>Česká republika</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Google LLC</td>
+        <td>Cloudové úložiště, e-mailový server</td>
+        <td>Spojené státy americké</td>
+        <td>
+          <a href="https://policies.google.com/privacy?hl=cs&gl=cz" rel="noopener">policies.google.com/privacy</a>,
+          SCC (čl. 46 odst. 2 písm. c) GDPR)
+        </td>
+      </tr>
+      <tr>
+        <td>GitHub Inc.</td>
+        <td>Hosting webových stránek (GitHub Pages)</td>
+        <td>Spojené státy americké</td>
+        <td>
+          <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">github privacy</a>,
+          SCC (čl. 46 odst. 2 písm. c) GDPR)
+        </td>
+      </tr>
+      <tr>
+        <td>Vercel Inc.</td>
+        <td>Hosting serverless funkcí pro formuláře</td>
+        <td>Spojené státy americké</td>
+        <td>
+          <a href="https://vercel.com/legal/privacy-policy" rel="noopener">vercel.com/legal/privacy-policy</a>,
+          SCC (čl. 46 odst. 2 písm. c) GDPR)
+        </td>
+      </tr>
+      <tr>
+        <td>Resend Inc.</td>
+        <td>Doručování transakčních e-mailů z formulářů</td>
+        <td>Spojené státy americké</td>
+        <td>
+          <a href="https://resend.com/legal/privacy-policy" rel="noopener">resend.com/legal/privacy-policy</a>,
+          SCC (čl. 46 odst. 2 písm. c) GDPR)
+        </td>
+      </tr>
+      <tr>
+        <td>Plausible Insights OÜ, registrační číslo 14709274, Västriku tn 2, 50403 Tartu, Estonsko</td>
+        <td>Anonymní webová analytika (bez cookies)</td>
+        <td>Estonsko (EU)</td>
+        <td>
+          <a href="https://plausible.io/privacy" rel="noopener">plausible.io/privacy</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    V případě jakýchkoliv otázek nás prosím kontaktujte na
+    <a href="mailto:hello@quconsult.cz">hello@quconsult.cz</a> nebo přes
+    <a href="/kontakt">kontaktní formulář</a>.
+  </p>
+</LegalLayout>

@@ -1,0 +1,103 @@
+---
+// /blog index — Phase 3 §3.9.
+// Stitch winner a89dc6e7 (decisions.md §6).
+//
+// Filtruje placeholder a draft entries — per CLAUDE.md §3 "žádný coming soon"
+// a obsahový schéma (placeholder: true = WIP, neukazovat veřejně). V den
+// launchu by zde měl být alespoň 1 reálný článek (plan §14.1) — Martin píše
+// paralelně a flagne placeholder: false v existujícím článku.
+
+import { getCollection, getEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const allEntries = await getCollection('blog', ({ data }) => !data.placeholder && !data.draft);
+const sorted = allEntries.sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+);
+
+const formatDate = (date: Date): string =>
+  date.toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' });
+
+// Pre-fetchneme autory pro kartu (max 5 různých autorů, není perf problém)
+const authors = new Map<string, { name: string; role: string; photo?: string }>();
+for (const entry of sorted) {
+  if (!authors.has(entry.data.author)) {
+    const a = await getEntry('tym', entry.data.author);
+    if (a) authors.set(entry.data.author, { name: a.data.name, role: a.data.role, photo: a.data.photo });
+  }
+}
+---
+<BaseLayout
+  title="Blog — QuConsult"
+  description="Praktické AI insights pro české firmy: strategie, implementace, change management, GDPR. Žádné buzzwordy, jen použitelné rady z reálných projektů."
+>
+  <Hero
+    eyebrow="Blog"
+    subtitle="Praktické postřehy a hluboké analýzy z implementací AI v českých firmách. Jednou měsíčně, žádný spam."
+  >
+    Pohled <span class="italic text-amber">pod kapotu</span> AI
+  </Hero>
+
+  {sorted.length > 0 ? (
+    <section class="container-quc pb-xxl">
+      <div class="grid gap-xl md:grid-cols-2 lg:grid-cols-3">
+        {sorted.map((entry) => {
+          const author = authors.get(entry.data.author);
+          return (
+            <article class="group flex flex-col rounded border border-border bg-bg transition-colors hover:border-amber">
+              <a href={`/blog/${entry.id}`} class="flex h-full flex-col p-lg">
+                <div class="flex flex-wrap gap-sm text-label uppercase tracking-wider text-amber">
+                  {entry.data.tags.slice(0, 2).map((tag) => <span>{tag}</span>)}
+                </div>
+                <h2 class="mt-md font-serif text-xl text-ink transition-colors group-hover:text-amber md:text-2xl">
+                  {entry.data.title}
+                </h2>
+                <p class="mt-md text-body text-ink-muted">{entry.data.description}</p>
+                <div class="mt-auto flex items-center gap-md border-t border-border pt-md text-label text-ink-muted">
+                  {author && <span class="font-medium text-ink">{author.name}</span>}
+                  <time datetime={entry.data.pubDate.toISOString()}>{formatDate(entry.data.pubDate)}</time>
+                </div>
+              </a>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  ) : (
+    <section class="container-quc pb-xxl">
+      <div class="rounded border border-border bg-bg-warm/40 p-xl">
+        <p class="text-label uppercase tracking-wider text-amber">První články</p>
+        <h2 class="mt-sm max-w-3xl font-serif text-2xl text-ink md:text-3xl">
+          Píšeme. Než vyjde první kus, můžete sledovat YouTube nebo nás
+          předplatit přes Substack.
+        </h2>
+        <div class="mt-xl flex flex-wrap gap-md">
+          <a
+            href="https://youtube.com/@quconsult"
+            rel="noopener"
+            class="inline-flex items-center rounded bg-amber px-lg py-md text-label font-medium text-bg transition-colors hover:bg-amber-deep"
+          >
+            YouTube kanál
+          </a>
+          <a
+            href="https://substack.com/@marvec"
+            rel="noopener"
+            class="inline-flex items-center rounded border border-ink px-lg py-md text-label font-medium text-ink transition-colors hover:border-amber hover:text-amber"
+          >
+            Substack newsletter
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <CTASection
+    title="Praktické rady přímo do inboxu"
+    subtitle="Jednou měsíčně shrnutí toho, co jsme se za měsíc naučili z implementací u klientů. Bez spamu, kdykoli odhlásíte."
+    primaryCta={{ label: 'Předplatit Substack', href: 'https://substack.com/@marvec' }}
+    secondaryCta={{ label: 'Domluvit konzultaci', href: '/kontakt' }}
+    variant="plain"
+  />
+</BaseLayout>

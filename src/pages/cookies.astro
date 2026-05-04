@@ -1,0 +1,85 @@
+---
+// /cookies — port + aktualizace HTML obsahu z ../cookies.html. Phase 3 §3.13.
+// Původní cookies stack (Google Analytics, Smartlook) byl nahrazen Plausible
+// (no cookies) per CLAUDE.md §2. Seznam aktualizován pro skutečný stav.
+
+import LegalLayout from '../layouts/LegalLayout.astro';
+---
+<LegalLayout
+  title="Cookies"
+  description="Prohlášení o používání cookies na webu QuConsult. Které cookies používáme, k čemu, jak dlouho a jak je odmítnout."
+  lastUpdated="4. května 2026"
+>
+  <p>
+    <em>
+      Tato internetová stránka používá pouze nezbytné technické cookies. Pro
+      analytiku používáme Plausible Analytics, který cookies neukládá.
+    </em>
+  </p>
+
+  <h2>Prohlášení o používání cookies</h2>
+  <p>
+    Obchodní společnost <strong>WellBe s.r.o.</strong>, IČ: 05830931, se sídlem
+    Nové sady 988/2, Staré Brno, 602 00 Brno, zapsána v obchodním rejstříku
+    vedeném Krajským soudem v Brně, oddíl C, vložka 98394 (dále jen
+    <em>správce</em>), je provozovatelem webových stránek
+    <strong>www.quconsult.cz</strong> (dále jen <em>internetové stránky</em>).
+  </p>
+  <p>
+    Cookies jsou malé datové soubory, které internetové stránky ukládají na
+    zařízení návštěvníka, prostřednictvím kterého návštěvník k internetovým
+    stránkám přistupuje. Díky těmto souborům si stránky po určitou dobu mohou
+    pamatovat preference a úkony návštěvníka (např. zobrazovací preference jako
+    jazyk nebo velikost písma, případně přihlašovací údaje).
+  </p>
+  <p>
+    Správce na internetových stránkách <strong>nepoužívá žádné marketingové ani
+    sledovací cookies</strong>. Webová analytika probíhá přes službu Plausible
+    Analytics, která je <strong>cookieless</strong> — nepoužívá cookies, sleduje
+    pouze agregovaná data o návštěvnosti bez možnosti identifikace jednotlivých
+    návštěvníků.
+  </p>
+
+  <h2>Které cookies používáme</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Název</th>
+        <th>Expirace</th>
+        <th>Typ</th>
+        <th>Účel</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>quc_cookie_dismissed</td>
+        <td>1 rok</td>
+        <td>Esenciální</td>
+        <td>Zaznamenává, že jste vzali na vědomí informativní cookie banner. Nepoužívá se k žádné jiné identifikaci ani sledování.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Jak cookies ovlivnit</h2>
+  <p>
+    Pokud si návštěvník nepřeje, aby internetové stránky ukládaly výše uvedený
+    soubor cookie, může jej v nastavení svého prohlížeče zablokovat nebo již
+    uložený soubor odstranit. Pro správnou funkci stránek to nemá zásadní vliv —
+    pouze se opakovaně zobrazí cookie banner.
+  </p>
+  <p>
+    Návody na správu cookies pro nejpoužívanější prohlížeče:
+  </p>
+  <ul>
+    <li><a href="https://support.google.com/chrome/answer/95647" rel="noopener">Google Chrome</a></li>
+    <li><a href="https://support.mozilla.org/cs/kb/cookies-informace-ktere-stranky-uchovavaji-na-pocita" rel="noopener">Mozilla Firefox</a></li>
+    <li><a href="https://support.apple.com/cs-cz/guide/safari/sfri11471/mac" rel="noopener">Apple Safari</a></li>
+    <li><a href="https://support.microsoft.com/cs-cz/microsoft-edge/odstran%C4%9Bn%C3%AD-soubor%C5%AF-cookie-v-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" rel="noopener">Microsoft Edge</a></li>
+  </ul>
+
+  <p>
+    V případě jakýchkoliv otázek nás prosím kontaktujte na
+    <a href="mailto:hello@quconsult.cz">hello@quconsult.cz</a> nebo přes
+    <a href="/kontakt">kontaktní formulář</a>.
+  </p>
+</LegalLayout>

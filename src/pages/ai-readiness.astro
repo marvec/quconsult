@@ -1,0 +1,500 @@
+---
+// /ai-readiness — Phase 3 §3.11 lead magnet.
+// Stitch winner c5274781 (decisions.md §8).
+//
+// Multi-step formulář (5 kroků), vanilla JS navigace, mailto: submit per
+// Phase 3. Vercel funkce + PDF generování přijde Phase 4 (per plan §3.11
+// "pro fázi launch stačí placeholder formulář + e-mail s textovou shrnutím").
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const stepTitles = [
+  'O firmě',
+  'Datová připravenost',
+  'Lidé a procesy',
+  'Cíle',
+  'Kontakt',
+];
+---
+<BaseLayout
+  title="AI Readiness Assessment — QuConsult"
+  description="Zjistěte AI zralost vaší firmy za 10 minut. Krátký dotazník o procesech, datech a cílech. Do 24 hodin pošleme zprávu s konkrétními doporučeními. Bez prodejního volání."
+>
+  <section class="container-quc py-xxl">
+    <div class="grid gap-xl lg:grid-cols-[2fr_1fr] lg:items-start">
+      <!-- Form (hlavní sloupec) -->
+      <div>
+        <header class="max-w-3xl">
+          <p class="text-label uppercase tracking-wider text-amber">AI Readiness Assessment</p>
+          <h1 class="mt-md font-serif text-h1-mobile leading-[1.1] tracking-tight md:text-5xl">
+            Zjistěte AI zralost vaší firmy za <span class="italic text-amber">10 minut</span>
+          </h1>
+          <p class="mt-lg text-body-lg text-ink-muted">
+            Krátký dotazník o vašich procesech, datech, lidech a cílech. Do
+            24 hodin odpovíme krátkou zprávou s orientačním skóre a konkrétním
+            doporučením, kde u vás dává AI smysl jako první.
+          </p>
+          <p class="mt-md text-body text-ink-muted">
+            Žádné prodejní volání. Žádné tlaky. Pokud z odpovědí vyjde, že AI
+            ještě nemá smysl, řekneme to.
+          </p>
+        </header>
+
+        <!-- Progress bar -->
+        <div class="mt-xl" id="progress-wrapper">
+          <div class="flex items-end justify-between text-label">
+            <span class="font-medium text-amber" id="progress-label">Krok 1 z 5</span>
+            <span class="text-ink-muted" id="progress-step-name">{stepTitles[0]}</span>
+          </div>
+          <div class="mt-sm flex h-1 gap-xs" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1" id="progress-bar">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <div
+                data-step-indicator={i}
+                class:list={[
+                  'h-full flex-1',
+                  i === 1 ? 'bg-amber' : 'bg-border',
+                ]}
+              />
+            ))}
+          </div>
+        </div>
+
+        <form
+          id="readiness-form"
+          method="post"
+          action="mailto:hello@quconsult.cz"
+          enctype="text/plain"
+          class="mt-xl space-y-xl"
+          novalidate
+        >
+          <!-- STEP 1 — O firmě -->
+          <fieldset data-step="1" class="space-y-xl">
+            <legend class="sr-only">O firmě</legend>
+
+            <div>
+              <p class="text-label uppercase tracking-wider text-ink-soft">Velikost firmy *</p>
+              <div class="mt-md grid grid-cols-2 gap-sm md:grid-cols-5">
+                {['pod 30', '30–50', '50–150', '150–300', '300+'].map((opt) => (
+                  <label class="cursor-pointer rounded border border-border bg-bg p-md text-center transition-colors has-[:checked]:border-amber has-[:checked]:bg-amber/5 hover:border-amber">
+                    <input type="radio" name="velikost" value={opt} required class="sr-only" />
+                    <span class="text-body text-ink">{opt}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div class="grid gap-xl md:grid-cols-2">
+              <label>
+                <span class="block text-label uppercase tracking-wider text-ink-soft">Obor *</span>
+                <select name="obor" required class="mt-sm w-full appearance-none border-0 border-b border-border bg-transparent px-0 py-md text-body text-ink focus:border-amber focus:outline-none focus:ring-0">
+                  <option value="">Vyberte obor</option>
+                  <option>Výroba</option>
+                  <option>Profesionální služby</option>
+                  <option>Obchod a velkoobchod</option>
+                  <option>Stavebnictví</option>
+                  <option>IT a software</option>
+                  <option>Jiné</option>
+                </select>
+              </label>
+
+              <label>
+                <span class="block text-label uppercase tracking-wider text-ink-soft">Hlavní ERP *</span>
+                <select name="erp" required class="mt-sm w-full appearance-none border-0 border-b border-border bg-transparent px-0 py-md text-body text-ink focus:border-amber focus:outline-none focus:ring-0">
+                  <option value="">Vyberte systém</option>
+                  <option>Pohoda</option>
+                  <option>Helios</option>
+                  <option>SAP Business One</option>
+                  <option>MS Dynamics</option>
+                  <option>Money S3</option>
+                  <option>Vlastní řešení</option>
+                  <option>Jiné</option>
+                  <option>Žádný ERP</option>
+                </select>
+              </label>
+            </div>
+
+            <label class="block">
+              <span class="block text-label uppercase tracking-wider text-ink-soft">Co děláte v jedné větě?</span>
+              <input
+                type="text"
+                name="cinnost"
+                placeholder="Např. vyrábíme precizní díly pro automotive."
+                class="mt-sm w-full border-0 border-b border-border bg-transparent px-0 py-md text-body text-ink placeholder:text-ink-soft focus:border-amber focus:outline-none focus:ring-0"
+              />
+            </label>
+          </fieldset>
+
+          <!-- STEP 2 — Datová připravenost -->
+          <fieldset data-step="2" class="hidden space-y-xl">
+            <legend class="sr-only">Datová připravenost</legend>
+
+            <div>
+              <p class="text-label uppercase tracking-wider text-ink-soft">Kde žijí vaše firemní data? * (více možností)</p>
+              <div class="mt-md grid gap-sm md:grid-cols-2">
+                {['V ERP systému', 'V Excelu / Google Sheets', 'V cloudu (SharePoint, Drive)', 'Ve vlastní databázi', 'Papírově nebo částečně papírově', 'V e-mailových schránkách'].map((opt) => (
+                  <label class="flex cursor-pointer items-center gap-md rounded border border-border bg-bg p-md transition-colors has-[:checked]:border-amber has-[:checked]:bg-amber/5 hover:border-amber">
+                    <input type="checkbox" name="data-kde" value={opt} class="h-4 w-4 accent-amber" />
+                    <span class="text-body text-ink">{opt}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p class="text-label uppercase tracking-wider text-ink-soft">Jak hodnotíte kvalitu firemních dat? *</p>
+              <div class="mt-md grid gap-sm md:grid-cols-2 lg:grid-cols-4">
+                {['Vynikající', 'Použitelná', 'Roztříštěná', 'Nevíme'].map((opt) => (
+                  <label class="cursor-pointer rounded border border-border bg-bg p-md text-center transition-colors has-[:checked]:border-amber has-[:checked]:bg-amber/5 hover:border-amber">
+                    <input type="radio" name="data-kvalita" value={opt} required class="sr-only" />
+                    <span class="text-body text-ink">{opt}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p class="text-label uppercase tracking-wider text-ink-soft">Máte interní reporting / BI?</p>
+              <div class="mt-md grid gap-sm md:grid-cols-3">
+                {['Ano, funkční', 'Částečně', 'Ne'].map((opt) => (
+                  <label class="cursor-pointer rounded border border-border bg-bg p-md text-center transition-colors has-[:checked]:border-amber has-[:checked]:bg-amber/5 hover:border-amber">
+                    <input type="radio" name="reporting" value={opt} class="sr-only" />
+                    <span class="text-body text-ink">{opt}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- STEP 3 — Lidé a procesy -->
+          <fieldset data-step="3" class="hidden space-y-xl">
+            <legend class="sr-only">Lidé a procesy</legend>
+
+            <div>
+              <p class="text-label uppercase tracking-wider text-ink-soft">Kdo by AI projekt vedl? *</p>
+              <div class="mt-md grid gap-sm md:grid-cols-3">
+                {['CEO / vedení', 'IT manažer / CTO', 'COO / provoz', 'Externí partner', 'Zatím nikdo'].map((opt) => (
+                  <label class="cursor-pointer rounded border border-border bg-bg p-md text-center transition-colors has-[:checked]:border-amber has-[:checked]:bg-amber/5 hover:border-amber">
+                    <input type="radio" name="vedeni" value={opt} required class="sr-only" />
+                    <span class="text-body text-ink">{opt}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p class="text-label uppercase tracking-wider text-ink-soft">Jak vidíte postoj týmu k AI? *</p>
+              <div class="mt-md grid gap-sm md:grid-cols-2 lg:grid-cols-4">
+                {['Velký zájem', 'Spíše opatrné', 'Skeptické', 'Otevřený odpor'].map((opt) => (
+                  <label class="cursor-pointer rounded border border-border bg-bg p-md text-center transition-colors has-[:checked]:border-amber has-[:checked]:bg-amber/5 hover:border-amber">
+                    <input type="radio" name="tym-postoj" value={opt} required class="sr-only" />
+                    <span class="text-body text-ink">{opt}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p class="text-label uppercase tracking-wider text-ink-soft">Kolik hodin týdně by tým mohl AI projektu věnovat?</p>
+              <div class="mt-md grid gap-sm md:grid-cols-2 lg:grid-cols-4">
+                {['2–4 h', '5–10 h', '10–20 h', 'Více'].map((opt) => (
+                  <label class="cursor-pointer rounded border border-border bg-bg p-md text-center transition-colors has-[:checked]:border-amber has-[:checked]:bg-amber/5 hover:border-amber">
+                    <input type="radio" name="kapacita" value={opt} class="sr-only" />
+                    <span class="text-body text-ink">{opt}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- STEP 4 — Cíle -->
+          <fieldset data-step="4" class="hidden space-y-xl">
+            <legend class="sr-only">Cíle</legend>
+
+            <div>
+              <p class="text-label uppercase tracking-wider text-ink-soft">Hlavní cíl projektu *</p>
+              <div class="mt-md grid gap-sm md:grid-cols-2 lg:grid-cols-3">
+                {['Úspora času', 'Nové produkty', 'Vyšší kvalita', 'Zákaznická zkušenost', 'Compliance / GDPR', 'Něco jiného'].map((opt) => (
+                  <label class="cursor-pointer rounded border border-border bg-bg p-md text-center transition-colors has-[:checked]:border-amber has-[:checked]:bg-amber/5 hover:border-amber">
+                    <input type="radio" name="cil" value={opt} required class="sr-only" />
+                    <span class="text-body text-ink">{opt}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p class="text-label uppercase tracking-wider text-ink-soft">Realistický horizont prvního výsledku *</p>
+              <div class="mt-md grid gap-sm md:grid-cols-2 lg:grid-cols-4">
+                {['Do 3 měsíců', 'Do 6 měsíců', 'Do roka', 'Déle'].map((opt) => (
+                  <label class="cursor-pointer rounded border border-border bg-bg p-md text-center transition-colors has-[:checked]:border-amber has-[:checked]:bg-amber/5 hover:border-amber">
+                    <input type="radio" name="horizont" value={opt} required class="sr-only" />
+                    <span class="text-body text-ink">{opt}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p class="text-label uppercase tracking-wider text-ink-soft">Orientační rozpočet pro pilot</p>
+              <div class="mt-md grid gap-sm md:grid-cols-2 lg:grid-cols-5">
+                {['Pod 100 tis. Kč', '100–300 tis.', '300–500 tis.', 'Nad 500 tis.', 'Nevíme'].map((opt) => (
+                  <label class="cursor-pointer rounded border border-border bg-bg p-md text-center transition-colors has-[:checked]:border-amber has-[:checked]:bg-amber/5 hover:border-amber">
+                    <input type="radio" name="rozpocet" value={opt} class="sr-only" />
+                    <span class="text-body text-ink">{opt}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- STEP 5 — Kontakt -->
+          <fieldset data-step="5" class="hidden space-y-xl">
+            <legend class="sr-only">Kontakt</legend>
+
+            <p class="text-body-lg text-ink-muted">
+              Posledních pár polí. E-mail je nutný — bez něj nemáme kam zprávu poslat.
+            </p>
+
+            <div class="grid gap-xl md:grid-cols-2">
+              <label>
+                <span class="block text-label uppercase tracking-wider text-ink-soft">Jméno a příjmení *</span>
+                <input
+                  type="text"
+                  name="jmeno"
+                  required
+                  autocomplete="name"
+                  class="mt-sm w-full border-0 border-b border-border bg-transparent px-0 py-md text-body text-ink focus:border-amber focus:outline-none focus:ring-0"
+                />
+              </label>
+              <label>
+                <span class="block text-label uppercase tracking-wider text-ink-soft">Firma *</span>
+                <input
+                  type="text"
+                  name="firma"
+                  required
+                  autocomplete="organization"
+                  class="mt-sm w-full border-0 border-b border-border bg-transparent px-0 py-md text-body text-ink focus:border-amber focus:outline-none focus:ring-0"
+                />
+              </label>
+              <label>
+                <span class="block text-label uppercase tracking-wider text-ink-soft">E-mail *</span>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                  class="mt-sm w-full border-0 border-b border-border bg-transparent px-0 py-md text-body text-ink focus:border-amber focus:outline-none focus:ring-0"
+                />
+              </label>
+              <label>
+                <span class="block text-label uppercase tracking-wider text-ink-soft">Telefon (volitelné)</span>
+                <input
+                  type="tel"
+                  name="telefon"
+                  autocomplete="tel"
+                  class="mt-sm w-full border-0 border-b border-border bg-transparent px-0 py-md text-body text-ink focus:border-amber focus:outline-none focus:ring-0"
+                />
+              </label>
+            </div>
+
+            <div class="flex items-start gap-md">
+              <input
+                id="readiness-gdpr"
+                name="gdpr"
+                type="checkbox"
+                required
+                value="souhlasím"
+                class="mt-1 h-4 w-4 cursor-pointer accent-amber"
+              />
+              <label for="readiness-gdpr" class="cursor-pointer text-label text-ink-muted">
+                Souhlasím se zpracováním osobních údajů dle
+                <a href="/soukromi" class="text-amber underline underline-offset-2">zásad ochrany soukromí</a>.
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Navigation -->
+          <div class="flex flex-wrap items-center justify-between gap-md border-t border-border pt-xl">
+            <button
+              type="button"
+              id="btn-prev"
+              class="rounded border border-border px-lg py-md text-label font-medium uppercase tracking-wider text-ink-muted transition-colors hover:border-ink hover:text-ink disabled:cursor-not-allowed disabled:opacity-30"
+              disabled
+            >
+              Zpět
+            </button>
+            <button
+              type="button"
+              id="btn-next"
+              class="rounded bg-amber px-lg py-md text-label font-medium uppercase tracking-wider text-bg transition-colors hover:bg-amber-deep"
+            >
+              Pokračovat
+            </button>
+            <button
+              type="submit"
+              id="btn-submit"
+              class="hidden rounded bg-amber px-lg py-md text-label font-medium uppercase tracking-wider text-bg transition-colors hover:bg-amber-deep"
+            >
+              Odeslat dotazník
+            </button>
+          </div>
+
+          <p class="text-label italic text-ink-soft">
+            Otázky odhalují bolesti, ne mezery. Žádná otázka kromě označených * není
+            povinná — odpovězte jen na to, co vám dává smysl.
+          </p>
+        </form>
+
+        <!-- Success state (hidden until submit) -->
+        <div id="success-state" class="hidden mt-xl rounded border border-amber bg-amber/5 p-xl">
+          <p class="text-label uppercase tracking-wider text-amber">Hotovo</p>
+          <h2 class="mt-sm font-serif text-2xl text-ink md:text-3xl">
+            Děkujeme. Zprávu pošleme do 24 hodin na váš e-mail.
+          </h2>
+          <p class="mt-md text-body text-ink-muted">
+            Otevřel se váš e-mailový klient s předvyplněnou zprávou — stačí
+            potvrdit odeslání. Mezitím si můžete domluvit konzultaci nebo se
+            vrátit na úvod.
+          </p>
+          <div class="mt-lg flex flex-wrap gap-md">
+            <a
+              href="/kontakt"
+              class="inline-flex items-center rounded bg-amber px-lg py-md text-label font-medium text-bg transition-colors hover:bg-amber-deep"
+            >
+              Domluvit 45min konzultaci
+            </a>
+            <a
+              href="/"
+              class="inline-flex items-center rounded border border-ink px-lg py-md text-label font-medium text-ink transition-colors hover:border-amber hover:text-amber"
+            >
+              Zpět na úvod
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="space-y-xl lg:sticky lg:top-24">
+        <div class="rounded border border-border bg-bg-warm/40 p-xl">
+          <p class="text-label uppercase tracking-wider text-amber">Co dostanete</p>
+          <ul class="mt-md space-y-md text-body text-ink-muted">
+            <li><span class="text-ink">→</span> Orientační skóre 0–100 ve 4 dimenzích.</li>
+            <li><span class="text-ink">→</span> Konkrétní doporučení, kde u vás dává AI smysl jako první.</li>
+            <li><span class="text-ink">→</span> Co byste měli dorovnat, než cokoli postavíte.</li>
+            <li><span class="text-ink">→</span> Pozvánku na bezplatnou 45min konzultaci. Bez tlaku.</li>
+          </ul>
+        </div>
+
+        <div class="rounded border border-border bg-bg-warm/40 p-xl">
+          <p class="text-label uppercase tracking-wider text-amber">Vaše údaje</p>
+          <p class="mt-md text-body text-ink-muted">
+            Odpovědi používáme pouze k vyhodnocení — neukládáme do CRM, neprodáváme,
+            nezasíláme spam. Po vyhodnocení zůstane jen váš e-mail v případě, že
+            si vyžádáte další pokračování. Detaily v
+            <a href="/soukromi" class="text-amber underline underline-offset-2">zásadách ochrany soukromí</a>.
+          </p>
+        </div>
+
+        <div class="rounded border border-border bg-bg-warm/40 p-xl">
+          <p class="text-label uppercase tracking-wider text-amber">Kdo to vyhodnocuje</p>
+          <p class="mt-md text-body text-ink-muted">
+            Vyhodnocení čte <span class="text-ink">Martin Večeřa</span>, vedoucí
+            konzultant. Žádný funnel, žádná SDR. Odpověď přijde od stejného
+            člověka, který by s vámi vedl Discovery.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      const form = document.getElementById('readiness-form');
+      if (!form) return;
+
+      const steps = Array.from(form.querySelectorAll('fieldset[data-step]'));
+      const indicators = Array.from(document.querySelectorAll('[data-step-indicator]'));
+      const progressLabel = document.getElementById('progress-label');
+      const progressStepName = document.getElementById('progress-step-name');
+      const progressBar = document.getElementById('progress-bar');
+      const btnPrev = document.getElementById('btn-prev');
+      const btnNext = document.getElementById('btn-next');
+      const btnSubmit = document.getElementById('btn-submit');
+      const successState = document.getElementById('success-state');
+      const stepNames = ['O firmě', 'Datová připravenost', 'Lidé a procesy', 'Cíle', 'Kontakt'];
+      const total = steps.length;
+      let current = 1;
+
+      function render() {
+        steps.forEach((s) => {
+          const n = Number(s.dataset.step);
+          s.classList.toggle('hidden', n !== current);
+        });
+        indicators.forEach((el) => {
+          const n = Number(el.dataset.stepIndicator);
+          el.classList.toggle('bg-amber', n <= current);
+          el.classList.toggle('bg-border', n > current);
+        });
+        progressLabel.textContent = 'Krok ' + current + ' z ' + total;
+        progressStepName.textContent = stepNames[current - 1];
+        progressBar.setAttribute('aria-valuenow', String(current));
+        btnPrev.disabled = current === 1;
+        const isLast = current === total;
+        btnNext.classList.toggle('hidden', isLast);
+        btnSubmit.classList.toggle('hidden', !isLast);
+      }
+
+      function validateCurrent() {
+        const fieldset = steps.find((s) => Number(s.dataset.step) === current);
+        if (!fieldset) return true;
+        const required = fieldset.querySelectorAll('[required]');
+        for (const field of required) {
+          if (field.type === 'radio') {
+            const group = fieldset.querySelectorAll('input[name="' + field.name + '"]');
+            if (!Array.from(group).some((g) => g.checked)) {
+              alert('Vyberte prosím odpověď u: ' + (field.closest('div')?.querySelector('p')?.textContent ?? field.name));
+              return false;
+            }
+          } else if (!field.checkValidity()) {
+            field.reportValidity();
+            return false;
+          }
+        }
+        return true;
+      }
+
+      btnNext.addEventListener('click', () => {
+        if (!validateCurrent()) return;
+        if (current < total) {
+          current += 1;
+          render();
+          window.scrollTo({ top: form.offsetTop - 100, behavior: 'smooth' });
+        }
+      });
+
+      btnPrev.addEventListener('click', () => {
+        if (current > 1) {
+          current -= 1;
+          render();
+          window.scrollTo({ top: form.offsetTop - 100, behavior: 'smooth' });
+        }
+      });
+
+      form.addEventListener('submit', (e) => {
+        if (!validateCurrent()) {
+          e.preventDefault();
+          return;
+        }
+        // mailto: submit dovolíme proběhnout, pak ukážeme success state
+        setTimeout(() => {
+          form.classList.add('hidden');
+          document.getElementById('progress-wrapper').classList.add('hidden');
+          successState.classList.remove('hidden');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 100);
+      });
+
+      render();
+    })();
+  </script>
+</BaseLayout>

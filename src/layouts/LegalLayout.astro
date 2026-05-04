@@ -1,0 +1,71 @@
+---
+// LegalLayout — wrapper pro /soukromi, /zpracovatele, /cookies.
+// Per plan §3.13: úzký content column, žádné CTA, čistá typografie.
+// Stitch winner e9e8c2fd (decisions.md §10).
+
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  lastUpdated: string;
+}
+
+const { title, description, lastUpdated } = Astro.props;
+---
+<BaseLayout title={`${title} — QuConsult`} description={description}>
+  <article class="container-quc py-xxl">
+    <nav aria-label="Drobečková navigace" class="text-label text-ink-muted">
+      <a href="/" class="hover:text-amber">Domů</a>
+      <span aria-hidden="true" class="mx-xs text-ink-soft">/</span>
+      <span class="text-ink-soft">{title}</span>
+    </nav>
+
+    <header class="mt-xl max-w-3xl">
+      <p class="text-label uppercase tracking-wider text-amber">Právní informace</p>
+      <h1 class="mt-md font-serif text-h1-mobile leading-[1.1] tracking-tight md:text-5xl">
+        {title}
+      </h1>
+      <p class="mt-md text-label text-ink-muted">
+        Naposledy aktualizováno: <time>{lastUpdated}</time>
+      </p>
+    </header>
+
+    <div class="prose-quc legal mt-xl max-w-3xl">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
+
+<style is:global>
+  .prose-quc.legal table {
+    width: 100%;
+    margin: 24px 0;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .prose-quc.legal thead {
+    background-color: var(--color-bg-warm);
+  }
+  .prose-quc.legal th {
+    text-align: left;
+    padding: 12px 16px;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: var(--color-ink);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .prose-quc.legal td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+    color: var(--color-ink-muted);
+  }
+  .prose-quc.legal tr:last-child td {
+    border-bottom: 0;
+  }
+  .prose-quc.legal em {
+    color: var(--color-ink-muted);
+    font-style: italic;
+  }
+</style>

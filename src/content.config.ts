@@ -30,6 +30,10 @@ const sluzby = defineCollection({
     metaDescription: z.string().min(50).max(160),
     summary: z.string(),
     forWho: z.string(),
+    audiences: z.array(z.object({
+      title: z.string(),
+      body: z.string(),
+    })).default([]),
     typicalOutcome: z.string(),
     priceFrom: z.string(),
     pricingNote: z.string().optional(),
