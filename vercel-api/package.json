@@ -7,13 +7,20 @@
     "node": "22.x"
   },
   "dependencies": {
-    "nodemailer": "^6.9.16",
+    "nodemailer": "^8.0.5",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
-    "@types/nodemailer": "^6.4.17",
+    "@types/nodemailer": "^8.0.0",
     "@vercel/node": "^5.0.0",
     "typescript": "^5.6.0"
+  },
+  "overrides": {
+    "ajv": "^8.17.2",
+    "minimatch": "^10.2.3",
+    "path-to-regexp": "^6.3.0",
+    "smol-toml": "^1.6.1",
+    "undici": "^6.24.0"
   }
 }
