@@ -103,6 +103,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse): 
       }
     }
   } catch (err) {
+    console.error('[contact] reCAPTCHA verification error:', err);
     res.status(500).json({ ok: false, error: 'reCAPTCHA verification error' });
     return;
   }
@@ -154,6 +155,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse): 
       text,
     });
   } catch (err) {
+    console.error('[contact] mail delivery failed:', err);
     res.status(500).json({ ok: false, error: 'Mail delivery failed' });
     return;
   }
