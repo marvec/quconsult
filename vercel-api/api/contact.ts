@@ -104,8 +104,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse): 
     }
   } catch (err) {
     console.error('[contact] reCAPTCHA verification error:', err);
-    const detail = err instanceof Error ? `${err.name}: ${err.message}` : String(err);
-    res.status(500).json({ ok: false, error: 'reCAPTCHA verification error', detail });
+    res.status(500).json({ ok: false, error: 'reCAPTCHA verification error' });
     return;
   }
 
@@ -157,8 +156,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse): 
     });
   } catch (err) {
     console.error('[contact] mail delivery failed:', err);
-    const detail = err instanceof Error ? `${err.name}: ${err.message}` : String(err);
-    res.status(500).json({ ok: false, error: 'Mail delivery failed', detail });
+    res.status(500).json({ ok: false, error: 'Mail delivery failed' });
     return;
   }
 
