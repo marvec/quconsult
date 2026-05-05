@@ -599,11 +599,19 @@ const apiBaseUrl = import.meta.env.PUBLIC_API_BASE_URL;
           };
           if (telefon) payload.telefon = telefon;
 
-          const r = await fetch(apiBaseUrl + '/api/ai-readiness', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-          });
+          const ctrl = new AbortController();
+          const timeoutId = setTimeout(() => ctrl.abort(), 20000);
+          let r;
+          try {
+            r = await fetch(apiBaseUrl + '/api/ai-readiness', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+              signal: ctrl.signal,
+            });
+          } finally {
+            clearTimeout(timeoutId);
+          }
 
           let json = null;
           try {
