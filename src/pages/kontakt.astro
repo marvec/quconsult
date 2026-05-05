@@ -330,7 +330,8 @@ const apiBaseUrl = import.meta.env.PUBLIC_API_BASE_URL;
             const msg =
               (json && typeof json.error === 'string' ? json.error : null) ||
               ('HTTP ' + r.status);
-            throw new Error(msg);
+            const detail = json && typeof json.detail === 'string' ? ' — ' + json.detail : '';
+            throw new Error(msg + detail);
           }
 
           form.classList.add('hidden');
