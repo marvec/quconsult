@@ -93,7 +93,9 @@ a {
   text-decoration: none;
 }
 
-a:hover {
+/* :where() zeroes specificity tak, aby utility classy jako `text-bg`
+ * na anchor-buttonech (Header CTA, hero CTA, …) přebily defaultní amber. */
+:where(a):hover {
   color: var(--color-amber);
 }
 

@@ -337,6 +337,7 @@ const apiBaseUrl = import.meta.env.PUBLIC_API_BASE_URL;
           successBox.classList.remove('hidden');
           window.scrollTo({ top: 0, behavior: 'smooth' });
         } catch (err) {
+          console.error('[contact] submit failed:', err);
           showError(
             'Odeslání se nepovedlo. Zkuste to prosím znovu nebo nám napište přímo na hello@quconsult.cz.',
           );
