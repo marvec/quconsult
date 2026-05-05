@@ -59,44 +59,47 @@
   --stagger: 60ms;
 }
 
-/* Base styles */
-html {
-  background: var(--color-bg);
-  color: var(--color-ink);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
+/* Base styles. @layer base — Tailwind 4's utilities layer cascade trumfne tyto
+ * defaulty, takže `text-bg` na anchor-buttonu (Header CTA, hero CTA, success
+ * CTA, …) přebije globální `a:hover { color: amber }`. Bez @layer base by
+ * unlayered globální rule trumfla utilities a hover by zhasl text. */
+@layer base {
+  html {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-size: var(--text-body);
-  line-height: 1.6;
-}
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-size: var(--text-body);
+    line-height: 1.6;
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-serif);
-  letter-spacing: -0.01em;
-  font-weight: 600;
-  line-height: 1.15;
-  color: var(--color-ink);
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-serif);
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--color-ink);
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
-/* :where() zeroes specificity tak, aby utility classy jako `text-bg`
- * na anchor-buttonech (Header CTA, hero CTA, …) přebily defaultní amber. */
-:where(a):hover {
-  color: var(--color-amber);
+  a:hover {
+    color: var(--color-amber);
+  }
 }
 
 /* Container helper */
