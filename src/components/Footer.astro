@@ -5,7 +5,7 @@ const year = new Date().getFullYear();
 ---
 <footer class="mt-xxl border-t border-border bg-bg-warm">
   <div class="container-quc py-xl">
-    <div class="grid gap-xl md:grid-cols-4">
+    <div class="grid gap-xl md:grid-cols-4 [&>div]:min-w-0">
       <div>
         <a href="/" class="flex items-center gap-sm" aria-label="QuConsult — domů">
           <svg viewBox="0 0 200 200" width="28" height="28" aria-hidden="true">
@@ -61,11 +61,11 @@ const year = new Date().getFullYear();
         </h3>
         <ul class="mt-md space-y-sm text-label">
           <li><a href="/soukromi" class="text-ink-muted hover:text-ink">Ochrana soukromí</a></li>
-          <li><a href="/zpracovatele" class="text-ink-muted hover:text-ink">Zpracovatelé osobních údajů</a></li>
+          <li><a href="/zpracovatele" class="text-ink-muted hover:text-ink">Zpracovatelé</a></li>
           <li><a href="/cookies" class="text-ink-muted hover:text-ink">Cookies</a></li>
         </ul>
 
-        <div class="mt-lg flex gap-md">
+        <div class="mt-lg flex flex-wrap gap-md">
           <a href="https://linkedin.com/company/quconsult" rel="me noopener" aria-label="LinkedIn" class="text-ink-muted hover:text-ink">LinkedIn</a>
           <a href="https://youtube.com/@quconsult" rel="me noopener" aria-label="YouTube" class="text-ink-muted hover:text-ink">YouTube</a>
           <a href="https://github.com/marvec" rel="me noopener" aria-label="GitHub" class="text-ink-muted hover:text-ink">GitHub</a>

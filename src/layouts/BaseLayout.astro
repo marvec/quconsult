@@ -3,7 +3,6 @@ import '../styles/global.css';
 import { ClientRouter } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import CookieBanner from '../components/CookieBanner.astro';
 import MobileNavDrawer from '../components/MobileNavDrawer.astro';
 
 interface Props {
@@ -82,6 +81,9 @@ const orgSchema = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
 
+    <!-- RSS feed discovery -->
+    <link rel="alternate" type="application/rss+xml" title="QuConsult — blog" href="/rss.xml" />
+
     <!-- Fonts (Google Fonts CDN — runtime; build-time PNG generation uses TTFs in scripts/fonts/) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -96,10 +98,37 @@ const orgSchema = {
     <!-- View transitions (Astro built-in, no JS lib — plan §4.7) -->
     <ClientRouter />
 
-    <!-- Plausible analytics placeholder (no cookies, GDPR-friendly) -->
-    <!--
-    <script defer data-domain="quconsult.cz" src="https://plausible.io/js/script.js"></script>
-    -->
+    <!-- Google Consent Mode v2 default — denied před gtag.js -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        functionality_storage: 'granted',
+        security_storage: 'granted',
+        wait_for_update: 500,
+      });
+      gtag('set', 'ads_data_redaction', true);
+    </script>
+
+    <!-- Cookie consent + GA4 init -->
+    <script>
+      import 'vanilla-cookieconsent/dist/cookieconsent.css';
+      import '../styles/cookie-consent.css';
+      import { CookieConsent, ccConfig } from '../lib/cookie-consent';
+
+      const init = () => {
+        if (window.__ccInitialized) return;
+        window.__ccInitialized = true;
+        CookieConsent.run(ccConfig);
+      };
+
+      document.addEventListener('astro:page-load', init, { once: true });
+    </script>
   </head>
   <body class="flex min-h-screen flex-col">
     <Header />
@@ -108,6 +137,5 @@ const orgSchema = {
     </main>
     <Footer />
     <MobileNavDrawer />
-    <CookieBanner />
   </body>
 </html>

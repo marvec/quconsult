@@ -1,0 +1,21 @@
+#cc-main {
+  --cc-font-family: 'Inter', system-ui, sans-serif;
+  --cc-bg: #FAFAF8;
+  --cc-primary-color: #1A1A1A;
+  --cc-secondary-color: #4A4A4A;
+  --cc-btn-primary-bg: #D97706;
+  --cc-btn-primary-color: #FAFAF8;
+  --cc-btn-primary-border-color: #D97706;
+  --cc-btn-primary-hover-bg: #B45309;
+  --cc-btn-primary-hover-border-color: #B45309;
+  --cc-btn-secondary-bg: transparent;
+  --cc-btn-secondary-color: #1A1A1A;
+  --cc-btn-secondary-border-color: #1A1A1A;
+  --cc-btn-secondary-hover-bg: #1A1A1A;
+  --cc-btn-secondary-hover-color: #FAFAF8;
+  --cc-toggle-on-bg: #D97706;
+  --cc-modal-border-radius: 0.5rem;
+  --cc-btn-border-radius: 0.375rem;
+  --cc-z-index: 2147483000;
+  --cc-overlay-bg: rgba(26, 26, 26, 0.6);
+}

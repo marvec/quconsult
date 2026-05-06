@@ -1,10 +1,8 @@
 ---
 // /soukromi — port HTML obsahu z ../soukromi.html. Phase 3 §3.13.
 // IČO + adresa ověřené proti origin §0 (WellBe s.r.o., IČ 05830931,
-// Nové sady 988/2, 602 00 Brno). Seznam použitých služeb (HubSpot,
-// MailChimp, Drift, Smartlook) zůstává z původního textu — Martin musí
-// validovat, jestli je seznam aktuální vůči novému stacku (Plausible
-// per CLAUDE.md §2). TODO Phase 5 polish.
+// Nové sady 988/2, 602 00 Brno). Phase 5: analytika přes Google Analytics 4
+// (opt-in přes vanilla-cookieconsent), seznam zpracovatelů aktualizován.
 
 import LegalLayout from '../layouts/LegalLayout.astro';
 ---
@@ -210,11 +208,20 @@ import LegalLayout from '../layouts/LegalLayout.astro';
 
   <h2>Analytika provozu</h2>
   <p>
-    Správce využívá službu <strong>Plausible Analytics</strong> pro statistické
-    účely. Plausible neukládá cookies ani neshromažďuje osobní údaje subjektů.
-    Data jsou agregovaná a anonymní — správce zjišťuje pouze počet návštěv,
-    zdroje provozu a populární obsah, bez možnosti identifikace konkrétního
-    návštěvníka.
+    Pro měření návštěvnosti využívá správce službu <strong>Google Analytics 4</strong>
+    (Google Ireland Limited). Analytika je <strong>volitelná</strong> — aktivuje
+    se pouze s Vaším výslovným souhlasem uděleným v cookie liště. Bez souhlasu
+    se žádná analytická data neměří.
+  </p>
+  <p>
+    Data jsou anonymizovaná: IP adresy se zkracují (anonymizace IP), nepoužívá
+    se reklamní identifikace ani propojení s reklamními sítěmi. Doba uchování
+    dat v Google Analytics je nastavena na <strong>2 roky</strong>. Souhlas
+    můžete kdykoli odvolat změnou předvoleb v patičce webu.
+  </p>
+  <p>
+    Zpracovatelem je Google Ireland Limited (Dublin, Irsko). Více v
+    <a href="/zpracovatele">seznamu zpracovatelů</a>.
   </p>
 
   <h2>Pověřenec pro ochranu osobních údajů</h2>

@@ -34,11 +34,13 @@ a v patičce, ne jinde.
   (po Fázi 2).
 - **Forms backend:** Vercel serverless functions v `vercel-api/`
   (Node runtime, ne Edge — `nodemailer` Edge nepodporuje).
+- **Analytics:** Google Analytics 4, opt-in přes vanilla-cookieconsent v3
+  (orestbida). Default consent state denied; GA4 gtag.js se loaduje až
+  po `analytics` consent. Měřítko ID v `PUBLIC_GA_MEASUREMENT_ID`.
 - **Anti-spam:** Google reCAPTCHA v3, lazy-loaded na form submit.
-  Cookies klasifikovány jako **essential** — banner je informativní,
-  ne opt-out.
-- **Analytics:** Plausible (žádné cookies). Aktivace přes `<script>`
-  v `BaseLayout.astro` až po veřejném launchi.
+- **Cookie banner:** Opt-in (NE jen informativní). Necessary kategorie
+  always-on (cc_cookie + reCAPTCHA), Analytics opt-in. CZ texty v
+  `src/lib/cookie-consent.ts`, override CSS v `src/styles/cookie-consent.css`.
 - **Deploy:** GH Actions → GH Pages (`master` → `dist/`). API je
   deployovaný odděleně (Vercel projekt, Root Directory `vercel-api/`).
 - **Node:** 22+. **Package manager:** pnpm.
@@ -112,13 +114,17 @@ src/
 ├── components/
 │   ├── Header.astro
 │   ├── Footer.astro
-│   ├── CookieBanner.astro
 │   └── ... (PascalCase, jeden komponent na soubor)
 ├── content/            — Markdown/MDX (po Fázi 2)
 ├── content.config.ts   — Zod schémata pro collections
+├── lib/
+│   └── cookie-consent.ts — vanilla-cookieconsent config + GA4 gating
+├── pages/
+│   └── rss.xml.ts      — RSS feed (Astro endpoint)
 ├── styles/
-│   └── global.css      — Tailwind 4 @theme tokens (zdroj pravdy
-│                         pro design system)
+│   ├── global.css      — Tailwind 4 @theme tokens (zdroj pravdy
+│   │                     pro design system)
+│   └── cookie-consent.css — orestbida brand override
 └── env.d.ts            — typed import.meta.env
 
 public/                 — statické assety, kopírují se 1:1
@@ -248,4 +254,4 @@ ne strategie.
 
 ---
 
-*Last updated: 2026-05-03 — Phase 0 deployed live; docs/ moved in-repo.*
+*Last updated: 2026-05-05 — Phase 5: GA4 + cookieconsent opt-in.*

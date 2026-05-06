@@ -17,7 +17,7 @@ interface Props {
 
 const { photo, photoAlt, name, role, bio, linkedin } = Astro.props;
 ---
-<article class="flex flex-col">
+<article class="flex min-w-0 flex-col items-center text-center">
   <div class="relative aspect-square w-full max-w-[280px] overflow-hidden rounded-full bg-bg-warm">
     {photo ? (
       <img

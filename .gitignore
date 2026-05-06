@@ -30,3 +30,4 @@ pnpm-debug.log*
 
 # Build-time only fonts for OG/icon generator (re-downloaded by `pnpm icons`)
 scripts/fonts/
+.gstack/

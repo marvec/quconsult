@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://quconsult.cz/sitemap-index.xml
