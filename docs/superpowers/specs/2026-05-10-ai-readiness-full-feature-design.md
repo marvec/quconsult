@@ -146,7 +146,7 @@ export function scoreReadiness(odpovedi: Odpovedi): ScoreResult { ... }
 |---|---|---|
 | **PRŮZKUM** | 0–39 | "Vaše firma je v pásmu PRŮZKUM — má smysl začít datovým auditem před jakýmkoli AI projektem." |
 | **KANDIDÁT** | 40–69 | "Vaše firma je v pásmu KANDIDÁT — máte solidní základ, ale je potřeba dorovnat pár věcí před prvním pilotem." |
-| **PŘIPRAVENÝ** | 70–100 | "Vaše firma je v pásmu PŘIPRAVENÝ — máte všechno potřebné pro pilotní AI projekt v horizontu 3–6 měsíců." |
+| **PŘIPRAVENÁ** | 70–100 | "Vaše firma je v pásmu PŘIPRAVENÁ — máte všechno potřebné pro pilotní AI projekt v horizontu 3–6 měsíců." |
 
 Texty žijí v `src/lib/readiness-bands.ts`, sdílené mezi success page JS (deterministic instant render) a server-side scoring (cover page PDF).
 
