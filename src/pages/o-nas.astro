@@ -2,202 +2,270 @@
 // /o-nas — Phase 3 §3.8.
 // Stitch winner 2c98497d (decisions.md §5).
 
-import { getCollection } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import TeamMember from '../components/TeamMember.astro';
-import CTASection from '../components/CTASection.astro';
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import TeamMember from "../components/TeamMember.astro";
+import CTASection from "../components/CTASection.astro";
 
-const team = (await getCollection('tym')).sort((a, b) => a.data.order - b.data.order);
+const team = (await getCollection("tym", ({ data }) => !data.hidden)).sort(
+    (a, b) => a.data.order - b.data.order,
+);
 
 const values = [
-  {
-    title: 'Praktičnost',
-    body: 'Bez hype, bez buzzwordů. Reálná řešení pro reálné business problémy, která fungují i v pondělí ráno na výrobě.',
-  },
-  {
-    title: 'Partnerství',
-    body: 'Uspějeme, když uspějí klienti. Stavíme na dlouhodobém vztahu, ne na jednorázovém prodeji.',
-  },
-  {
-    title: 'Transparentnost',
-    body: 'Jasné ceny, otevřené hodnocení AI zralosti, žádné sliby, které nelze splnit. Nesnášíme overselling.',
-  },
-  {
-    title: 'Odbornost',
-    body: 'Hluboká znalost stacku doložená praxí — Agentic OS denně provozujeme na vlastní firmě, ne jen v slidech.',
-  },
-  {
-    title: 'Česká identita',
-    body: 'Rozumíme lokální byznys kultuře, českým ERP, regulacím a zvyklostem. Mluvíme s vámi jako s partnerem, ne jako s "regionem".',
-  },
+    {
+        title: "Praktičnost",
+        body: "Bez hype, bez buzzwordů. Reálná řešení pro reálné business problémy, která fungují i v pondělí ráno na výrobě.",
+    },
+    {
+        title: "Partnerství",
+        body: "Uspějeme, když uspějí klienti. Stavíme na dlouhodobém vztahu, ne na jednorázovém prodeji.",
+    },
+    {
+        title: "Transparentnost",
+        body: "Jasné ceny, otevřené hodnocení AI zralosti, žádné sliby, které nelze splnit. Nesnášíme overselling.",
+    },
+    {
+        title: "Odbornost",
+        body: "Hluboká znalost stacku doložená praxí — Agentic OS denně provozujeme na vlastní firmě, ne jen v slidech.",
+    },
+    {
+        title: "Česká identita",
+        body: 'Rozumíme lokální byznys kultuře, českým ERP, regulacím a zvyklostem. Mluvíme s vámi jako s partnerem, ne jako s "regionem".',
+    },
 ];
 
 const proCesko = [
-  {
-    n: '01',
-    title: 'Legislativa a GDPR',
-    body: 'Implementace AI u nás neprobíhá ve vakuu. Rozumíme českým zákonům, regulacím ÚOOÚ a EU AI Actu v lokálním kontextu.',
-  },
-  {
-    n: '02',
-    title: 'Místní ERP systémy',
-    body: 'Hluboká zkušenost s integrací do Pohody, Heliosu, SAP B1 a Money S3. Víme, jak z vašich dat vytěžit maximum bez nutnosti migrace.',
-  },
-  {
-    n: '03',
-    title: 'Pracovní právo',
-    body: 'AI mění náplň práce. Pomáháme s úpravou pracovních smluv a interních směrnic v souladu s českým zákoníkem práce.',
-  },
-  {
-    n: '04',
-    title: 'Standardy a ISO',
-    body: 'Specializace na digitalizaci ISO/IATF/BRC dokumentace pomocí AI — kritické pro české výrobní a exportní firmy.',
-  },
+    {
+        n: "01",
+        title: "Legislativa a GDPR",
+        body: "Implementace AI u nás neprobíhá ve vakuu. Rozumíme českým zákonům, regulacím ÚOOÚ a EU AI Actu v lokálním kontextu.",
+    },
+    {
+        n: "02",
+        title: "Místní ERP systémy",
+        body: "Hluboká zkušenost s integrací do Pohody, Heliosu, SAP B1 a Money S3. Víme, jak z vašich dat vytěžit maximum bez nutnosti migrace.",
+    },
+    {
+        n: "03",
+        title: "Pracovní právo",
+        body: "AI mění náplň práce. Pomáháme s úpravou pracovních smluv a interních směrnic v souladu s českým zákoníkem práce.",
+    },
+    {
+        n: "04",
+        title: "Standardy a ISO",
+        body: "Specializace na digitalizaci ISO/IATF/BRC dokumentace pomocí AI — kritické pro české výrobní a exportní firmy.",
+    },
 ];
 ---
+
 <BaseLayout
-  title="O nás — QuConsult"
-  description="Tým 5 seniorních konzultantů AI z Brna a okolí. Mise, hodnoty, lidi a důvody, proč zrovna české firmy."
+    title="O nás — QuConsult"
+    description="Tým seniorních konzultantů AI. Mise, hodnoty, lidi a důvody, proč zrovna české firmy."
 >
-  <Hero
-    eyebrow="O nás"
-    subtitle="Bez velkých projektů, bez vendor lock-inu, bez rozbití provozu. Jsme partner pro evoluci, ne pro revoluci."
-  >
-    Pomáháme českým firmám dělat <span class="italic text-amber">praktické změny</span> s AI
-  </Hero>
+    <Hero
+        eyebrow="O nás"
+        subtitle="Bez velkých projektů, bez vendor lock-inu, bez rozbití provozu. Jsme partner pro evoluci, ne pro revoluci."
+    >
+        Pomáháme českým firmám dělat <span class="italic text-amber"
+            >praktické změny</span
+        > s AI
+    </Hero>
 
-  <section class="bg-bg-warm">
-    <div class="container-quc py-xxl">
-      <div class="max-w-3xl">
-        <p class="text-label uppercase tracking-wider text-amber">Hodnoty</p>
-        <h2 class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop">
-          Pět věcí, na kterých nám záleží
-        </h2>
-      </div>
-      <div class="mt-xl grid gap-md sm:grid-cols-2 lg:grid-cols-3">
-        {values.map((v, i) => (
-          <article class="rounded border border-border bg-bg p-lg">
-            <span class="text-label font-medium text-amber tabular-nums">{String(i + 1).padStart(2, '0')}</span>
-            <h3 class="mt-sm font-serif text-xl text-ink md:text-2xl">{v.title}</h3>
-            <p class="mt-md text-body text-ink-muted">{v.body}</p>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="container-quc py-xxl">
-    <div class="max-w-3xl">
-      <p class="text-label uppercase tracking-wider text-amber">Lidé</p>
-      <h2 class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop">Náš tým</h2>
-      <p class="mt-md text-body-lg text-ink-muted">
-        Pět seniorů s 10+ lety zkušeností v softwaru, datech, vzdělávání
-        dospělých a change managementu. Žádní juniory na klientském projektu,
-        žádné outsourcing.
-      </p>
-    </div>
-    <div class="mt-xl grid gap-xl sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-      {team.map((m) => (
-        <TeamMember
-          name={m.data.name}
-          role={m.data.role}
-          photo={m.data.photo}
-          photoAlt={m.data.photoAlt}
-          bio={m.data.bio}
-          linkedin={m.data.linkedin}
-        />
-      ))}
-    </div>
-  </section>
-
-  <section class="bg-ink text-bg">
-    <div class="container-quc py-xxl">
-      <blockquote class="mx-auto max-w-3xl text-center">
-        <p class="font-serif text-2xl italic leading-relaxed md:text-3xl">
-          „Mým cílem je pomáhat lidem a firmám ve vytváření světa, kde se nám
-          bude všem žít co nejlépe. Pojďme si proto navzájem poskytovat jen
-          ty nejlepší služby tím nejefektivnějším způsobem.“
-        </p>
-        <cite class="mt-xl block text-label uppercase tracking-widest text-bg/60 not-italic">
-          — Martin Večeřa, zakladatel
-        </cite>
-      </blockquote>
-    </div>
-  </section>
-
-  <section class="container-quc py-xxl">
-    <div class="grid gap-xl md:grid-cols-2 md:items-start">
-      <div>
-        <p class="text-label uppercase tracking-wider text-amber">Působiště</p>
-        <h2 class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop">
-          Brno a Česko mimo Prahu
-        </h2>
-        <p class="mt-md text-body-lg text-ink-muted">
-          Naším domovem je Brno. Vědomě se vyhýbáme pražskému centrismu —
-          mid-market firmy v regionech mají stejnou potřebu jako velké pražské
-          podniky, ale méně poradců, kteří by za nimi přijeli a rozuměli
-          místnímu kontextu.
-        </p>
-        <p class="mt-md text-body text-ink-muted">
-          Jezdíme za klienty do Ostravy, Plzně, Zlína, Hradce, Olomouce.
-          Většinu spolupráce zvládneme i hybridně — fyzicky kickoff, online
-          operativa.
-        </p>
-        <ul class="mt-xl flex flex-wrap gap-sm">
-          {['Brno', 'Praha', 'Ostrava', 'Plzeň', 'Zlín', 'Hradec', 'Olomouc'].map((city) => (
-            <li class="rounded border border-border bg-bg-warm/60 px-md py-sm text-label text-ink-muted">
-              {city}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <aside class="rounded border border-border bg-bg-warm/60 p-xl">
-        <p class="text-label uppercase tracking-wider text-amber">Centrála</p>
-        <p class="mt-md font-serif text-2xl text-ink">Nové sady 988/2</p>
-        <p class="mt-sm text-body text-ink-muted">602 00 Brno</p>
-        <div class="mt-xl border-t border-border pt-lg">
-          <p class="text-label uppercase tracking-wider text-ink-soft">Právní entita</p>
-          <p class="mt-sm text-body text-ink">WellBe s.r.o.</p>
-          <p class="mt-xs text-label text-ink-muted">IČ 05830931 · DIČ CZ05830931</p>
-          <p class="mt-xs text-label text-ink-muted">
-            Zapsána v OR vedeném u Krajského soudu v Brně, oddíl C, vložka 98394.
-          </p>
-        </div>
-      </aside>
-    </div>
-  </section>
-
-  <section class="bg-bg-warm">
-    <div class="container-quc py-xxl">
-      <div class="max-w-3xl">
-        <p class="text-label uppercase tracking-wider text-amber">Pillar 5</p>
-        <h2 class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop">Proč Česko</h2>
-        <p class="mt-md text-body-lg text-ink-muted">
-          Mezinárodní AI poradci znají modely a stack. My navíc rozumíme
-          regulacím, ERP a kultuře, ve které se rozhodnutí dělají. To není
-          nice-to-have — to rozhoduje, jestli projekt přežije první rok provozu.
-        </p>
-      </div>
-      <div class="mt-xl grid gap-xl md:grid-cols-2">
-        {proCesko.map((p) => (
-          <div class="flex gap-lg border-b border-border pb-lg">
-            <span class="font-serif text-4xl text-amber/60 tabular-nums">{p.n}</span>
-            <div>
-              <h3 class="font-serif text-xl text-ink md:text-2xl">{p.title}</h3>
-              <p class="mt-sm text-body text-ink-muted">{p.body}</p>
+    <section class="bg-bg-warm">
+        <div class="container-quc py-xxl">
+            <div class="max-w-3xl">
+                <p class="text-label uppercase tracking-wider text-amber">
+                    Hodnoty
+                </p>
+                <h2
+                    class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop"
+                >
+                    Pět věcí, na kterých nám záleží
+                </h2>
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+            <div class="mt-xl grid gap-md sm:grid-cols-2 lg:grid-cols-3">
+                {
+                    values.map((v, i) => (
+                        <article class="rounded border border-border bg-bg p-lg">
+                            <span class="text-label font-medium text-amber tabular-nums">
+                                {String(i + 1).padStart(2, "0")}
+                            </span>
+                            <h3 class="mt-sm font-serif text-xl text-ink md:text-2xl">
+                                {v.title}
+                            </h3>
+                            <p class="mt-md text-body text-ink-muted">
+                                {v.body}
+                            </p>
+                        </article>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
 
-  <CTASection
-    title="Začněme rozhovorem"
-    subtitle="Bez prodejního tlaku, bez závazku. Jen 45 minut o tom, co řešíte a jestli vám můžeme pomoct."
-    primaryCta={{ label: 'Domluvit konzultaci', href: '/kontakt' }}
-    secondaryCta={{ label: 'Jak pracujeme', href: '/jak-pracujeme' }}
-    variant="plain"
-  />
+    <section class="container-quc py-xxl">
+        <div class="max-w-3xl">
+            <p class="text-label uppercase tracking-wider text-amber">Lidé</p>
+            <h2 class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop">
+                Náš tým
+            </h2>
+            <p class="mt-md text-body-lg text-ink-muted">
+                Pět seniorů s 10+ lety zkušeností v softwaru, datech, vzdělávání
+                dospělých a change managementu. Žádní juniory na klientském
+                projektu, žádné outsourcing.
+            </p>
+        </div>
+        <div
+            class="mt-xl grid gap-xl sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
+        >
+            {
+                team.map((m) => (
+                    <TeamMember
+                        name={m.data.name}
+                        role={m.data.role}
+                        photo={m.data.photo}
+                        photoAlt={m.data.photoAlt}
+                        bio={m.data.bio}
+                        linkedin={m.data.linkedin}
+                    />
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="bg-ink text-bg">
+        <div class="container-quc py-xxl">
+            <blockquote class="mx-auto max-w-3xl text-center">
+                <p
+                    class="font-serif text-2xl italic leading-relaxed md:text-3xl"
+                >
+                    „Mým cílem je pomáhat lidem a firmám ve vytváření světa, kde
+                    se nám bude všem žít co nejlépe. Pojďme si proto navzájem
+                    poskytovat jen ty nejlepší služby tím nejefektivnějším
+                    způsobem.“
+                </p>
+                <cite
+                    class="mt-xl block text-label uppercase tracking-widest text-bg/60 not-italic"
+                >
+                    — Martin Večeřa, zakladatel
+                </cite>
+            </blockquote>
+        </div>
+    </section>
+
+    <section class="container-quc py-xxl">
+        <div class="grid gap-xl md:grid-cols-2 md:items-start">
+            <div>
+                <p class="text-label uppercase tracking-wider text-amber">
+                    Působiště
+                </p>
+                <h2
+                    class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop"
+                >
+                    Brno a Česko mimo Prahu
+                </h2>
+                <p class="mt-md text-body-lg text-ink-muted">
+                    Naším domovem je Brno. Vědomě se vyhýbáme pražskému
+                    centrismu — mid-market firmy v regionech mají stejnou
+                    potřebu jako velké pražské podniky, ale méně poradců, kteří
+                    by za nimi přijeli a rozuměli místnímu kontextu.
+                </p>
+                <p class="mt-md text-body text-ink-muted">
+                    Jezdíme za klienty do Ostravy, Plzně, Zlína, Hradce,
+                    Olomouce. Většinu spolupráce zvládneme i hybridně — fyzicky
+                    kickoff, online operativa.
+                </p>
+                <ul class="mt-xl flex flex-wrap gap-sm">
+                    {
+                        [
+                            "Brno",
+                            "Praha",
+                            "Ostrava",
+                            "Plzeň",
+                            "Zlín",
+                            "Hradec",
+                            "Olomouc",
+                        ].map((city) => (
+                            <li class="rounded border border-border bg-bg-warm/60 px-md py-sm text-label text-ink-muted">
+                                {city}
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+            <aside class="rounded border border-border bg-bg-warm/60 p-xl">
+                <p class="text-label uppercase tracking-wider text-amber">
+                    Centrála
+                </p>
+                <p class="mt-md font-serif text-2xl text-ink">
+                    Nové sady 988/2
+                </p>
+                <p class="mt-sm text-body text-ink-muted">602 00 Brno</p>
+                <div class="mt-xl border-t border-border pt-lg">
+                    <p
+                        class="text-label uppercase tracking-wider text-ink-soft"
+                    >
+                        Právní entita
+                    </p>
+                    <p class="mt-sm text-body text-ink">WellBe s.r.o.</p>
+                    <p class="mt-xs text-label text-ink-muted">
+                        IČ 05830931 · DIČ CZ05830931
+                    </p>
+                    <p class="mt-xs text-label text-ink-muted">
+                        Zapsána v OR vedeném u Krajského soudu v Brně, oddíl C,
+                        vložka 98394.
+                    </p>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <section class="bg-bg-warm">
+        <div class="container-quc py-xxl">
+            <div class="max-w-3xl">
+                <p class="text-label uppercase tracking-wider text-amber">
+                    Pillar 5
+                </p>
+                <h2
+                    class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop"
+                >
+                    Proč Česko
+                </h2>
+                <p class="mt-md text-body-lg text-ink-muted">
+                    Mezinárodní AI poradci znají modely a stack. My navíc
+                    rozumíme regulacím, ERP a kultuře, ve které se rozhodnutí
+                    dělají. To není nice-to-have — to rozhoduje, jestli projekt
+                    přežije první rok provozu.
+                </p>
+            </div>
+            <div class="mt-xl grid gap-xl md:grid-cols-2">
+                {
+                    proCesko.map((p) => (
+                        <div class="flex gap-lg border-b border-border pb-lg">
+                            <span class="font-serif text-4xl text-amber/60 tabular-nums">
+                                {p.n}
+                            </span>
+                            <div>
+                                <h3 class="font-serif text-xl text-ink md:text-2xl">
+                                    {p.title}
+                                </h3>
+                                <p class="mt-sm text-body text-ink-muted">
+                                    {p.body}
+                                </p>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <CTASection
+        title="Začněme rozhovorem"
+        subtitle="Bez prodejního tlaku, bez závazku. Jen 45 minut o tom, co řešíte a jestli vám můžeme pomoct."
+        primaryCta={{ label: "Domluvit konzultaci", href: "/kontakt" }}
+        secondaryCta={{ label: "Jak pracujeme", href: "/jak-pracujeme" }}
+        variant="plain"
+    />
 </BaseLayout>
