@@ -13,7 +13,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "verbatimModuleSyntax": false,
-    "noEmit": true
+    "noEmit": true,
+    "jsx": "react-jsx"
   },
-  "include": ["api/**/*.ts"]
+  "include": ["api/**/*.ts", "lib/**/*.ts", "lib/**/*.tsx", "scripts/**/*.ts"]
 }

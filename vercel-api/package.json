@@ -6,15 +6,30 @@
   "engines": {
     "node": "22.x"
   },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint:knowledge": "tsx scripts/lint-knowledge.ts"
+  },
   "dependencies": {
+    "@react-pdf/renderer": "^4",
+    "@vercel/functions": "^2",
+    "gray-matter": "^4",
     "nodemailer": "^8.0.5",
+    "openai": "^6",
+    "react": "^18",
+    "react-dom": "^18",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
     "@types/nodemailer": "^8.0.0",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
     "@vercel/node": "^5.0.0",
-    "typescript": "^5.6.0"
+    "tsx": "^4.21.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2"
   },
   "overrides": {
     "ajv": "^8.17.2",
