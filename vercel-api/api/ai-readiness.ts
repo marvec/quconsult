@@ -2,7 +2,6 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { waitUntil } from '@vercel/functions';
 import nodemailer from 'nodemailer';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { z } from 'zod';
 import { OdpovediSchema, scoreReadiness, type Odpovedi } from '../lib/scoring.js';
 import { loadCards } from '../lib/knowledge/load.js';
@@ -14,8 +13,7 @@ import { slugify } from '../lib/slugify.js';
 import { canSpend, recordSpend } from '../lib/cost-cap.js';
 import type { ScoreResult } from '../lib/scoring.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const knowledgeDir = path.join(__dirname, '..', 'lib', 'knowledge');
+const knowledgeDir = path.join(process.cwd(), 'lib', 'knowledge');
 
 const requestSchema = z.object({
   jmeno: z.string().trim().min(2).max(100),
