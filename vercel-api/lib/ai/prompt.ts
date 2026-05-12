@@ -3,7 +3,7 @@ import path from 'node:path';
 import type { Card } from '../knowledge/types.js';
 import type { ScoreResult, Odpovedi } from '../scoring.js';
 
-const systemDir = path.join(process.cwd(), 'lib', 'knowledge', '_system');
+const systemDir = path.join(process.cwd(), 'lib', 'knowledge', 'system');
 
 let cachedSystem: string | undefined;
 
