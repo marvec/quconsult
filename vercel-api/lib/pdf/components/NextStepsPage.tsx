@@ -1,5 +1,5 @@
 import { Page, View, Text, Link, StyleSheet } from '@react-pdf/renderer';
-import { colors, spacing, fontSize, fontFamily } from '../tokens.js';
+import { colors, spacing, fontSize, fontFamily } from '../tokens';
 
 const styles = StyleSheet.create({
   page: { backgroundColor: colors.bg, padding: spacing.xxl, fontFamily: fontFamily.sans },

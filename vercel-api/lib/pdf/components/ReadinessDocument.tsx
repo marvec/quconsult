@@ -1,9 +1,9 @@
 import { Document, Font } from '@react-pdf/renderer';
 import path from 'node:path';
-import { CoverPage } from './CoverPage.js';
-import { DimensionPage } from './DimensionPage.js';
-import { NextStepsPage } from './NextStepsPage.js';
-import type { ScoreResult } from '../../scoring.js';
+import { CoverPage } from './CoverPage';
+import { DimensionPage } from './DimensionPage';
+import { NextStepsPage } from './NextStepsPage';
+import type { ScoreResult } from '../../scoring';
 
 const fontsDir = path.join(process.cwd(), 'lib', 'pdf', 'fonts');
 
