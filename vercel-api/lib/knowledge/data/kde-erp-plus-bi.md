@@ -18,4 +18,4 @@ Příklady use-casů pro firmy s ERP a BI: detekce anomálií ve výrobních dat
 
 Výhodou je, že u takových projektů lze rychle ověřit hodnotu. Typicky stačí 8–12 týdnů od discovery po funkční prototyp. Celkový náklad na pilot se pohybuje v rozmezí 200–350 tisíc korun.
 
-Konkrétní krok: Projděte vaše stávající reporty a vyberte jeden, u kterého si říkáte "kdybychom to věděli o týden dřív, ušetřili bychom čas nebo peníze". Tento report nám ukažte na první konzultaci — z toho posoudíme, jestli jde o dobrý vstupní use-case pro AI.
+Konkrétní krok: Projděte Vaše stávající reporty a vyberte jeden, u kterého si říkáte "kdybychom to věděli o týden dřív, ušetřili bychom čas nebo peníze". Tento report nám ukažte na první konzultaci — z toho posoudíme, jestli jde o dobrý vstupní use-case pro AI.

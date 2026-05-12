@@ -14,7 +14,7 @@ Co to znamená pro AI projekt: prediktivní a analytické AI (které vyžadují 
 
 Doporučená kategorie AI pro malé firmy: generativní AI a automatizace na bázi jazykových modelů. Konkrétně: AI asistent pro zákaznickou komunikaci, automatizace tvorby nabídek a smluv, sumarizace e-mailů a hovorů, AI podpora pro juniorní role (odpovídání na opakující se dotazy, návrhy řešení).
 
-Tyto use-casy nevyžadují historická data vaší firmy. Pracují s textem a mohou přinést okamžitý výsledek za týdny, ne měsíce.
+Tyto use-casy nevyžadují historická data Vaší firmy. Pracují s textem a mohou přinést okamžitý výsledek za týdny, ne měsíce.
 
 Investice pro pilotní projekt v tomto rozsahu je typicky nižší: 80–150 tisíc korun. Výsledek je viditelný do 6 týdnů.
 

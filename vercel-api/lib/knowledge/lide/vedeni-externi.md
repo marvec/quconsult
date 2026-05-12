@@ -16,4 +16,4 @@ Nejčastější problém: interní tým nerozumí tomu, co bylo postaveno. Dokum
 
 Jak se tomu vyhnout: před zahájením projektu explicitně definujte, jaké znalosti má projekt předat internímu týmu. Zahrňte do smlouvy konkrétní deliverables: dokumentace architektury, interní školení (počet hodin), testovací scénáře, které interní tým zvládne sám spustit.
 
-Konkrétní krok: Zkontrolujte, jestli vaše aktuální smlouva (nebo zadání) s externím partnerem obsahuje knowledge transfer jako explicitní deliverable. Pokud ne, přidejte ho před zahájením. Pokud projekt teprve vybíráte, zahrňte tento požadavek do zadávacích podmínek.
+Konkrétní krok: Zkontrolujte, jestli Vaše aktuální smlouva (nebo zadání) s externím partnerem obsahuje knowledge transfer jako explicitní deliverable. Pokud ne, přidejte ho před zahájením. Pokud projekt teprve vybíráte, zahrňte tento požadavek do zadávacích podmínek.

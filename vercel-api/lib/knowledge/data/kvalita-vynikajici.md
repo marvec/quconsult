@@ -12,7 +12,7 @@ Vaše firma má výjimečný datový základ. Vynikající datová kvalita je v 
 
 Co to znamená pro AI projekt: nemusíte trávit měsíce na čištění dat. Auditová fáze je minimální nebo ji lze přeskočit úplně. Můžete jít přímo na výběr konkrétního use-casu a stavět první prototyp.
 
-Zkušenost ukazuje, že firmy s vynikající datovou kvalitou mají hotový datový sklad, funkční ETL proces nebo disciplinovaně udržovaný ERP. Pokud je tomu tak u vás, jste v nejlepší výchozí pozici ze všech.
+Zkušenost ukazuje, že firmy s vynikající datovou kvalitou mají hotový datový sklad, funkční ETL proces nebo disciplinovaně udržovaný ERP. Pokud je tomu tak u Vás, jste v nejlepší výchozí pozici ze všech.
 
 Dobrá data jsou nutná podmínka, ale ne postačující. Dalším krokem je ověřit, jestli máte tato data dostupná v čitelné podobě pro algoritmické zpracování — tedy nejenom v PDF reportech nebo tiskových sestavách.
 

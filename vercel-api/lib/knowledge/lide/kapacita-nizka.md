@@ -10,7 +10,7 @@ triggers:
 
 Dvě až čtyři hodiny týdně věnované AI projektu nestačí na smysluplný výsledek. Pilot, který nemá interní kapacitu, buď skončí u sebe sama, nebo se projekt táhne neúměrně dlouho a ztrácí hybnost.
 
-Co to znamená pro AI projekt: buď navýšit interní kapacitu, nebo radikálně zúžit scope. Obojí je přijatelná volba — záleží na tom, co je pro vás v tuto chvíli reálné.
+Co to znamená pro AI projekt: buď navýšit interní kapacitu, nebo radikálně zúžit scope. Obojí je přijatelná volba — záleží na tom, co je pro Vás v tuto chvíli reálné.
 
 Navýšit kapacitu neznamená přijmout nového zaměstnance. Typicky stačí uvolnit jednoho stávajícího člověka na 30 % FTE — přibližně 12 hodin týdně. Tento člověk se stává interním koordinátorem projektu.
 

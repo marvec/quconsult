@@ -16,6 +16,6 @@ Co to znamená pro AI projekt: AI je předčasné. Nejdříve potřebujete digit
 
 Typická cesta: firma má ERP na fakturaci, ale výroba nebo sklad stále běží na papíře. Prvním krokem je digitalizovat výrobu nebo sklad — ne zavádět AI. Tento krok obvykle trvá 3–6 měsíců a stojí nízké stovky tisíc korun. Teprve po digitalizaci má smysl hovořit o AI.
 
-Neznamená to, že AI je pro vás nedosažitelné. Znamená to, že máte před sebou jeden mezikrok navíc. Firmy, které tento krok udělají systematicky, pak staví AI na pevnějším základě a výsledky jsou lepší.
+Neznamená to, že AI je pro Vás nedosažitelné. Znamená to, že máte před sebou jeden mezikrok navíc. Firmy, které tento krok udělají systematicky, pak staví AI na pevnějším základě a výsledky jsou lepší.
 
-Konkrétní krok: Vyberte jeden papírový proces, který vás nejvíce brzdí. Zjistěte, jestli váš současný ERP nebo jiný nástroj dokáže tento proces digitalizovat s malou úpravou nebo doplňkovým modulem. Tento krok konzultujte s dodavatelem ERP dřív, než nás kontaktujete — pokud pak přijdete s digitalizovanými daty, posuneme se rychleji.
+Konkrétní krok: Vyberte jeden papírový proces, který Vás nejvíce brzdí. Zjistěte, jestli Váš současný ERP nebo jiný nástroj dokáže tento proces digitalizovat s malou úpravou nebo doplňkovým modulem. Tento krok konzultujte s dodavatelem ERP dřív, než nás kontaktujete — pokud pak přijdete s digitalizovanými daty, posuneme se rychleji.

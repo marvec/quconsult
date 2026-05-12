@@ -16,4 +16,4 @@ Orientační referenční bod pro střední českou firmu: pilotní projekt s je
 
 Tento rozsah zahrnuje: discovery fázi (zmapování procesu a dat), návrh řešení, implementaci prototypu, testování a dokumentaci. Nezahrnuje: provozní náklady na AI modely po nasazení (ty jsou typicky 5–20 tisíc korun měsíčně podle objemu).
 
-Konkrétní krok: Přijďte na bezplatnou 45minutovou konzultaci s popisem tří procesů, kde cítíte největší potenciál pro AI. Na konci konzultace vám dáme orientační odhad, co který use-case pravděpodobně stojí a co přináší. Budete mít základ pro interní diskuzi o rozpočtu.
+Konkrétní krok: Přijďte na bezplatnou 45minutovou konzultaci s popisem tří procesů, kde cítíte největší potenciál pro AI. Na konci konzultace Vám dáme orientační odhad, co který use-case pravděpodobně stojí a co přináší. Budete mít základ pro interní diskuzi o rozpočtu.

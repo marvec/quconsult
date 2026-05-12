@@ -14,6 +14,6 @@ Co to znamená pro AI projekt: velké firmy typicky hledají systémové integr�
 
 Kde přidáváme největší hodnotu u větších firem: nezávislé posouzení AI strategie nebo architektury navrženého řešení, hloubková analýza jednoho komplexního use-casu, dočasné posílení interního AI týmu seniorní kapacitou na konkrétní fázi projektu.
 
-Pokud hledáte velký systémový projekt s plnou implementací, doporučujeme kontaktovat partnery s větší kapacitou. Rádi vám doporučíme koho.
+Pokud hledáte velký systémový projekt s plnou implementací, doporučujeme kontaktovat partnery s větší kapacitou. Rádi Vám doporučíme koho.
 
-Konkrétní krok: Kontaktujte nás s popisem konkrétního problému, ne s obecným zadáním "hledáme AI strategii". Pokud je problém dostatečně ohraničený, najdeme způsob spolupráce. Pokud ne, pomůžeme vám najít vhodného partnera.
+Konkrétní krok: Kontaktujte nás s popisem konkrétního problému, ne s obecným zadáním "hledáme AI strategii". Pokud je problém dostatečně ohraničený, najdeme způsob spolupráce. Pokud ne, pomůžeme Vám najít vhodného partnera.
