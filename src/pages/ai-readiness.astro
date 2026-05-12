@@ -35,9 +35,10 @@ const apiBaseUrl = import.meta.env.PUBLIC_API_BASE_URL;
             Zjistěte AI zralost vaší firmy za <span class="italic text-amber">10 minut</span>
           </h1>
           <p class="mt-lg text-body-lg text-ink-muted">
-            Krátký dotazník o vašich procesech, datech, lidech a cílech. Do
-            24 hodin odpovíme krátkou zprávou s orientačním skóre a konkrétním
-            doporučením, kde u vás dává AI smysl jako první.
+            Krátký dotazník o vašich procesech, datech, lidech a cílech. Hned po
+            odeslání uvidíte orientační skóre a do minuty Vám dorazí 4stránkový
+            PDF report s konkrétními doporučeními. Tým QuConsult se na Vaše
+            odpovědi také podívá a do jednoho pracovního dne se ozveme.
           </p>
           <p class="mt-md text-body text-ink-muted">
             Žádné prodejní volání. Žádné tlaky. Pokud z odpovědí vyjde, že AI
@@ -450,9 +451,9 @@ const apiBaseUrl = import.meta.env.PUBLIC_API_BASE_URL;
         <div class="rounded border border-border bg-bg-warm/40 p-xl">
           <p class="text-label uppercase tracking-wider text-amber">Co dostanete</p>
           <ul class="mt-md space-y-md text-body text-ink-muted">
-            <li><span class="text-ink">→</span> Orientační skóre 0–100 ve 4 dimenzích.</li>
+            <li><span class="text-ink">→</span> Orientační skóre 0–100 ve 4 dimenzích <strong class="text-ink">hned na obrazovce</strong>.</li>
+            <li><span class="text-ink">→</span> 4stránkový PDF report <strong class="text-ink">e-mailem do minuty</strong>.</li>
             <li><span class="text-ink">→</span> Konkrétní doporučení, kde u vás dává AI smysl jako první.</li>
-            <li><span class="text-ink">→</span> Co byste měli dorovnat, než cokoli postavíte.</li>
             <li><span class="text-ink">→</span> Pozvánku na bezplatnou 45min konzultaci. Bez tlaku.</li>
           </ul>
         </div>
@@ -462,17 +463,21 @@ const apiBaseUrl = import.meta.env.PUBLIC_API_BASE_URL;
           <p class="mt-md text-body text-ink-muted">
             Odpovědi používáme pouze k vyhodnocení — neukládáme do CRM, neprodáváme,
             nezasíláme spam. Po vyhodnocení zůstane jen váš e-mail v případě, že
-            si vyžádáte další pokračování. Detaily v
+            si vyžádáte další pokračování. Odpovědi posíláme do našeho AI modelu
+            (OpenAI) pro vygenerování doporučení; per smlouvě o použití API
+            se neukládají pro tréning. Detaily v
             <a href="/soukromi" class="text-amber underline underline-offset-2">zásadách ochrany soukromí</a>.
           </p>
         </div>
 
         <div class="rounded border border-border bg-bg-warm/40 p-xl">
-          <p class="text-label uppercase tracking-wider text-amber">Kdo to vyhodnocuje</p>
+          <p class="text-label uppercase tracking-wider text-amber">Jak to vyhodnocujeme</p>
           <p class="mt-md text-body text-ink-muted">
-            Vyhodnocení čte <span class="text-ink">Martin Večeřa</span>, vedoucí
-            konzultant. Žádný funnel, žádná SDR. Odpověď přijde od stejného
-            člověka, který by s vámi vedl Discovery.
+            Skóre se počítá automaticky z Vašich odpovědí, doporučení v PDF
+            generuje náš model. <span class="text-ink">Tým QuConsult se na výsledky
+            také podívá</span> a do jednoho pracovního dne se Vám ozve s konkrétním
+            návazným krokem. Žádný funnel, žádná SDR — kontaktovat Vás bude
+            konzultant, který by s Vámi vedl Discovery.
           </p>
         </div>
       </aside>
