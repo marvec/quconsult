@@ -1,10 +1,9 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { waitUntil } from '@vercel/functions';
 import nodemailer from 'nodemailer';
-import path from 'node:path';
 import { z } from 'zod';
 import { OdpovediSchema, scoreReadiness, type Odpovedi } from '../lib/scoring.js';
-import { loadCards } from '../lib/knowledge/load.js';
+import { CARDS } from '../lib/knowledge/cards.generated.js';
 import { selectCards } from '../lib/knowledge/select.js';
 import { buildUserPrompt } from '../lib/ai/prompt.js';
 import { generateReport } from '../lib/ai/generate.js';
@@ -12,8 +11,6 @@ import { renderPdf } from '../lib/pdf/render.js';
 import { slugify } from '../lib/slugify.js';
 import { canSpend, recordSpend } from '../lib/cost-cap.js';
 import type { ScoreResult } from '../lib/scoring.js';
-
-const knowledgeDir = path.join(process.cwd(), 'lib', 'knowledge');
 
 const requestSchema = z.object({
   jmeno: z.string().trim().min(2).max(100),
@@ -102,9 +99,8 @@ async function processFinalization(p: FinalizeInput): Promise<void> {
       return;
     }
 
-    const allCards = await loadCards(knowledgeDir);
-    console.log(`[ai-readiness] loaded ${allCards.length} KB cards from ${knowledgeDir}`);
-    const selected = selectCards(p.odpovedi, p.score, allCards);
+    console.log(`[ai-readiness] using ${CARDS.length} inlined KB cards`);
+    const selected = selectCards(p.odpovedi, p.score, CARDS);
     console.log(`[ai-readiness] selected ${selected.length} cards for prompt`);
 
     const userPrompt = buildUserPrompt({

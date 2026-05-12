@@ -1,13 +1,14 @@
 import { zodTextFormat } from 'openai/helpers/zod';
 import { ReadinessReport } from './schema.js';
 import { getOpenAI } from './client.js';
-import { loadSystemPrompt } from './prompt.js';
+import { BRAND_VOICE, OUTPUT_FORMAT } from './system-prompts.generated.js';
 
 const TIMEOUT_MS = 25000;
 const RETRY_DELAY_MS = 2000;
 
+const SYSTEM_PROMPT = `${BRAND_VOICE}\n\n---\n\n${OUTPUT_FORMAT}`;
+
 export async function generateReport(userPrompt: string): Promise<ReadinessReport> {
-  const system = await loadSystemPrompt();
   const client = getOpenAI();
 
   for (let attempt = 0; attempt < 2; attempt++) {
@@ -19,7 +20,7 @@ export async function generateReport(userPrompt: string): Promise<ReadinessRepor
         const rsp = await client.responses.parse({
           model: 'o4-mini',
           input: [
-            { role: 'system', content: system },
+            { role: 'system', content: SYSTEM_PROMPT },
             { role: 'user', content: userPrompt },
           ],
           reasoning: { effort: 'medium' },

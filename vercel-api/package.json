@@ -7,10 +7,11 @@
     "node": "22.x"
   },
   "scripts": {
-    "test": "vitest run",
-    "test:watch": "vitest",
+    "build:content": "node scripts/build-content.mjs",
+    "test": "pnpm build:content && vitest run",
+    "test:watch": "pnpm build:content && vitest",
     "lint:knowledge": "tsx scripts/lint-knowledge.ts",
-    "vercel-build": "tsc -p tsconfig.build.json"
+    "vercel-build": "pnpm build:content && tsc -p tsconfig.build.json"
   },
   "dependencies": {
     "@react-pdf/renderer": "^4",
