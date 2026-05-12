@@ -7,3 +7,6 @@ lib/**/*.js
 lib/**/*.jsx
 lib/**/*.d.ts
 lib/**/*.js.map
+
+# build:content generates TS modules from lib/knowledge/**/*.md
+lib/**/*.generated.ts
