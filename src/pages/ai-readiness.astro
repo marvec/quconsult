@@ -35,9 +35,10 @@ const apiBaseUrl = import.meta.env.PUBLIC_API_BASE_URL;
             Zjistěte AI zralost vaší firmy za <span class="italic text-amber">10 minut</span>
           </h1>
           <p class="mt-lg text-body-lg text-ink-muted">
-            Krátký dotazník o vašich procesech, datech, lidech a cílech. Do
-            24 hodin odpovíme krátkou zprávou s orientačním skóre a konkrétním
-            doporučením, kde u vás dává AI smysl jako první.
+            Krátký dotazník o vašich procesech, datech, lidech a cílech. Hned po
+            odeslání uvidíte orientační skóre a do minuty Vám dorazí 4stránkový
+            PDF report s konkrétními doporučeními. Tým QuConsult se na Vaše
+            odpovědi také podívá a do jednoho pracovního dne se ozveme.
           </p>
           <p class="mt-md text-body text-ink-muted">
             Žádné prodejní volání. Žádné tlaky. Pokud z odpovědí vyjde, že AI
@@ -368,17 +369,67 @@ const apiBaseUrl = import.meta.env.PUBLIC_API_BASE_URL;
         </form>
 
         <!-- Success state (skrytý do submitu) -->
-        <div id="success-state" class="hidden mt-xl rounded border border-amber bg-amber/5 p-xl">
-          <p class="text-label uppercase tracking-wider text-amber">Hotovo</p>
-          <h2 class="mt-sm font-serif text-2xl text-ink md:text-3xl">
-            Děkujeme. Odpovědi dorazily.
-          </h2>
-          <p class="mt-md text-body text-ink-muted">
-            Do 24 hodin v pracovních dnech odpoví Martin Večeřa krátkou zprávou
-            s orientačním skóre a doporučením, kde u vás dává AI smysl jako
-            první. Žádné prodejní volání, žádný funnel.
-          </p>
-          <div class="mt-lg flex flex-wrap gap-md">
+        <div id="success-state" class="hidden mt-xl space-y-xl">
+
+          <!-- Hero score block -->
+          <div class="rounded border border-amber bg-amber/5 p-xl md:p-xxl">
+            <p class="text-label uppercase tracking-wider text-amber">Vaše orientační skóre</p>
+            <div class="mt-md flex items-baseline gap-md">
+              <span class="font-serif text-7xl text-ink leading-none" id="score-total">—</span>
+              <span class="font-serif text-2xl text-ink-muted">/ 100</span>
+            </div>
+            <p class="mt-md text-body-lg text-ink" id="score-summary"></p>
+          </div>
+
+          <!-- 4 dimenze -->
+          <div class="rounded border border-border bg-bg-warm/40 p-xl">
+            <p class="text-label uppercase tracking-wider text-amber">4 dimenze</p>
+            <ul class="mt-lg space-y-lg">
+              {[
+                { key: 'data', label: 'Data' },
+                { key: 'lide', label: 'Lidé' },
+                { key: 'strategie', label: 'Strategie' },
+                { key: 'provoz', label: 'Provoz' },
+              ].map((d) => (
+                <li>
+                  <div class="flex items-baseline justify-between">
+                    <span class="text-body text-ink">{d.label}</span>
+                    <span class="font-serif text-body text-ink" data-dim-score={d.key}>—</span>
+                  </div>
+                  <div class="mt-xs h-2 rounded-sm bg-border overflow-hidden">
+                    <div
+                      class="h-full bg-amber transition-[width] duration-700 ease-out"
+                      data-dim-bar={d.key}
+                      style="width: 0%"
+                    />
+                  </div>
+                  <p class="mt-xs text-label text-ink-muted" data-dim-note={d.key}></p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Status update -->
+          <div class="rounded border border-border bg-bg p-xl">
+            <p class="text-label uppercase tracking-wider text-amber">Co se děje teď</p>
+            <ul class="mt-md space-y-md text-body text-ink-muted">
+              <li>
+                <span class="text-ink">→</span>
+                Detailní 4stránkový PDF report dorazí na <strong class="text-ink" id="success-email">—</strong> do minuty.
+              </li>
+              <li>
+                <span class="text-ink">→</span>
+                Tým QuConsult se na Vaše odpovědi také podívá a do <strong class="text-ink">jednoho pracovního dne</strong> se Vám ozveme s konkrétním návazným krokem.
+              </li>
+              <li>
+                <span class="text-ink">→</span>
+                Žádné prodejní volání, žádný funnel.
+              </li>
+            </ul>
+          </div>
+
+          <!-- CTA -->
+          <div class="flex flex-wrap gap-md">
             <a
               href="/kontakt"
               class="inline-flex items-center rounded bg-amber px-lg py-md text-label font-medium text-bg transition-colors hover:bg-amber-deep"
@@ -400,9 +451,9 @@ const apiBaseUrl = import.meta.env.PUBLIC_API_BASE_URL;
         <div class="rounded border border-border bg-bg-warm/40 p-xl">
           <p class="text-label uppercase tracking-wider text-amber">Co dostanete</p>
           <ul class="mt-md space-y-md text-body text-ink-muted">
-            <li><span class="text-ink">→</span> Orientační skóre 0–100 ve 4 dimenzích.</li>
+            <li><span class="text-ink">→</span> Orientační skóre 0–100 ve 4 dimenzích <strong class="text-ink">hned na obrazovce</strong>.</li>
+            <li><span class="text-ink">→</span> 4stránkový PDF report <strong class="text-ink">e-mailem do minuty</strong>.</li>
             <li><span class="text-ink">→</span> Konkrétní doporučení, kde u vás dává AI smysl jako první.</li>
-            <li><span class="text-ink">→</span> Co byste měli dorovnat, než cokoli postavíte.</li>
             <li><span class="text-ink">→</span> Pozvánku na bezplatnou 45min konzultaci. Bez tlaku.</li>
           </ul>
         </div>
@@ -412,17 +463,21 @@ const apiBaseUrl = import.meta.env.PUBLIC_API_BASE_URL;
           <p class="mt-md text-body text-ink-muted">
             Odpovědi používáme pouze k vyhodnocení — neukládáme do CRM, neprodáváme,
             nezasíláme spam. Po vyhodnocení zůstane jen váš e-mail v případě, že
-            si vyžádáte další pokračování. Detaily v
+            si vyžádáte další pokračování. Odpovědi posíláme do našeho AI modelu
+            (OpenAI) pro vygenerování doporučení; per smlouvě o použití API
+            se neukládají pro tréning. Detaily v
             <a href="/soukromi" class="text-amber underline underline-offset-2">zásadách ochrany soukromí</a>.
           </p>
         </div>
 
         <div class="rounded border border-border bg-bg-warm/40 p-xl">
-          <p class="text-label uppercase tracking-wider text-amber">Kdo to vyhodnocuje</p>
+          <p class="text-label uppercase tracking-wider text-amber">Jak to vyhodnocujeme</p>
           <p class="mt-md text-body text-ink-muted">
-            Vyhodnocení čte <span class="text-ink">Martin Večeřa</span>, vedoucí
-            konzultant. Žádný funnel, žádná SDR. Odpověď přijde od stejného
-            člověka, který by s vámi vedl Discovery.
+            Skóre se počítá automaticky z Vašich odpovědí, doporučení v PDF
+            generuje náš model. <span class="text-ink">Tým QuConsult se na výsledky
+            také podívá</span> a do jednoho pracovního dne se Vám ozve s konkrétním
+            návazným krokem. Žádný funnel, žádná SDR — kontaktovat Vás bude
+            konzultant, který by s Vámi vedl Discovery.
           </p>
         </div>
       </aside>
@@ -625,6 +680,39 @@ const apiBaseUrl = import.meta.env.PUBLIC_API_BASE_URL;
               (json && typeof json.error === 'string' ? json.error : null) ||
               ('HTTP ' + r.status);
             throw new Error(msg);
+          }
+
+          const s = json.score;
+          if (s) {
+            document.getElementById('score-total').textContent = String(s.total);
+            document.getElementById('success-email').textContent = payload.email;
+
+            const summaryText = s.total >= 70
+              ? 'Vaše firma je v pásmu PŘIPRAVENÁ — máte všechno potřebné pro pilotní AI projekt v horizontu 3–6 měsíců.'
+              : s.total >= 40
+              ? 'Vaše firma je v pásmu KANDIDÁT — máte solidní základ, ale je potřeba dorovnat pár věcí před prvním pilotem.'
+              : 'Vaše firma je v pásmu PRŮZKUM — má smysl začít datovým auditem před jakýmkoli AI projektem.';
+            document.getElementById('score-summary').textContent = summaryText;
+
+            const noteFor = (dim, val) => {
+              const band = val >= 70 ? 'pripravena' : val >= 40 ? 'kandidat' : 'pruzkum';
+              const notes = {
+                data: { pripravena: 'Máte solidní datový základ — typicky stačí lehký audit a pak se dá stavět.', kandidat: 'Datová základna je smíšená — 30–60 dní práce na sjednocení 2–3 datasetů zlepší šanci na úspěch.', pruzkum: 'Data v současném stavu nejsou pro AI připravená — doporučujeme začít datovým auditem před cokoliv jiným.' },
+                lide: { pripravena: 'Tým má vlastníka projektu i kapacitu — můžete startovat.', kandidat: 'Lidská strana je zvládnutelná, ale doporučujeme vyřešit kapacitu nebo vlastnictví projektu před prvním pilotem.', pruzkum: 'Bez jasného vlastníka a tým podpory AI projekt nepřežije fázi nadšení — řešte tohle nejdřív.' },
+                strategie: { pripravena: 'Cíl, horizont i rozpočet jsou v rozumné rovnováze — můžeme přejít k plánu.', kandidat: 'Cíl je rámcově jasný, ale horizont nebo rozpočet potřebují upřesnit, aby plán šel naplánovat.', pruzkum: 'Bez jasného cíle a horizontu nemá smysl AI plánovat — doporučujeme úvodní workshop o tom, co konkrétně řešíte.' },
+                provoz: { pripravena: 'Provozní zázemí (ERP, velikost, obor) je standardní — bez překvapení.', kandidat: 'Provoz má drobné slabiny (např. menší ERP nebo netypická velikost), které ale nejsou blokátorem.', pruzkum: 'Provozní zázemí výrazně limituje AI projekt — typicky chybí ERP nebo je firma mimo náš sweet-spot.' },
+              };
+              return notes[dim][band];
+            };
+
+            ['data', 'lide', 'strategie', 'provoz'].forEach((dim) => {
+              const val = s.dimensions[dim];
+              document.querySelector('[data-dim-score="' + dim + '"]').textContent = String(val);
+              document.querySelector('[data-dim-note="' + dim + '"]').textContent = noteFor(dim, val);
+              requestAnimationFrame(() => {
+                document.querySelector('[data-dim-bar="' + dim + '"]').style.width = val + '%';
+              });
+            });
           }
 
           form.classList.add('hidden');
