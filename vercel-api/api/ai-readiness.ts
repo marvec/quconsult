@@ -115,7 +115,7 @@ async function processFinalization(p: FinalizeInput): Promise<void> {
     });
 
     const report = await generateReport(userPrompt);
-    recordSpend(0.02);
+    recordSpend(0.03);
 
     const pdfBuffer = await renderPdf({
       firma: p.firma,
