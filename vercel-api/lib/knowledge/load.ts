@@ -1,7 +1,7 @@
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import matter from 'gray-matter';
-import { FrontmatterSchema, type Card } from './types';
+import { FrontmatterSchema, type Card } from './types.js';
 
 const DIMENSIONS = ['data', 'lide', 'strategie', 'provoz', 'icp'] as const;
 export type DimDir = typeof DIMENSIONS[number] | string;

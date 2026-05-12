@@ -1,6 +1,6 @@
-import type { Card } from './types';
-import type { ScoreResult } from '../scoring';
-import { evalTriggers } from './triggers';
+import type { Card } from './types.js';
+import type { ScoreResult } from '../scoring.js';
+import { evalTriggers } from './triggers.js';
 
 type AnyOdpovedi = Record<string, unknown>;
 const DIMS = ['data', 'lide', 'strategie', 'provoz', 'icp'] as const;

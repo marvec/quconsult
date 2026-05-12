@@ -2,8 +2,8 @@ import { describe, it, expect } from 'vitest';
 import { writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { renderPdf } from './render';
-import type { ScoreResult } from '../scoring';
+import { renderPdf } from './render.js';
+import type { ScoreResult } from '../scoring.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

@@ -1,3 +1,9 @@
 node_modules/
 __smoke__.pdf
 .vercel
+
+# vercel-build emits compiled JS alongside TS sources for Vercel runtime
+lib/**/*.js
+lib/**/*.jsx
+lib/**/*.d.ts
+lib/**/*.js.map

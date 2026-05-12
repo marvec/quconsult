@@ -1,8 +1,8 @@
 import { Page, View, Text, StyleSheet } from '@react-pdf/renderer';
-import { colors, spacing, fontSize, fontFamily } from '../tokens';
-import { BigScore } from './BigScore';
-import { ScoreBar } from './ScoreBar';
-import type { ScoreResult } from '../../scoring';
+import { colors, spacing, fontSize, fontFamily } from '../tokens.js';
+import { BigScore } from './BigScore.js';
+import { ScoreBar } from './ScoreBar.js';
+import type { ScoreResult } from '../../scoring.js';
 
 const styles = StyleSheet.create({
   page: { backgroundColor: colors.bg, padding: spacing.xxl, fontFamily: fontFamily.sans },

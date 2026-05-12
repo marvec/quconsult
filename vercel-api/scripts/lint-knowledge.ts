@@ -1,7 +1,7 @@
 #!/usr/bin/env tsx
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadCards } from '../lib/knowledge/load';
+import { loadCards } from '../lib/knowledge/load.js';
 
 const ANGLICISMS = [
   'synergie', 'synergick', 'disruption', 'disruptiv', 'state-of-the-art',

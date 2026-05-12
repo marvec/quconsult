@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { canSpend, recordSpend, resetCostCap } from './cost-cap';
+import { canSpend, recordSpend, resetCostCap } from './cost-cap.js';
 
 describe('cost-cap', () => {
   beforeEach(() => {

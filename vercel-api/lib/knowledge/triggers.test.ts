@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { evalTrigger, evalTriggers } from './triggers';
-import type { ScoreResult } from '../scoring';
+import { evalTrigger, evalTriggers } from './triggers.js';
+import type { ScoreResult } from '../scoring.js';
 
 const score: ScoreResult = {
   total: 65,
