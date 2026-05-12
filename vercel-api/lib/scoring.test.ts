@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { scoreReadiness, type Odpovedi } from './scoring.js';
+import { scoreReadiness, OdpovediSchema, type Odpovedi } from './scoring.js';
 
 describe('scoreReadiness', () => {
   it('returns max score for ideal answers', () => {
@@ -109,5 +109,44 @@ describe('scoreReadiness', () => {
     expect(r.breakdown.strategie.rozpocet).toBe(15);
     expect(r.dimensions.data).toBeGreaterThan(0);
     expect(r.dimensions.lide).toBeGreaterThan(0);
+  });
+});
+
+describe('OdpovediSchema multi-select normalization', () => {
+  // Client `collectOdpovedi` returns string when only 1 checkbox is checked
+  // (filtered.length === 1 ? filtered[0] : filtered). Schema must accept both.
+  const baseValid = {
+    'data-kvalita': 'Použitelná',
+    vedeni: 'CEO / vedení',
+    'tym-postoj': 'Velký zájem',
+    cil: 'Úspora času',
+    horizont: 'Do 6 měsíců',
+    erp: 'Pohoda',
+    velikost: '50–150',
+    obor: 'Výroba',
+  };
+
+  it('accepts data-kde as array', () => {
+    const r = OdpovediSchema.safeParse({
+      ...baseValid,
+      'data-kde': ['V ERP systému', 'V Excelu / Google Sheets'],
+    });
+    expect(r.success).toBe(true);
+    expect(r.success && r.data['data-kde']).toEqual(['V ERP systému', 'V Excelu / Google Sheets']);
+  });
+
+  it('accepts data-kde as single string (client sends string if only 1 checked)', () => {
+    const r = OdpovediSchema.safeParse({
+      ...baseValid,
+      'data-kde': 'V ERP systému',
+    });
+    expect(r.success).toBe(true);
+    expect(r.success && r.data['data-kde']).toEqual(['V ERP systému']);
+  });
+
+  it('accepts missing data-kde as empty array', () => {
+    const r = OdpovediSchema.safeParse(baseValid);
+    expect(r.success).toBe(true);
+    expect(r.success && r.data['data-kde']).toEqual([]);
   });
 });

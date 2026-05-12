@@ -191,6 +191,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse): 
 
   const odpovediResult = OdpovediSchema.safeParse(reqResult.data.odpovedi);
   if (!odpovediResult.success) {
+    console.error('[ai-readiness] Invalid odpovedi structure:', JSON.stringify(odpovediResult.error.issues, null, 2));
+    console.error('[ai-readiness] Received payload:', JSON.stringify(reqResult.data.odpovedi, null, 2));
     res.status(400).json({ ok: false, error: 'Invalid odpovedi structure' });
     return;
   }
