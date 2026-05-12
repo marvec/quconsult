@@ -1,8 +1,15 @@
 import { z } from 'zod';
 
+// Multi-select fields from FormData can come as either string (single) or array.
+// Normalize both to array of strings.
+const multiSelectField = z.preprocess(
+  (v) => (Array.isArray(v) ? v : v == null || v === '' ? [] : [v]),
+  z.array(z.string()),
+);
+
 export const OdpovediSchema = z.object({
   'data-kvalita': z.enum(['Vynikající', 'Použitelná', 'Roztříštěná', 'Nevíme']),
-  'data-kde': z.array(z.string()),
+  'data-kde': multiSelectField,
   reporting: z.enum(['Ano, funkční', 'Částečně', 'Ne']).optional(),
   vedeni: z.enum(['CEO / vedení', 'IT manažer / CTO', 'COO / provoz', 'Externí partner', 'Zatím nikdo']),
   'tym-postoj': z.enum(['Velký zájem', 'Spíše opatrné', 'Skeptické', 'Otevřený odpor']),
