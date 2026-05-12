@@ -103,7 +103,9 @@ async function processFinalization(p: FinalizeInput): Promise<void> {
     }
 
     const allCards = await loadCards(knowledgeDir);
+    console.log(`[ai-readiness] loaded ${allCards.length} KB cards from ${knowledgeDir}`);
     const selected = selectCards(p.odpovedi, p.score, allCards);
+    console.log(`[ai-readiness] selected ${selected.length} cards for prompt`);
 
     const userPrompt = buildUserPrompt({
       firma: p.firma,
