@@ -1,0 +1,48 @@
+---
+// ServiceOutcomes.astro — krátký stat grid s typickými výsledky.
+// 2–4 položky, velké serif metriky + label. Plan §1.3 step 5.
+
+interface Outcome {
+  metric: string;
+  label: string;
+}
+
+interface Props {
+  heading?: string;
+  eyebrow?: string;
+  items: Outcome[];
+}
+
+const {
+  heading = 'Typické výsledky',
+  eyebrow = 'Co reálně vychází',
+  items,
+} = Astro.props;
+
+const cols =
+  items.length === 2
+    ? 'md:grid-cols-2'
+    : items.length === 3
+      ? 'md:grid-cols-3'
+      : 'md:grid-cols-2 lg:grid-cols-4';
+---
+<section class="container-quc py-xxl">
+  <div class="max-w-3xl">
+    <p class="text-label uppercase tracking-wider text-amber">{eyebrow}</p>
+    <h2 class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop">
+      {heading}
+    </h2>
+    <p class="mt-md text-body text-ink-muted">
+      Konkrétní čísla z reálných projektů. Vaše výsledky se budou lišit podle
+      odvětví, stavu dat a rozsahu pilotu.
+    </p>
+  </div>
+  <dl class={`mt-xl grid gap-xl ${cols}`}>
+    {items.map((o) => (
+      <div class="border-l-2 border-amber pl-lg">
+        <dt class="font-serif text-4xl text-ink md:text-5xl">{o.metric}</dt>
+        <dd class="mt-sm text-body text-ink-muted">{o.label}</dd>
+      </div>
+    ))}
+  </dl>
+</section>
