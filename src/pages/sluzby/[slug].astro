@@ -1,15 +1,21 @@
 ---
 // /sluzby/[slug] — service detail. Phase 3 §3.3–§3.6.
 // Stitch winner 920634b5 (A) + 3-card "Pro koho" z 2e720bb7 (B). Per decisions.md §3.
-//
-// Šablona je dynamická pro 4 služby. Tělo s konkrétními sekcemi
-// ("Datová připravenost", "Naše technologie", "Pro management"…)
-// žije v MDX souborech v src/content/sluzby/.
+// Sekce dle plan §1.3:
+// 1. Hero (s media placeholderem) → 2. Pro koho (3 karty) → 3. Bento "Co konkrétně"
+// → 4. Spotlight (Datová připravenost / GDPR / formát / Agentic OS)
+// → 5. Jak spolupracujeme → 6. MDX long-form prose → 7. Typické výsledky
+// → 8. Cena → 9. Co neděláme → 10. FAQ → 11. CTA
 
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import CTASection from '../../components/CTASection.astro';
+import MediaPlaceholder from '../../components/MediaPlaceholder.astro';
+import ServiceBentoGrid from '../../components/ServiceBentoGrid.astro';
+import ServiceSpotlight from '../../components/ServiceSpotlight.astro';
+import ServiceOutcomes from '../../components/ServiceOutcomes.astro';
+import ServiceWeDontDo from '../../components/ServiceWeDontDo.astro';
 
 export async function getStaticPaths() {
   const services = await getCollection('sluzby');
@@ -79,6 +85,7 @@ const faqSchema = data.faq.length > 0 ? {
       : { label: 'Všechny služby', href: '/sluzby' }}
   >
     {data.title}
+    <MediaPlaceholder slot="media" aspect="square" />
   </Hero>
 
   <!-- Pro koho — 3 karty per Stitch B 2e720bb7. Audiences ve frontmatter -->
@@ -101,12 +108,26 @@ const faqSchema = data.faq.length > 0 ? {
     </div>
   </section>
 
-  <!-- Tělo z MDX — sekce "Co konkrétně děláme", "Datová připravenost", atd. -->
-  <section class="container-quc py-xxl">
-    <div class="prose-quc max-w-3xl">
-      <Content />
-    </div>
-  </section>
+  <!-- Co konkrétně děláme — bento grid (frontmatter `whatWeDo`) -->
+  {data.whatWeDo.length > 0 && (
+    <ServiceBentoGrid
+      eyebrow="Rozsah spolupráce"
+      heading="Co konkrétně děláme"
+      items={data.whatWeDo}
+    />
+  )}
+
+  <!-- Per-service spotlight — Datová připravenost / GDPR / formát / Agentic OS -->
+  {data.spotlight && (
+    <ServiceSpotlight
+      eyebrow={data.spotlight.eyebrow}
+      headline={data.spotlight.headline}
+      body={data.spotlight.body}
+      ctaLabel={data.spotlight.ctaLabel}
+      ctaHref={data.spotlight.ctaHref}
+      mediaLabel={data.spotlight.mediaLabel}
+    />
+  )}
 
   <!-- Jak spolupracujeme — 4 fáze (univerzální napříč službami) -->
   <section class="bg-bg-warm">
@@ -137,6 +158,18 @@ const faqSchema = data.faq.length > 0 ? {
       </ol>
     </div>
   </section>
+
+  <!-- MDX long-form prose body (Discovery details, retainer, GDPR, …) -->
+  <section class="container-quc py-xxl">
+    <div class="prose-quc max-w-3xl">
+      <Content />
+    </div>
+  </section>
+
+  <!-- Typické výsledky (frontmatter `outcomes`) -->
+  {data.outcomes.length > 0 && (
+    <ServiceOutcomes items={data.outcomes} />
+  )}
 
   <!-- Cena -->
   <section class="container-quc py-xxl">
@@ -169,17 +202,22 @@ const faqSchema = data.faq.length > 0 ? {
     </div>
   </section>
 
+  <!-- Co neděláme — tmavá sekce, buduje důvěru -->
+  {data.weDontDo.length > 0 && (
+    <ServiceWeDontDo items={data.weDontDo} />
+  )}
+
   <!-- FAQ -->
   {data.faq.length > 0 && (
     <section class="bg-bg-warm">
       <div class="container-quc py-xxl">
-        <div class="max-w-3xl">
+        <div class="mx-auto max-w-[800px] text-center">
           <p class="text-label uppercase tracking-wider text-amber">Otázky</p>
           <h2 class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop">
             Časté dotazy
           </h2>
         </div>
-        <ul class="mt-xl max-w-3xl space-y-md">
+        <ul class="mx-auto mt-xl max-w-[800px] space-y-md">
           {data.faq.map((q) => (
             <li>
               <details class="group rounded border border-border bg-bg p-lg">
