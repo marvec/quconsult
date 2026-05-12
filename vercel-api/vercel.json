@@ -3,8 +3,7 @@
   "functions": {
     "api/*.ts": {
       "runtime": "@vercel/node@5.0.0",
-      "maxDuration": 60,
-      "includeFiles": "lib/pdf/fonts/**"
+      "maxDuration": 60
     }
   }
 }

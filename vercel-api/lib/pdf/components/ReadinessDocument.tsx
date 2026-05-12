@@ -1,28 +1,26 @@
 import { Document, Font } from '@react-pdf/renderer';
-import path from 'node:path';
 import { CoverPage } from './CoverPage.js';
 import { DimensionPage } from './DimensionPage.js';
 import { NextStepsPage } from './NextStepsPage.js';
+import { INTER_DATAURL, NOTOSERIF_DATAURL } from '../fonts.generated.js';
 import type { ScoreResult } from '../../scoring.js';
-
-const fontsDir = path.join(process.cwd(), 'lib', 'pdf', 'fonts');
 
 Font.register({
   family: 'Inter',
   fonts: [
-    { src: path.join(fontsDir, 'Inter.ttf'), fontWeight: 400, fontStyle: 'normal' },
-    { src: path.join(fontsDir, 'Inter.ttf'), fontWeight: 400, fontStyle: 'italic' },
-    { src: path.join(fontsDir, 'Inter.ttf'), fontWeight: 700, fontStyle: 'normal' },
-    { src: path.join(fontsDir, 'Inter.ttf'), fontWeight: 700, fontStyle: 'italic' },
+    { src: INTER_DATAURL, fontWeight: 400, fontStyle: 'normal' },
+    { src: INTER_DATAURL, fontWeight: 400, fontStyle: 'italic' },
+    { src: INTER_DATAURL, fontWeight: 700, fontStyle: 'normal' },
+    { src: INTER_DATAURL, fontWeight: 700, fontStyle: 'italic' },
   ],
 });
 Font.register({
   family: 'NotoSerif',
   fonts: [
-    { src: path.join(fontsDir, 'NotoSerif.ttf'), fontWeight: 400, fontStyle: 'normal' },
-    { src: path.join(fontsDir, 'NotoSerif.ttf'), fontWeight: 400, fontStyle: 'italic' },
-    { src: path.join(fontsDir, 'NotoSerif.ttf'), fontWeight: 700, fontStyle: 'normal' },
-    { src: path.join(fontsDir, 'NotoSerif.ttf'), fontWeight: 700, fontStyle: 'italic' },
+    { src: NOTOSERIF_DATAURL, fontWeight: 400, fontStyle: 'normal' },
+    { src: NOTOSERIF_DATAURL, fontWeight: 400, fontStyle: 'italic' },
+    { src: NOTOSERIF_DATAURL, fontWeight: 700, fontStyle: 'normal' },
+    { src: NOTOSERIF_DATAURL, fontWeight: 700, fontStyle: 'italic' },
   ],
 });
 
