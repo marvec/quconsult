@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from '@react-pdf/renderer';
-import { colors, spacing, fontSize, fontFamily } from '../tokens.js';
+import { colors, spacing, fontSize, fontFamily } from '../tokens';
 
 const styles = StyleSheet.create({
   row: { marginBottom: spacing.md },
