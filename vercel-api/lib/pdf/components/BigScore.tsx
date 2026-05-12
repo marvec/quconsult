@@ -25,8 +25,7 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.sans,
     fontSize: fontSize.label,
     color: colors.inkMuted,
-    marginTop: 4,
-    textTransform: 'uppercase',
+    marginTop: 12,
     letterSpacing: 1.5,
   },
 });
