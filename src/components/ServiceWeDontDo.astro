@@ -1,0 +1,44 @@
+---
+// ServiceWeDontDo.astro — tmavá sekce s 3–5 položkami "co tato služba není".
+// Buduje důvěru transparentností. Stitch A line 301-333 jako vizuální reference.
+// Bez material-symbols — jen amber pomlčka jako prefix.
+
+interface Item {
+  title: string;
+  body: string;
+}
+
+interface Props {
+  heading?: string;
+  intro?: string;
+  items: Item[];
+}
+
+const {
+  heading = 'Co neděláme',
+  intro = 'Stavíme na důvěře — proto rovnou říkáme, kde naše kompetence končí nebo co považujeme za špatnou cestu.',
+  items,
+} = Astro.props;
+---
+<section class="bg-ink text-bg">
+  <div class="container-quc py-xxl">
+    <div class="grid gap-xl md:grid-cols-2 md:items-start">
+      <div>
+        <p class="text-label uppercase tracking-wider text-amber">Upřímně</p>
+        <h2 class="mt-sm font-serif text-3xl md:text-h2-desktop">{heading}</h2>
+        <p class="mt-md text-body-lg text-bg/70">{intro}</p>
+      </div>
+      <ul class="space-y-lg">
+        {items.map((item) => (
+          <li class="flex gap-md">
+            <span class="mt-1 flex-shrink-0 font-serif text-2xl text-amber" aria-hidden="true">—</span>
+            <div>
+              <h3 class="font-serif text-xl">{item.title}</h3>
+              <p class="mt-sm text-body text-bg/70">{item.body}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
