@@ -4,7 +4,7 @@ import { getOpenAI } from './client.js';
 import { BRAND_VOICE, OUTPUT_FORMAT } from './system-prompts.generated.js';
 
 // Vercel Pro maxDuration=60s. Budget after response (~2s) is ~58s.
-// Reserve ~5s for PDF render + SMTP. OpenAI o4-mini with reasoning=medium
+// Reserve ~5s for PDF render + SMTP. OpenAI gpt-5.4-mini with reasoning=medium
 // + structured output + Czech: typical 15-30s, P99 up to 45s.
 const TIMEOUT_MS = 50000;
 const RETRY_DELAY_MS = 2000;
@@ -23,7 +23,7 @@ export async function generateReport(userPrompt: string): Promise<ReadinessRepor
 
     try {
       const rsp = await client.responses.parse({
-        model: 'o4-mini',
+        model: 'gpt-5.4-mini',
         input: [
           { role: 'system', content: SYSTEM_PROMPT },
           { role: 'user', content: userPrompt },
