@@ -1,7 +1,7 @@
 import { zodTextFormat } from 'openai/helpers/zod';
-import { ReadinessReport } from './schema';
-import { getOpenAI } from './client';
-import { loadSystemPrompt } from './prompt';
+import { ReadinessReport } from './schema.js';
+import { getOpenAI } from './client.js';
+import { loadSystemPrompt } from './prompt.js';
 
 const TIMEOUT_MS = 25000;
 const RETRY_DELAY_MS = 2000;

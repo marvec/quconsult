@@ -1,5 +1,5 @@
 import { View, Text, Svg, Circle, StyleSheet } from '@react-pdf/renderer';
-import { colors, fontSize, fontFamily } from '../tokens';
+import { colors, fontSize, fontFamily } from '../tokens.js';
 
 const SIZE = 140;
 const STROKE = 8;

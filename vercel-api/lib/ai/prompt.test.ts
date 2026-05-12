@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { buildUserPrompt } from './prompt';
-import type { Card } from '../knowledge/types';
-import type { ScoreResult, Odpovedi } from '../scoring';
+import { buildUserPrompt } from './prompt.js';
+import type { Card } from '../knowledge/types.js';
+import type { ScoreResult, Odpovedi } from '../scoring.js';
 
 const score: ScoreResult = {
   total: 78,

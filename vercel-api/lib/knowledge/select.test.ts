@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { selectCards } from './select';
-import type { Card } from './types';
-import type { ScoreResult } from '../scoring';
+import { selectCards } from './select.js';
+import type { Card } from './types.js';
+import type { ScoreResult } from '../scoring.js';
 
 const score: ScoreResult = {
   total: 65,

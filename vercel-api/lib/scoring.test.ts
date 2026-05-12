@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { scoreReadiness, type Odpovedi } from './scoring';
+import { scoreReadiness, type Odpovedi } from './scoring.js';
 
 describe('scoreReadiness', () => {
   it('returns max score for ideal answers', () => {

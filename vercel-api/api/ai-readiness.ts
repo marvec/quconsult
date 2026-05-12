@@ -3,15 +3,15 @@ import { waitUntil } from '@vercel/functions';
 import nodemailer from 'nodemailer';
 import path from 'node:path';
 import { z } from 'zod';
-import { OdpovediSchema, scoreReadiness, type Odpovedi } from '../lib/scoring';
-import { loadCards } from '../lib/knowledge/load';
-import { selectCards } from '../lib/knowledge/select';
-import { buildUserPrompt } from '../lib/ai/prompt';
-import { generateReport } from '../lib/ai/generate';
-import { renderPdf } from '../lib/pdf/render';
-import { slugify } from '../lib/slugify';
-import { canSpend, recordSpend } from '../lib/cost-cap';
-import type { ScoreResult } from '../lib/scoring';
+import { OdpovediSchema, scoreReadiness, type Odpovedi } from '../lib/scoring.js';
+import { loadCards } from '../lib/knowledge/load.js';
+import { selectCards } from '../lib/knowledge/select.js';
+import { buildUserPrompt } from '../lib/ai/prompt.js';
+import { generateReport } from '../lib/ai/generate.js';
+import { renderPdf } from '../lib/pdf/render.js';
+import { slugify } from '../lib/slugify.js';
+import { canSpend, recordSpend } from '../lib/cost-cap.js';
+import type { ScoreResult } from '../lib/scoring.js';
 
 const knowledgeDir = path.join(process.cwd(), 'lib', 'knowledge');
 

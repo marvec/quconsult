@@ -1,5 +1,5 @@
-import type { Trigger } from './types';
-import type { ScoreResult } from '../scoring';
+import type { Trigger } from './types.js';
+import type { ScoreResult } from '../scoring.js';
 
 type AnyOdpovedi = Record<string, unknown>;
 
