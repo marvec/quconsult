@@ -1,13 +1,11 @@
 import { Document, Font } from '@react-pdf/renderer';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { CoverPage } from './CoverPage.js';
 import { DimensionPage } from './DimensionPage.js';
 import { NextStepsPage } from './NextStepsPage.js';
 import type { ScoreResult } from '../../scoring.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const fontsDir = path.join(__dirname, '..', 'fonts');
+const fontsDir = path.join(process.cwd(), 'lib', 'pdf', 'fonts');
 
 Font.register({
   family: 'Inter',

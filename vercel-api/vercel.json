@@ -4,7 +4,7 @@
     "api/*.ts": {
       "runtime": "@vercel/node@5.0.0",
       "maxDuration": 60,
-      "includeFiles": "lib/knowledge/**,lib/pdf/fonts/**"
+      "includeFiles": "lib/**"
     }
   }
 }
