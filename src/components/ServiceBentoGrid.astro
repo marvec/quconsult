@@ -1,0 +1,67 @@
+---
+// ServiceBentoGrid.astro — render "Co konkrétně děláme" jako 3-sloupcový bento grid.
+// Items s span='2' zaberou 2 sloupce, items s accent='dark' renderují na tmavém
+// pozadí (Stitch A line 206-212). Žádné material-symbols ikony (CLAUDE.md §3
+// "no glassmorphism/neon") — jen pořadové číslo + typografie + tagy.
+
+interface BentoItem {
+  title: string;
+  body: string;
+  tags: string[];
+  span: '1' | '2';
+  accent: 'default' | 'dark';
+}
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  items: BentoItem[];
+}
+
+const { eyebrow, heading, items } = Astro.props;
+---
+<section class="container-quc py-xxl">
+  <div class="max-w-3xl">
+    {eyebrow && (
+      <p class="text-label uppercase tracking-wider text-amber">{eyebrow}</p>
+    )}
+    <h2 class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop">
+      {heading}
+    </h2>
+  </div>
+  <div class="mt-xl grid gap-md md:grid-cols-3">
+    {items.map((item, i) => {
+      const isDark = item.accent === 'dark';
+      const spanClass = item.span === '2' ? 'md:col-span-2' : '';
+      const cardClasses = isDark
+        ? 'rounded border border-ink bg-ink p-xl text-bg'
+        : 'rounded border border-border bg-bg-warm/40 p-xl';
+      const bodyClasses = isDark ? 'text-bg/70' : 'text-ink-muted';
+      const numberClasses = isDark ? 'text-amber-light' : 'text-amber';
+      const titleClasses = isDark ? 'text-bg' : 'text-ink';
+      const tagClasses = isDark
+        ? 'border-bg/30 text-bg/80'
+        : 'border-border text-ink-soft';
+      const num = String(i + 1).padStart(2, '0');
+      return (
+        <article class={`${cardClasses} ${spanClass} flex flex-col`}>
+          <span
+            class={`font-serif text-4xl ${numberClasses}`}
+            aria-hidden="true"
+          >{num}</span>
+          <h3 class={`mt-md font-serif text-xl md:text-2xl ${titleClasses}`}>
+            {item.title}
+          </h3>
+          <p class={`mt-md text-body ${bodyClasses}`}>{item.body}</p>
+          {item.tags.length > 0 && (
+            <ul class="mt-xl flex flex-wrap gap-sm">
+              {item.tags.map((tag) => (
+                <li class={`rounded border px-md py-sm text-label ${tagClasses}`}>{tag}</li>
+              ))}
+            </ul>
+          )}
+        </article>
+      );
+    })}
+  </div>
+</section>
