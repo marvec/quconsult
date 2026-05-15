@@ -59,6 +59,51 @@ const sluzby = defineCollection({
         }),
       )
       .default([]),
+    // Bento grid karty pro sekci "Co konkrétně děláme" (plan §1.3 step 3).
+    // Typicky 4 položky: 2 spanují 2 sloupce, 2 stojí samostatně. Poslední
+    // s accent='dark' renderuje na tmavém pozadí (Stitch A line 206).
+    whatWeDo: z
+      .array(
+        z.object({
+          title: z.string(),
+          body: z.string(),
+          tags: z.array(z.string()).default([]),
+          span: z.enum(['1', '2']).default('1'),
+          accent: z.enum(['default', 'dark']).default('default'),
+        }),
+      )
+      .default([]),
+    // Per-service spotlight — Datová připravenost pro Analýzu, GDPR pro
+    // Automatizaci, formát pro Školení, Agentic OS pro Implementaci.
+    // Pokud chybí, sekce se na stránce vůbec neobjeví.
+    spotlight: z
+      .object({
+        eyebrow: z.string().optional(),
+        headline: z.string(),
+        body: z.string(),
+        ctaLabel: z.string().optional(),
+        ctaHref: z.string().optional(),
+        mediaLabel: z.string().optional(),
+      })
+      .optional(),
+    // Typické výsledky (plan §1.3 step 5) — krátký stat grid.
+    outcomes: z
+      .array(
+        z.object({
+          metric: z.string(),
+          label: z.string(),
+        }),
+      )
+      .default([]),
+    // Co neděláme (plan §1.3 step 8 + origin §5.6) — buduje důvěru transparentností.
+    weDontDo: z
+      .array(
+        z.object({
+          title: z.string(),
+          body: z.string(),
+        }),
+      )
+      .default([]),
   }),
 });
 

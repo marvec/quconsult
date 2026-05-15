@@ -1,0 +1,49 @@
+---
+// ServiceSpotlight.astro — per-service "feature spotlight" split card.
+// Levý sloupec (2fr): eyebrow + H2 + body + optional CTA.
+// Pravý sloupec (1fr): MediaPlaceholder (4-3 aspect — Stitch má 1/3 šířky).
+//
+// Pro /sluzby/analyza-a-strategie = "Datová připravenost" (56 % hook).
+// Pro /sluzby/automatizace-procesu = "Bezpečnost a GDPR".
+// Pro /sluzby/skoleni = "Formát na míru".
+// Pro /sluzby/implementace-a-vyvoj = "Agentic OS".
+
+import MediaPlaceholder from './MediaPlaceholder.astro';
+
+interface Props {
+  eyebrow?: string;
+  headline: string;
+  body: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  mediaLabel?: string;
+}
+
+const { eyebrow, headline, body, ctaLabel, ctaHref, mediaLabel } = Astro.props;
+---
+<section class="container-quc py-xxl">
+  <div class="overflow-hidden rounded border border-border bg-bg-warm">
+    <div class="grid items-stretch md:grid-cols-[2fr_1fr]">
+      <div class="p-xl md:p-xxl">
+        {eyebrow && (
+          <p class="text-label uppercase tracking-wider text-amber">{eyebrow}</p>
+        )}
+        <h2 class="mt-sm font-serif text-3xl text-ink md:text-h2-desktop">
+          {headline}
+        </h2>
+        <p class="mt-md text-body-lg text-ink-muted">{body}</p>
+        {ctaLabel && ctaHref && (
+          <a
+            href={ctaHref}
+            class="mt-xl inline-flex items-center rounded bg-amber px-lg py-md text-label font-medium text-bg transition-colors hover:bg-amber-deep"
+          >
+            {ctaLabel}
+          </a>
+        )}
+      </div>
+      <div class="border-t border-border md:border-l md:border-t-0">
+        <MediaPlaceholder aspect="4-3" label={mediaLabel} />
+      </div>
+    </div>
+  </div>
+</section>
