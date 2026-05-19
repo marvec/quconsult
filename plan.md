@@ -117,11 +117,12 @@ CEO by to mohl číst jako *"tak proč bych vám měl platit?"*.
 
 ### 1.7 Domovská základna
 
-Brno / jižní Morava je domovská základna týmu. Působíme po celé ČR,
-primárně mimo Prahu (kde je silnější konkurence velkých konzultantek).
-Typické klientské lokality: Brno, Ostrava, Plzeň, Zlín, Hradec Králové,
-Středočeský kraj. Brno používáme v lokálním SEO, ale ne jako hlavní
-positioning argument ("Brno-first" rétorika se ruší).
+Brno / jižní Morava je domovská základna týmu. Působíme po celé ČR
+i na Slovensku. Typické klientské lokality: Brno, Ostrava, Plzeň, Zlín,
+Olomouc, Středočeský kraj v ČR; Košice a Trenčín na Slovensku. Brno
+používáme v lokálním SEO, ale ne jako hlavní positioning argument
+(„Brno-first" i „mimo Prahu" rétorika se ruší — pozitivní vymezení
+přes regionální zaměření, ne přes negaci Prahy).
 
 ### 1.8 Aktuální tým
 
@@ -237,8 +238,9 @@ se zaplatí do 12 měsíců a rozumí jí i lidé bez IT vzdělání."*
 - ERP: **Helios Orange/iNuvio**, **Pohoda**, **SAP Business One**,
   **Microsoft Dynamics NAV/Business Central**
 - IT: Vlastní 1–5 lidí, žádný data team ani AI specialista
-- Lokalita: ČR, primárně mimo Prahu (Středočeský, Jihomoravský, Plzeňský,
-  Královéhradecký, Moravskoslezský kraj)
+- Lokalita: ČR i Slovensko (Jihomoravský, Moravskoslezský, Olomoucký,
+  Plzeňský, Středočeský, Zlínský kraj v ČR; Košický, Trenčianský kraj
+  na Slovensku)
 - Historie: 10–30 let existence, organický růst, bez VC financování
 - Zákazníci: typicky B2B komponenty a díly pro další výrobce
   (německé/rakouské/polské dodavatelské řetězce)
